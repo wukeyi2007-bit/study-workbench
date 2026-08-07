@@ -2523,6 +2523,11 @@ function exitSentencePractice() {
 let newsFilter = "all";
 
 function renderNews() {
+  // 自动兜底：若重点列表为空（首次/清空/数据迁移），用数据中 important=true 的项补上
+  if (!Array.isArray(state.news.important) || state.news.important.length === 0) {
+    state.news.important = defaultImportantNews();
+    Store.save();
+  }
   let list = getNews();
   if (newsFilter !== "all") list = list.filter(n => n.cat === newsFilter);
   // 重点置顶（重要项排前），方便「主要看这些」

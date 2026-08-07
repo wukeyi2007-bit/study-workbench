@@ -70,7 +70,7 @@ function parseRss(xml, sourceName) {
     if (!title) continue;
     const desc = clean(getTag(b, 'description') || getTag(b, 'summary') || getTag(b, 'content:encoded') || '');
     const src = clean(getTag(b, 'source')) || sourceName;
-    items.push({ title: title.slice(0, 25), desc: desc.slice(0, 40), source: src });
+    items.push({ title: title.slice(0, 50), desc: desc.slice(0, 140), source: src });
   }
   return items;
 }
@@ -93,7 +93,7 @@ async function fetchBaiduHot() {
   });
   const j = await r.json();
   const arr = j?.data?.cards?.[0]?.content?.[0]?.content || [];
-  return arr.filter((x) => x.word).map((x) => ({ title: x.word.slice(0, 25), desc: '', source: '百度热搜' }));
+  return arr.filter((x) => x.word).map((x) => ({ title: x.word.slice(0, 50), desc: (x.desc || '').slice(0, 140), source: '百度热搜' }));
 }
 
 async function collectFallback(cat) {
