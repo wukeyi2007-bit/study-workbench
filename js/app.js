@@ -2528,14 +2528,13 @@ function renderNews() {
     state.news.important = defaultImportantNews();
     Store.save();
   }
-  let list = getNews();
+  const allNews = getNews();
+  let list = allNews.slice();
   if (newsFilter !== "all") list = list.filter(n => n.cat === newsFilter);
-  // 重点置顶（重要项排前），方便「主要看这些」
-  list = list.slice().sort((a, b) => (b.important ? 1 : 0) - (a.important ? 1 : 0));
 
   const readCount = state.news.read.length;
   const bmCount = state.news.bookmarked.length;
-  const unread = getNews().filter(n => !state.news.read.includes(n.id)).length;
+  const unread = allNews.filter(n => !state.news.read.includes(n.id)).length;
 
   let tabsHtml = `<div class="filter-tab ${newsFilter === 'all' ? 'active' : ''}" onclick="filterNews('all')">全部</div>`;
   Object.entries(NEWS_CATEGORIES).forEach(([k, label]) => {
@@ -2547,12 +2546,13 @@ function renderNews() {
   const importantCount = importantIds.length;
   const importantDone = importantIds.filter(id => state.news.read.includes(id)).length;
 
-  let listHtml = list.map(n => {
+  // 渲染单条新闻卡片
+  const renderCard = (n, compact) => {
     const isRead = state.news.read.includes(n.id);
     const isBm = state.news.bookmarked.includes(n.id);
     const isImportant = importantIds.includes(n.id);
     return `
-      <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''}">
+      <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''} ${compact ? 'news-card-compact' : ''}">
         <div class="news-top">
           <span class="news-cat ${n.cat}">${NEWS_CATEGORIES[n.cat]}</span>
           <span class="news-date">${n.date}</span>
@@ -2564,12 +2564,31 @@ function renderNews() {
           <span class="news-source">📰 ${n.source}</span>
           <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
             <button class="btn btn-xs ${isRead ? 'btn-ghost' : 'btn-secondary'}" onclick="event.stopPropagation();markNewsRead('${n.id}')">${isRead ? '✓ 已读' : '标记已读'}</button>
-            <button class="btn btn-xs ${isBm ? 'btn-warning' : 'btn-secondary'}" onclick="event.stopPropagation();toggleNewsBookmark('${n.id}')">${isBm ? '⭐ 已收藏' : '☆ 收藏'}</button>
+            <button class="btn btn-xs ${isBm ? 'btn-primary' : 'btn-secondary'}" onclick="event.stopPropagation();toggleNewsBookmark('${n.id}')">${isBm ? '⭐ 已收藏' : '☆ 收藏'}</button>
           </div>
         </div>
       </div>
     `;
-  }).join("");
+  };
+
+  // 首页「全部」视图下单独展示今日重点区域
+  let importantSection = '';
+  if (newsFilter === 'all' && importantCount > 0) {
+    const importantNews = importantIds.map(id => allNews.find(n => n.id === id)).filter(Boolean);
+    if (importantNews.length) {
+      importantSection = `
+        <div class="news-important-section">
+          <div class="news-important-title">⭐ 今日重点 · ${importantDone}/${importantCount} 已完成</div>
+          <div class="news-important-list">${importantNews.map(n => renderCard(n, true)).join('')}</div>
+        </div>
+      `;
+    }
+  }
+
+  const listHtml = list
+    .filter(n => newsFilter !== 'all' || !importantIds.includes(n.id)) // 重点已在上方展示，避免下方重复
+    .map(n => renderCard(n, false))
+    .join("");
 
   const heroImportantLine = importantCount
     ? `<div style="font-size:15px;font-weight:600;margin-top:6px;">⭐ 今日重点 <strong>${importantDone}</strong> / ${importantCount} 已完成</div>`
@@ -2581,15 +2600,17 @@ function renderNews() {
         <h2 style="font-size:20px;">📰 热点新闻</h2>
       </div>
       <div class="toolbar-right">
-        <span style="font-size:13px;color:var(--text-secondary);">已读 ${readCount}/${getNews().length} · 收藏 ${bmCount}</span>
+        <span style="font-size:13px;color:var(--text-secondary);">已读 ${readCount}/${allNews.length} · 收藏 ${bmCount}</span>
       </div>
     </div>
 
     <div class="news-hero">
-      <div style="font-size:14px;opacity:.9;">${getNews()[0] ? getNews()[0].date : ''} 更新 · 共 ${getNews().length} 条热点</div>
+      <div style="font-size:14px;opacity:.9;">${allNews[0] ? allNews[0].date : ''} 更新 · 共 ${allNews.length} 条热点</div>
       ${heroImportantLine}
       ${importantCount ? '' : `<div style="font-size:13px;opacity:.85;margin-top:4px;">点 ☆ 可把重要的几条设为「今日重点」，首页概览只算重点</div>`}
     </div>
+
+    ${importantSection}
 
     <div class="filter-tabs">${tabsHtml}</div>
     <div class="news-list">${listHtml}</div>

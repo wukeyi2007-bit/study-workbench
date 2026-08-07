@@ -24,16 +24,23 @@ const GOOGLE = {
 };
 
 const FALLBACK = {
-  domestic: [{ name: '人民网', url: 'https://www.people.com.cn/rss/politics.xml', need: 6 }],
-  international: [{ name: '人民网', url: 'https://www.people.com.cn/rss/world.xml', need: 4 }],
+  domestic: [
+    { name: '新浪新闻', url: 'https://rss.sina.com.cn/news/china/focus15.xml', need: 6 },
+    { name: '人民网', url: 'https://www.people.com.cn/rss/politics.xml', need: 6 },
+  ],
+  international: [
+    { name: '新浪新闻', url: 'https://rss.sina.com.cn/news/world/focus15.xml', need: 4 },
+    { name: '人民网', url: 'https://www.people.com.cn/rss/world.xml', need: 4 },
+  ],
   tech: [
     { name: 'IT之家', url: 'https://www.ithome.com/rss/', need: 2 },
     { name: '36氪', url: 'https://www.36kr.com/feed', need: 1 },
     { name: '虎嗅', url: 'https://rss.huxiu.com/', need: 1 },
   ],
   finance: [
-    { name: '人民网', url: 'https://www.people.com.cn/rss/finance.xml', need: 2 },
-    { name: '新华财经', url: 'http://www.xinhuanet.com/fortune/news_finance.xml', need: 1 },
+    { name: '新浪财经', url: 'https://rss.sina.com.cn/finance/focus15.xml', need: 2 },
+    { name: '36氪', url: 'https://www.36kr.com/feed', need: 1 },
+    { name: '人民网', url: 'https://www.people.com.cn/rss/finance.xml', need: 1 },
   ],
 };
 
@@ -48,13 +55,13 @@ function getTag(block, tag) {
 
 function clean(s) {
   return s
-    .replace(/<[^>]+>/g, ' ')
     .replace(/&nbsp;/g, ' ')
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&#\d+;/g, ' ')
+    .replace(/<[^>]+>/g, ' ')  // 先解码 HTML 实体，再剥离标签，避免 <a> 实体残留
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -68,6 +75,17 @@ function parseRss(xml, sourceName) {
     const idx = title.lastIndexOf(' - ');
     if (idx > 0) title = title.slice(0, idx);
     if (!title) continue;
+
+    // 过滤超过 5 天的旧闻（fallback 源可能返回历史文章）
+    const pubDate = clean(getTag(b, 'pubDate') || getTag(b, 'published') || getTag(b, 'date') || '');
+    if (pubDate) {
+      const d = new Date(pubDate);
+      if (!isNaN(d.getTime())) {
+        const daysAgo = (Date.now() - d.getTime()) / 86400000;
+        if (daysAgo > 5) continue;
+      }
+    }
+
     const desc = clean(getTag(b, 'description') || getTag(b, 'summary') || getTag(b, 'content:encoded') || '');
     const src = clean(getTag(b, 'source')) || sourceName;
     items.push({ title: title.slice(0, 50), desc: desc.slice(0, 140), source: src });
@@ -136,7 +154,12 @@ async function collectFor(cat) {
   } catch (e) {
     console.warn(`  ⚠ Google News ${cat} 失败: ${e.message}，转兜底`);
   }
-  // 2) 兜底
+  // 2) RSS 兜底（有摘要、有过滤）
+  const rssItems = await collectFallback(cat);
+  if (rssItems.length >= TARGETS[cat]) {
+    return rssItems.slice(0, TARGETS[cat]);
+  }
+  // 3) 国内/国际最后兜底百度热搜（实时但无摘要）
   if (cat === 'domestic' || cat === 'international') {
     try {
       const all = await fetchBaiduHot();
@@ -148,7 +171,7 @@ async function collectFor(cat) {
       console.warn(`    ✗ 百度热搜 ${cat} 失败: ${e.message}`);
     }
   }
-  return collectFallback(cat);
+  return rssItems;
 }
 
 (async () => {
