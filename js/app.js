@@ -6183,14 +6183,21 @@ const DIET_MEALS = [
   { key: "snack", label: "🍎 加餐 / 其他" },
 ];
 
-// 饮食记录的生活化份量（以 100g 为 1 份基准，没有厨房秤时按日常参照选）
+// 饮食记录的生活化份量（按日常参照选，不显示克数/热量）
 const DIET_PORTIONS = [
-  { key: "tiny", label: "🤏 一点点", ratio: 0.3, desc: "几口 · 1小把 · 约30g" },
-  { key: "small", label: "🍽️ 小份", ratio: 0.6, desc: "半小碗 · 1个鸡蛋大小 · 约60g" },
-  { key: "medium", label: "🍚 中份", ratio: 1.0, desc: "一小碗 · 1个拳头 · 约100g" },
-  { key: "large", label: "🥣 大份", ratio: 1.8, desc: "一碗 · 1个手掌 · 约180g" },
-  { key: "huge", label: "🍱 超大份", ratio: 3.0, desc: "一大碗/套餐 · 1个餐盘 · 约300g" },
+  { key: "tiny", label: "🤏 一点点", ratio: 0.3, desc: "几口 · 1小把" },
+  { key: "small", label: "🍽️ 小份", ratio: 0.6, desc: "半小碗 · 1个鸡蛋大小" },
+  { key: "medium", label: "🍚 中份", ratio: 1.0, desc: "一小碗 · 1个拳头" },
+  { key: "large", label: "🥣 大份", ratio: 1.8, desc: "一碗 · 1个手掌" },
+  { key: "huge", label: "🍱 超大份", ratio: 3.0, desc: "一大碗/套餐 · 1个餐盘" },
 ];
+
+function getPortionLabelFromAmount(amount) {
+  const p = DIET_PORTIONS.reduce((best, cur) => {
+    return Math.abs(cur.ratio * 100 - amount) < Math.abs(best.ratio * 100 - amount) ? cur : best;
+  }, DIET_PORTIONS[2]);
+  return p.label.split(" ")[1] || p.label;
+}
 
 function renderDiet() {
   const page = document.getElementById("page-diet");
@@ -6211,7 +6218,7 @@ function renderDiet() {
         <div class="diet-log-top">
           <span class="diet-log-meal">${mealLabel(x.meal)}</span>
         </div>
-        <div class="diet-log-name">${escapeHtml(x.name)}${x.portionLabel ? ` <span class="diet-log-amount">${escapeHtml(x.portionLabel)}</span>` : x.amount ? ` <span class="diet-log-amount">${x.amount}g</span>` : ""}</div>
+        <div class="diet-log-name">${escapeHtml(x.name)}${x.portionLabel ? ` <span class="diet-log-amount">${escapeHtml(x.portionLabel)}</span>` : x.amount ? ` <span class="diet-log-amount">${getPortionLabelFromAmount(x.amount)}</span>` : ""}</div>
         ${x.note ? `<div class="diet-log-note">${escapeHtml(x.note)}</div>` : ""}
       </div>
       <button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();deleteFood('${date}','${x.id}')">✕</button>
@@ -6393,16 +6400,19 @@ function openAddFood(preselectMeal, editDate, editItem) {
   const initNote = isEdit ? (editItem.note || "") : "";
   const initPhoto = isEdit ? (editItem.photo || null) : null;
 
-  // 编辑时：尽量根据记录的克数反选到对应份量，否则启用自定义克数
+  // 编辑时：根据记录的克数反选到对应份量；旧自定义克数记录映射到最接近的份量
   let initPortionIdx = 2;
-  let initCustomGram = null;
   if (isEdit && editItem.amount) {
     const matched = DIET_PORTIONS.findIndex(p => Math.round(p.ratio * 100) === Math.round(editItem.amount));
     if (matched >= 0) {
       initPortionIdx = matched;
     } else {
-      initPortionIdx = -1;
-      initCustomGram = editItem.amount;
+      let best = 2, bestDiff = Infinity;
+      DIET_PORTIONS.forEach((p, i) => {
+        const diff = Math.abs(p.ratio * 100 - editItem.amount);
+        if (diff < bestDiff) { bestDiff = diff; best = i; }
+      });
+      initPortionIdx = best;
     }
   }
 
@@ -6412,7 +6422,7 @@ function openAddFood(preselectMeal, editDate, editItem) {
   const portionBtns = DIET_PORTIONS.map((p, idx) =>
     `<button type="button" class="diet-portion-opt ${idx === initPortionIdx ? 'active' : ''}" data-key="${p.key}" data-ratio="${p.ratio}" data-gram="${Math.round(p.ratio * 100)}" onclick="selectFoodPortion('${p.key}')">
       <span class="dp-label">${p.label}</span>
-      <span class="dp-desc">${p.desc} · 约 ${Math.round(p.ratio * 100)}g</span>
+      <span class="dp-desc">${p.desc}</span>
     </button>`
   ).join("");
   const body = `
@@ -6438,7 +6448,7 @@ function openAddFood(preselectMeal, editDate, editItem) {
         <button class="btn btn-sm btn-secondary" id="btnSnap" onclick="snapFoodPhoto()">📷 拍照</button>
         <button class="btn btn-sm btn-ghost" id="btnRetake" style="display:none" onclick="retakeFoodPhoto()">重选</button>
       </div>
-      <div class="addfood-tip">照片只用来帮你回忆吃了什么，不会自动识别重量。填食物名后，系统会根据你选的份量估算热量。</div>
+      <div class="addfood-tip">照片只用来帮你回忆吃了什么，不会自动识别重量。</div>
     </div>
 
     <label class="modal-label">吃了什么 *</label>
@@ -6446,14 +6456,8 @@ function openAddFood(preselectMeal, editDate, editItem) {
     <div id="afSuggest" class="addfood-suggest"></div>
 
     <label class="modal-label">份量（不用称重，按日常参照选）</label>
-    <div class="addfood-tip" style="margin-bottom:10px;">没有厨房秤也不用纠结，按「一小碗」「一个拳头」这类日常感觉选即可，系统会自动换算成克数和热量。</div>
+    <div class="addfood-tip" style="margin-bottom:10px;">没有厨房秤也不用纠结，按「一小碗」「一个拳头」「一个手掌」这类日常感觉选即可。</div>
     <div class="diet-portion-opts">${portionBtns}</div>
-    <div class="diet-portion-custom">
-      <button type="button" class="btn btn-xs btn-ghost" id="btnToggleCustomGram" onclick="toggleFoodCustomGram()">自定义克数</button>
-      <input class="modal-input" id="afAmount" type="number" min="1" value="${Math.round(initCustomGram || 100)}" style="display:${initCustomGram != null ? 'block' : 'none'}" placeholder="输入克数" oninput="selectFoodCustomGram(this.value)" />
-    </div>
-
-    <div class="addfood-kcal-preview" id="afKcalPreview">热量：—</div>
 
     <label class="modal-label">备注（可选）</label>
     <input class="modal-input" id="afNote" value="${escapeHtml(initNote)}" placeholder="如：少油、外卖" />
@@ -6467,15 +6471,8 @@ function openAddFood(preselectMeal, editDate, editItem) {
   window.__foodPhoto = initPhoto;
   window.__foodKcal = isEdit ? editItem.kcal100 : null;
   window.__selectedMeal = initMeal;
-  window.__foodPortion = initCustomGram != null ? null : DIET_PORTIONS[initPortionIdx];
-  window.__foodCustomGram = initCustomGram;
-  if (isEdit && initCustomGram != null) {
-    // 自定义克数模式下隐藏「自定义克数」按钮、显示输入框
-    setTimeout(() => {
-      const toggleBtn = document.getElementById("btnToggleCustomGram");
-      if (toggleBtn) toggleBtn.style.display = "none";
-    }, 0);
-  }
+  window.__foodPortion = DIET_PORTIONS[initPortionIdx];
+  window.__foodCustomGram = null;
   if (isEdit && initPhoto) {
     // 延迟一下，等 modal 渲染到 DOM 后再显示已有照片
     setTimeout(() => showFoodPhotoPreview(initPhoto), 0);
@@ -6533,9 +6530,6 @@ function selectFoodCustomGram(val) {
 }
 
 function getFoodPortionInfo() {
-  if (window.__foodCustomGram != null) {
-    return { amount: window.__foodCustomGram, label: `自定义 ${Math.round(window.__foodCustomGram)}g` };
-  }
   const p = window.__foodPortion || DIET_PORTIONS[2];
   return { amount: Math.round(p.ratio * 100), label: p.label.split(" ")[1] || p.label };
 }
@@ -6708,7 +6702,7 @@ function suggestFood(q) {
     return;
   }
   box.innerHTML = hits.map(f =>
-    `<div class="addfood-suggest-item" onclick="pickFood('${f.name.replace(/'/g, "\\'")}',${f.kcal})">${f.name} · ${f.kcal} kcal/100g</div>`
+    `<div class="addfood-suggest-item" onclick="pickFood('${f.name.replace(/'/g, "\\'")}',${f.kcal})">${f.name}</div>`
   ).join("");
   updateFoodKcalPreview();
 }
