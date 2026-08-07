@@ -959,10 +959,9 @@ function renderTodayOverview() {
   const financeDone = getCompletedForDay(financeTodayDay).length;
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
-  // 热点新闻：按「今日重点」计算（首次加载已自动预置分析重点；兜底回退分析默认重点）
-  const newsImportantIds = (state.news.important && state.news.important.length)
-    ? state.news.important : defaultImportantNews();
-  const newsBase = getNews().filter(n => newsImportantIds.includes(n.id));
+  // 热点新闻：直接从当天新闻数据里取「important:true」的今日重点计算进度，
+  // 避免本地 state.news.important 残留旧 ID 导致首页显示 0/0。
+  const newsBase = getNews().filter(n => n.important);
   const newsRead = newsBase.filter(n => state.news.read.includes(n.id)).length;
   const newsTotal = newsBase.length;
   const newsPct = newsTotal ? Math.min(100, Math.round((newsRead / newsTotal) * 100)) : 0;
