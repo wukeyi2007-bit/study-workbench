@@ -2354,7 +2354,6 @@ function renderSentenceList() {
         <div class="sentence-cn">${s.cn}</div>
         <div class="speech-controls" style="margin-top:12px;">
           <button class="btn btn-speech" onclick="speakWord('${enEscaped}')">🔊 朗读</button>
-          <button class="btn btn-speech" id="btnSenRepeat_${s.id}" onclick="startSentenceRepeat(${s.id})">🎤 跟读</button>
         </div>
         <div id="speechResultSen_${s.id}" style="margin-top:8px;"></div>
         <div style="display:flex;gap:8px;margin-top:12px;">
@@ -2471,7 +2470,6 @@ function checkTranslation(id) {
     <div style="font-size:15px;color:var(--text);">${s.en}</div>
     <div class="speech-controls" style="margin-top:12px;">
       <button class="btn btn-speech" onclick="speakWord('${enEscaped}')">🔊 朗读</button>
-      <button class="btn btn-speech" id="btnSenPracticeRepeat" onclick="startSentencePracticeRepeat(${id})">🎤 跟读</button>
     </div>
     <div id="speechResultSenPractice" style="margin-top:8px;"></div>
     <div style="margin-top:12px;">
@@ -2496,7 +2494,6 @@ function showReference(id) {
     <div style="font-size:15px;">${s.en}</div>
     <div class="speech-controls" style="margin-top:12px;">
       <button class="btn btn-speech" onclick="speakWord('${enEscaped}')">🔊 朗读</button>
-      <button class="btn btn-speech" id="btnSenPracticeRepeat" onclick="startSentencePracticeRepeat(${id})">🎤 跟读</button>
     </div>
     <div id="speechResultSenPractice" style="margin-top:8px;"></div>
   `;
