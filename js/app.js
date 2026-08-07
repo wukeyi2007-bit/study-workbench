@@ -475,7 +475,12 @@ const Speech = {
       this.voices = this.synth.getVoices();
       this.bestEnVoice = this.pickBestEnVoice();
       const sel = this.voices.find(v => v.voiceURI === state.settings.speakVoiceURI);
-      this.selectedVoice = sel || null;
+      this.selectedVoice = sel || this.bestEnVoice || null;
+      // 首次未指定音色时，自动锁定当前最佳英文女声，避免每次启动/刷新音色乱跳
+      if (!state.settings.speakVoiceURI && this.bestEnVoice && this.bestEnVoice.voiceURI) {
+        state.settings.speakVoiceURI = this.bestEnVoice.voiceURI;
+        Store.save();
+      }
     };
     load();
     if (this.voices.length === 0) {
@@ -483,20 +488,35 @@ const Speech = {
     }
   },
 
-  // 给英文语音按“自然度”打分：在线/神经/知名自然音 > 普通 en-US > 其他 en
+  // 给英文语音打分：优先固定几款稳定的女声，避免不同设备/启动时音色乱跳
   voiceScore(v) {
     if (!v.lang || !v.lang.toLowerCase().startsWith("en")) return -1;
     const n = (v.name || "").toLowerCase();
     const u = (v.voiceURI || "").toLowerCase();
     const combined = n + " " + u;
-    if (/online|neural|natural|premium/.test(combined)) return 100;
-    if (/microsoft.*(aria|jenny|libby|sonia|ryan|jacob)|google.*english|samantha|daniel|zira|hazel|karen|fred|victoria/.test(combined)) return 80;
-    if (v.lang.toLowerCase() === "en-us") return 60;
-    if (v.lang.toLowerCase() === "en-gb") return 50;
-    return 40;
+    let score = 0;
+    // 首选：稳定女声（Microsoft/Google 常见女声，音色一致、不易变）
+    const preferredFemales = [
+      /sonia/i, /jenny/i, /aria/i, /zira/i, /hazel/i, /karen/i,
+      /victoria/i, /samantha/i, /google us english/i, /google uk english female/i,
+      /tessa/i, /moira/i, /catherine/i, /leslie/i, /susan/i
+    ];
+    const fallbackFemales = [/libby/i, /linda/i, /anna/i, /helen/i, /lucy/i];
+    const fallbackMales = [/daniel/i, /fred/i, /david/i, /mark/i, /alex/i, /tom/i, /ryan/i, /jacob/i];
+    if (preferredFemales.some(rx => rx.test(combined))) score = 100;
+    else if (fallbackFemales.some(rx => rx.test(combined))) score = 80;
+    else if (fallbackMales.some(rx => rx.test(combined))) score = 60;
+    else if (/google.*english/i.test(combined)) score = 70;
+    else score = 50;
+    // 已知稳定引擎优先
+    if (/microsoft|google|apple|amazon|com\.apple/.test(combined)) score += 8;
+    // en-US 优先（通常更自然），en-GB 次之
+    if (v.lang.toLowerCase() === "en-us") score += 4;
+    else if (v.lang.toLowerCase() === "en-gb") score += 2;
+    return score;
   },
 
-  // 选出系统里最自然的英文语音
+  // 选出系统里最稳定的英文女声；一旦选定就保存到 settings，避免每次启动换声音
   pickBestEnVoice() {
     const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
     if (!en.length) return null;
@@ -3739,44 +3759,60 @@ function shuffleArr(arr) {
 
 // 从全库抽取「汉语释义」干扰项：
 // - 来源不限于当前题目那几个词，而是整个词库（避免选项反复重复、被排除法猜中）
-// - 混入 1~2 个「相近意思」增加难度，其余用相差较远的释义
+// - 选项之间差异要足够大：干扰项释义不能包含与正确项相同的「词素」，避免 A/B 选项同义
 function pickMeaningDistractors(correct, sourceMeanings, count) {
-  const norm = s => (s || '').trim().replace(/[\s,，;；、/]+/g, ' ').toLowerCase();
+  const norm = s => (s || '').trim().replace(/[\s,，;；、/（）()]+/g, ' ').replace(/\s+/g, ' ').trim();
   const cn = norm(correct);
-  if (!cn) return shuffleArr(sourceMeanings).slice(0, count);
-  const cand = sourceMeanings.filter(m => {
-    const nm = norm(m);
-    return nm && nm !== cn;
-  });
-  const chars = s => new Set((s || '').split(''));
-  const cset = chars(cn);
-  const scored = cand.map(m => {
-    const nm = norm(m);
-    const mset = chars(m);
-    let inter = 0;
-    mset.forEach(c => { if (cset.has(c)) inter++; });
-    const sim = cset.size ? inter / cset.size : 0; // 与正确义的字面相近度
-    return { m, sim };
-  });
-  const near = scored.filter(x => x.sim >= 0.15 && x.sim < 0.85).map(x => x.m);
-  const far = scored.filter(x => x.sim < 0.15).map(x => x.m);
-  const out = [];
-  const used = new Set();
-  const pushUnique = arr => {
-    const sh = shuffleArr(arr);
-    for (const m of sh) {
-      const k = norm(m);
-      if (!used.has(k)) { used.add(k); out.push(m); return true; }
+  if (!cn) return shuffleArr(sourceMeanings).filter(m => norm(m) !== cn).slice(0, count);
+
+  // 把释义拆成词素：按分号、逗号、顿号、斜杠、空格切分
+  const tokenize = s => norm(s).split(/[；;，,、/ ]+/).filter(t => t && t.length);
+  const correctTokens = tokenize(cn);
+
+  // 候选：排除与正确项完全相同
+  const cand = sourceMeanings.filter(m => norm(m) !== cn);
+
+  // 判断候选是否「太相似」：若候选任一 token 与正确项任一 token 相同，或互为子串，则排除
+  const isTooSimilar = m => {
+    const tokens = tokenize(m);
+    for (const ct of correctTokens) {
+      for (const t of tokens) {
+        if (!t || !ct) continue;
+        // 完全相同的词素
+        if (t === ct) return true;
+        // 双字及以上互为子串（如 "花费" 与 "花费" / "收视率" 与 "收视"）
+        if (t.length >= 2 && ct.length >= 2 && (t.indexOf(ct) >= 0 || ct.indexOf(t) >= 0)) return true;
+      }
     }
     return false;
   };
-  // 先放 1~2 个相近义，再补相差较远的
-  const nearCount = Math.max(1, Math.min(2, count - 1));
-  for (let i = 0; i < nearCount; i++) pushUnique(near);
-  while (out.length < count) {
-    if (!pushUnique(far) && !pushUnique(cand)) break;
+
+  // 第一步：优先选择完全不相似的干扰项
+  let pool = cand.filter(m => !isTooSimilar(m));
+  if (pool.length < count) {
+    // 第二步：放宽到仅排除 token 完全相同，允许单字/部分重叠
+    pool = cand.filter(m => {
+      const tokens = tokenize(m);
+      for (const ct of correctTokens) {
+        for (const t of tokens) {
+          if (t === ct) return false;
+        }
+      }
+      return true;
+    });
   }
-  return out.slice(0, count);
+  if (pool.length < count) {
+    // 最后兜底：只能排除和正确项完全相同的
+    pool = cand;
+  }
+
+  const out = [];
+  const used = new Set();
+  for (const m of shuffleArr(pool)) {
+    const k = norm(m);
+    if (!used.has(k)) { used.add(k); out.push(m); if (out.length === count) break; }
+  }
+  return out;
 }
 
 function renderListening() {
