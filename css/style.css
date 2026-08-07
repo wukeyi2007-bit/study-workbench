@@ -3013,6 +3013,25 @@ body.has-bg-image .main {
 }
 .news-source { font-size: 13px; color: var(--text-light); text-decoration: none; }
 
+/* 工具栏「收藏」可点击进入收藏列表 */
+.news-bm-link {
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+.news-bm-link:hover { color: var(--primary); border-color: var(--primary); }
+
+/* 重点新闻卡片高亮 */
+.news-card.important {
+  border-left: 4px solid var(--warning);
+  background: var(--warning-bg, #fffbeb);
+}
+
 .news-card a,
 .news-card a:hover,
 .news-card a:visited,

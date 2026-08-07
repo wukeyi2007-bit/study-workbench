@@ -2521,26 +2521,24 @@ function exitSentencePractice() {
 // 热点新闻模块
 // ==========================================
 let newsFilter = "all";
+let newsView = "all"; // all | bookmarked
 
 function renderNews() {
-  // 自动兜底：若重点列表为空（首次/清空/数据迁移），用数据中 important=true 的项补上
-  if (!Array.isArray(state.news.important) || state.news.important.length === 0) {
-    state.news.important = defaultImportantNews();
-    Store.save();
-  }
   const allNews = getNews();
   const readCount = state.news.read.length;
-  const bmCount = state.news.bookmarked.length;
+  const bmIds = state.news.bookmarked;
+  const bmCount = bmIds.length;
 
-  const importantIds = state.news.important;
-  const importantCount = importantIds.length;
-  const importantDone = importantIds.filter(id => state.news.read.includes(id)).length;
+  // 直接从新闻数据里取「今日重点」(important:true)，不依赖可能过期的本地标记
+  const importantNews = allNews.filter(n => n.important);
+  const importantIds = new Set(importantNews.map(n => n.id));
+  const importantDone = importantNews.filter(n => state.news.read.includes(n.id)).length;
 
-  // 渲染单条新闻卡片（右上角不再显示星标，避免与下方「收藏」按钮重复）
+  // 渲染单条新闻卡片（右上角不显示星标，避免与下方「收藏」按钮重复）
   const renderCard = (n) => {
     const isRead = state.news.read.includes(n.id);
-    const isBm = state.news.bookmarked.includes(n.id);
-    const isImportant = importantIds.includes(n.id);
+    const isBm = bmIds.includes(n.id);
+    const isImportant = importantIds.has(n.id);
     return `
       <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''}">
         <div class="news-top">
@@ -2560,23 +2558,36 @@ function renderNews() {
     `;
   };
 
-  // 今日重点区域：5 条重点新闻排在最前面
-  let importantSection = '';
-  if (importantCount > 0) {
-    const importantNews = importantIds.map(id => allNews.find(n => n.id === id)).filter(Boolean);
-    if (importantNews.length) {
-      importantSection = `
-        <div class="news-important-section">
-          <div class="news-important-title">⭐ 今日重点 · ${importantDone}/${importantCount} 已完成</div>
-          ${importantNews.map(n => renderCard(n)).join('')}
+  // ===== 我的收藏视图 =====
+  if (newsView === "bookmarked") {
+    const bmList = allNews.filter(n => bmIds.includes(n.id));
+    const cards = bmList.length
+      ? bmList.map(n => renderCard(n)).join("")
+      : `<div class="error-empty"><div class="icon">⭐</div><div style="font-size:16px;font-weight:600;">还没有收藏</div><div style="font-size:14px;margin-top:4px;">点新闻卡片右下角的「☆ 收藏」，喜欢的新闻就会存到这里</div></div>`;
+    document.getElementById("page-news").innerHTML = `
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button class="btn btn-xs btn-ghost" onclick="viewAllNews()">← 返回全部</button>
+          <h2 style="font-size:20px;">⭐ 我的收藏</h2>
         </div>
-        <div class="news-all-divider">全部新闻</div>
-      `;
-    }
+        <div class="toolbar-right">
+          <span style="font-size:13px;color:var(--text-secondary);">共 ${bmCount} 条</span>
+        </div>
+      </div>
+      <div class="news-list">${cards}</div>
+    `;
+    return;
   }
 
-  // 其余新闻纵向排列（重点已在上文展示，此处排除避免重复）
-  const restList = allNews.filter(n => !importantIds.includes(n.id));
+  // ===== 全部视图：今日重点在前 + 其余纵向排列 =====
+  const restList = allNews.filter(n => !importantIds.has(n.id));
+  const importantSection = importantNews.length ? `
+    <div class="news-important-section">
+      <div class="news-important-title">⭐ 今日重点 · ${importantDone}/${importantNews.length} 已完成</div>
+      ${importantNews.map(n => renderCard(n)).join("")}
+    </div>
+    <div class="news-all-divider">全部新闻</div>
+  ` : "";
   const listHtml = restList.map(n => renderCard(n)).join("");
 
   document.getElementById("page-news").innerHTML = `
@@ -2585,12 +2596,12 @@ function renderNews() {
         <h2 style="font-size:20px;">📰 热点新闻</h2>
       </div>
       <div class="toolbar-right">
-        <span style="font-size:13px;color:var(--text-secondary);">已读 ${readCount}/${allNews.length} · 收藏 ${bmCount}</span>
+        <span class="news-bm-link" onclick="viewBookmarkedNews()" title="查看我收藏的新闻">已读 ${readCount}/${allNews.length} · ⭐ 收藏 ${bmCount}</span>
       </div>
     </div>
 
     <div class="news-hero">
-      <div style="font-size:14px;opacity:.9;">${allNews[0] ? allNews[0].date : ''} 更新 · 共 ${allNews.length} 条热点 · 今日重点 ${importantDone}/${importantCount}</div>
+      <div style="font-size:14px;opacity:.9;">${allNews[0] ? allNews[0].date : ''} 更新 · 共 ${allNews.length} 条热点 · 今日重点 ${importantDone}/${importantNews.length}</div>
     </div>
 
     ${importantSection}
@@ -2598,6 +2609,9 @@ function renderNews() {
     <div class="news-list">${listHtml}</div>
   `;
 }
+
+function viewBookmarkedNews() { newsView = "bookmarked"; renderNews(); }
+function viewAllNews() { newsView = "all"; renderNews(); }
 
 function filterNews(cat) {
   newsFilter = cat;
