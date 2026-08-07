@@ -1,0 +1,12 @@
+# 本地/临时文件，不进仓库
+.workbuddy/
+_tmp/
+_tmp_*.json
+server.log
+*.log
+node_modules/
+tmp_replace_finance.js
+gen-pig-icon.py
+.DS_Store
+*.bak
+news.json.tmp

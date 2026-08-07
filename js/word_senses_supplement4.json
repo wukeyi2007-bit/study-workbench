@@ -1,0 +1,1008 @@
+{
+  "damage": [
+    { "pos": "n.", "meaning": "损害；损坏", "phrase": "cause damage", "example": "The storm caused serious damage.", "exampleCn": "暴风雨造成严重损害。" },
+    { "pos": "v.", "meaning": "损害；毁坏", "phrase": "damage the car", "example": "The accident damaged the car.", "exampleCn": "事故损坏了汽车。" }
+  ],
+  "danger": [
+    { "pos": "n.", "meaning": "危险；威胁", "phrase": "in danger", "example": "The animal is in danger.", "exampleCn": "这种动物处于危险中。" }
+  ],
+  "dare": [
+    { "pos": "v.", "meaning": "敢；敢于", "phrase": "dare to do", "example": "He dared to speak up.", "exampleCn": "他敢大声说出来。" },
+    { "pos": "n.", "meaning": "挑战；胆量", "phrase": "for a dare", "example": "He climbed the tree for a dare.", "exampleCn": "他受人激将爬上了树。" }
+  ],
+  "date": [
+    { "pos": "n.", "meaning": "日期；约会", "phrase": "out of date", "example": "This magazine is out of date.", "exampleCn": "这本杂志过期了。" },
+    { "pos": "v.", "meaning": "约会；确定年代", "phrase": "date back to", "example": "The castle dates back to the 12th century.", "exampleCn": "这座城堡可追溯到12世纪。" }
+  ],
+  "deal": [
+    { "pos": "v.", "meaning": "处理；交易", "phrase": "deal with", "example": "I'll deal with this problem.", "exampleCn": "我会处理这个问题。" },
+    { "pos": "n.", "meaning": "交易；协议", "phrase": "a good deal", "example": "We made a good deal.", "exampleCn": "我们做了一笔好交易。" }
+  ],
+  "debate": [
+    { "pos": "n.", "meaning": "辩论；争论", "phrase": "have a debate", "example": "We had a heated debate.", "exampleCn": "我们进行了一场激烈的辩论。" },
+    { "pos": "v.", "meaning": "辩论；讨论", "phrase": "debate about", "example": "They debated about the plan.", "exampleCn": "他们就计划展开辩论。" }
+  ],
+  "decade": [
+    { "pos": "n.", "meaning": "十年；十年期", "phrase": "over the past decade", "example": "Great changes happened over the past decade.", "exampleCn": "过去十年发生了巨大变化。" }
+  ],
+  "decline": [
+    { "pos": "v.", "meaning": "下降；衰退；拒绝", "phrase": "decline an invitation", "example": "He declined the invitation.", "exampleCn": "他谢绝了邀请。" },
+    { "pos": "n.", "meaning": "下降；衰退", "phrase": "economic decline", "example": "The industry is in decline.", "exampleCn": "这个行业正在衰退。" }
+  ],
+  "decorate": [
+    { "pos": "v.", "meaning": "装饰；装潢", "phrase": "decorate with", "example": "We decorated the room with flowers.", "exampleCn": "我们用花装饰房间。" }
+  ],
+  "decrease": [
+    { "pos": "v.", "meaning": "减少；降低", "phrase": "decrease by", "example": "Sales decreased by 10%.", "exampleCn": "销售额下降了10%。" },
+    { "pos": "n.", "meaning": "减少；降低", "phrase": "a decrease in", "example": "There was a decrease in crime.", "exampleCn": "犯罪率有所下降。" }
+  ],
+  "defeat": [
+    { "pos": "v.", "meaning": "击败；战胜", "phrase": "defeat the enemy", "example": "They defeated the enemy.", "exampleCn": "他们击败了敌人。" },
+    { "pos": "n.", "meaning": "失败；战败", "phrase": "suffer a defeat", "example": "The team suffered a defeat.", "exampleCn": "球队遭遇了失败。" }
+  ],
+  "defend": [
+    { "pos": "v.", "meaning": "防御；保卫", "phrase": "defend against", "example": "We must defend against attacks.", "exampleCn": "我们必须防御攻击。" },
+    { "pos": "v.", "meaning": "为……辩护", "phrase": "defend sb. in court", "example": "The lawyer defended him in court.", "exampleCn": "律师在法庭上为他辩护。" }
+  ],
+  "degree": [
+    { "pos": "n.", "meaning": "程度；度数", "phrase": "to a certain degree", "example": "I agree to a certain degree.", "exampleCn": "我在某种程度上同意。" },
+    { "pos": "n.", "meaning": "学位", "phrase": "bachelor's degree", "example": "She has a master's degree.", "exampleCn": "她有硕士学位。" }
+  ],
+  "delay": [
+    { "pos": "v.", "meaning": "推迟；延误", "phrase": "delay the flight", "example": "The flight was delayed.", "exampleCn": "航班延误了。" },
+    { "pos": "n.", "meaning": "延迟；耽搁", "phrase": "without delay", "example": "Do it without delay.", "exampleCn": "立刻去做。" }
+  ],
+  "deliver": [
+    { "pos": "v.", "meaning": "递送；交付", "phrase": "deliver letters", "example": "The postman delivers letters.", "exampleCn": "邮递员送信。" },
+    { "pos": "v.", "meaning": "发表；接生", "phrase": "deliver a speech", "example": "He delivered an excellent speech.", "exampleCn": "他发表了精彩的演讲。" }
+  ],
+  "demand": [
+    { "pos": "v.", "meaning": "要求；需要", "phrase": "demand an answer", "example": "She demanded an answer.", "exampleCn": "她要求答复。" },
+    { "pos": "n.", "meaning": "要求；需求", "phrase": "in demand", "example": "Good workers are in demand.", "exampleCn": "优秀工人很抢手。" }
+  ],
+  "deny": [
+    { "pos": "v.", "meaning": "否认；拒绝", "phrase": "deny doing sth.", "example": "He denied stealing the money.", "exampleCn": "他否认偷了钱。" }
+  ],
+  "depart": [
+    { "pos": "v.", "meaning": "离开；出发", "phrase": "depart from", "example": "The train departs from Beijing.", "exampleCn": "火车从北京出发。" }
+  ],
+  "depend": [
+    { "pos": "v.", "meaning": "依靠；依赖", "phrase": "depend on", "example": "Children depend on their parents.", "exampleCn": "孩子依赖父母。" }
+  ],
+  "describe": [
+    { "pos": "v.", "meaning": "描述；形容", "phrase": "describe as", "example": "He described her as kind.", "exampleCn": "他形容她很善良。" }
+  ],
+  "desert": [
+    { "pos": "n.", "meaning": "沙漠", "phrase": "Sahara Desert", "example": "The Sahara is a huge desert.", "exampleCn": "撒哈拉是一片巨大的沙漠。" },
+    { "pos": "v.", "meaning": "抛弃；擅离", "phrase": "desert one's post", "example": "The soldier deserted his post.", "exampleCn": "士兵擅离职守。" }
+  ],
+  "design": [
+    { "pos": "v.", "meaning": "设计；构思", "phrase": "design a building", "example": "She designed a beautiful building.", "exampleCn": "她设计了一座漂亮的建筑。" },
+    { "pos": "n.", "meaning": "设计；图案", "phrase": "by design", "example": "Was it by accident or by design?", "exampleCn": "这是偶然还是故意的？" }
+  ],
+  "desire": [
+    { "pos": "n.", "meaning": "欲望；渴望", "phrase": "desire for", "example": "He has a strong desire to win.", "exampleCn": "他有强烈的获胜欲望。" },
+    { "pos": "v.", "meaning": "渴望；希望", "phrase": "desire to do", "example": "She desires to travel the world.", "exampleCn": "她渴望环游世界。" }
+  ],
+  "destroy": [
+    { "pos": "v.", "meaning": "摧毁；破坏", "phrase": "destroy the bridge", "example": "The fire destroyed the house.", "exampleCn": "大火摧毁了房子。" }
+  ],
+  "detail": [
+    { "pos": "n.", "meaning": "细节；详情", "phrase": "in detail", "example": "Explain it in detail.", "exampleCn": "详细解释一下。" }
+  ],
+  "determine": [
+    { "pos": "v.", "meaning": "决定；确定", "phrase": "determine to do", "example": "She determined to study abroad.", "exampleCn": "她决定出国留学。" }
+  ],
+  "develop": [
+    { "pos": "v.", "meaning": "发展；开发", "phrase": "develop a new product", "example": "The company developed a new product.", "exampleCn": "公司开发了一种新产品。" },
+    { "pos": "v.", "meaning": "养成；患病", "phrase": "develop a habit", "example": "He developed a habit of reading.", "exampleCn": "他养成了阅读习惯。" }
+  ],
+  "devote": [
+    { "pos": "v.", "meaning": "致力于；奉献", "phrase": "devote to", "example": "She devotes herself to teaching.", "exampleCn": "她全身心投入教学。" }
+  ],
+  "diet": [
+    { "pos": "n.", "meaning": "饮食；节食", "phrase": "balanced diet", "example": "A balanced diet is important.", "exampleCn": "均衡饮食很重要。" },
+    { "pos": "v.", "meaning": "节食", "phrase": "go on a diet", "example": "She is on a diet.", "exampleCn": "她在节食。" }
+  ],
+  "differ": [
+    { "pos": "v.", "meaning": "不同；有区别", "phrase": "differ from", "example": "The two cases differ greatly.", "exampleCn": "两个案例大不相同。" }
+  ],
+  "different": [
+    { "pos": "adj.", "meaning": "不同的；有区别的", "phrase": "different from", "example": "This is different from that.", "exampleCn": "这和那个不同。" }
+  ],
+  "difficult": [
+    { "pos": "adj.", "meaning": "困难的；难相处的", "phrase": "difficult problem", "example": "This is a difficult problem.", "exampleCn": "这是个难题。" }
+  ],
+  "dig": [
+    { "pos": "v.", "meaning": "挖；掘", "phrase": "dig a hole", "example": "They dug a hole for the tree.", "exampleCn": "他们为树挖了一个坑。" },
+    { "pos": "v.", "meaning": "探究；喜欢", "phrase": "dig into", "example": "Let's dig into the data.", "exampleCn": "让我们深入研究数据。" }
+  ],
+  "direction": [
+    { "pos": "n.", "meaning": "方向；指导", "phrase": "in the direction of", "example": "Walk in the direction of the park.", "exampleCn": "朝公园方向走。" }
+  ],
+  "director": [
+    { "pos": "n.", "meaning": "导演；主任；董事", "phrase": "film director", "example": "The director won an award.", "exampleCn": "导演获奖了。" }
+  ],
+  "disappoint": [
+    { "pos": "v.", "meaning": "使失望；使沮丧", "phrase": "disappoint sb.", "example": "Don't disappoint your parents.", "exampleCn": "别让你的父母失望。" }
+  ],
+  "disaster": [
+    { "pos": "n.", "meaning": "灾难；灾祸", "phrase": "natural disaster", "example": "Earthquakes are natural disasters.", "exampleCn": "地震是自然灾害。" }
+  ],
+  "discipline": [
+    { "pos": "n.", "meaning": "纪律；学科", "phrase": "school discipline", "example": "School discipline is important.", "exampleCn": "学校纪律很重要。" },
+    { "pos": "v.", "meaning": "训练；惩罚", "phrase": "discipline children", "example": "Parents should discipline their children.", "exampleCn": "父母应该管教孩子。" }
+  ],
+  "discount": [
+    { "pos": "n.", "meaning": "折扣", "phrase": "at a discount", "example": "I bought it at a discount.", "exampleCn": "我打折买的。" },
+    { "pos": "v.", "meaning": "打折；不重视", "phrase": "discount the possibility", "example": "Don't discount the possibility.", "exampleCn": "不要忽视这种可能性。" }
+  ],
+  "discover": [
+    { "pos": "v.", "meaning": "发现；发觉", "phrase": "discover the truth", "example": "Columbus discovered America.", "exampleCn": "哥伦布发现了美洲。" }
+  ],
+  "discuss": [
+    { "pos": "v.", "meaning": "讨论；论述", "phrase": "discuss with", "example": "Let's discuss the plan.", "exampleCn": "我们讨论一下计划吧。" }
+  ],
+  "disease": [
+    { "pos": "n.", "meaning": "疾病；弊病", "phrase": "heart disease", "example": "Smoking causes heart disease.", "exampleCn": "吸烟导致心脏病。" }
+  ],
+  "dish": [
+    { "pos": "n.", "meaning": "菜肴；盘子", "phrase": "main dish", "example": "The main dish was chicken.", "exampleCn": "主菜是鸡肉。" }
+  ],
+  "dismiss": [
+    { "pos": "v.", "meaning": "解雇；解散", "phrase": "dismiss an employee", "example": "He was dismissed from his job.", "exampleCn": "他被解雇了。" },
+    { "pos": "v.", "meaning": "不予理会；驳回", "phrase": "dismiss the idea", "example": "She dismissed the idea as silly.", "exampleCn": "她认为这个想法很傻而不予理会。" }
+  ],
+  "display": [
+    { "pos": "v.", "meaning": "展示；显示", "phrase": "display goods", "example": "The shop displays new clothes.", "exampleCn": "商店展示新衣服。" },
+    { "pos": "n.", "meaning": "展示；显示器", "phrase": "on display", "example": "The paintings are on display.", "exampleCn": "画作正在展出。" }
+  ],
+  "distance": [
+    { "pos": "n.", "meaning": "距离；远方", "phrase": "in the distance", "example": "I saw a mountain in the distance.", "exampleCn": "我看到远处有座山。" }
+  ],
+  "distribute": [
+    { "pos": "v.", "meaning": "分发；分配", "phrase": "distribute to", "example": "They distributed food to the poor.", "exampleCn": "他们向穷人分发食物。" }
+  ],
+  "district": [
+    { "pos": "n.", "meaning": "地区；区域", "phrase": "business district", "example": "The hotel is in the business district.", "exampleCn": "酒店位于商业区。" }
+  ],
+  "divide": [
+    { "pos": "v.", "meaning": "分开；除以", "phrase": "divide into", "example": "Divide the cake into four parts.", "exampleCn": "把蛋糕分成四份。" }
+  ],
+  "do": [
+    { "pos": "v.", "meaning": "做；干", "phrase": "do homework", "example": "I do my homework every day.", "exampleCn": "我每天做作业。" },
+    { "pos": "v.", "meaning": "足够；行", "phrase": "That will do.", "example": "That will do for now.", "exampleCn": "暂时够了。" }
+  ],
+  "doctor": [
+    { "pos": "n.", "meaning": "医生；博士", "phrase": "see a doctor", "example": "You should see a doctor.", "exampleCn": "你应该去看医生。" }
+  ],
+  "document": [
+    { "pos": "n.", "meaning": "文件；文献", "phrase": "official document", "example": "Please bring your documents.", "exampleCn": "请带上你的文件。" },
+    { "pos": "v.", "meaning": "记录；证明", "phrase": "document the process", "example": "We need to document the process.", "exampleCn": "我们需要记录这个过程。" }
+  ],
+  "dog": [
+    { "pos": "n.", "meaning": "狗", "phrase": "pet dog", "example": "I have a pet dog.", "exampleCn": "我有一只宠物狗。" },
+    { "pos": "v.", "meaning": "困扰；跟踪", "phrase": "dog one's steps", "example": "Bad luck dogged him.", "exampleCn": "厄运一直困扰着他。" }
+  ],
+  "dollar": [
+    { "pos": "n.", "meaning": "美元", "phrase": "ten dollars", "example": "It costs ten dollars.", "exampleCn": "它值十美元。" }
+  ],
+  "door": [
+    { "pos": "n.", "meaning": "门；门口", "phrase": "open the door", "example": "Please open the door.", "exampleCn": "请开门。" }
+  ],
+  "dose": [
+    { "pos": "n.", "meaning": "剂量；一剂", "phrase": "a dose of medicine", "example": "Take one dose every four hours.", "exampleCn": "每四小时服用一剂。" }
+  ],
+  "dot": [
+    { "pos": "n.", "meaning": "点；小圆点", "phrase": "polka dot", "example": "The dress has white dots.", "exampleCn": "这条裙子有白点。" },
+    { "pos": "v.", "meaning": "点缀；布满", "phrase": "dot with", "example": "The lake is dotted with boats.", "exampleCn": "湖上点缀着船只。" }
+  ],
+  "double": [
+    { "pos": "adj.", "meaning": "双倍的；双人的", "phrase": "double room", "example": "I booked a double room.", "exampleCn": "我订了一间双人房。" },
+    { "pos": "v.", "meaning": "使加倍；折叠", "phrase": "double the amount", "example": "Double the recipe if needed.", "exampleCn": "需要的话把食谱分量加倍。" }
+  ],
+  "doubt": [
+    { "pos": "n.", "meaning": "怀疑；疑虑", "phrase": "no doubt", "example": "No doubt, he will come.", "exampleCn": "毫无疑问，他会来。" },
+    { "pos": "v.", "meaning": "怀疑；不相信", "phrase": "doubt that", "example": "I doubt that he will come.", "exampleCn": "我怀疑他不会来。" }
+  ],
+  "down": [
+    { "pos": "adv.", "meaning": "向下；下降", "phrase": "sit down", "example": "Please sit down.", "exampleCn": "请坐。" },
+    { "pos": "prep.", "meaning": "沿着；往下", "phrase": "down the street", "example": "Walk down the street.", "exampleCn": "沿着街走。" },
+    { "pos": "adj.", "meaning": "沮丧的；向下的", "phrase": "feel down", "example": "I feel down today.", "exampleCn": "我今天情绪低落。" }
+  ],
+  "dozen": [
+    { "pos": "n.", "meaning": "一打；十二个", "phrase": "a dozen eggs", "example": "I bought a dozen eggs.", "exampleCn": "我买了一打鸡蛋。" }
+  ],
+  "draft": [
+    { "pos": "n.", "meaning": "草稿；草案", "phrase": "first draft", "example": "This is just a first draft.", "exampleCn": "这只是初稿。" },
+    { "pos": "v.", "meaning": "起草；征募", "phrase": "draft a letter", "example": "He drafted a letter.", "exampleCn": "他起草了一封信。" }
+  ],
+  "drag": [
+    { "pos": "v.", "meaning": "拖；拉", "phrase": "drag away", "example": "He dragged the heavy box.", "exampleCn": "他拖着沉重的箱子。" }
+  ],
+  "draw": [
+    { "pos": "v.", "meaning": "画；绘制", "phrase": "draw a picture", "example": "She drew a beautiful picture.", "exampleCn": "她画了一幅漂亮的画。" },
+    { "pos": "v.", "meaning": "拉；吸引；得出", "phrase": "draw a conclusion", "example": "We can draw a conclusion from this.", "exampleCn": "我们可以从中得出结论。" }
+  ],
+  "dream": [
+    { "pos": "n.", "meaning": "梦；梦想", "phrase": "have a dream", "example": "I have a dream.", "exampleCn": "我有一个梦想。" },
+    { "pos": "v.", "meaning": "做梦；梦想", "phrase": "dream of", "example": "She dreams of becoming a doctor.", "exampleCn": "她梦想成为一名医生。" }
+  ],
+  "dress": [
+    { "pos": "n.", "meaning": "连衣裙；服装", "phrase": "evening dress", "example": "She wore a red dress.", "exampleCn": "她穿了一条红色连衣裙。" },
+    { "pos": "v.", "meaning": "穿衣；打扮", "phrase": "get dressed", "example": "Get dressed quickly.", "exampleCn": "快点穿好衣服。" }
+  ],
+  "drink": [
+    { "pos": "v.", "meaning": "喝；饮", "phrase": "drink water", "example": "Drink more water.", "exampleCn": "多喝水。" },
+    { "pos": "n.", "meaning": "饮料；酒", "phrase": "soft drink", "example": "I'd like a cold drink.", "exampleCn": "我想要杯冷饮。" }
+  ],
+  "drive": [
+    { "pos": "v.", "meaning": "驾驶；开车", "phrase": "drive a car", "example": "Can you drive a car?", "exampleCn": "你会开车吗？" },
+    { "pos": "n.", "meaning": "驱车旅行；车道", "phrase": "go for a drive", "example": "Let's go for a drive.", "exampleCn": "我们开车去兜风吧。" }
+  ],
+  "drop": [
+    { "pos": "v.", "meaning": "落下；下降", "phrase": "drop off", "example": "Don't drop the glass.", "exampleCn": "别把杯子掉了。" },
+    { "pos": "n.", "meaning": "滴；下降", "phrase": "a drop of water", "example": "There isn't a drop of water.", "exampleCn": "一滴水也没有。" }
+  ],
+  "drug": [
+    { "pos": "n.", "meaning": "药物；毒品", "phrase": "take drugs", "example": "The doctor prescribed a new drug.", "exampleCn": "医生开了一种新药。" }
+  ],
+  "dry": [
+    { "pos": "adj.", "meaning": "干的；干燥的", "phrase": "dry weather", "example": "The weather is dry.", "exampleCn": "天气干燥。" },
+    { "pos": "v.", "meaning": "使干燥；擦干", "phrase": "dry the dishes", "example": "Dry the dishes with a towel.", "exampleCn": "用毛巾擦干碗碟。" }
+  ],
+  "due": [
+    { "pos": "adj.", "meaning": "到期的；应得的", "phrase": "due to", "example": "The flight is due to arrive at 6.", "exampleCn": "航班预计六点到达。" }
+  ],
+  "dump": [
+    { "pos": "v.", "meaning": "倾倒；丢弃", "phrase": "dump rubbish", "example": "Don't dump rubbish here.", "exampleCn": "别在这里倒垃圾。" },
+    { "pos": "n.", "meaning": "垃圾场；堆存处", "phrase": "rubbish dump", "example": "The old factory is a dump.", "exampleCn": "这座旧工厂像个垃圾场。" }
+  ],
+  "during": [
+    { "pos": "prep.", "meaning": "在……期间", "phrase": "during the day", "example": "I sleep during the day.", "exampleCn": "我白天睡觉。" }
+  ],
+  "dust": [
+    { "pos": "n.", "meaning": "灰尘；尘土", "phrase": "cover with dust", "example": "The table was covered with dust.", "exampleCn": "桌子上布满灰尘。" },
+    { "pos": "v.", "meaning": "拂去灰尘", "phrase": "dust the furniture", "example": "She dusted the furniture.", "exampleCn": "她拂去家具上的灰尘。" }
+  ],
+  "duty": [
+    { "pos": "n.", "meaning": "职责；责任", "phrase": "on duty", "example": "Who is on duty today?", "exampleCn": "今天谁值班？" },
+    { "pos": "n.", "meaning": "关税", "phrase": "customs duty", "example": "You have to pay duty on this.", "exampleCn": "这个你要交关税。" }
+  ],
+  "earn": [
+    { "pos": "v.", "meaning": "赚得；赢得", "phrase": "earn money", "example": "He earns a good salary.", "exampleCn": "他薪水不错。" }
+  ],
+  "earth": [
+    { "pos": "n.", "meaning": "地球；大地", "phrase": "on earth", "example": "What on earth are you doing?", "exampleCn": "你究竟在干什么？" },
+    { "pos": "n.", "meaning": "泥土；土壤", "phrase": "wet earth", "example": "The plant needs rich earth.", "exampleCn": "植物需要肥沃的土壤。" }
+  ],
+  "ease": [
+    { "pos": "n.", "meaning": "容易；舒适", "phrase": "with ease", "example": "He solved the problem with ease.", "exampleCn": "他轻松地解决了问题。" },
+    { "pos": "v.", "meaning": "减轻；缓解", "phrase": "ease the pain", "example": "The medicine eased the pain.", "exampleCn": "药物缓解了疼痛。" }
+  ],
+  "east": [
+    { "pos": "n.", "meaning": "东方；东部", "phrase": "in the east", "example": "The sun rises in the east.", "exampleCn": "太阳从东方升起。" },
+    { "pos": "adj.", "meaning": "东方的；东部的", "phrase": "east coast", "example": "The east coast is beautiful.", "exampleCn": "东海岸很美。" }
+  ],
+  "edge": [
+    { "pos": "n.", "meaning": "边缘；刀刃", "phrase": "on the edge", "example": "He stood on the edge of the cliff.", "exampleCn": "他站在悬崖边上。" },
+    { "pos": "v.", "meaning": "缓慢移动；给……加边", "phrase": "edge forward", "example": "The car edged forward.", "exampleCn": "汽车缓缓前进。" }
+  ],
+  "effect": [
+    { "pos": "n.", "meaning": "影响；效果", "phrase": "side effect", "example": "The medicine has side effects.", "exampleCn": "这药有副作用。" }
+  ],
+  "effort": [
+    { "pos": "n.", "meaning": "努力；尝试", "phrase": "make an effort", "example": "Make an effort to be on time.", "exampleCn": "尽量准时。" }
+  ],
+  "egg": [
+    { "pos": "n.", "meaning": "蛋；鸡蛋", "phrase": "boiled egg", "example": "I had an egg for breakfast.", "exampleCn": "我早餐吃了一个鸡蛋。" }
+  ],
+  "either": [
+    { "pos": "pron.", "meaning": "（两者中）任何一个", "phrase": "either of", "example": "Either of you can go.", "exampleCn": "你们两个谁去都可以。" },
+    { "pos": "adv.", "meaning": "也（用于否定句）", "phrase": "not...either", "example": "I don't like it either.", "exampleCn": "我也不喜欢。" }
+  ],
+  "elder": [
+    { "pos": "adj.", "meaning": "年长的； older", "phrase": "elder brother", "example": "My elder brother is a doctor.", "exampleCn": "我哥哥是医生。" },
+    { "pos": "n.", "meaning": "长辈；长者", "phrase": "village elders", "example": "Respect your elders.", "exampleCn": "尊敬长辈。" }
+  ],
+  "elect": [
+    { "pos": "v.", "meaning": "选举；推选", "phrase": "elect president", "example": "They elected a new president.", "exampleCn": "他们选出了新总统。" }
+  ],
+  "electric": [
+    { "pos": "adj.", "meaning": "电的；电动的", "phrase": "electric car", "example": "Electric cars are becoming popular.", "exampleCn": "电动汽车越来越受欢迎。" }
+  ],
+  "electronic": [
+    { "pos": "adj.", "meaning": "电子的", "phrase": "electronic device", "example": "Smartphones are electronic devices.", "exampleCn": "智能手机是电子设备。" }
+  ],
+  "elegant": [
+    { "pos": "adj.", "meaning": "优雅的；高雅的", "phrase": "elegant dress", "example": "She wore an elegant dress.", "exampleCn": "她穿了一条优雅的裙子。" }
+  ],
+  "element": [
+    { "pos": "n.", "meaning": "元素；要素", "phrase": "chemical element", "example": "Oxygen is an important element.", "exampleCn": "氧是一种重要元素。" }
+  ],
+  "embarrass": [
+    { "pos": "v.", "meaning": "使尴尬；使窘迫", "phrase": "embarrass sb.", "example": "His question embarrassed me.", "exampleCn": "他的问题让我很尴尬。" }
+  ],
+  "emergency": [
+    { "pos": "n.", "meaning": "紧急情况；突发事件", "phrase": "in an emergency", "example": "Call this number in an emergency.", "exampleCn": "紧急情况拨打这个号码。" }
+  ],
+  "employ": [
+    { "pos": "v.", "meaning": "雇用；使用", "phrase": "employ workers", "example": "The company employs 500 workers.", "exampleCn": "公司雇用了500名工人。" }
+  ],
+  "empty": [
+    { "pos": "adj.", "meaning": "空的；空虚的", "phrase": "empty bottle", "example": "The bottle is empty.", "exampleCn": "瓶子是空的。" },
+    { "pos": "v.", "meaning": "倒空；清空", "phrase": "empty the trash", "example": "Empty the trash, please.", "exampleCn": "请把垃圾倒掉。" }
+  ],
+  "encourage": [
+    { "pos": "v.", "meaning": "鼓励；激励", "phrase": "encourage sb. to do", "example": "Teachers encourage students to ask questions.", "exampleCn": "老师鼓励学生提问。" }
+  ],
+  "end": [
+    { "pos": "n.", "meaning": "末端；结束", "phrase": "at the end", "example": "At the end of the road, turn left.", "exampleCn": "在路的尽头左转。" },
+    { "pos": "v.", "meaning": "结束；终止", "phrase": "end the meeting", "example": "Let's end the meeting.", "exampleCn": "我们结束会议吧。" }
+  ],
+  "enemy": [
+    { "pos": "n.", "meaning": "敌人；敌军", "phrase": "make enemies", "example": "Don't make enemies.", "exampleCn": "不要树敌。" }
+  ],
+  "energy": [
+    { "pos": "n.", "meaning": "能量；精力", "phrase": "save energy", "example": "We should save energy.", "exampleCn": "我们应该节约能源。" }
+  ],
+  "engage": [
+    { "pos": "v.", "meaning": "参与；从事", "phrase": "engage in", "example": "He engaged in volunteer work.", "exampleCn": "他从事志愿工作。" },
+    { "pos": "v.", "meaning": "吸引；雇用", "phrase": "engage one's attention", "example": "The book engaged my attention.", "exampleCn": "这本书吸引了我的注意力。" }
+  ],
+  "engine": [
+    { "pos": "n.", "meaning": "引擎；发动机", "phrase": "car engine", "example": "The engine won't start.", "exampleCn": "发动机启动不了。" }
+  ],
+  "enjoy": [
+    { "pos": "v.", "meaning": "享受；喜欢", "phrase": "enjoy oneself", "example": "Did you enjoy yourself?", "exampleCn": "你玩得开心吗？" }
+  ],
+  "enough": [
+    { "pos": "adj.", "meaning": "足够的；充足的", "phrase": "enough time", "example": "We have enough time.", "exampleCn": "我们有足够的时间。" },
+    { "pos": "adv.", "meaning": "足够地；相当", "phrase": "good enough", "example": "Is it good enough?", "exampleCn": "够好了吗？" }
+  ],
+  "ensure": [
+    { "pos": "v.", "meaning": "确保；保证", "phrase": "ensure safety", "example": "We must ensure everyone's safety.", "exampleCn": "我们必须确保每个人的安全。" }
+  ],
+  "enter": [
+    { "pos": "v.", "meaning": "进入；参加", "phrase": "enter the room", "example": "Please enter the room.", "exampleCn": "请进房间。" }
+  ],
+  "entertain": [
+    { "pos": "v.", "meaning": "娱乐；招待", "phrase": "entertain guests", "example": "We entertained guests last night.", "exampleCn": "我们昨晚招待了客人。" }
+  ],
+  "enthusiastic": [
+    { "pos": "adj.", "meaning": "热情的；热心的", "phrase": "enthusiastic about", "example": "He is enthusiastic about sports.", "exampleCn": "他对运动很热心。" }
+  ],
+  "entire": [
+    { "pos": "adj.", "meaning": "整个的；全部的", "phrase": "entire world", "example": "The entire world watched.", "exampleCn": "全世界都在关注。" }
+  ],
+  "entrance": [
+    { "pos": "n.", "meaning": "入口；进入", "phrase": "main entrance", "example": "Use the main entrance.", "exampleCn": "走主入口。" }
+  ],
+  "environment": [
+    { "pos": "n.", "meaning": "环境；自然环境", "phrase": "protect the environment", "example": "We must protect the environment.", "exampleCn": "我们必须保护环境。" }
+  ],
+  "equal": [
+    { "pos": "adj.", "meaning": "相等的；平等的", "phrase": "equal to", "example": "Men and women are equal.", "exampleCn": "男女平等。" },
+    { "pos": "n.", "meaning": "相等的人/物", "phrase": "without equal", "example": "He is without equal.", "exampleCn": "他无人能及。" }
+  ],
+  "equip": [
+    { "pos": "v.", "meaning": "装备；使具备", "phrase": "equip with", "example": "The room is equipped with computers.", "exampleCn": "房间配备了电脑。" }
+  ],
+  "escape": [
+    { "pos": "v.", "meaning": "逃跑；逃避", "phrase": "escape from", "example": "The prisoner escaped from jail.", "exampleCn": "囚犯越狱了。" },
+    { "pos": "n.", "meaning": "逃跑；逃避", "phrase": "narrow escape", "example": "That was a narrow escape.", "exampleCn": "真是死里逃生。" }
+  ],
+  "especially": [
+    { "pos": "adv.", "meaning": "尤其；特别", "phrase": "especially important", "example": "Sleep is especially important.", "exampleCn": "睡眠尤其重要。" }
+  ],
+  "establish": [
+    { "pos": "v.", "meaning": "建立；确立", "phrase": "establish a company", "example": "They established a new company.", "exampleCn": "他们成立了一家新公司。" }
+  ],
+  "estimate": [
+    { "pos": "v.", "meaning": "估计；估算", "phrase": "estimate the cost", "example": "We estimated the cost at $1000.", "exampleCn": "我们估算成本为1000美元。" },
+    { "pos": "n.", "meaning": "估计；估价", "phrase": "rough estimate", "example": "This is just a rough estimate.", "exampleCn": "这只是粗略估计。" }
+  ],
+  "even": [
+    { "pos": "adv.", "meaning": "甚至；即使", "phrase": "even if", "example": "Even if it rains, I'll go.", "exampleCn": "即使下雨，我也会去。" },
+    { "pos": "adj.", "meaning": "平坦的；均匀的；偶数的", "phrase": "even number", "example": "Two is an even number.", "exampleCn": "二是偶数。" }
+  ],
+  "event": [
+    { "pos": "n.", "meaning": "事件；活动", "phrase": "sports event", "example": "The Olympics is a major sports event.", "exampleCn": "奥运会是重大体育赛事。" }
+  ],
+  "ever": [
+    { "pos": "adv.", "meaning": "曾经；永远", "phrase": "have you ever", "example": "Have you ever been to Paris?", "exampleCn": "你去过巴黎吗？" }
+  ],
+  "every": [
+    { "pos": "adj.", "meaning": "每个；每一", "phrase": "every day", "example": "I exercise every day.", "exampleCn": "我每天锻炼。" }
+  ],
+  "evidence": [
+    { "pos": "n.", "meaning": "证据；证明", "phrase": "clear evidence", "example": "There is clear evidence of guilt.", "exampleCn": "有明显罪证。" }
+  ],
+  "exact": [
+    { "pos": "adj.", "meaning": "精确的；准确的", "phrase": "exact time", "example": "What's the exact time?", "exampleCn": "确切时间是几点？" }
+  ],
+  "exam": [
+    { "pos": "n.", "meaning": "考试；检查", "phrase": "take an exam", "example": "I have an exam tomorrow.", "exampleCn": "我明天有考试。" }
+  ],
+  "examine": [
+    { "pos": "v.", "meaning": "检查；审查", "phrase": "examine the patient", "example": "The doctor examined the patient.", "exampleCn": "医生检查了病人。" }
+  ],
+  "example": [
+    { "pos": "n.", "meaning": "例子；榜样", "phrase": "for example", "example": "For example, he likes apples.", "exampleCn": "例如，他喜欢苹果。" }
+  ],
+  "excellent": [
+    { "pos": "adj.", "meaning": "优秀的；杰出的", "phrase": "excellent idea", "example": "That's an excellent idea.", "exampleCn": "那是个极好的主意。" }
+  ],
+  "except": [
+    { "pos": "prep.", "meaning": "除……之外", "phrase": "except for", "example": "Everyone passed except Tom.", "exampleCn": "除了汤姆，大家都通过了。" }
+  ],
+  "exchange": [
+    { "pos": "v.", "meaning": "交换；交流", "phrase": "exchange gifts", "example": "We exchanged gifts.", "exampleCn": "我们交换了礼物。" },
+    { "pos": "n.", "meaning": "交换；交易所", "phrase": "stock exchange", "example": "The stock exchange closed early.", "exampleCn": "证券交易所提前收盘。" }
+  ],
+  "excite": [
+    { "pos": "v.", "meaning": "使兴奋；使激动", "phrase": "excite sb.", "example": "The news excited everyone.", "exampleCn": "这个消息让每个人兴奋。" }
+  ],
+  "excuse": [
+    { "pos": "n.", "meaning": "借口；理由", "phrase": "make an excuse", "example": "That's no excuse.", "exampleCn": "那不是借口。" },
+    { "pos": "v.", "meaning": "原谅；宽恕", "phrase": "excuse me", "example": "Excuse me, where is the station?", "exampleCn": "打扰一下，车站在哪里？" }
+  ],
+  "exercise": [
+    { "pos": "n.", "meaning": "锻炼；练习", "phrase": "do exercise", "example": "I do exercise every day.", "exampleCn": "我每天锻炼。" }
+  ],
+  "exhibit": [
+    { "pos": "v.", "meaning": "展览；表现", "phrase": "exhibit paintings", "example": "The museum exhibits ancient art.", "exampleCn": "博物馆展出古代艺术品。" },
+    { "pos": "n.", "meaning": "展品；展览", "phrase": "on exhibit", "example": "The paintings are on exhibit.", "exampleCn": "画作正在展出。" }
+  ],
+  "exist": [
+    { "pos": "v.", "meaning": "存在；生存", "phrase": "exist in", "example": "Do aliens exist?", "exampleCn": "外星人存在吗？" }
+  ],
+  "exit": [
+    { "pos": "n.", "meaning": "出口；离开", "phrase": "emergency exit", "example": "Where is the emergency exit?", "exampleCn": "紧急出口在哪里？" },
+    { "pos": "v.", "meaning": "退出；离去", "phrase": "exit the building", "example": "Please exit through the back door.", "exampleCn": "请从后门离开。" }
+  ],
+  "expand": [
+    { "pos": "v.", "meaning": "扩大；扩展", "phrase": "expand business", "example": "The company plans to expand.", "exampleCn": "公司计划扩张。" }
+  ],
+  "expect": [
+    { "pos": "v.", "meaning": "期望；预料", "phrase": "expect to do", "example": "I expect to see you soon.", "exampleCn": "我期待很快见到你。" }
+  ],
+  "experience": [
+    { "pos": "n.", "meaning": "经验；经历", "phrase": "work experience", "example": "She has rich experience.", "exampleCn": "她有丰富的经验。" },
+    { "pos": "v.", "meaning": "经历；体验", "phrase": "experience life", "example": "He experienced many difficulties.", "exampleCn": "他经历了许多困难。" }
+  ],
+  "experiment": [
+    { "pos": "n.", "meaning": "实验；试验", "phrase": "do an experiment", "example": "We did an experiment in class.", "exampleCn": "我们在课堂上做了实验。" }
+  ],
+  "expert": [
+    { "pos": "n.", "meaning": "专家；能手", "phrase": "expert in", "example": "He is an expert in computers.", "exampleCn": "他是电脑专家。" }
+  ],
+  "explain": [
+    { "pos": "v.", "meaning": "解释；说明", "phrase": "explain to", "example": "Can you explain this word?", "exampleCn": "你能解释这个词吗？" }
+  ],
+  "explode": [
+    { "pos": "v.", "meaning": "爆炸；爆发", "phrase": "explode with anger", "example": "The bomb exploded.", "exampleCn": "炸弹爆炸了。" }
+  ],
+  "explore": [
+    { "pos": "v.", "meaning": "探索；探险", "phrase": "explore space", "example": "Humans love to explore.", "exampleCn": "人类热爱探索。" }
+  ],
+  "export": [
+    { "pos": "v.", "meaning": "出口；输出", "phrase": "export goods", "example": "China exports many products.", "exampleCn": "中国出口许多产品。" },
+    { "pos": "n.", "meaning": "出口；出口商品", "phrase": "oil exports", "example": "Oil is a major export.", "exampleCn": "石油是主要出口商品。" }
+  ],
+  "express": [
+    { "pos": "v.", "meaning": "表达；表示", "phrase": "express oneself", "example": "She expressed her opinion.", "exampleCn": "她表达了她的观点。" },
+    { "pos": "adj.", "meaning": "快速的；明确的", "phrase": "express train", "example": "I took the express train.", "exampleCn": "我坐了快车。" }
+  ],
+  "extend": [
+    { "pos": "v.", "meaning": "延伸；扩展", "phrase": "extend to", "example": "The road extends to the sea.", "exampleCn": "这条路延伸到海边。" }
+  ],
+  "extra": [
+    { "pos": "adj.", "meaning": "额外的；附加的", "phrase": "extra charge", "example": "There is no extra charge.", "exampleCn": "没有额外费用。" }
+  ],
+  "extreme": [
+    { "pos": "adj.", "meaning": "极端的；极度的", "phrase": "extreme weather", "example": "Extreme weather is becoming common.", "exampleCn": "极端天气越来越常见。" }
+  ],
+  "eye": [
+    { "pos": "n.", "meaning": "眼睛；眼光", "phrase": "in the eye of", "example": "In the eye of the law, he is innocent.", "exampleCn": "在法律眼里，他是无辜的。" }
+  ],
+  "face": [
+    { "pos": "n.", "meaning": "脸；表面", "phrase": "face to face", "example": "We met face to face.", "exampleCn": "我们面对面见面了。" }
+  ],
+  "fact": [
+    { "pos": "n.", "meaning": "事实；实际", "phrase": "in fact", "example": "In fact, I disagree.", "exampleCn": "事实上，我不同意。" }
+  ],
+  "fail": [
+    { "pos": "v.", "meaning": "失败；不及格", "phrase": "fail the exam", "example": "I don't want to fail.", "exampleCn": "我不想失败。" },
+    { "pos": "v.", "meaning": "未能；忘记", "phrase": "fail to do", "example": "He failed to arrive on time.", "exampleCn": "他没能准时到达。" }
+  ],
+  "fairly": [
+    { "pos": "adv.", "meaning": "相当；公平地", "phrase": "fairly good", "example": "The movie was fairly good.", "exampleCn": "这部电影相当不错。" }
+  ],
+  "faith": [
+    { "pos": "n.", "meaning": "信仰；信任", "phrase": "have faith in", "example": "Have faith in yourself.", "exampleCn": "相信自己。" }
+  ],
+  "fall": [
+    { "pos": "v.", "meaning": "落下；跌倒", "phrase": "fall down", "example": "Be careful not to fall.", "exampleCn": "小心别摔倒。" },
+    { "pos": "n.", "meaning": "秋天；下降", "phrase": "in the fall", "example": "Leaves turn red in the fall.", "exampleCn": "秋天树叶变红。" }
+  ],
+  "familiar": [
+    { "pos": "adj.", "meaning": "熟悉的；常见的", "phrase": "be familiar with", "example": "Are you familiar with this song?", "exampleCn": "你熟悉这首歌吗？" }
+  ],
+  "fan": [
+    { "pos": "n.", "meaning": "风扇；扇子", "phrase": "turn on the fan", "example": "Turn on the fan, please.", "exampleCn": "请打开风扇。" },
+    { "pos": "n.", "meaning": "粉丝；迷", "phrase": "football fan", "example": "He is a big football fan.", "exampleCn": "他是个铁杆足球迷。" }
+  ],
+  "fancy": [
+    { "pos": "adj.", "meaning": "精致的；昂贵的", "phrase": "fancy restaurant", "example": "We went to a fancy restaurant.", "exampleCn": "我们去了一家高档餐厅。" },
+    { "pos": "v.", "meaning": "想要；想象", "phrase": "fancy doing", "example": "Do you fancy a drink?", "exampleCn": "你想喝一杯吗？" }
+  ],
+  "far": [
+    { "pos": "adv.", "meaning": "远；遥远", "phrase": "far away", "example": "The station is far away.", "exampleCn": "车站很远。" },
+    { "pos": "adj.", "meaning": "远的；遥远的", "phrase": "far side", "example": "He lives on the far side of town.", "exampleCn": "他住在城镇的另一边。" }
+  ],
+  "farm": [
+    { "pos": "n.", "meaning": "农场；农庄", "phrase": "work on a farm", "example": "He works on a farm.", "exampleCn": "他在农场工作。" }
+  ],
+  "fashion": [
+    { "pos": "n.", "meaning": "时尚；方式", "phrase": "in fashion", "example": "This style is in fashion.", "exampleCn": "这种风格很流行。" }
+  ],
+  "fast": [
+    { "pos": "adj.", "meaning": "快的；迅速的", "phrase": "fast car", "example": "He drives a fast car.", "exampleCn": "他开快车。" },
+    { "pos": "adv.", "meaning": "快地；迅速地", "phrase": "run fast", "example": "He runs fast.", "exampleCn": "他跑得很快。" }
+  ],
+  "fat": [
+    { "pos": "adj.", "meaning": "胖的；肥的", "phrase": "get fat", "example": "Eating too much makes you fat.", "exampleCn": "吃太多会变胖。" },
+    { "pos": "n.", "meaning": "脂肪；油脂", "phrase": "low fat", "example": "This food is low in fat.", "exampleCn": "这种食物脂肪含量低。" }
+  ],
+  "fault": [
+    { "pos": "n.", "meaning": "错误；缺点", "phrase": "find fault with", "example": "She always finds fault with me.", "exampleCn": "她总是挑我的毛病。" }
+  ],
+  "favor": [
+    { "pos": "n.", "meaning": "帮助；恩惠", "phrase": "do sb. a favor", "example": "Can you do me a favor?", "exampleCn": "你能帮我个忙吗？" },
+    { "pos": "v.", "meaning": "支持；偏爱", "phrase": "favor the plan", "example": "The evidence favors the defendant.", "exampleCn": "证据有利于被告。" }
+  ],
+  "fear": [
+    { "pos": "n.", "meaning": "恐惧；害怕", "phrase": "in fear", "example": "She shook in fear.", "exampleCn": "她害怕得发抖。" },
+    { "pos": "v.", "meaning": "害怕；担心", "phrase": "fear that", "example": "I fear that he is ill.", "exampleCn": "我担心他生病了。" }
+  ],
+  "feed": [
+    { "pos": "v.", "meaning": "喂养；饲养", "phrase": "feed the dog", "example": "Don't forget to feed the dog.", "exampleCn": "别忘了喂狗。" },
+    { "pos": "n.", "meaning": "饲料；一餐", "phrase": "animal feed", "example": "This is high-quality animal feed.", "exampleCn": "这是优质动物饲料。" }
+  ],
+  "feel": [
+    { "pos": "v.", "meaning": "感觉；觉得", "phrase": "feel happy", "example": "I feel happy today.", "exampleCn": "我今天感觉开心。" },
+    { "pos": "n.", "meaning": "感觉；触觉", "phrase": "the feel of", "example": "I like the feel of silk.", "exampleCn": "我喜欢丝绸的触感。" }
+  ],
+  "feeling": [
+    { "pos": "n.", "meaning": "感觉；感情", "phrase": "mixed feelings", "example": "I have mixed feelings.", "exampleCn": "我心情复杂。" }
+  ],
+  "fellow": [
+    { "pos": "n.", "meaning": "家伙；同伴", "phrase": "poor fellow", "example": "He is a nice fellow.", "exampleCn": "他是个好家伙。" },
+    { "pos": "adj.", "meaning": "同类的；同伴的", "phrase": "fellow student", "example": "He is my fellow student.", "exampleCn": "他是我的同学。" }
+  ],
+  "female": [
+    { "pos": "adj.", "meaning": "女性的；雌的", "phrase": "female student", "example": "The female lion is smaller.", "exampleCn": "雌狮子体型较小。" },
+    { "pos": "n.", "meaning": "女性；雌性动物", "phrase": "males and females", "example": "Males and females have equal rights.", "exampleCn": "男女权利平等。" }
+  ],
+  "fence": [
+    { "pos": "n.", "meaning": "栅栏；篱笆", "phrase": "climb the fence", "example": "The dog jumped over the fence.", "exampleCn": "狗跳过了栅栏。" }
+  ],
+  "festival": [
+    { "pos": "n.", "meaning": "节日；庆典", "phrase": "Spring Festival", "example": "The Spring Festival is important.", "exampleCn": "春节很重要。" }
+  ],
+  "fetch": [
+    { "pos": "v.", "meaning": "取来；接来", "phrase": "fetch water", "example": "Please fetch me some water.", "exampleCn": "请帮我取点水。" }
+  ],
+  "fever": [
+    { "pos": "n.", "meaning": "发烧；狂热", "phrase": "have a fever", "example": "I have a high fever.", "exampleCn": "我发高烧。" }
+  ],
+  "few": [
+    { "pos": "adj.", "meaning": "很少的；几乎没有", "phrase": "a few", "example": "I have a few friends.", "exampleCn": "我有几个朋友。" }
+  ],
+  "field": [
+    { "pos": "n.", "meaning": "田地；领域", "phrase": "in the field", "example": "He works in the medical field.", "exampleCn": "他在医学领域工作。" }
+  ],
+  "fight": [
+    { "pos": "v.", "meaning": "战斗；打架", "phrase": "fight for", "example": "We must fight for freedom.", "exampleCn": "我们必须为自由而战。" },
+    { "pos": "n.", "meaning": "战斗；斗争", "phrase": "put up a fight", "example": "They put up a good fight.", "exampleCn": "他们进行了顽强的斗争。" }
+  ],
+  "figure": [
+    { "pos": "n.", "meaning": "数字；人物", "phrase": "public figure", "example": "He is a public figure.", "exampleCn": "他是公众人物。" }
+  ],
+  "file": [
+    { "pos": "n.", "meaning": "文件；档案", "phrase": "on file", "example": "Your records are on file.", "exampleCn": "你的记录已存档。" },
+    { "pos": "v.", "meaning": "归档；提交", "phrase": "file a complaint", "example": "She filed a complaint.", "exampleCn": "她提出了投诉。" }
+  ],
+  "fill": [
+    { "pos": "v.", "meaning": "填满；装满", "phrase": "fill in", "example": "Fill in the form, please.", "exampleCn": "请填写表格。" }
+  ],
+  "film": [
+    { "pos": "n.", "meaning": "电影；胶卷", "phrase": "watch a film", "example": "Let's watch a film.", "exampleCn": "我们看电影吧。" }
+  ],
+  "final": [
+    { "pos": "adj.", "meaning": "最后的；最终的", "phrase": "final exam", "example": "The final exam is next week.", "exampleCn": "期末考试在下周。" },
+    { "pos": "n.", "meaning": "决赛；期末考试", "phrase": "reach the final", "example": "They reached the World Cup final.", "exampleCn": "他们进入了世界杯决赛。" }
+  ],
+  "find": [
+    { "pos": "v.", "meaning": "找到；发现", "phrase": "find out", "example": "I need to find out the truth.", "exampleCn": "我需要查明真相。" }
+  ],
+  "fine": [
+    { "pos": "adj.", "meaning": "好的；晴朗的", "phrase": "fine weather", "example": "It's a fine day.", "exampleCn": "今天天气很好。" }
+  ],
+  "finger": [
+    { "pos": "n.", "meaning": "手指", "phrase": "point a finger", "example": "Don't point your finger at me.", "exampleCn": "别用手指着我。" }
+  ],
+  "finish": [
+    { "pos": "v.", "meaning": "完成；结束", "phrase": "finish doing", "example": "I finished my homework.", "exampleCn": "我做完了作业。" }
+  ],
+  "fire": [
+    { "pos": "n.", "meaning": "火；火灾", "phrase": "catch fire", "example": "The house caught fire.", "exampleCn": "房子着火了。" },
+    { "pos": "v.", "meaning": "解雇；开火", "phrase": "fire sb.", "example": "He was fired for being late.", "exampleCn": "他因迟到被解雇。" }
+  ],
+  "firm": [
+    { "pos": "n.", "meaning": "公司；商行", "phrase": "law firm", "example": "He works at a law firm.", "exampleCn": "他在律师事务所工作。" },
+    { "pos": "adj.", "meaning": "坚定的；牢固的", "phrase": "firm belief", "example": "She has a firm belief.", "exampleCn": "她有坚定的信念。" }
+  ],
+  "first": [
+    { "pos": "adj.", "meaning": "第一的；最初的", "phrase": "first time", "example": "This is my first time here.", "exampleCn": "这是我第一次来这里。" },
+    { "pos": "adv.", "meaning": "首先；第一", "phrase": "first of all", "example": "First of all, let me introduce myself.", "exampleCn": "首先，让我自我介绍一下。" }
+  ],
+  "fish": [
+    { "pos": "n.", "meaning": "鱼；鱼肉", "phrase": "catch fish", "example": "I caught a big fish.", "exampleCn": "我钓到一条大鱼。" },
+    { "pos": "v.", "meaning": "钓鱼；捕鱼", "phrase": "go fishing", "example": "Let's go fishing.", "exampleCn": "我们去钓鱼吧。" }
+  ],
+  "fit": [
+    { "pos": "v.", "meaning": "适合；合身", "phrase": "fit well", "example": "The dress fits well.", "exampleCn": "这条裙子很合身。" },
+    { "pos": "adj.", "meaning": "健康的；合适的", "phrase": "keep fit", "example": "Exercise helps you keep fit.", "exampleCn": "锻炼帮助你保持健康。" }
+  ],
+  "fix": [
+    { "pos": "v.", "meaning": "修理；固定", "phrase": "fix the bike", "example": "Can you fix my bike?", "exampleCn": "你能修我的自行车吗？" },
+    { "pos": "v.", "meaning": "安排；解决", "phrase": "fix a date", "example": "Let's fix a date for the meeting.", "exampleCn": "我们定个开会日期吧。" }
+  ],
+  "flag": [
+    { "pos": "n.", "meaning": "旗；旗帜", "phrase": "national flag", "example": "Raise the national flag.", "exampleCn": "升国旗。" }
+  ],
+  "flame": [
+    { "pos": "n.", "meaning": "火焰；热情", "phrase": "burst into flames", "example": "The car burst into flames.", "exampleCn": "汽车突然起火。" }
+  ],
+  "flash": [
+    { "pos": "n.", "meaning": "闪光；闪现", "phrase": "in a flash", "example": "It happened in a flash.", "exampleCn": "事情转瞬发生。" },
+    { "pos": "v.", "meaning": "闪光；掠过", "phrase": "flash across", "example": "A thought flashed across my mind.", "exampleCn": "一个念头掠过我的脑海。" }
+  ],
+  "flat": [
+    { "pos": "adj.", "meaning": "平坦的；扁平的", "phrase": "flat surface", "example": "The table has a flat surface.", "exampleCn": "桌面很平。" },
+    { "pos": "n.", "meaning": "公寓；套房", "phrase": "rent a flat", "example": "I rent a small flat.", "exampleCn": "我租了一间小公寓。" }
+  ],
+  "flavor": [
+    { "pos": "n.", "meaning": "味道；风味", "phrase": "different flavors", "example": "This ice cream has a rich flavor.", "exampleCn": "这冰淇淋味道浓郁。" }
+  ],
+  "flesh": [
+    { "pos": "n.", "meaning": "肉；肉体", "phrase": "in the flesh", "example": "I saw him in the flesh.", "exampleCn": "我亲眼见到了他。" }
+  ],
+  "flight": [
+    { "pos": "n.", "meaning": "航班；飞行", "phrase": "flight number", "example": "What is your flight number?", "exampleCn": "你的航班号是多少？" },
+    { "pos": "n.", "meaning": "逃跑；楼梯的一段", "phrase": "take flight", "example": "The bird took flight.", "exampleCn": "鸟飞走了。" }
+  ],
+  "flood": [
+    { "pos": "n.", "meaning": "洪水；大量", "phrase": "heavy flood", "example": "The flood destroyed many homes.", "exampleCn": "洪水摧毁了许多房屋。" },
+    { "pos": "v.", "meaning": "淹没；涌入", "phrase": "flood into", "example": "Tourists flooded into the city.", "exampleCn": "游客涌入城市。" }
+  ],
+  "floor": [
+    { "pos": "n.", "meaning": "地板；楼层", "phrase": "on the floor", "example": "I live on the third floor.", "exampleCn": "我住在三楼。" }
+  ],
+  "flow": [
+    { "pos": "v.", "meaning": "流动；涌流", "phrase": "flow into", "example": "Rivers flow into the sea.", "exampleCn": "河流汇入大海。" },
+    { "pos": "n.", "meaning": "流动；流量", "phrase": "traffic flow", "example": "The traffic flow is heavy.", "exampleCn": "交通流量很大。" }
+  ],
+  "flower": [
+    { "pos": "n.", "meaning": "花；花朵", "phrase": "beautiful flower", "example": "She picked a flower.", "exampleCn": "她摘了一朵花。" },
+    { "pos": "v.", "meaning": "开花；成熟", "phrase": "flower in spring", "example": "These trees flower in spring.", "exampleCn": "这些树春天开花。" }
+  ],
+  "fly": [
+    { "pos": "v.", "meaning": "飞；飞行", "phrase": "fly to", "example": "I will fly to Shanghai.", "exampleCn": "我要飞往上海。" },
+    { "pos": "n.", "meaning": "苍蝇", "phrase": "a fly", "example": "A fly flew into the room.", "exampleCn": "一只苍蝇飞进了房间。" }
+  ],
+  "focus": [
+    { "pos": "v.", "meaning": "集中；聚焦", "phrase": "focus on", "example": "Focus on your work.", "exampleCn": "专注于你的工作。" },
+    { "pos": "n.", "meaning": "焦点；中心", "phrase": "in focus", "example": "The photo is in focus.", "exampleCn": "照片对焦清晰。" }
+  ],
+  "fold": [
+    { "pos": "v.", "meaning": "折叠；合拢", "phrase": "fold the paper", "example": "Fold the paper in half.", "exampleCn": "把纸对折。" },
+    { "pos": "n.", "meaning": "褶痕；羊圈", "phrase": "return to the fold", "example": "He returned to the fold.", "exampleCn": "他重归团体。" }
+  ],
+  "follow": [
+    { "pos": "v.", "meaning": "跟随；遵循", "phrase": "follow the rules", "example": "Please follow the rules.", "exampleCn": "请遵守规则。" }
+  ],
+  "food": [
+    { "pos": "n.", "meaning": "食物；食品", "phrase": "healthy food", "example": "Healthy food is important.", "exampleCn": "健康食品很重要。" }
+  ],
+  "fool": [
+    { "pos": "n.", "meaning": "傻瓜；愚人", "phrase": "make a fool of", "example": "Don't make a fool of yourself.", "exampleCn": "别出洋相。" },
+    { "pos": "v.", "meaning": "欺骗；愚弄", "phrase": "fool sb.", "example": "You can't fool me.", "exampleCn": "你骗不了我。" }
+  ],
+  "foot": [
+    { "pos": "n.", "meaning": "脚；英尺", "phrase": "on foot", "example": "I go to school on foot.", "exampleCn": "我步行上学。" }
+  ],
+  "force": [
+    { "pos": "n.", "meaning": "力量；武力", "phrase": "by force", "example": "They took it by force.", "exampleCn": "他们用武力夺取。" },
+    { "pos": "v.", "meaning": "强迫；迫使", "phrase": "force sb. to do", "example": "Don't force me to choose.", "exampleCn": "别逼我选择。" }
+  ],
+  "foreign": [
+    { "pos": "adj.", "meaning": "外国的；外来的", "phrase": "foreign language", "example": "English is a foreign language.", "exampleCn": "英语是一门外语。" }
+  ],
+  "forest": [
+    { "pos": "n.", "meaning": "森林；林区", "phrase": "rain forest", "example": "The Amazon is a large forest.", "exampleCn": "亚马逊是一片大森林。" }
+  ],
+  "forever": [
+    { "pos": "adv.", "meaning": "永远；总是", "phrase": "last forever", "example": "Nothing lasts forever.", "exampleCn": "没有什么是永恒的。" }
+  ],
+  "forget": [
+    { "pos": "v.", "meaning": "忘记；遗忘", "phrase": "forget to do", "example": "Don't forget to call me.", "exampleCn": "别忘了给我打电话。" }
+  ],
+  "forgive": [
+    { "pos": "v.", "meaning": "原谅；宽恕", "phrase": "forgive sb.", "example": "Please forgive me.", "exampleCn": "请原谅我。" }
+  ],
+  "form": [
+    { "pos": "n.", "meaning": "形式；表格", "phrase": "fill in the form", "example": "Fill in this form, please.", "exampleCn": "请填写这张表格。" }
+  ],
+  "fortunate": [
+    { "pos": "adj.", "meaning": "幸运的；侥幸的", "phrase": "fortunate to do", "example": "We were fortunate to win.", "exampleCn": "我们很幸运赢了。" }
+  ],
+  "fortune": [
+    { "pos": "n.", "meaning": "财富；命运", "phrase": "make a fortune", "example": "He made a fortune in business.", "exampleCn": "他经商发了财。" }
+  ],
+  "forward": [
+    { "pos": "adv.", "meaning": "向前；前进", "phrase": "move forward", "example": "Move forward, please.", "exampleCn": "请向前移动。" }
+  ],
+  "found": [
+    { "pos": "v.", "meaning": "建立；创办", "phrase": "found a company", "example": "The school was founded in 1900.", "exampleCn": "这所学校创办于1900年。" }
+  ],
+  "free": [
+    { "pos": "adj.", "meaning": "自由的；免费的", "phrase": "free time", "example": "Do you have free time?", "exampleCn": "你有空吗？" }
+  ],
+  "freeze": [
+    { "pos": "v.", "meaning": "结冰；冻僵", "phrase": "freeze to death", "example": "Water will freeze at 0°C.", "exampleCn": "水在零摄氏度结冰。" }
+  ],
+  "frequent": [
+    { "pos": "adj.", "meaning": "频繁的；经常的", "phrase": "frequent visitor", "example": "He is a frequent visitor.", "exampleCn": "他是常客。" }
+  ],
+  "fresh": [
+    { "pos": "adj.", "meaning": "新鲜的；清新的", "phrase": "fresh air", "example": "I love fresh air.", "exampleCn": "我喜欢新鲜空气。" },
+    { "pos": "adj.", "meaning": "无经验的；刚到的", "phrase": "fresh start", "example": "Let's make a fresh start.", "exampleCn": "让我们重新开始吧。" }
+  ],
+  "friend": [
+    { "pos": "n.", "meaning": "朋友", "phrase": "best friend", "example": "She is my best friend.", "exampleCn": "她是我最好的朋友。" }
+  ],
+  "frighten": [
+    { "pos": "v.", "meaning": "使害怕；使惊吓", "phrase": "frighten sb.", "example": "The noise frightened the child.", "exampleCn": "噪音吓到了孩子。" }
+  ],
+  "front": [
+    { "pos": "n.", "meaning": "前面；前线", "phrase": "in front of", "example": "Stand in front of me.", "exampleCn": "站在我前面。" },
+    { "pos": "adj.", "meaning": "前面的；前部的", "phrase": "front door", "example": "Use the front door.", "exampleCn": "走前门。" }
+  ],
+  "fruit": [
+    { "pos": "n.", "meaning": "水果；果实", "phrase": "fresh fruit", "example": "Eat more fruit.", "exampleCn": "多吃水果。" },
+    { "pos": "n.", "meaning": "成果；结果", "phrase": "the fruits of labor", "example": "Enjoy the fruits of your labor.", "exampleCn": "享受你劳动的成果。" }
+  ],
+  "fuel": [
+    { "pos": "n.", "meaning": "燃料；能源", "phrase": "fossil fuel", "example": "Coal is a fossil fuel.", "exampleCn": "煤是化石燃料。" },
+    { "pos": "v.", "meaning": "给……加燃料；刺激", "phrase": "fuel the car", "example": "We need to fuel the car.", "exampleCn": "我们需要给车加油。" }
+  ],
+  "function": [
+    { "pos": "n.", "meaning": "功能；作用", "phrase": "social function", "example": "The function of the heart is to pump blood.", "exampleCn": "心脏的功能是泵血。" },
+    { "pos": "v.", "meaning": "运行；起作用", "phrase": "function as", "example": "The room functions as an office.", "exampleCn": "这个房间用作办公室。" }
+  ],
+  "fund": [
+    { "pos": "n.", "meaning": "资金；基金", "phrase": "raise funds", "example": "We need to raise funds.", "exampleCn": "我们需要筹集资金。" },
+    { "pos": "v.", "meaning": "为……提供资金", "phrase": "fund a project", "example": "The project is funded by the government.", "exampleCn": "这个项目由政府资助。" }
+  ],
+  "funeral": [
+    { "pos": "n.", "meaning": "葬礼；丧事", "phrase": "attend a funeral", "example": "Many people attended the funeral.", "exampleCn": "许多人参加了葬礼。" }
+  ],
+  "funny": [
+    { "pos": "adj.", "meaning": "有趣的；滑稽的", "phrase": "funny story", "example": "He told a funny story.", "exampleCn": "他讲了一个有趣的故事。" },
+    { "pos": "adj.", "meaning": "奇怪的；可疑的", "phrase": "funny smell", "example": "There's a funny smell.", "exampleCn": "有股奇怪的味道。" }
+  ],
+  "fur": [
+    { "pos": "n.", "meaning": "毛皮；皮草", "phrase": "animal fur", "example": "The cat has soft fur.", "exampleCn": "这只猫有柔软的毛。" }
+  ],
+  "furnish": [
+    { "pos": "v.", "meaning": "布置；供应", "phrase": "furnish with", "example": "The room is furnished with old furniture.", "exampleCn": "房间配有旧家具。" }
+  ],
+  "future": [
+    { "pos": "n.", "meaning": "未来；将来", "phrase": "in the future", "example": "I hope to travel in the future.", "exampleCn": "我希望将来能旅行。" },
+    { "pos": "adj.", "meaning": "未来的；将来的", "phrase": "future plans", "example": "What are your future plans?", "exampleCn": "你未来的计划是什么？" }
+  ],
+  "gain": [
+    { "pos": "v.", "meaning": "获得；增加", "phrase": "gain weight", "example": "He gained weight over the winter.", "exampleCn": "他冬天体重增加了。" },
+    { "pos": "n.", "meaning": "收益；增加", "phrase": "financial gain", "example": "The company reported a gain.", "exampleCn": "公司报告了收益。" }
+  ],
+  "gallery": [
+    { "pos": "n.", "meaning": "画廊；美术馆", "phrase": "art gallery", "example": "The gallery has modern art.", "exampleCn": "这家美术馆有现代艺术。" }
+  ],
+  "game": [
+    { "pos": "n.", "meaning": "游戏；比赛", "phrase": "play games", "example": "Let's play a game.", "exampleCn": "我们玩个游戏吧。" }
+  ],
+  "gap": [
+    { "pos": "n.", "meaning": "缺口；差距", "phrase": "generation gap", "example": "There is a generation gap.", "exampleCn": "存在代沟。" }
+  ],
+  "garage": [
+    { "pos": "n.", "meaning": "车库；汽车修理厂", "phrase": "park in the garage", "example": "Park the car in the garage.", "exampleCn": "把车停在车库里。" }
+  ],
+  "garden": [
+    { "pos": "n.", "meaning": "花园；菜园", "phrase": "in the garden", "example": "She is in the garden.", "exampleCn": "她在花园里。" }
+  ],
+  "gas": [
+    { "pos": "n.", "meaning": "气体；汽油", "phrase": "natural gas", "example": "We cook with natural gas.", "exampleCn": "我们用天然气做饭。" }
+  ],
+  "gate": [
+    { "pos": "n.", "meaning": "大门；登机口", "phrase": "school gate", "example": "Wait at the school gate.", "exampleCn": "在校门口等。" }
+  ],
+  "gather": [
+    { "pos": "v.", "meaning": "聚集；收集", "phrase": "gather information", "example": "We gathered around the fire.", "exampleCn": "我们聚在火堆旁。" }
+  ],
+  "general": [
+    { "pos": "adj.", "meaning": "一般的；普遍的", "phrase": "in general", "example": "In general, I agree.", "exampleCn": "总的来说，我同意。" }
+  ],
+  "generation": [
+    { "pos": "n.", "meaning": "一代；一代人", "phrase": "younger generation", "example": "The younger generation loves technology.", "exampleCn": "年轻一代热爱科技。" }
+  ],
+  "generous": [
+    { "pos": "adj.", "meaning": "慷慨的；大方的", "phrase": "generous with", "example": "She is generous with her time.", "exampleCn": "她乐于助人。" }
+  ],
+  "gentle": [
+    { "pos": "adj.", "meaning": "温柔的；轻柔的", "phrase": "gentle voice", "example": "She has a gentle voice.", "exampleCn": "她声音温柔。" }
+  ],
+  "genuine": [
+    { "pos": "adj.", "meaning": "真正的；真诚的", "phrase": "genuine leather", "example": "This is genuine leather.", "exampleCn": "这是真皮。" }
+  ],
+  "gesture": [
+    { "pos": "n.", "meaning": "手势；姿态", "phrase": "make a gesture", "example": "He made a gesture of apology.", "exampleCn": "他做了个道歉的手势。" }
+  ],
+  "get": [
+    { "pos": "v.", "meaning": "得到；变得", "phrase": "get up", "example": "I get up at 7.", "exampleCn": "我七点起床。" }
+  ],
+  "gift": [
+    { "pos": "n.", "meaning": "礼物；天赋", "phrase": "birthday gift", "example": "Thank you for the gift.", "exampleCn": "谢谢你的礼物。" }
+  ],
+  "girl": [
+    { "pos": "n.", "meaning": "女孩；女儿", "phrase": "little girl", "example": "The little girl is smiling.", "exampleCn": "小女孩在微笑。" }
+  ],
+  "give": [
+    { "pos": "v.", "meaning": "给；给予", "phrase": "give up", "example": "Never give up.", "exampleCn": "永不放弃。" }
+  ],
+  "glad": [
+    { "pos": "adj.", "meaning": "高兴的；乐意的", "phrase": "glad to help", "example": "I'm glad to help.", "exampleCn": "我很乐意帮忙。" }
+  ],
+  "glance": [
+    { "pos": "v.", "meaning": "瞥一眼；扫视", "phrase": "glance at", "example": "She glanced at her watch.", "exampleCn": "她瞥了一眼手表。" },
+    { "pos": "n.", "meaning": "一瞥；扫视", "phrase": "at a glance", "example": "I understood at a glance.", "exampleCn": "我一眼就明白了。" }
+  ],
+  "glass": [
+    { "pos": "n.", "meaning": "玻璃；玻璃杯", "phrase": "a glass of water", "example": "I need a glass of water.", "exampleCn": "我需要一杯水。" }
+  ],
+  "global": [
+    { "pos": "adj.", "meaning": "全球的；总体的", "phrase": "global warming", "example": "Global warming is a serious issue.", "exampleCn": "全球变暖是严重问题。" }
+  ],
+  "glory": [
+    { "pos": "n.", "meaning": "光荣；荣誉", "phrase": "glory days", "example": "The team returned to glory.", "exampleCn": "球队重归荣耀。" }
+  ],
+  "go": [
+    { "pos": "v.", "meaning": "去；走", "phrase": "go home", "example": "Let's go home.", "exampleCn": "我们回家吧。" }
+  ],
+  "goal": [
+    { "pos": "n.", "meaning": "目标；进球", "phrase": "achieve a goal", "example": "He scored a goal.", "exampleCn": "他进了一球。" }
+  ],
+  "god": [
+    { "pos": "n.", "meaning": "神；上帝", "phrase": "thank God", "example": "Thank God you're safe.", "exampleCn": "谢天谢地你安全。" }
+  ],
+  "gold": [
+    { "pos": "n.", "meaning": "黄金；金色", "phrase": "gold medal", "example": "He won a gold medal.", "exampleCn": "他赢得了金牌。" },
+    { "pos": "adj.", "meaning": "金制的；金色的", "phrase": "gold ring", "example": "She wore a gold ring.", "exampleCn": "她戴了一枚金戒指。" }
+  ],
+  "good": [
+    { "pos": "adj.", "meaning": "好的；善良的", "phrase": "good idea", "example": "That's a good idea.", "exampleCn": "那是个好主意。" },
+    { "pos": "n.", "meaning": "好处；利益", "phrase": "for the good of", "example": "Do it for the common good.", "exampleCn": "为了共同利益去做吧。" }
+  ],
+  "govern": [
+    { "pos": "v.", "meaning": "统治；管理", "phrase": "govern the country", "example": "The president governs the country.", "exampleCn": "总统管理国家。" }
+  ],
+  "government": [
+    { "pos": "n.", "meaning": "政府；内阁", "phrase": "local government", "example": "The government made a decision.", "exampleCn": "政府做出了决定。" }
+  ],
+  "grace": [
+    { "pos": "n.", "meaning": "优雅；恩典", "phrase": "with grace", "example": "She danced with grace.", "exampleCn": "她舞姿优雅。" }
+  ],
+  "grade": [
+    { "pos": "n.", "meaning": "年级；成绩", "phrase": "get good grades", "example": "She gets good grades.", "exampleCn": "她成绩很好。" }
+  ],
+  "gradual": [
+    { "pos": "adj.", "meaning": "逐渐的；渐进的", "phrase": "gradual change", "example": "There has been a gradual change.", "exampleCn": "发生了渐进的变化。" }
+  ],
+  "graduate": [
+    { "pos": "v.", "meaning": "毕业", "phrase": "graduate from", "example": "She graduated from Peking University.", "exampleCn": "她毕业于北京大学。" },
+    { "pos": "n.", "meaning": "毕业生", "phrase": "college graduate", "example": "He is a college graduate.", "exampleCn": "他是大学毕业生。" }
+  ],
+  "grain": [
+    { "pos": "n.", "meaning": "谷物；颗粒", "phrase": "a grain of sand", "example": "There isn't a grain of truth.", "exampleCn": "没有一丁点真实性。" }
+  ],
+  "grand": [
+    { "pos": "adj.", "meaning": "宏伟的；豪华的", "phrase": "grand hotel", "example": "They stayed at a grand hotel.", "exampleCn": "他们住在豪华酒店。" }
+  ],
+  "grant": [
+    { "pos": "v.", "meaning": "授予；同意", "phrase": "grant permission", "example": "They granted him permission.", "exampleCn": "他们授予他许可。" },
+    { "pos": "n.", "meaning": "拨款；补助金", "phrase": "research grant", "example": "She received a research grant.", "exampleCn": "她获得了研究经费。" }
+  ],
+  "grasp": [
+    { "pos": "v.", "meaning": "抓住；理解", "phrase": "grasp the meaning", "example": "I couldn't grasp the meaning.", "exampleCn": "我无法理解含义。" },
+    { "pos": "n.", "meaning": "掌握；控制", "phrase": "within one's grasp", "example": "Success is within your grasp.", "exampleCn": "成功触手可及。" }
+  ],
+  "grass": [
+    { "pos": "n.", "meaning": "草；草地", "phrase": "on the grass", "example": "Don't walk on the grass.", "exampleCn": "请勿践踏草地。" }
+  ],
+  "grateful": [
+    { "pos": "adj.", "meaning": "感激的；感谢的", "phrase": "grateful for", "example": "I am grateful for your help.", "exampleCn": "我感激你的帮助。" }
+  ],
+  "grave": [
+    { "pos": "n.", "meaning": "坟墓；墓穴", "phrase": "dig one's own grave", "example": "He visited his grandfather's grave.", "exampleCn": "他去看望祖父的坟墓。" },
+    { "pos": "adj.", "meaning": "严重的；严肃的", "phrase": "grave situation", "example": "The situation is grave.", "exampleCn": "局势严重。" }
+  ],
+  "great": [
+    { "pos": "adj.", "meaning": "伟大的；极好的", "phrase": "great idea", "example": "That's a great idea.", "exampleCn": "那是个很棒的主意。" }
+  ],
+  "green": [
+    { "pos": "adj.", "meaning": "绿色的；环保的", "phrase": "green energy", "example": "Green energy is important.", "exampleCn": "绿色能源很重要。" }
+  ],
+  "greet": [
+    { "pos": "v.", "meaning": "问候；迎接", "phrase": "greet sb.", "example": "She greeted me warmly.", "exampleCn": "她热情地问候我。" }
+  ],
+  "grey": [
+    { "pos": "adj.", "meaning": "灰色的；灰暗的", "phrase": "grey hair", "example": "He has grey hair.", "exampleCn": "他头发灰白。" }
+  ],
+  "ground": [
+    { "pos": "n.", "meaning": "地面；场地", "phrase": "on the ground", "example": "Sit on the ground.", "exampleCn": "坐在地上。" },
+    { "pos": "n.", "meaning": "理由；根据", "phrase": "on the grounds of", "example": "He left on the grounds of illness.", "exampleCn": "他因病离开。" }
+  ],
+  "group": [
+    { "pos": "n.", "meaning": "组；团体", "phrase": "a group of", "example": "A group of students came in.", "exampleCn": "一群学生走了进来。" }
+  ],
+  "grow": [
+    { "pos": "v.", "meaning": "生长；成长", "phrase": "grow up", "example": "I grew up in Beijing.", "exampleCn": "我在北京长大。" },
+    { "pos": "v.", "meaning": "种植；变得", "phrase": "grow vegetables", "example": "We grow vegetables in the garden.", "exampleCn": "我们在花园里种菜。" }
+  ],
+  "growth": [
+    { "pos": "n.", "meaning": "增长；成长", "phrase": "economic growth", "example": "Economic growth is steady.", "exampleCn": "经济增长稳定。" }
+  ],
+  "guarantee": [
+    { "pos": "v.", "meaning": "保证；担保", "phrase": "guarantee quality", "example": "We guarantee the quality.", "exampleCn": "我们保证质量。" },
+    { "pos": "n.", "meaning": "保证；保修", "phrase": "under guarantee", "example": "The TV is still under guarantee.", "exampleCn": "电视还在保修期内。" }
+  ],
+  "guard": [
+    { "pos": "n.", "meaning": "卫兵；警卫", "phrase": "security guard", "example": "A guard stood at the gate.", "exampleCn": "门口站着一名警卫。" },
+    { "pos": "v.", "meaning": "保卫；看守", "phrase": "guard against", "example": "Guard against theft.", "exampleCn": "谨防盗窃。" }
+  ],
+  "guess": [
+    { "pos": "v.", "meaning": "猜测；推测", "phrase": "guess what", "example": "Can you guess the answer?", "exampleCn": "你能猜出答案吗？" },
+    { "pos": "n.", "meaning": "猜测；推测", "phrase": "make a guess", "example": "Have a guess.", "exampleCn": "猜一猜。" }
+  ],
+  "guest": [
+    { "pos": "n.", "meaning": "客人；宾客", "phrase": "special guest", "example": "We have a special guest today.", "exampleCn": "我们今天有一位特别来宾。" }
+  ],
+  "guide": [
+    { "pos": "n.", "meaning": "向导；指南", "phrase": "tour guide", "example": "The guide showed us around.", "exampleCn": "导游带我们参观。" },
+    { "pos": "v.", "meaning": "指导；引导", "phrase": "guide sb.", "example": "She guided me through the process.", "exampleCn": "她指导我完成流程。" }
+  ],
+  "guilty": [
+    { "pos": "adj.", "meaning": "内疚的；有罪的", "phrase": "feel guilty", "example": "I feel guilty about lying.", "exampleCn": "我对撒谎感到内疚。" }
+  ],
+  "gun": [
+    { "pos": "n.", "meaning": "枪；炮", "phrase": "fire a gun", "example": "He fired a gun into the air.", "exampleCn": "他向空中开了一枪。" }
+  ],
+  "guy": [
+    { "pos": "n.", "meaning": "家伙；男人", "phrase": "that guy", "example": "Who is that guy?", "exampleCn": "那个家伙是谁？" }
+  ],
+  "gym": [
+    { "pos": "n.", "meaning": "体育馆；健身房", "phrase": "go to the gym", "example": "I go to the gym twice a week.", "exampleCn": "我每周去两次健身房。" }
+  ]
+}
