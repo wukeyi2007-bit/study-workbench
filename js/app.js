@@ -1354,7 +1354,7 @@ const SPACING = [1, 2, 4, 7, 15];
 const MASTERED_RETURN_DAYS = 30; // 已掌握单词 30 天后返场巩固
 const MASTERED_LEVEL = 4;        // 达到该 level 即视为已掌握（降低门槛，增强成就感）
 
-let wordState = { mode: "menu", phase: "idle", filter: "all", cards: [], currentIndex: 0, currentCard: null, answered: false, showAnswer: false, newWords: [], learnRound: 1, learnWord: null, learnWordId: null, learnOptions: [], learnAnswer: '', reviewCorrect: 0, reviewWrong: 0, newCorrect: 0, newWrong: 0 };
+let wordState = { mode: "menu", phase: "idle", filter: "all", cards: [], currentIndex: 0, currentCard: null, answered: false, showAnswer: false, newWords: [], learnRound: 1, learnWord: null, learnWordId: null, learnOptions: [], learnAnswer: '', reviewCorrect: 0, reviewWrong: 0, newCorrect: 0, newWrong: 0, review: null };
 // 兼容旧全局
 let dailyStudy = { active: false, phase: "result" };
 
@@ -1416,29 +1416,18 @@ function renderWords() {
 
 function startWordSession() {
   const today = Utils.today();
-  // 断点续学：今天有未完成的复习
-  if (state.reviewSession && state.reviewSession.date === today && state.reviewSession.cards.length) {
-    const dueIds = new Set(getDueReviewWords().map(w => w.id));
-    const remaining = state.reviewSession.cards.filter(id => dueIds.has(id));
-    if (remaining.length > 0) {
-      wordState.phase = "review";
-      wordState.cards = remaining.map(id => ({ wordId: id }));
-      wordState.currentIndex = Math.min(state.reviewSession.index || 0, remaining.length - 1);
-      wordState.reviewCorrect = state.reviewSession.reviewCorrect || 0;
-      wordState.reviewWrong = state.reviewSession.reviewWrong || 0;
-      wordState.reviewStep = state.reviewSession.step || 1;
-      wordState.showAnswer = false;
-      renderReviewCard();
-      return;
-    }
+  // 断点续学：今天有未完成的复习（沿用上次进度）
+  if (state.reviewSession && state.reviewSession.date === today && state.reviewSession.review) {
+    wordState.phase = "review";
+    wordState.review = state.reviewSession.review;
+    wordState.reviewCorrect = wordState.review.correct || 0;
+    wordState.reviewWrong = wordState.review.wrong || 0;
+    renderReviewCard();
+    return;
   }
   const reviews = getDueReviewWords();
   if (reviews.length > 0) {
-    wordState.phase = "review"; wordState.cards = shuffleArr(reviews).map(w => ({ wordId: w.id })); wordState.currentIndex = 0;
-    wordState.reviewCorrect = 0; wordState.reviewWrong = 0;
-    state.reviewSession = { date: today, cards: wordState.cards.map(c => c.wordId), index: 0, reviewCorrect: 0, reviewWrong: 0 };
-    Store.save();
-    renderReviewCard();
+    beginReviewSession(reviews.map(w => w.id));
   } else { startNewWords(); }
 }
 
@@ -1446,35 +1435,87 @@ function startWordSession() {
 function startReviewSession() {
   const reviews = getDueReviewWords();
   if (reviews.length === 0) { Utils.toast("今天没有待复习的单词，先去学新词吧", "info"); return; }
+  beginReviewSession(reviews.map(w => w.id));
+}
+
+// 建立复习批：10 个一组，先「认单词」整批过一遍，再「默写」整批过一遍
+// 认词与默写的顺序各自独立打乱，避免两次顺序一模一样
+function beginReviewSession(allIds) {
   wordState.phase = "review";
-  wordState.cards = shuffleArr(reviews).map(w => ({ wordId: w.id }));
-  wordState.currentIndex = 0; wordState.reviewCorrect = 0; wordState.reviewWrong = 0;
-  wordState.reviewStep = 1; wordState.showAnswer = false;
-  state.reviewSession = { date: Utils.today(), cards: wordState.cards.map(c => c.wordId), index: 0, reviewCorrect: 0, reviewWrong: 0, step: 1 };
+  wordState.reviewCorrect = 0; wordState.reviewWrong = 0;
+  wordState.review = {
+    allIds: shuffleArr(allIds),       // 整批单词（已打乱）
+    batchSize: 10,                    // 10 个一组
+    batchIdx: 0,                      // 当前第几组
+    phase: 'recognize',               // 'recognize' 认单词 | 'dictate' 默写
+    segIdx: 0,                        // 当前阶段内的第几个
+    recognizeList: [],                // 本组「认单词」顺序（打乱）
+    dictateList: [],                  // 本组「默写」顺序（重新打乱，与认词不同）
+    recognized: {},                   // 本组内被点「认识」的单词 id
+    correct: 0, wrong: 0, done: 0     // 统计
+  };
+  saveReviewSession();
+  beginReviewBatch();
+}
+
+function saveReviewSession() {
+  state.reviewSession = { date: Utils.today(), review: wordState.review };
   Store.save();
+}
+
+// 进入下一组（或结束）
+function beginReviewBatch() {
+  const r = wordState.review;
+  if (!r) { startNewWords(); return; }
+  const start = r.batchIdx * r.batchSize;
+  const batch = r.allIds.slice(start, start + r.batchSize);
+  if (batch.length === 0) { finishReviewSession(); return; }
+  r.phase = 'recognize';
+  r.segIdx = 0;
+  r.recognizeList = shuffleArr(batch);
+  r.dictateList = [];
+  r.recognized = {};
+  wordState.showAnswer = false;
   renderReviewCard();
+}
+
+function finishReviewSession() {
+  state.reviewSession = null; Store.save();
+  startNewWords();
 }
 
 function renderReviewCard() {
   wordState.answered = false;
-  const card = wordState.cards[wordState.currentIndex];
-  const word = VOCABULARY.find(w => w.id === card.wordId);
-  if (!word) { wordState.currentIndex++; if (wordState.currentIndex >= wordState.cards.length) startNewWords(); else renderReviewCard(); return; }
-  wordState.currentCard = card;
-  const idx = wordState.currentIndex + 1, total = wordState.cards.length;
-  const progress = (wordState.currentIndex / total) * 100;
+  const r = wordState.review;
+  if (!r) { startNewWords(); return; }
+  const list = r.phase === 'recognize' ? r.recognizeList : r.dictateList;
+  if (r.segIdx >= (list ? list.length : 0)) {
+    // 当前阶段（认单词 / 默写）已走完，切到下一阶段或下一组
+    if (r.phase === 'recognize') {
+      // 进入默写：只默写本组「认识」的词，顺序重新打乱（与认词顺序不同）
+      r.dictateList = shuffleArr(r.recognizeList.filter(id => r.recognized[id]));
+      if (r.dictateList.length === 0) { r.batchIdx++; saveReviewSession(); beginReviewBatch(); return; }
+      r.phase = 'dictate'; r.segIdx = 0; wordState.showAnswer = false; renderReviewCard(); return;
+    } else {
+      r.batchIdx++; saveReviewSession(); beginReviewBatch(); return;
+    }
+  }
+  const wordId = list[r.segIdx];
+  const word = VOCABULARY.find(w => w.id === wordId);
+  if (!word) { r.segIdx++; renderReviewCard(); return; }
+  wordState.currentCard = { wordId: word.id };
+  const total = r.allIds.length;
+  const progress = Math.min(100, Math.round((r.done / total) * 100));
   const s = Utils.getWordStatus(word.id);
-  const step = wordState.reviewStep || 1;
-  const stepLabel = step === 1 ? '第 1 步 · 认单词' : '第 2 步 · 看中文写英语';
   const returnTag = s.mastered ? '<div style="display:inline-block;background:var(--success);color:#fff;font-size:12px;padding:4px 10px;border-radius:12px;margin-bottom:12px;">🔄 已掌握·返场巩固</div>' : '';
   const weakToggle = weakToggleHtml(word.id);
   let body;
-  if (step === 1) {
+  if (r.phase === 'recognize') {
     if (!wordState.showAnswer) {
       body = returnTag + weakToggle + '<div class="word-display" style="font-size:30px;margin-bottom:24px;">' + word.word + '</div>' +
         (word.phonetic ? '<div class="phonetic-display">' + escapeHtml(word.phonetic) + '</div>' : '') +
         '<div class="speech-controls" style="justify-content:center;margin-top:8px;"><button class="btn btn-speech" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
-        '<div style="color:var(--text-secondary);font-size:14px;margin-top:20px;">回忆中文含义，然后点击下方按钮</div>' +
+        '<div style="color:var(--text-secondary);font-size:14px;margin-top:20px;">第 1 步 · 先看英文回想中文，再点下方按钮</div>' +
         '<button class="btn btn-primary btn-lg" style="margin-top:16px;min-width:200px;" onclick="revealReviewCard()">👆 显示答案</button>';
     } else {
       body = returnTag + weakToggle + '<div class="word-display" style="font-size:30px;margin-bottom:8px;">' + word.word + '</div>' +
@@ -1488,25 +1529,26 @@ function renderReviewCard() {
         '<button class="btn btn-success" onclick="reviewAnswer(\'correct\')" style="font-size:16px;padding:12px 28px;">✅ 认识</button></div>';
     }
   } else {
-    // 第二步：看中文写英语
+    // 第 2 步：看中文写英语（整批统一默写，顺序与认词不同）
     const senses = getWordSenses(word);
     const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : (word.meaning || '');
-    body = returnTag + weakToggle + '<div style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 / 2 · 根据中文写出英文</div>' +
+    body = returnTag + weakToggle + '<div style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
       '<div class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
       '<div style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">请输入对应的英文单词</div>' +
       '<input id="reviewSpellInput" class="spell-input" style="max-width:360px;" placeholder="输入英文单词..." onkeydown="if(event.key===\'Enter\')submitReviewSpell()" autocomplete="off" />' +
       '<div style="margin-top:12px;"><button class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
       '<div id="reviewFeedback" style="margin-top:12px;"></div>';
   }
+  const phaseLabel = r.phase === 'recognize' ? ('认单词 ' + (r.segIdx + 1) + '/' + r.recognizeList.length) : ('默写 ' + (r.segIdx + 1) + '/' + r.dictateList.length);
   document.getElementById("page-words").innerHTML = '<div class="toolbar"><div class="toolbar-left"><button class="btn btn-secondary btn-icon" onclick="exitWordSession()">←</button>' +
-    '<span style="font-weight:600;">🔁 复习 · ' + idx + ' / ' + total + ' · ' + stepLabel + '</span></div>' +
+    '<span style="font-weight:600;">🔁 复习 · ' + phaseLabel + '</span></div>' +
     '<div class="toolbar-right" style="font-size:14px;color:var(--text-secondary);">✅' + wordState.reviewCorrect + ' ❌' + wordState.reviewWrong + '</div></div>' +
     '<div class="test-container"><div class="test-progress"><span style="font-size:13px;color:var(--text-secondary);">复习进度</span>' +
     '<div class="test-progress-bar"><div class="test-progress-fill" style="width:' + progress + '%;background:var(--warning);"></div></div></div>' +
     '<div class="test-question" style="text-align:center;">' + body + '</div></div>';
   setTimeout(() => activateWordTap("page-words"), 60);
-  // 自动朗读单词发音（低延迟、用默认语速）
-  if (word && step === 1 && !wordState.showAnswer) setTimeout(() => playTextAudio(word.word), 100);
+  // 认单词阶段自动朗读（未看答案时）；默写阶段不读，避免「一听就会写」
+  if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => playTextAudio(word.word), 100);
 }
 
 function revealReviewCard() { wordState.showAnswer = true; renderReviewCard(); }
@@ -1586,55 +1628,55 @@ function applyReviewResult(s, result) {
   }
 }
 
-function advanceReviewCard() {
-  wordState.showAnswer = false;
-  wordState.reviewStep = 1;
-  wordState.currentIndex++;
-  if (state.reviewSession) { state.reviewSession.index = wordState.currentIndex; state.reviewSession.step = 1; state.reviewSession.reviewCorrect = wordState.reviewCorrect; state.reviewSession.reviewWrong = wordState.reviewWrong; Store.save(); }
-  if (wordState.currentIndex >= wordState.cards.length) { state.reviewSession = null; Store.save(); startNewWords(); } else renderReviewCard();
-}
-
 function reviewAnswer(result) {
   if (wordState.answered) return; wordState.answered = true;
-  const card = wordState.currentCard; const word = VOCABULARY.find(w => w.id === card.wordId);
-  if (!word) return; const s = Utils.getWordStatus(word.id);
-
-  if (wordState.reviewStep === 1) {
-    if (result === 'correct') {
-      playCorrectSound();
-      // 认读通过，进入第二步拼写（生词本独立复习，这里不处理生词本）
-      // 复习单词需两轮都完成后才计 +1，第一步此处不计数
-      wordState.reviewStep = 2;
-      wordState.showAnswer = false;
-      wordState.answered = false;
-      if (state.reviewSession) { state.reviewSession.step = 2; Store.save(); }
-      Store.save();
-      renderReviewCard();
-      return;
-    }
-    // 不认识或模糊：直接结束该词
-    wordState.reviewWrong++;
-    applyReviewResult(s, result);
+  const r = wordState.review;
+  if (!r || r.phase !== 'recognize') return;
+  const wordId = r.recognizeList[r.segIdx];
+  const word = VOCABULARY.find(w => w.id === wordId);
+  if (!word) return;
+  const s = Utils.getWordStatus(word.id);
+  if (result === 'correct') {
+    // 认识 → 留到本组统一默写阶段再判级（不直接升级，默写通过才算过）
+    r.recognized[word.id] = true;
+    playCorrectSound();
+    r.segIdx++;
+    wordState.showAnswer = false;
+    saveReviewSession();
+    renderReviewCard();
+    return;
   }
-
-  s.lastReview = Utils.today(); Store.save();
-  advanceReviewCard();
+  // 不认识 / 模糊 → 该词结束，降级处理
+  r.wrong++; wordState.reviewWrong++;
+  applyReviewResult(s, result);
+  s.lastReview = Utils.today();
+  r.done++;
+  r.segIdx++;
+  wordState.showAnswer = false;
+  saveReviewSession();
+  renderReviewCard();
 }
 
 function finishReviewSpell(result) {
-  const card = wordState.currentCard; const word = VOCABULARY.find(w => w.id === card.wordId);
-  if (!word) return; const s = Utils.getWordStatus(word.id);
+  const r = wordState.review;
+  if (!r || r.phase !== 'dictate') return;
+  const wordId = r.dictateList[r.segIdx];
+  const word = VOCABULARY.find(w => w.id === wordId);
+  if (!word) return;
+  const s = Utils.getWordStatus(word.id);
   if (result === 'correct') {
-    wordState.reviewCorrect++;
-    // 完整复习通过一词，计入今日背词进度
-    recordStudy(1, word.id);
-    // 全局复习不改动生词本；生词本只由「生词本内复习 / 掌握 / 移除」管理
+    r.correct++; wordState.reviewCorrect++;
+    recordStudy(1, word.id); // 完整复习通过一词，计入今日背词进度
   } else {
-    wordState.reviewWrong++;
+    r.wrong++; wordState.reviewWrong++;
   }
   applyReviewResult(s, result);
-  s.lastReview = Utils.today(); Store.save();
-  advanceReviewCard();
+  s.lastReview = Utils.today();
+  r.done++;
+  r.segIdx++;
+  wordState.showAnswer = false;
+  saveReviewSession();
+  renderReviewCard();
 }
 
 function submitReviewSpell() {
@@ -1642,7 +1684,9 @@ function submitReviewSpell() {
   const inputVal = document.getElementById('reviewSpellInput').value.trim();
   if (!inputVal) { Utils.toast('请先输入英文单词', 'warning'); return; }
   wordState.answered = true;
-  const card = wordState.currentCard; const word = VOCABULARY.find(w => w.id === card.wordId);
+  const r = wordState.review;
+  const wordId = r.dictateList[r.segIdx];
+  const word = VOCABULARY.find(w => w.id === wordId);
   if (!word) return;
   const isCorrect = inputVal.toLowerCase().replace(/[^a-z]/g, '') === word.word.toLowerCase().replace(/[^a-z]/g, '');
   const fb = document.getElementById('reviewFeedback');
@@ -2020,8 +2064,8 @@ function startNewWords() {
 function loadNextLearnWord() {
   const queue = wordState.learnRound === 1 ? wordState.round1Queue : wordState.learnRound === 2 ? wordState.round2Queue : wordState.round3Queue;
   if (queue.length === 0) {
-    if (wordState.learnRound === 1 && wordState.round2Queue.length > 0) { wordState.learnRound = 2; loadNextLearnWord(); return; }
-    if (wordState.learnRound === 2 && wordState.round3Queue.length > 0) { wordState.learnRound = 3; loadNextLearnWord(); return; }
+    if (wordState.learnRound === 1 && wordState.round2Queue.length > 0) { wordState.learnRound = 2; wordState.round2Queue = shuffleArr(wordState.round2Queue); loadNextLearnWord(); return; }
+    if (wordState.learnRound === 2 && wordState.round3Queue.length > 0) { wordState.learnRound = 3; wordState.round3Queue = shuffleArr(wordState.round3Queue); loadNextLearnWord(); return; }
     Store.save(); finishWordSession(); return;
   }
   wordState.learnWordId = queue[0].id; renderLearnCard();
