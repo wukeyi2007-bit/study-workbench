@@ -825,6 +825,10 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   if (page !== 'listening' && listeningState && listeningState.active) {
     stopListeningAudio();
   }
+  // 离开翻译练习页时停止正在播放的英文朗读，避免返回首页仍继续读
+  if (prevPage === 'translate' && page !== 'translate') {
+    Speech.stopSpeak();
+  }
 
   // 历史栈同步（让手机返回键行为合理）：
   // - 首页(base) → 子板块：pushState，使返回键能回到首页，不会直接退出 APP；
