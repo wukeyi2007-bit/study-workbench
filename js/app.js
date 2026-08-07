@@ -5983,19 +5983,37 @@ const CloudSync = {
   }
 };
 
-// 运行时拉取 news.json（线上每日 8 点由自动化刷新），覆盖兜底数据
+// 新闻本地缓存 key：成功拉取后持久化，避免网络波动时退回到过期的 HOT_NEWS 兜底
+const NEWS_CACHE_KEY = "cet4_workspace_news_cache";
+
+// 启动时优先从本地缓存恢复新闻（线上 fetch 失败时也能看到相对新的内容）
+(function loadNewsCache() {
+  try {
+    const cached = localStorage.getItem(NEWS_CACHE_KEY);
+    if (cached) {
+      const arr = JSON.parse(cached);
+      if (Array.isArray(arr) && arr.length) NEWS_DATA = arr;
+    }
+  } catch (e) { console.warn("新闻缓存读取失败", e); }
+})();
+
+// 运行时拉取 news.json（线上每日 8 点由自动化刷新），覆盖兜底/缓存数据
 function loadNewsFromServer() {
   fetch('news.json?_=' + Date.now(), { cache: 'no-store' })
     .then(r => r.ok ? r.json() : null)
     .then(d => {
       if (Array.isArray(d) && d.length) {
         NEWS_DATA = d;
+        try { localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify(d)); } catch (e) { /* 存储失败忽略 */ }
         resetNewsIfDateChanged();
         if (currentPage === 'news') renderNews();
         else if (currentPage === 'home') renderDashboard();
       }
     })
-    .catch(() => { /* 拉取失败则用兜底 HOT_NEWS，不影响使用 */ });
+    .catch(() => {
+      // 拉取失败：若启动时已从缓存恢复，则继续用缓存；
+      // 否则回退到 data.js 中的 HOT_NEWS 兜底，不影响使用。
+    });
 }
 
 // 一次性修正旧数据：把今天按「轮次」记录的 words 改成按真实词 ID 去重计数。
@@ -6042,9 +6060,19 @@ function fixTodayWordCount(newCount) {
 }
 
 function init() {
+  // 兜底：无论后续哪步卡住，启动页最多显示 3 秒后强制消失，避免一直停在小猪看书页
+  const splashEl = document.getElementById('appSplash');
+  if (splashEl) {
+    setTimeout(() => {
+      splashEl.classList.add('hidden');
+      setTimeout(() => splashEl.remove(), 300);
+    }, 3000);
+  }
+
   checkStreak();
   migrateStudyLogWordIds();
-  Speech.initVoices();
+  // 语音初始化非首屏必需，延后执行以免阻塞启动
+  setTimeout(() => Speech.initVoices(), 0);
   // 应用已保存的外观主题（配色自定义）
   applyTheme(getThemeKey(), state.settings && state.settings.customAccent);
   // 应用已保存的「设置背景图」「每日金句背景图」等自定义图片
@@ -6139,11 +6167,13 @@ function init() {
     });
   }
 
-  // 运行时拉取线上最新新闻（每日 8 点自动化已刷新 news.json）
-  loadNewsFromServer();
-
-  // 每天首次打开时选择心情并展示金句
-  checkDailyMood();
+  // 非首屏内容延迟加载：先让首页渲染出来、启动页消失，再拉新闻/弹心情
+  setTimeout(() => {
+    // 运行时拉取线上最新新闻（每日 8 点自动化已刷新 news.json）
+    loadNewsFromServer();
+    // 每天首次打开时选择心情并展示金句
+    checkDailyMood();
+  }, 50);
 
   // 建立首页基础历史记录，保证从子板块按返回键能回到首页而不是退出 APP
   if (typeof history !== 'undefined') {
