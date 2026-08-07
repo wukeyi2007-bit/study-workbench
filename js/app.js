@@ -2529,34 +2529,23 @@ function renderNews() {
     Store.save();
   }
   const allNews = getNews();
-  let list = allNews.slice();
-  if (newsFilter !== "all") list = list.filter(n => n.cat === newsFilter);
-
   const readCount = state.news.read.length;
   const bmCount = state.news.bookmarked.length;
-  const unread = allNews.filter(n => !state.news.read.includes(n.id)).length;
-
-  let tabsHtml = `<div class="filter-tab ${newsFilter === 'all' ? 'active' : ''}" onclick="filterNews('all')">全部</div>`;
-  Object.entries(NEWS_CATEGORIES).forEach(([k, label]) => {
-    if (k === "all") return;
-    tabsHtml += `<div class="filter-tab ${newsFilter === k ? 'active' : ''}" onclick="filterNews('${k}')">${label}</div>`;
-  });
 
   const importantIds = state.news.important;
   const importantCount = importantIds.length;
   const importantDone = importantIds.filter(id => state.news.read.includes(id)).length;
 
-  // 渲染单条新闻卡片
-  const renderCard = (n, compact) => {
+  // 渲染单条新闻卡片（右上角不再显示星标，避免与下方「收藏」按钮重复）
+  const renderCard = (n) => {
     const isRead = state.news.read.includes(n.id);
     const isBm = state.news.bookmarked.includes(n.id);
     const isImportant = importantIds.includes(n.id);
     return `
-      <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''} ${compact ? 'news-card-compact' : ''}">
+      <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''}">
         <div class="news-top">
           <span class="news-cat ${n.cat}">${NEWS_CATEGORIES[n.cat]}</span>
           <span class="news-date">${n.date}</span>
-          <button class="news-star ${isImportant ? 'on' : ''}" onclick="toggleNewsImportant('${n.id}')" title="设为今日重点">${isImportant ? '⭐' : '☆'}</button>
         </div>
         <div class="news-title">${n.title}</div>
         ${n.summary ? `<div class="news-summary">${n.summary}</div>` : ''}
@@ -2571,28 +2560,24 @@ function renderNews() {
     `;
   };
 
-  // 首页「全部」视图下单独展示今日重点区域
+  // 今日重点区域：5 条重点新闻排在最前面
   let importantSection = '';
-  if (newsFilter === 'all' && importantCount > 0) {
+  if (importantCount > 0) {
     const importantNews = importantIds.map(id => allNews.find(n => n.id === id)).filter(Boolean);
     if (importantNews.length) {
       importantSection = `
         <div class="news-important-section">
           <div class="news-important-title">⭐ 今日重点 · ${importantDone}/${importantCount} 已完成</div>
-          <div class="news-important-list">${importantNews.map(n => renderCard(n, true)).join('')}</div>
+          ${importantNews.map(n => renderCard(n)).join('')}
         </div>
+        <div class="news-all-divider">全部新闻</div>
       `;
     }
   }
 
-  const listHtml = list
-    .filter(n => newsFilter !== 'all' || !importantIds.includes(n.id)) // 重点已在上方展示，避免下方重复
-    .map(n => renderCard(n, false))
-    .join("");
-
-  const heroImportantLine = importantCount
-    ? `<div style="font-size:15px;font-weight:600;margin-top:6px;">⭐ 今日重点 <strong>${importantDone}</strong> / ${importantCount} 已完成</div>`
-    : `<div style="font-size:15px;font-weight:600;margin-top:4px;">今日还有 <strong>${unread}</strong> 条未读</div>`;
+  // 其余新闻纵向排列（重点已在上文展示，此处排除避免重复）
+  const restList = allNews.filter(n => !importantIds.includes(n.id));
+  const listHtml = restList.map(n => renderCard(n)).join("");
 
   document.getElementById("page-news").innerHTML = `
     <div class="toolbar">
@@ -2605,14 +2590,11 @@ function renderNews() {
     </div>
 
     <div class="news-hero">
-      <div style="font-size:14px;opacity:.9;">${allNews[0] ? allNews[0].date : ''} 更新 · 共 ${allNews.length} 条热点</div>
-      ${heroImportantLine}
-      ${importantCount ? '' : `<div style="font-size:13px;opacity:.85;margin-top:4px;">点 ☆ 可把重要的几条设为「今日重点」，首页概览只算重点</div>`}
+      <div style="font-size:14px;opacity:.9;">${allNews[0] ? allNews[0].date : ''} 更新 · 共 ${allNews.length} 条热点 · 今日重点 ${importantDone}/${importantCount}</div>
     </div>
 
     ${importantSection}
 
-    <div class="filter-tabs">${tabsHtml}</div>
     <div class="news-list">${listHtml}</div>
   `;
 }
