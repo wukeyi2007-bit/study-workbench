@@ -120,6 +120,7 @@ const Store = {
         startDate: null,       // 首次使用日期 YYYY-MM-DD
         currentDay: 1,         // 当前查看/学习到第几天
         completed: {},         // { day: [itemId, ...] }
+        keyIds: [],            // 用户在卡片上标记为重点的理财知识点 id 列表（用于定期复习）
         lastFinanceDate: null, // 上次自动推进到今天的天数日期（每天只推进一次）
       },
       listening: {
@@ -3238,6 +3239,7 @@ function initFinanceKnowledge() {
     state.financeKnowledge.lastFinanceDate = Utils.today();
   }
   if (!state.financeKnowledge.completed) state.financeKnowledge.completed = {};
+  if (!state.financeKnowledge.keyIds) state.financeKnowledge.keyIds = [];
   if (state.financeKnowledge.lastFinanceDate === undefined) state.financeKnowledge.lastFinanceDate = null;
 }
 
@@ -3309,6 +3311,54 @@ function toggleFinanceKnowledge(id, day) {
   renderFinance();
 }
 
+// ===== 重点知识（标记 + 定期复习）=====
+function getFinanceKeyIds() {
+  initFinanceKnowledge();
+  return state.financeKnowledge.keyIds || [];
+}
+
+function isFinanceKey(id) {
+  return getFinanceKeyIds().indexOf(id) >= 0;
+}
+
+function toggleFinanceKey(id) {
+  initFinanceKnowledge();
+  const arr = state.financeKnowledge.keyIds || (state.financeKnowledge.keyIds = []);
+  const i = arr.indexOf(id);
+  if (i >= 0) arr.splice(i, 1);
+  else arr.push(id);
+  Store.save();
+  renderFinance();
+}
+
+// 把所有标记为重点的知识点对象取出来（按标记顺序），过滤掉已不存在的 id
+function getAllKeyItems() {
+  const ids = getFinanceKeyIds();
+  const map = {};
+  FINANCE_KNOWLEDGE.forEach(d => d.items.forEach(it => { map[it.id] = it; }));
+  return ids.map(id => map[id]).filter(Boolean);
+}
+
+// 重点复习弹层：一次性回顾所有标记为重点的知识
+function openKeyReview() {
+  const items = getAllKeyItems();
+  let body;
+  if (items.length === 0) {
+    body = `<div style="text-align:center;color:var(--text-secondary);padding:14px 4px;line-height:1.7;">还没有重点知识。<br>在理财学习里点任意卡片右下角的「☆ 重点」即可添加，<br>之后会定期出现在复习日帮你再复习一遍。</div>`;
+  } else {
+    body = items.map(it => `
+      <div class="knowledge-card" style="margin-bottom:12px;cursor:default;">
+        <div class="knowledge-text">${escapeHtml(it.text)}</div>
+        <div class="knowledge-foot">
+          <span class="knowledge-key">💡 ${escapeHtml(it.keyPoint)}</span>
+          <button class="star-btn active" onclick="toggleFinanceKey('${it.id}');openKeyReview();">⭐ 取消重点</button>
+        </div>
+      </div>`).join("");
+  }
+  const actions = `<button class="btn btn-secondary" onclick="closeModal()">关闭</button>`;
+  openModal(`⭐ 重点复习 (${items.length})`, body, actions);
+}
+
 function renderFinance() {
   initFinanceKnowledge();
   const day = getFinanceCurrentDay();
@@ -3334,12 +3384,16 @@ function renderFinance() {
 
   const cardsHtml = dayData.items.map(item => {
     const done = completed.includes(item.id);
+    const key = isFinanceKey(item.id);
     return `
-      <div class="knowledge-card ${done ? 'done' : ''}" onclick="toggleFinanceKnowledge('${item.id}', ${day})">
+      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''}" onclick="toggleFinanceKnowledge('${item.id}', ${day})">
         <div class="knowledge-text">${escapeHtml(item.text)}</div>
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
-          <span class="knowledge-check">${done ? '✅ 已掌握' : '⭕ 点我掌握'}</span>
+          <span class="knowledge-actions">
+            <button class="star-btn ${key ? 'active' : ''}" onclick="event.stopPropagation();toggleFinanceKey('${item.id}')">${key ? '⭐ 已重点' : '☆ 重点'}</button>
+            <span class="knowledge-check">${done ? '✅ 已掌握' : '⭕ 点我掌握'}</span>
+          </span>
         </div>
       </div>
     `;
@@ -3348,6 +3402,34 @@ function renderFinance() {
   const summaryHtml = allDone
     ? `<div class="finance-summary success">🎉 今日 5 条知识点全部掌握，打卡完成！</div>`
     : `<div class="finance-summary">今天还有 <strong>${dayData.items.length - progress}</strong> 条知识点待掌握，点击卡片即可标记。</div>`;
+
+  // 重点复习日：每隔 7 天（dayIndex 为 7 的倍数）把标记过的重点知识重新列出，相当于再复习一遍
+  const isReviewDay = (dayIndex % 7 === 0);
+  const keyItems = getAllKeyItems();
+  let reviewBlock = "";
+  if (isReviewDay) {
+    if (keyItems.length > 0) {
+      const show = keyItems.slice(0, 5);
+      reviewBlock = `
+        <div class="finance-review-block">
+          <div class="finance-review-head">📌 重点复习日 · 回顾你的 ${keyItems.length} 个重点知识</div>
+          ${show.map(it => `
+            <div class="knowledge-card key-review" onclick="event.stopPropagation();toggleFinanceKey('${it.id}')">
+              <div class="knowledge-text">${escapeHtml(it.text)}</div>
+              <div class="knowledge-foot">
+                <span class="knowledge-key">💡 ${escapeHtml(it.keyPoint)}</span>
+                <span class="knowledge-check">点此取消重点</span>
+              </div>
+            </div>`).join("")}
+          ${keyItems.length > 5 ? `<div class="finance-review-more">还有 ${keyItems.length - 5} 条可在「重点复习」中查看</div>` : ""}
+        </div>`;
+    } else {
+      reviewBlock = `
+        <div class="finance-review-block empty">
+          📌 今天重点复习日！你还没有标记过重点，点任意知识卡右下角的「☆ 重点」，之后会定期在这里出现复习。
+        </div>`;
+    }
+  }
 
   const dayTitle = round === 1
     ? `第 ${dayIndex} 天 · <span class="day-level level-${levelName === '入门' ? 'easy' : levelName === '进阶' ? 'medium' : 'hard'}">${levelName}</span>`
@@ -3359,6 +3441,7 @@ function renderFinance() {
         <h2 style="font-size:20px;">💰 理财学习</h2>
       </div>
       <div class="toolbar-right">
+        <button class="btn btn-sm btn-key" onclick="openKeyReview()">⭐ 重点复习 (${getFinanceKeyIds().length})</button>
         <span class="user-badge">长期进度 ${masteredCount}/${totalItems}</span>
       </div>
     </div>
@@ -3380,6 +3463,8 @@ function renderFinance() {
     </div>
 
     ${summaryHtml}
+
+    ${reviewBlock}
 
     <div class="knowledge-list">${cardsHtml}</div>
   `;
