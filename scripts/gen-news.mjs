@@ -24,6 +24,17 @@ function stableId(cat, title) {
   return `${cat[0]}${shortHash(`${dateStr}:${cat}:${title}`).slice(0, 6)}`;
 }
 
+// 来源质量分：重点选取时优先高质量来源。百度热搜为低质实时榜（摘要短、无权威出处），
+// 只在 Google News / RSS 兜底都抓不到时才垫底，绝不作为「今日重点」。
+const SOURCE_QUALITY = {
+  '央视': 6, '新华社': 6, '人民网': 5, 'Google新闻': 5,
+  '新浪新闻': 4, '新浪财经': 4, 'IT之家': 5, '36氪': 5, '虎嗅': 5,
+  '百度热搜': 0, '百度': 0,
+};
+function sourceQuality(src) {
+  return SOURCE_QUALITY[src] ?? 3;
+}
+
 const TARGETS = { domestic: 6, international: 4, tech: 4, finance: 3 };
 
 const GOOGLE = {
@@ -215,7 +226,19 @@ function safeSummary(it) {
   console.log(`生成 ${dateStr} 新闻...`);
   const news = [];
   for (const cat of ['domestic', 'international', 'tech', 'finance']) {
-    const items = (await collectFor(cat)).slice(0, TARGETS[cat]);
+    // 先按稳定 id 排序，保证「重点」选取与抓取顺序无关——同一条新闻无论第几个抓到，
+    // 是否被选为「今日重点」始终一致，避免定时任务重跑后重点集合变化导致用户已读进度归零。
+    let items = await collectFor(cat);
+    // 排序：来源质量降序（重点优先权威来源），质量相同再按稳定 id 升序（保证可复现、与抓取顺序无关）。
+    // 这样「今日重点」永远取自高质量来源，百度热搜只在彻底抓不到时垫底，且无论第几个抓到结果一致。
+    items = items
+      .slice()
+      .sort((a, b) => {
+        const q = sourceQuality(b.source) - sourceQuality(a.source);
+        if (q !== 0) return q;
+        return stableId(cat, a.title).localeCompare(stableId(cat, b.title));
+      })
+      .slice(0, TARGETS[cat]);
     items.forEach((it, i) => {
       news.push({
         id: stableId(cat, it.title),
