@@ -1905,7 +1905,8 @@ const AudioPlayer = {
 function playTextAudio(text, opts = {}) {
   if (!text) return;
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
-  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1';
+  // 加时间戳穿透浏览器/微信内置浏览器的音频缓存，避免串词（如 minute 读到 wear）
+  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1&_t=' + Date.now();
   AudioPlayer.play(url, opts.onend, function () { Speech.speak(text, opts); });
 }
 
@@ -1913,7 +1914,8 @@ function playTextAudio(text, opts = {}) {
 function playRemoteWithFallback(text, ttsOpts, onDone) {
   if (!text) { if (onDone) onDone(); return; }
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
-  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1';
+  // 加时间戳穿透浏览器/微信内置浏览器的音频缓存，避免串词
+  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1&_t=' + Date.now();
   AudioPlayer.play(url, function () { if (onDone) onDone(); }, function () {
     Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone }));
   });
