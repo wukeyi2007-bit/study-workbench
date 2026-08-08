@@ -90,7 +90,9 @@ const Store = {
       news: {
         readByDate: {},  // 按新闻日期分桶的已读新闻 id 列表：{ '2026-08-08': ['n1','n5',...] }
         bookmarked: [],  // 收藏新闻 id 列表
-        important: [],  // 设为「今日重点」的新闻 id 列表
+        important: [],  // 设为「今日重点」的新闻 id 列表（旧字段，兼容保留）
+        importantIds: [],   // 锁定存档的「今日重点」id 列表（按新闻日期批次锁定，重跑新闻也不变）
+        importantLockDate: "", // importantIds 对应的新闻日期；与 currentNewsDate 一致时才沿用，跨天自动重选
         lastDate: "",   // 上次新闻内容日期；新的新闻日期只会向前推进，不会因抓到旧缓存而回退
         lastVisitDate: "", // 上次打开 App 的日历日期
       },
@@ -158,6 +160,24 @@ function getNewsReadIds() {
   const d = currentNewsDate();
   return (state.news.readByDate && state.news.readByDate[d]) || [];
 }
+// 锁定并取「今日重点」id 列表：首次看到当天新闻时把重点 id 固化进 state，
+// 之后即使 news.json 被定时任务重跑、重要集合变化，进度也始终锚定这 5 条，绝不归零。
+function getTodayImportantIds() {
+  const d = currentNewsDate();
+  const liveImportant = getNews().filter(n => n.important).map(n => n.id);
+  if (state.news.importantLockDate === d && Array.isArray(state.news.importantIds) && state.news.importantIds.length) {
+    return state.news.importantIds;
+  }
+  // 未锁定或日期变了：用当前新闻的重点集合锁定（日期向前推进时自然换一批新的重点）
+  if (liveImportant.length) {
+    state.news.importantIds = liveImportant.slice();
+    state.news.importantLockDate = d;
+    try { Store.save(); } catch (e) { /* 忽略 */ }
+  }
+  return state.news.importantIds || [];
+}
+// 主动锁定（新闻加载完成后调用，确保尽早固化当天重点）
+function lockTodayImportant() { getTodayImportantIds(); }
 function defaultImportantFinance() {
   // 按日期确定性轮换「今日重点」：每天选出 5 条不同的课程，做到"每天自动更新"且无需外部内容
   const all = FINANCE_COURSES;
@@ -382,6 +402,8 @@ function resetNewsIfDateChanged() {
     state.news.important = defaultImportantNews();
     changed = true;
   }
+  // 新闻已加载则固化当天重点（日期向前推进时自动换一批新的，否则沿用已锁定的，避免重跑归零）
+  if (hasRuntimeNews) lockTodayImportant();
 
   // 情况 2：跨自然日仅更新访问日期；已读进度已按新闻日期分桶，
   // 新的一天自然使用空桶，无需手动清零（也不会让昨天 100% 污染今天）。
@@ -1016,12 +1038,12 @@ function renderTodayOverview() {
   const financeDone = getCompletedForDay(financeTodayDay).length;
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
-  // 热点新闻：直接从当天新闻数据里取「important:true」的今日重点计算进度，
+  // 热点新闻：进度锚定「锁定的今日重点」id，不随 news.json 重跑变化；
   // 已读按当前新闻日期分桶统计，刷新不会丢失、也不跨天污染。
-  const newsBase = getNews().filter(n => n.important);
+  const newsImportantIds = getTodayImportantIds();
   const newsReadIds = getNewsReadIds();
-  const newsRead = newsBase.filter(n => newsReadIds.includes(n.id)).length;
-  const newsTotal = newsBase.length;
+  const newsRead = newsImportantIds.filter(id => newsReadIds.includes(id)).length;
+  const newsTotal = newsImportantIds.length;
   const newsPct = newsTotal ? Math.min(100, Math.round((newsRead / newsTotal) * 100)) : 0;
 
   const listenProgress = getListeningProgress(today);
@@ -2741,16 +2763,32 @@ function renderNews() {
   const bmIds = state.news.bookmarked;
   const bmCount = bmIds.length;
 
-  // 直接从新闻数据里取「今日重点」(important:true)，不依赖可能过期的本地标记
-  const importantNews = allNews.filter(n => n.important);
-  const importantIds = new Set(importantNews.map(n => n.id));
-  const importantDone = importantNews.filter(n => newsReadIds.includes(n.id)).length;
+  // 今日重点：锚定「锁定的重点 id 列表」，不随 news.json 重跑变化
+  const importantIds = getTodayImportantIds();
+  const importantIdSet = new Set(importantIds);
+  const importantDone = importantIds.filter(id => newsReadIds.includes(id)).length;
+  // 按锁定顺序还原新闻对象（只还原新闻里还存在的；缺失的用占位卡保证进度可见）
+  const importantNews = importantIds.map(id => {
+    const found = allNews.find(n => n.id === id);
+    return found || { id, missing: true, title: "（该重点新闻已更新，点此补标记）", cat: "domestic", date: currentNewsDate(), summary: "", source: "" };
+  });
 
   // 渲染单条新闻卡片（右上角不显示星标，避免与下方「收藏」按钮重复）
   const renderCard = (n) => {
     const isRead = newsReadIds.includes(n.id);
     const isBm = bmIds.includes(n.id);
-    const isImportant = importantIds.has(n.id);
+    const isImportant = importantIdSet.has(n.id);
+    if (n.missing) {
+      return `
+      <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''}">
+        <div class="news-title">${escapeHtml(n.title)}</div>
+        <div class="news-bottom">
+          <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
+            <button class="btn btn-xs ${isRead ? 'btn-ghost' : 'btn-secondary'}" onclick="event.stopPropagation();markNewsRead('${n.id}')">${isRead ? '✓ 已读' : '标记已读'}</button>
+          </div>
+        </div>
+      </div>`;
+    }
     return `
       <div class="news-card ${isRead ? 'read' : ''} ${isImportant ? 'important' : ''}">
         <div class="news-top">
@@ -2792,7 +2830,7 @@ function renderNews() {
   }
 
   // ===== 全部视图：今日重点在前 + 其余纵向排列 =====
-  const restList = allNews.filter(n => !importantIds.has(n.id));
+  const restList = allNews.filter(n => !importantIdSet.has(n.id));
   const importantSection = importantNews.length ? `
     <div class="news-important-section">
       <div class="news-important-title">⭐ 今日重点 · ${importantDone}/${importantNews.length} 已完成</div>
@@ -6330,6 +6368,7 @@ function loadNewsFromServer() {
       if (Array.isArray(d) && d.length) {
         NEWS_DATA = d;
         try { localStorage.setItem(NEWS_CACHE_KEY, JSON.stringify(d)); } catch (e) { /* 存储失败忽略 */ }
+        lockTodayImportant(); // 尽早固化当天重点，避免后续重跑导致进度归零
         resetNewsIfDateChanged();
         if (currentPage === 'news') renderNews();
         else if (currentPage === 'home') renderDashboard();
