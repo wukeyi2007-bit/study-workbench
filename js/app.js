@@ -1547,6 +1547,10 @@ function renderReviewCard() {
     '<div class="test-progress-bar"><div class="test-progress-fill" style="width:' + progress + '%;background:var(--warning);"></div></div></div>' +
     '<div class="test-question" style="text-align:center;">' + body + '</div></div>';
   setTimeout(() => activateWordTap("page-words"), 60);
+  // 默写阶段自动聚焦输入框，避免每次提交后软键盘收起，下一词无需重新点击输入框
+  if (r.phase === 'dictate') {
+    setTimeout(() => { const inp = document.getElementById('reviewSpellInput'); if (inp) inp.focus(); }, 200);
+  }
   // 认单词阶段自动朗读（未看答案时）；默写阶段不读，避免「一听就会写」
   if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => playTextAudio(word.word), 100);
 }
