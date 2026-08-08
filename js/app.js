@@ -4275,16 +4275,19 @@ function buildListeningQuestions(mode, n) {
     for (let i = 0; i < n; i++) {
       const d = ds[i % ds.length];
       const script = d.lines.map(l => l.text).join(' ');
-      // 对话用原 4 个英文选项（不再混中文干扰项），附带中文翻译
+      // 选项与中文翻译一并打乱，正确答案位置随机化（避免总是同一选项）
+      const paired = d.options.map((opt, ki) => ({ en: opt, cn: (d.optionsCn || [])[ki] }));
+      const shuffled = shuffleArr(paired);
+      const correctEn = d.options[d.answer];
       qs.push({
         type: 'dialogue',
         play: script,
         dialogue: d,
         question: d.question,
-        options: d.options,            // English
-        optionsCn: d.optionsCn || [],  // Chinese (shown after answering)
-        answer: d.options[d.answer],
-        answerIdx: d.answer,
+        options: shuffled.map(o => o.en),   // English（已打乱）
+        optionsCn: shuffled.map(o => o.cn), // Chinese（与英文同序打乱）
+        answer: correctEn,                   // 按英文文本判分，与位置无关
+        answerIdx: shuffled.findIndex(o => o.en === correctEn),
         explain: d.explain,
         ref: { id: d.id, word: d.scene, phonetic: '', meaning: d.question }
       });
