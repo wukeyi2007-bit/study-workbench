@@ -1594,7 +1594,7 @@ function renderReviewCard() {
     const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
     body = returnTag + weakToggle + '<div id="reviewStepLabel" style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
       '<div id="reviewSpellMeaning" class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
-      '<div class="speech-controls" style="justify-content:center;margin:8px 0 12px;"><button class="btn btn-speech" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
+      '<div class="speech-controls" style="justify-content:center;margin:8px 0 12px;"><button class="btn btn-speech" onmousedown="event.preventDefault();" ontouchstart="event.preventDefault();" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
       '<div style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">请输入对应的英文单词</div>' +
       '<input id="reviewSpellInput" class="spell-input" style="max-width:360px;" placeholder="输入英文单词..." onkeydown="if(event.key===\'Enter\')submitReviewSpell()" autocomplete="off" />' +
       '<div style="margin-top:12px;"><button id="reviewSpellSubmitBtn" class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
@@ -1861,7 +1861,8 @@ function submitReviewSpell() {
     const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
     fb.innerHTML = '<div class="card" style="text-align:center;border:2px solid var(--danger);">' +
       '<div style="font-size:18px;font-weight:600;color:var(--danger);">❌ 拼写错误</div>' +
-      '<div style="font-size:18px;font-weight:600;margin-top:6px;">' + escapeHtml(word.word) + '</div>' +
+      '<div style="font-size:15px;color:var(--text-secondary);margin-top:6px;">你输入的是：<b style="color:var(--danger);">' + escapeHtml(inputVal || '') + '</b></div>' +
+      '<div style="font-size:18px;font-weight:600;margin-top:10px;">' + escapeHtml(word.word) + '</div>' +
       (word.phonetic ? '<div class="phonetic-display" style="margin-top:2px;">' + escapeHtml(word.phonetic) + '</div>' : '') +
       '<div style="font-size:14px;color:var(--text-secondary);margin-top:6px;">' + escapeHtml(meaningDisplay) + '</div>' +
       '<div style="font-size:13px;color:var(--text-secondary);margin-top:8px;">已加入本轮复习，点下方按钮继续</div></div>' +
@@ -1928,6 +1929,11 @@ function speakWord(text) {
     return;
   }
   playTextAudio(text);
+  // 默写阶段点发音后，把焦点还给输入框，防止软键盘收起
+  setTimeout(() => {
+    const inp = document.getElementById('reviewSpellInput');
+    if (inp && inp.style.display !== 'none') { inp.focus(); }
+  }, 80);
 }
 
 // 朗读单词（已定义在前面）
@@ -4226,8 +4232,8 @@ function buildListeningQuestions(mode, n) {
     for (let i = 0; i < n; i++) {
       const a = items[i % items.length];
       const dist = pickMeaningDistractors(a.answer, allMeanings, 3);
-      // 选项做成富对象：cn=释义、en=单词、id=词条 id
-      const optionMap = [
+      // 选项做成富对象：cn=释义、en=单词、id=词条 id，打乱后生成 options
+      let optionMap = [
         { cn: a.answer, en: a.ref.word, id: a.ref.id, correct: true },
         ...dist.map(m => {
           // 用 cn 反查单词（一个 cn 可能对应多词，取首个）
@@ -4235,7 +4241,7 @@ function buildListeningQuestions(mode, n) {
           return { cn: m, en: w.word, id: w.id, correct: false };
         })
       ];
-      shuffleArr(optionMap);
+      optionMap = shuffleArr(optionMap);
       qs.push({
         type: 'word', play: a.play, answer: a.answer,
         options: optionMap.map(o => o.cn), // 兼容旧代码（按 cn 字符串比较）
@@ -4250,14 +4256,14 @@ function buildListeningQuestions(mode, n) {
     for (let i = 0; i < n; i++) {
       const a = items[i % items.length];
       const dist = pickMeaningDistractors(a.answer, allSentenceCn, 3);
-      const optionMap = [
+      let optionMap = [
         { cn: a.answer, en: a.ref.word, id: a.ref.id, correct: true },
         ...dist.map(m => {
           const s = SENTENCES.find(x => x.cn === m) || { id: 0, en: '' };
           return { cn: m, en: s.en, id: s.id, correct: false };
         })
       ];
-      shuffleArr(optionMap);
+      optionMap = shuffleArr(optionMap);
       qs.push({
         type: 'sentence', play: a.play, answer: a.answer,
         options: optionMap.map(o => o.cn),
