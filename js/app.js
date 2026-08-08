@@ -1532,9 +1532,9 @@ function renderReviewCard() {
   } else {
     // 第 2 步：看中文写英语（整批统一默写，顺序与认词不同）
     const senses = getWordSenses(word);
-    const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : (word.meaning || '');
-    body = returnTag + weakToggle + '<div style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
-      '<div class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
+    const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
+    body = returnTag + weakToggle + '<div id="reviewStepLabel" style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
+      '<div id="reviewSpellMeaning" class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
       '<div style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">请输入对应的英文单词</div>' +
       '<input id="reviewSpellInput" class="spell-input" style="max-width:360px;" placeholder="输入英文单词..." onkeydown="if(event.key===\'Enter\')submitReviewSpell()" autocomplete="off" />' +
       '<div style="margin-top:12px;"><button class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
@@ -1542,13 +1542,13 @@ function renderReviewCard() {
   }
   const phaseLabel = r.phase === 'recognize' ? ('认单词 ' + (r.segIdx + 1) + '/' + r.recognizeList.length) : ('默写 ' + (r.segIdx + 1) + '/' + r.dictateList.length);
   document.getElementById("page-words").innerHTML = '<div class="toolbar"><div class="toolbar-left"><button class="btn btn-secondary btn-icon" onclick="exitWordSession()">←</button>' +
-    '<span style="font-weight:600;">🔁 复习 · ' + phaseLabel + '</span></div>' +
+    '<span id="reviewPhaseLabel" style="font-weight:600;">🔁 复习 · ' + phaseLabel + '</span></div>' +
     '<div class="toolbar-right" style="font-size:14px;color:var(--text-secondary);">✅' + wordState.reviewCorrect + ' ❌' + wordState.reviewWrong + '</div></div>' +
     '<div class="test-container"><div class="test-progress"><span style="font-size:13px;color:var(--text-secondary);">复习进度</span>' +
     '<div class="test-progress-bar"><div class="test-progress-fill" style="width:' + progress + '%;background:var(--warning);"></div></div></div>' +
     '<div class="test-question" style="text-align:center;">' + body + '</div></div>';
   setTimeout(() => activateWordTap("page-words"), 60);
-  // 默写阶段自动聚焦输入框，避免每次提交后软键盘收起，下一词无需重新点击输入框
+  // 默写阶段首次渲染时聚焦输入框；后续提交通过 advanceReviewSpell 原地更新，输入框一直存活，键盘保持弹起
   if (r.phase === 'dictate') {
     setTimeout(() => { const inp = document.getElementById('reviewSpellInput'); if (inp) inp.focus(); }, 200);
   }
@@ -1575,20 +1575,29 @@ function getWordSenses(input) {
   const word = (input && input.word) ? input.word : (typeof input === 'string' ? input : '');
   if (!word) return [];
   const key = word.toLowerCase();
-  if (typeof WORD_SENSES !== 'undefined' && WORD_SENSES[key]) return WORD_SENSES[key];
+  if (typeof WORD_SENSES !== 'undefined' && WORD_SENSES[key]) {
+    return WORD_SENSES[key].map(s => ({
+      pos: s.pos || '',
+      meaning: cleanSenseText(s.meaning),
+      phrase: cleanSenseText(s.phrase),
+      phraseCn: cleanSenseText(s.phraseCn),
+      example: cleanSenseText(s.example),
+      exampleCn: cleanSenseText(s.exampleCn)
+    }));
+  }
   const w = (input && input.word) ? input : VOCABULARY.find(v => v.word.toLowerCase() === key);
   if (!w) return [];
-  const m = w.meaning || '';
+  const m = cleanSenseText(w.meaning || '');
   if (!m) return [];
   return m.split(/[、,，]/).map(mm => {
-    const meaning = mm.trim();
-    const ex = (w.example && w.exampleCn) ? { en: w.example, cn: w.exampleCn } : getExample(w.word, meaning);
+    const meaning = cleanSenseText(mm);
+    const ex = (w.example && w.exampleCn) ? { en: cleanSenseText(w.example), cn: cleanSenseText(w.exampleCn) } : getExample(w.word, meaning);
     return {
-      pos: w.pos || '',
+      pos: cleanSenseText(w.pos) || '',
       meaning,
       phrase: '',
-      example: ex.en || '',
-      exampleCn: ex.cn || ''
+      example: cleanSenseText(ex.en) || '',
+      exampleCn: cleanSenseText(ex.cn) || ''
     };
   });
 }
@@ -1598,10 +1607,10 @@ function renderSensesHtml(senses) {
   if (!senses || !senses.length) return '';
   return '<div class="senses-list">' + senses.map(s =>
     '<div class="sense-item">' +
-      (s.pos ? '<span class="sense-pos">' + escapeHtml(s.pos) + '</span>' : '') +
-      '<span class="sense-meaning">' + escapeHtml(s.meaning) + '</span>' +
-      (s.phrase ? '<div class="sense-phrase">🔖 ' + escapeHtml(s.phrase) + (s.phraseCn ? ' <span class="sense-phrase-cn">（' + escapeHtml(s.phraseCn) + '）</span>' : '') + '</div>' : '') +
-      (s.example ? '<div class="sense-example"><div class="example-en">' + escapeHtml(s.example) + '</div>' + (s.exampleCn ? '<div class="example-cn">' + escapeHtml(s.exampleCn) + '</div>' : '') + '</div>' : '') +
+      (s.pos ? '<span class="sense-pos">' + escapeHtml(cleanSenseText(s.pos)) + '</span>' : '') +
+      '<span class="sense-meaning">' + escapeHtml(cleanSenseText(s.meaning)) + '</span>' +
+      (s.phrase ? '<div class="sense-phrase">🔖 ' + escapeHtml(cleanSenseText(s.phrase)) + (s.phraseCn ? ' <span class="sense-phrase-cn">（' + escapeHtml(cleanSenseText(s.phraseCn)) + '）</span>' : '') + '</div>' : '') +
+      (s.example ? '<div class="sense-example"><div class="example-en">' + escapeHtml(cleanSenseText(s.example)) + '</div>' + (s.exampleCn ? '<div class="example-cn">' + escapeHtml(cleanSenseText(s.exampleCn)) + '</div>' : '') + '</div>' : '') +
     '</div>'
   ).join('') + '</div>';
 }
@@ -1681,7 +1690,61 @@ function finishReviewSpell(result) {
   r.segIdx++;
   wordState.showAnswer = false;
   saveReviewSession();
-  renderReviewCard();
+  advanceReviewSpell();
+}
+
+// 复习默写阶段：原地推进到下一题，不重建输入框，保持软键盘弹起
+function advanceReviewSpell() {
+  const r = wordState.review;
+  if (!r || r.phase !== 'dictate') { renderReviewCard(); return; }
+  const list = r.dictateList;
+  if (r.segIdx >= (list ? list.length : 0)) {
+    // 本组默写完成，进入下一组或结束，需要完整重绘
+    r.batchIdx++; saveReviewSession(); beginReviewBatch(); return;
+  }
+  wordState.answered = false;
+  const wordId = list[r.segIdx];
+  const word = VOCABULARY.find(w => w.id === wordId);
+  if (!word) { r.segIdx++; advanceReviewSpell(); return; }
+  wordState.currentCard = { wordId: word.id };
+
+  // 更新释义
+  const senses = getWordSenses(word);
+  const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
+  const meaningEl = document.getElementById('reviewSpellMeaning');
+  if (meaningEl) meaningEl.textContent = meaningDisplay;
+
+  // 更新步骤标签
+  const stepEl = document.getElementById('reviewStepLabel');
+  if (stepEl) stepEl.textContent = '第 2 步 · 根据中文写出英文';
+
+  // 更新工具栏阶段标题
+  const phaseLabel = '默写 ' + (r.segIdx + 1) + '/' + r.dictateList.length;
+  const phaseEl = document.getElementById('reviewPhaseLabel');
+  if (phaseEl) phaseEl.textContent = '🔁 复习 · ' + phaseLabel;
+
+  // 更新进度条
+  const total = r.allIds.length;
+  const progress = Math.min(100, Math.round((r.done / total) * 100));
+  const fillEl = document.querySelector('#page-words .test-progress-fill');
+  if (fillEl) fillEl.style.width = progress + '%';
+
+  // 更新生词本按钮
+  const weakBtn = document.getElementById('weakToggleBtn');
+  if (weakBtn) {
+    const weak = isWeakWord(word.id);
+    weakBtn.className = 'btn ' + (weak ? 'btn-light' : 'btn-secondary');
+    weakBtn.textContent = weak ? '📒 已在生词本' : '📒 加入生词本';
+    weakBtn.setAttribute('onclick', 'toggleWeakWord(' + word.id + ')');
+  }
+
+  // 清空反馈与输入框，并保持输入框聚焦
+  const fb = document.getElementById('reviewFeedback');
+  if (fb) fb.innerHTML = '';
+  const inp = document.getElementById('reviewSpellInput');
+  if (inp) { inp.value = ''; inp.focus(); }
+
+  setTimeout(() => activateWordTap("page-words"), 60);
 }
 
 function submitReviewSpell() {
@@ -3133,6 +3196,12 @@ function escapeHtml(s) {
   return String(s)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+// 清洗释义/例句里混入的 SVG/HTML 标签（如 <g id="...">），只保留可见文本
+function cleanSenseText(s) {
+  if (s == null) return '';
+  return String(s).replace(/<\/?[a-zA-Z][^>]*>/g, '').replace(/\s+/g, ' ').trim();
 }
 
 // ===== 工作台内 TXT 电子书阅读器 =====
