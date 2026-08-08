@@ -6,6 +6,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -14,6 +15,14 @@ const root = path.resolve(__dirname, '..');
 const today = new Date();
 const pad = (n) => String(n).padStart(2, '0');
 const dateStr = `${today.getFullYear()}-${pad(today.getMonth() + 1)}-${pad(today.getDate())}`;
+
+// 稳定 id：基于「日期 + 分类 + 标题」生成短哈希，避免每次运行/每天因抓取顺序变化导致 id 错位，从而保证用户已读进度不会归零
+function shortHash(s) {
+  return crypto.createHash('sha256').update(String(s)).digest('hex').slice(0, 8);
+}
+function stableId(cat, title) {
+  return `${cat[0]}${shortHash(`${dateStr}:${cat}:${title}`).slice(0, 6)}`;
+}
 
 const TARGETS = { domestic: 6, international: 4, tech: 4, finance: 3 };
 
@@ -209,7 +218,7 @@ function safeSummary(it) {
     const items = (await collectFor(cat)).slice(0, TARGETS[cat]);
     items.forEach((it, i) => {
       news.push({
-        id: `${cat[0]}${pad(news.length + 1)}`,
+        id: stableId(cat, it.title),
         cat,
         important: (cat === 'domestic' && i < 2) || (cat !== 'domestic' && i === 0),
         title: it.title,
