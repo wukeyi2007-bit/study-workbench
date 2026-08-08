@@ -88,11 +88,11 @@ const Store = {
       },
       lastDailyStudy: null, // 上次闭环学习的日期
       news: {
-        read: [],       // 已读新闻 id 列表
+        readByDate: {},  // 按新闻日期分桶的已读新闻 id 列表：{ '2026-08-08': ['n1','n5',...] }
         bookmarked: [],  // 收藏新闻 id 列表
         important: [],  // 设为「今日重点」的新闻 id 列表
-        lastDate: "",   // 上次新闻内容日期；与 getNews()[0].date 不一致时清空「已读/重点」重置为当天
-        lastVisitDate: "", // 上次打开 App 的日历日期；跨天时也清空「已读/重点」，防止昨天完成今天仍显示 100%
+        lastDate: "",   // 上次新闻内容日期；新的新闻日期只会向前推进，不会因抓到旧缓存而回退
+        lastVisitDate: "", // 上次打开 App 的日历日期
       },
       reading: {
         goalPages: READING_CONFIG.dailyGoalPages, // 每日页数目标
@@ -148,6 +148,15 @@ function getNews() { return NEWS_DATA || HOT_NEWS; }
 // 由 AI 分析预置的「今日重点」提取（数据里 important:true 的项）
 function defaultImportantNews() {
   return getNews().filter(n => n.important).map(n => n.id);
+}
+// 当前线上新闻的日期（用于把「已读」按新闻批次分桶，避免跨天/缓存导致进度丢失）
+function currentNewsDate() {
+  return (NEWS_DATA && NEWS_DATA.length && NEWS_DATA[0] && NEWS_DATA[0].date) ? NEWS_DATA[0].date : Utils.today();
+}
+// 取「当前新闻日期批次」下已读的新闻 id 列表（首页进度/卡片已读判断统一走这里）
+function getNewsReadIds() {
+  const d = currentNewsDate();
+  return (state.news.readByDate && state.news.readByDate[d]) || [];
 }
 function defaultImportantFinance() {
   // 按日期确定性轮换「今日重点」：每天选出 5 条不同的课程，做到"每天自动更新"且无需外部内容
@@ -351,27 +360,33 @@ function renderMoodBanner() {
 // 重置为当天的新内容。这样昨天读过的 n5/n6… 不会误判成今天已读。
 function resetNewsIfDateChanged() {
   const today = Utils.today();
+  // 兼容旧数据：把旧版 state.news.read（数组）迁移到按日期分桶的 readByDate
+  if (Array.isArray(state.news.read)) {
+    const d = state.news.lastDate || today;
+    state.news.readByDate = state.news.readByDate || {};
+    if (!state.news.readByDate[d]) state.news.readByDate[d] = state.news.read;
+    delete state.news.read;
+  }
+  if (!state.news.readByDate) state.news.readByDate = {};
   // 只有运行时已经拉取到线上 news.json 后，才用内容日期做判断；
   // 否则兜底 HOT_NEWS 的日期会和真实日期对不上，导致每天误清空已读。
   const hasRuntimeNews = !!NEWS_DATA && Array.isArray(NEWS_DATA) && NEWS_DATA.length;
   const todayNewsDate = hasRuntimeNews ? NEWS_DATA[0].date : "";
   let changed = false;
 
-  // 情况 1：新闻内容日期变了（自动化已更新到当天新闻）。
-  // 只更新 lastDate 和「今日重点」，不清空已读：旧新闻 ID 在新列表里自然不匹配，
-  // 不会污染进度；避免在 init 到 loadNewsFromServer 之间误清用户刚点的已读。
-  if (hasRuntimeNews && state.news.lastDate !== todayNewsDate) {
+  // 情况 1：新闻内容日期「向前推进」了（自动化更新到更新的新闻）。
+  // 注意：只在变新时更新，绝不在抓到旧缓存数据时回退——
+  // 否则会把「今天的已读」对齐到旧新闻集合，导致首页进度误算成 0%、刷新时好时坏。
+  if (hasRuntimeNews && todayNewsDate > state.news.lastDate) {
     state.news.lastDate = todayNewsDate;
     state.news.important = defaultImportantNews();
     changed = true;
   }
 
-  // 情况 2：即使新闻内容没变（自动化偶尔失败），跨自然日也要清零，
-  // 否则首页「今日概览」会永远显示昨天已读为 100%。
+  // 情况 2：跨自然日仅更新访问日期；已读进度已按新闻日期分桶，
+  // 新的一天自然使用空桶，无需手动清零（也不会让昨天 100% 污染今天）。
   if (state.news.lastVisitDate !== today) {
     state.news.lastVisitDate = today;
-    state.news.read = [];
-    state.news.important = defaultImportantNews();
     changed = true;
   }
 
@@ -981,9 +996,10 @@ function renderTodayOverview() {
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
   // 热点新闻：直接从当天新闻数据里取「important:true」的今日重点计算进度，
-  // 避免本地 state.news.important 残留旧 ID 导致首页显示 0/0。
+  // 已读按当前新闻日期分桶统计，刷新不会丢失、也不跨天污染。
   const newsBase = getNews().filter(n => n.important);
-  const newsRead = newsBase.filter(n => state.news.read.includes(n.id)).length;
+  const newsReadIds = getNewsReadIds();
+  const newsRead = newsBase.filter(n => newsReadIds.includes(n.id)).length;
   const newsTotal = newsBase.length;
   const newsPct = newsTotal ? Math.min(100, Math.round((newsRead / newsTotal) * 100)) : 0;
 
@@ -2657,18 +2673,19 @@ let newsView = "all"; // all | bookmarked
 
 function renderNews() {
   const allNews = getNews();
-  const readCount = state.news.read.length;
+  const newsReadIds = getNewsReadIds();
+  const readCount = newsReadIds.length;
   const bmIds = state.news.bookmarked;
   const bmCount = bmIds.length;
 
   // 直接从新闻数据里取「今日重点」(important:true)，不依赖可能过期的本地标记
   const importantNews = allNews.filter(n => n.important);
   const importantIds = new Set(importantNews.map(n => n.id));
-  const importantDone = importantNews.filter(n => state.news.read.includes(n.id)).length;
+  const importantDone = importantNews.filter(n => newsReadIds.includes(n.id)).length;
 
   // 渲染单条新闻卡片（右上角不显示星标，避免与下方「收藏」按钮重复）
   const renderCard = (n) => {
-    const isRead = state.news.read.includes(n.id);
+    const isRead = newsReadIds.includes(n.id);
     const isBm = bmIds.includes(n.id);
     const isImportant = importantIds.has(n.id);
     return `
@@ -2751,8 +2768,10 @@ function filterNews(cat) {
 }
 
 function markNewsRead(id) {
-  if (!state.news.read.includes(id)) {
-    state.news.read.push(id);
+  const d = currentNewsDate();
+  if (!state.news.readByDate[d]) state.news.readByDate[d] = [];
+  if (!state.news.readByDate[d].includes(id)) {
+    state.news.readByDate[d].push(id);
     Store.save();
   }
   renderNews();
@@ -6039,7 +6058,12 @@ function cloudMerge(local, remote) {
   base.weakWords = _unionArr(base.weakWords, inc.weakWords);
   base.errorBook = _unionArr(base.errorBook, inc.errorBook);
   base.newWordSeen = _unionArr(base.newWordSeen, inc.newWordSeen);
-  base.news.read = _unionArr(base.news.read, inc.news.read);
+  // 已读按新闻日期分桶合并（导入备份时，各日期的已读 id 分别取并集）
+  base.news.readByDate = base.news.readByDate || {};
+  const incRead = (inc.news && inc.news.readByDate) || {};
+  Object.keys(incRead).forEach(d => {
+    base.news.readByDate[d] = _unionArr(base.news.readByDate[d] || [], incRead[d]);
+  });
   base.news.bookmarked = _unionArr(base.news.bookmarked, inc.news.bookmarked);
   base.news.important = _unionArr(base.news.important, inc.news.important);
   base.exercise.log = _unionArr(base.exercise.log, inc.exercise.log);
