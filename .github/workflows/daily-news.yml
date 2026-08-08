@@ -2,8 +2,16 @@ name: 每日新闻更新
 
 on:
   schedule:
-    - cron: '0 0 * * *'        # UTC 0:00 = 北京时间 8:00（GitHub Actions 可能延后几分钟）
-  workflow_dispatch:          # 允许在 Actions 页面手动点一下测试
+    # UTC 0:00 = 北京时间 8:00（GitHub Actions 可能延后几分钟）
+    - cron: '0 0 * * *'
+    # 冗余第二枪：北京时间 14:30 再跑一次，覆盖单次定时漏跑
+    - cron: '30 6 * * *'
+  workflow_dispatch:          # 允许在 Actions 页面手动点一下补跑
+
+# 防止两枪重叠
+concurrency:
+  group: daily-news
+  cancel-in-progress: false
 
 permissions:
   contents: write
