@@ -727,6 +727,27 @@ function playCorrectSound() {
   } catch (e) {}
 }
 
+// 答错时的低沉提示音
+function playWrongSound() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(180, t0);
+    osc.frequency.exponentialRampToValueAtTime(90, t0 + 0.25);
+    gain.gain.setValueAtTime(0.12, t0);
+    gain.gain.exponentialRampToValueAtTime(0.001, t0 + 0.35);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + 0.38);
+  } catch (e) {}
+}
+
 // 语音识别环境诊断：浏览器支持性 + 是否在禁麦的预览面板中
 function speechEnvCheck() {
   const inIframe = window.self !== window.top;
@@ -1551,9 +1572,10 @@ function renderReviewCard() {
     const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
     body = returnTag + weakToggle + '<div id="reviewStepLabel" style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
       '<div id="reviewSpellMeaning" class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
+      '<div class="speech-controls" style="justify-content:center;margin:8px 0 12px;"><button class="btn btn-speech" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
       '<div style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">请输入对应的英文单词</div>' +
       '<input id="reviewSpellInput" class="spell-input" style="max-width:360px;" placeholder="输入英文单词..." onkeydown="if(event.key===\'Enter\')submitReviewSpell()" autocomplete="off" />' +
-      '<div style="margin-top:12px;"><button class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
+      '<div style="margin-top:12px;"><button id="reviewSpellSubmitBtn" class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
       '<div id="reviewFeedback" style="margin-top:12px;"></div>';
   }
   const phaseLabel = r.phase === 'recognize' ? ('认单词 ' + (r.segIdx + 1) + '/' + r.recognizeList.length) : ('默写 ' + (r.segIdx + 1) + '/' + r.dictateList.length);
@@ -1758,9 +1780,33 @@ function advanceReviewSpell() {
   const fb = document.getElementById('reviewFeedback');
   if (fb) fb.innerHTML = '';
   const inp = document.getElementById('reviewSpellInput');
-  if (inp) { inp.value = ''; inp.focus(); }
+  if (inp) { inp.value = ''; inp.style.display = ''; inp.focus(); }
+  const submitBtn = document.getElementById('reviewSpellSubmitBtn');
+  if (submitBtn) { submitBtn.style.display = ''; submitBtn.textContent = '提交拼写'; }
 
   setTimeout(() => activateWordTap("page-words"), 60);
+}
+
+// 刷新复习工具栏计数与进度条（原地更新，不重绘整张卡片）
+function updateReviewProgressUI() {
+  const r = wordState.review;
+  if (!r) return;
+  const total = r.allIds.length;
+  const progress = Math.min(100, Math.round((r.done / total) * 100));
+  const fillEl = document.querySelector('#page-words .test-progress-fill');
+  if (fillEl) fillEl.style.width = progress + '%';
+  const toolbarRight = document.querySelector('#page-words .toolbar-right');
+  if (toolbarRight) toolbarRight.textContent = '✅' + wordState.reviewCorrect + ' ❌' + wordState.reviewWrong;
+}
+
+// 拼写错误后，用户点击“下一题”再推进
+function nextReviewSpell() {
+  const r = wordState.review;
+  if (!r || r.phase !== 'dictate') { renderReviewCard(); return; }
+  r.segIdx++;
+  wordState.showAnswer = false;
+  saveReviewSession();
+  advanceReviewSpell();
 }
 
 function submitReviewSpell() {
@@ -1779,13 +1825,30 @@ function submitReviewSpell() {
     fb.innerHTML = '<div class="card" style="text-align:center;border:2px solid var(--success);">' +
       '<div style="font-size:18px;font-weight:600;color:var(--success);">✅ 拼写正确</div>' +
       '<div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">两步都完成，该词升级</div></div>';
-    setTimeout(() => finishReviewSpell('correct'), 700);
+    setTimeout(() => finishReviewSpell('correct'), 400);
   } else {
+    playWrongSound();
+    const s = Utils.getWordStatus(word.id);
+    r.wrong++; wordState.reviewWrong++;
+    applyReviewResult(s, 'wrong');
+    s.lastReview = Utils.today();
+    r.done++;
+    saveReviewSession();
+    updateReviewProgressUI();
+    const senses = getWordSenses(word);
+    const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
     fb.innerHTML = '<div class="card" style="text-align:center;border:2px solid var(--danger);">' +
       '<div style="font-size:18px;font-weight:600;color:var(--danger);">❌ 拼写错误</div>' +
-      '<div style="font-size:18px;font-weight:600;margin-top:6px;">' + word.word + '</div>' +
-      '<div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">正确答案是 <b>' + word.word + '</b>，已降级处理</div></div>';
-    setTimeout(() => finishReviewSpell('wrong'), 1200);
+      '<div style="font-size:18px;font-weight:600;margin-top:6px;">' + escapeHtml(word.word) + '</div>' +
+      (word.phonetic ? '<div class="phonetic-display" style="margin-top:2px;">' + escapeHtml(word.phonetic) + '</div>' : '') +
+      '<div style="font-size:14px;color:var(--text-secondary);margin-top:6px;">' + escapeHtml(meaningDisplay) + '</div>' +
+      '<div style="font-size:13px;color:var(--text-secondary);margin-top:8px;">已加入本轮复习，点下方按钮继续</div></div>' +
+      '<div style="margin-top:12px;"><button id="reviewSpellNextBtn" class="btn btn-primary" onclick="nextReviewSpell()">下一题 →</button></div>';
+    // 隐藏输入框与提交按钮，避免继续编辑
+    const inp = document.getElementById('reviewSpellInput');
+    if (inp) inp.style.display = 'none';
+    const submitBtn = document.getElementById('reviewSpellSubmitBtn');
+    if (submitBtn) submitBtn.style.display = 'none';
   }
 }
 
