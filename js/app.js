@@ -2856,7 +2856,7 @@ function renderNews() {
           <span class="news-date">${n.date}</span>
         </div>
         <div class="news-title">${n.title}</div>
-        ${n.summary ? `<div class="news-summary">${n.summary}</div>` : ''}
+        ${(n.summary && n.summary.trim() && n.summary.trim() !== n.title.trim()) ? `<div class="news-summary">${n.summary}</div>` : ''}
         <div class="news-bottom">
           <span class="news-source">📰 ${n.source}</span>
           <div style="display:flex;align-items:center;gap:8px;margin-left:auto;">
