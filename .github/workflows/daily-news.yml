@@ -2,19 +2,24 @@ name: 每日新闻更新
 
 on:
   schedule:
-    # UTC 0:00 = 北京时间 8:00（GitHub Actions 可能延后几分钟）
-    - cron: '0 0 * * *'
-    # 冗余第二枪：北京时间 14:30 再跑一次，覆盖单次定时漏跑
-    - cron: '30 6 * * *'
-  workflow_dispatch:          # 允许在 Actions 页面手动点一下补跑
+    # 全部错开整点，避开 GitHub 排队高峰；5 枪任意一枪跑成即更新
+    # 北京时间 = UTC + 8
+    - cron: '17 23 * * *'   # 北京 07:17
+    - cron: '43 0 * * *'    # 北京 08:43
+    - cron: '21 2 * * *'    # 北京 10:21
+    - cron: '37 4 * * *'    # 北京 12:37
+    - cron: '11 7 * * *'    # 北京 15:11
+  workflow_dispatch:
 
-# 防止两枪重叠
 concurrency:
   group: daily-news
   cancel-in-progress: false
 
 permissions:
   contents: write
+
+env:
+  TZ: Asia/Shanghai
 
 jobs:
   generate-news:
@@ -37,5 +42,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add news.json version.json
-          git diff --cached --quiet || git commit -m "每日新闻自动更新 $(date +'%Y-%m-%d')"
-          git push
+          git diff --cached --quiet && echo "内容无变化，跳过提交" && exit 0
+          git commit -m "每日新闻自动更新 $(date +'%Y-%m-%d')"
+          git pull --rebase origin main || true
+          git push origin main
+
