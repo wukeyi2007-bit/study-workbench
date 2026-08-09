@@ -107,7 +107,11 @@ function parseRss(xml, sourceName) {
       }
     }
 
-    const desc = clean(getTag(b, 'description') || getTag(b, 'summary') || getTag(b, 'content:encoded') || '');
+    // Google News / 部分聚合源的 description 会把多条相关报道标题用 &nbsp;&nbsp; 串起来，
+    // 必须截到第一条 &nbsp; 之前，否则会变成「多标题拼接」假摘要。
+    const rawDesc = clean(getTag(b, 'description') || getTag(b, 'summary') || getTag(b, 'content:encoded') || '');
+    const firstPart = rawDesc.split(/&nbsp;/i)[0].trim();
+    const desc = firstPart;
     const src = clean(getTag(b, 'source')) || sourceName;
     items.push({ title: title.slice(0, 50), desc: desc.slice(0, 140), source: src });
   }

@@ -156,9 +156,13 @@ function currentNewsDate() {
   return (NEWS_DATA && NEWS_DATA.length && NEWS_DATA[0] && NEWS_DATA[0].date) ? NEWS_DATA[0].date : Utils.today();
 }
 // 取「当前新闻日期批次」下已读的新闻 id 列表（首页进度/卡片已读判断统一走这里）
+// 自愈：news.json 被替换后，自动剔除已失效的旧 id（含占位卡 id），避免「0 条已读却显示 1/17」。
 function getNewsReadIds() {
   const d = currentNewsDate();
-  return (state.news.readByDate && state.news.readByDate[d]) || [];
+  const rawIds = (state.news.readByDate && state.news.readByDate[d]) || [];
+  if (!rawIds.length) return rawIds;
+  const liveIdSet = new Set(getNews().map(n => n.id));
+  return rawIds.filter(id => liveIdSet.has(id));
 }
 // 锁定并取「今日重点」id 列表：首次看到当天新闻时把重点 id 固化进 state，
 // 之后即使 news.json 被定时任务重跑、重要集合变化，进度也始终锚定这 5 条，绝不归零。
