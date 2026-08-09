@@ -20,6 +20,10 @@ permissions:
 
 env:
   TZ: Asia/Shanghai
+  # 摘要 AI 兜底：可选，没配则跳过 AI 步骤，summary 为空的条目前端不显示
+  # 配置：在 GitHub 仓库 Settings → Secrets and variables → Actions → New repository secret
+  #       名称 DEEPSEEK_API_KEY，值填你的 DeepSeek API key
+  DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
 jobs:
   generate-news:
