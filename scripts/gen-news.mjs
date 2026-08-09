@@ -113,7 +113,7 @@ function parseRss(xml, sourceName) {
     const firstPart = rawDesc.split(/&nbsp;/i)[0].trim();
     const desc = firstPart;
     const src = clean(getTag(b, 'source')) || sourceName;
-    items.push({ title: title.slice(0, 50), desc: desc.slice(0, 140), source: src });
+    items.push({ title: title.slice(0, 80), desc: desc.slice(0, 140), source: src });
   }
   return items;
 }
@@ -155,7 +155,7 @@ async function fetchBaiduHot() {
     .map((x) => {
       const raw = (x.desc || '').trim();
       const summary = raw || `百度实时热搜话题「${x.word}」`;
-      return { title: x.word.slice(0, 50), desc: summary.slice(0, 140), source: '百度热搜' };
+      return { title: x.word.slice(0, 80), desc: summary.slice(0, 140), source: '百度热搜' };
     });
 }
 
