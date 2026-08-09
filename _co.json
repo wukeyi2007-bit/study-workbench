@@ -1,0 +1,248 @@
+[
+  {
+    "sha": "e11e25e3bebf6d5cd065ce3f59f0a5d44ce92b3d",
+    "node_id": "C_kwDOTwxi5toAKGUxMWUyNWUzYmViZjZkNWNkMDY1Y2UzZjU5ZjBhNWQ0NGNlOTJiM2Q",
+    "commit": {
+      "author": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:43Z"
+      },
+      "committer": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:43Z"
+      },
+      "message": "fix(listening): 对话理解选项同步打乱；版本升 20260808-234510（强制刷新缓存）",
+      "tree": {
+        "sha": "472718ae5d640183cdf419467dd22a3a8090054f",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/trees/472718ae5d640183cdf419467dd22a3a8090054f"
+      },
+      "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/commits/e11e25e3bebf6d5cd065ce3f59f0a5d44ce92b3d",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/e11e25e3bebf6d5cd065ce3f59f0a5d44ce92b3d",
+    "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/e11e25e3bebf6d5cd065ce3f59f0a5d44ce92b3d",
+    "comments_url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/e11e25e3bebf6d5cd065ce3f59f0a5d44ce92b3d/comments",
+    "author": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "b598540120266516911aae64a42e07c754651e03",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/b598540120266516911aae64a42e07c754651e03",
+        "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/b598540120266516911aae64a42e07c754651e03"
+      }
+    ]
+  },
+  {
+    "sha": "b598540120266516911aae64a42e07c754651e03",
+    "node_id": "C_kwDOTwxi5toAKGI1OTg1NDAxMjAyNjY1MTY5MTFhYWU2NGE0MmUwN2M3NTQ2NTFlMDM",
+    "commit": {
+      "author": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:41Z"
+      },
+      "committer": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:41Z"
+      },
+      "message": "fix(listening): 对话理解选项同步打乱；版本升 20260808-234510（强制刷新缓存）",
+      "tree": {
+        "sha": "338df8a1c1d3558fa64891527edd3b5c7ee50c68",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/trees/338df8a1c1d3558fa64891527edd3b5c7ee50c68"
+      },
+      "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/commits/b598540120266516911aae64a42e07c754651e03",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/b598540120266516911aae64a42e07c754651e03",
+    "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/b598540120266516911aae64a42e07c754651e03",
+    "comments_url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/b598540120266516911aae64a42e07c754651e03/comments",
+    "author": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "2298b5827f55344dfc4ec3494cdad25a7fb74add",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/2298b5827f55344dfc4ec3494cdad25a7fb74add",
+        "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/2298b5827f55344dfc4ec3494cdad25a7fb74add"
+      }
+    ]
+  },
+  {
+    "sha": "2298b5827f55344dfc4ec3494cdad25a7fb74add",
+    "node_id": "C_kwDOTwxi5toAKDIyOThiNTgyN2Y1NTM0NGRmYzRlYzM0OTRjZGFkMjVhN2ZiNzRhZGQ",
+    "commit": {
+      "author": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:40Z"
+      },
+      "committer": {
+        "name": "wukeyi2007-bit",
+        "email": "wukeyi2007@gmail.com",
+        "date": "2026-08-08T15:52:40Z"
+      },
+      "message": "fix(listening): 对话理解选项同步打乱；版本升 20260808-234510（强制刷新缓存）",
+      "tree": {
+        "sha": "dbe75fb95c8d4be6b6bab815c7c68539536d5eac",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/trees/dbe75fb95c8d4be6b6bab815c7c68539536d5eac"
+      },
+      "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/git/commits/2298b5827f55344dfc4ec3494cdad25a7fb74add",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/2298b5827f55344dfc4ec3494cdad25a7fb74add",
+    "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/2298b5827f55344dfc4ec3494cdad25a7fb74add",
+    "comments_url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/2298b5827f55344dfc4ec3494cdad25a7fb74add/comments",
+    "author": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "wukeyi2007-bit",
+      "id": 313280472,
+      "node_id": "U_kgDOEqxH2A",
+      "avatar_url": "https://avatars.githubusercontent.com/u/313280472?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/wukeyi2007-bit",
+      "html_url": "https://github.com/wukeyi2007-bit",
+      "followers_url": "https://api.github.com/users/wukeyi2007-bit/followers",
+      "following_url": "https://api.github.com/users/wukeyi2007-bit/following{/other_user}",
+      "gists_url": "https://api.github.com/users/wukeyi2007-bit/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/wukeyi2007-bit/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/wukeyi2007-bit/subscriptions",
+      "organizations_url": "https://api.github.com/users/wukeyi2007-bit/orgs",
+      "repos_url": "https://api.github.com/users/wukeyi2007-bit/repos",
+      "events_url": "https://api.github.com/users/wukeyi2007-bit/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/wukeyi2007-bit/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "a9ab1f2da31142c6e89e9078dc67bd11155be96e",
+        "url": "https://api.github.com/repos/wukeyi2007-bit/study-workbench/commits/a9ab1f2da31142c6e89e9078dc67bd11155be96e",
+        "html_url": "https://github.com/wukeyi2007-bit/study-workbench/commit/a9ab1f2da31142c6e89e9078dc67bd11155be96e"
+      }
+    ]
+  }
+]

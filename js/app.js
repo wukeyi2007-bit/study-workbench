@@ -162,11 +162,41 @@ function getNewsReadIds() {
 }
 // 锁定并取「今日重点」id 列表：首次看到当天新闻时把重点 id 固化进 state，
 // 之后即使 news.json 被定时任务重跑、重要集合变化，进度也始终锚定这 5 条，绝不归零。
+// 永久自愈：若 locked 列表里所有 id 都已在 news.json 中失效（被替换/漂移），自动重选；
+// 避免出现「5 张全占位卡」的死锁状态，保证用户永远能看到真实的 5 条重点新闻。
 function getTodayImportantIds() {
   const d = currentNewsDate();
-  const liveImportant = getNews().filter(n => n.important).map(n => n.id);
+  const liveAll = getNews();
+  const liveIdSet = new Set(liveAll.map(n => n.id));
+  const liveImportant = liveAll.filter(n => n.important).map(n => n.id);
+
+  // 已被用户主动重置（?reset=1 或控制台 forceResetImportantNews()）→ 直接重新选
+  if (state.news.importantLockDate === '__RESET__') {
+    state.news.importantLockDate = '';
+    state.news.importantIds = [];
+  }
+
   if (state.news.importantLockDate === d && Array.isArray(state.news.importantIds) && state.news.importantIds.length) {
-    return state.news.importantIds;
+    const locked = state.news.importantIds;
+    const validLocked = locked.filter(id => liveIdSet.has(id));
+    if (validLocked.length === 0) {
+      // 全失效（典型场景：跨大版本升级、news.json 整体替换）→ 清掉旧锁，从 live 重选
+      state.news.importantIds = [];
+      state.news.importantLockDate = '';
+    } else if (validLocked.length < locked.length) {
+      // 部分失效：保留仍有效的，从 live 的 important 集合里补齐到 5 条
+      const need = Math.max(5, locked.length) - validLocked.length;
+      const filler = liveImportant.filter(id => !validLocked.includes(id));
+      // 不够再从任意 live 未读新闻补（保证不出现空白卡）
+      const anyFiller = filler.length >= need ? filler.slice(0, need) : filler.concat(
+        liveAll.filter(n => !liveIdSet.has(n.id) ? false : !validLocked.includes(n.id)).slice(0, need - filler.length).map(n => n.id)
+      );
+      state.news.importantIds = validLocked.concat(anyFiller).slice(0, Math.max(5, locked.length));
+      try { Store.save(); } catch (e) { /* 忽略 */ }
+      return state.news.importantIds;
+    } else {
+      return locked;
+    }
   }
   // 未锁定或日期变了：用当前新闻的重点集合锁定（日期向前推进时自然换一批新的重点）
   if (liveImportant.length) {
@@ -176,6 +206,24 @@ function getTodayImportantIds() {
   }
   return state.news.importantIds || [];
 }
+// 紧急逃生口：用户遇到"5 张全占位卡"等死锁时可在控制台调用：
+//   forceResetImportantNews()
+// 或在 URL 加 ?reset=1 让 app 启动时自动重置。
+window.forceResetImportantNews = function() {
+  try {
+    state.news.importantIds = [];
+    state.news.importantLockDate = '__RESET__';
+    Store.save();
+    if (typeof renderDashboard === 'function') renderDashboard();
+    console.log('[重要新闻] 已重置，刷新页面即可看到新的 5 条。');
+  } catch (e) { console.error(e); }
+};
+// URL 带 ?reset=1 时启动时强制重置（适用于刚推送完代码、用户第一次刷新）
+try {
+  if (typeof location !== 'undefined' && /[?&]reset=1\b/.test(location.search)) {
+    setTimeout(() => { try { window.forceResetImportantNews(); } catch (e) {} }, 300);
+  }
+} catch (e) { /* 忽略 */ }
 // 主动锁定（新闻加载完成后调用，确保尽早固化当天重点）
 function lockTodayImportant() { getTodayImportantIds(); }
 function defaultImportantFinance() {
