@@ -232,13 +232,15 @@ async function collectFor(cat) {
 }
 
 // 保证摘要非空：缺失时合成诚实占位，绝不写出空 summary
-// 注意：当 desc 与 title 完全相同（Google News RSS 没有真正摘要的情况），
-// 直接返回空字符串，让前端隐藏摘要区，**绝不**把标题当作摘要复读。
+// 三层防复读：
+//  1) desc 与 title 相同（Google News RSS 没真摘要）→ 留空
+//  2) desc 为空（百度热搜 desc 字段本身是空的）→ 留空（绝不复读标题）
+//  3) 有真 desc → 截到 140 字
+// 前端见空 summary 直接不显示摘要区，避免「复读标题」尴尬。
 function safeSummary(it) {
   const s = (it.desc || '').trim();
   if (s && s !== (it.title || '').trim()) return s.slice(0, 140);
-  if (!s) return `【${it.source}】${it.title}`;
-  return ''; // desc 与 title 相同 → 不写摘要
+  return ''; // 没真摘要 → 不写
 }
 
 (async () => {
