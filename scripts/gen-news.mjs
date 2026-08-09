@@ -246,15 +246,20 @@ function safeSummary(it) {
 // AI 摘要兜底（DeepSeek）：调用便宜的中文 LLM 给没摘要的新闻生成 30~50 字陈述句
 // 不传 key 就直接跳过，保留空 summary 让前端隐藏摘要区。
 async function aiSummarize(title, source) {
-  const key = process.env.DEEPSEEK_API_KEY;
-  if (!key) return ''; // 没配 key，不做 AI
-  const prompt = `你是新闻摘要助手。请用 30~50 个中文字客观概括下面这条新闻的核心事实，**不要重复标题**，不要主观评价。\n\n标题：${title}\n来源：${source || ''}\n\n摘要：`;
+  const key = process.env.SILICONFLOW_API_KEY;
+  if (!key) return '';
+  const prompt = `你是新闻摘要助手。请用 30~50 个中文字客观概括下面这条新闻的核心事实，**不要重复标题**，不要主观评价。
+
+标题：${title}
+来源：${source || ''}
+
+摘要：`;
   try {
-    const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+    const r = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: 'Qwen/Qwen2.5-7B-Instruct',
         messages: [{ role: 'user', content: prompt }],
         max_tokens: 120,
         temperature: 0.3,
@@ -263,7 +268,6 @@ async function aiSummarize(title, source) {
     if (!r.ok) return '';
     const j = await r.json();
     const out = (j.choices?.[0]?.message?.content || '').trim();
-    // 去掉可能的引号、书名号、Markdown 强调
     return out.replace(/^["「《"'`]+|["」》"'`。]+$/g, '').slice(0, 140);
   } catch (e) {
     console.warn(`    ✗ AI 摘要失败: ${e.message}`);
