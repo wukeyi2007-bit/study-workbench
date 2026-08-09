@@ -240,7 +240,35 @@ async function collectFor(cat) {
 function safeSummary(it) {
   const s = (it.desc || '').trim();
   if (s && s !== (it.title || '').trim()) return s.slice(0, 140);
-  return ''; // 没真摘要 → 不写
+  return ''; // 没真摘要 → 不写（AI 兜底在 collectFor 末尾统一处理）
+}
+
+// AI 摘要兜底（DeepSeek）：调用便宜的中文 LLM 给没摘要的新闻生成 30~50 字陈述句
+// 不传 key 就直接跳过，保留空 summary 让前端隐藏摘要区。
+async function aiSummarize(title, source) {
+  const key = process.env.DEEPSEEK_API_KEY;
+  if (!key) return ''; // 没配 key，不做 AI
+  const prompt = `你是新闻摘要助手。请用 30~50 个中文字客观概括下面这条新闻的核心事实，**不要重复标题**，不要主观评价。\n\n标题：${title}\n来源：${source || ''}\n\n摘要：`;
+  try {
+    const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 120,
+        temperature: 0.3,
+      }),
+    });
+    if (!r.ok) return '';
+    const j = await r.json();
+    const out = (j.choices?.[0]?.message?.content || '').trim();
+    // 去掉可能的引号、书名号、Markdown 强调
+    return out.replace(/^["「《"'`]+|["」》"'`。]+$/g, '').slice(0, 140);
+  } catch (e) {
+    console.warn(`    ✗ AI 摘要失败: ${e.message}`);
+    return '';
+  }
 }
 
 (async () => {
@@ -266,12 +294,33 @@ function safeSummary(it) {
         cat,
         important: (cat === 'domestic' && i < 2) || (cat !== 'domestic' && i === 0),
         title: it.title,
-        summary: safeSummary(it),
+        summary: '', // 先占位，下面统一填充
         source: it.source,
         date: dateStr,
+        _rawTitle: it.title,
+        _rawDesc: it.desc || '',
+        _rawSource: it.source,
       });
     });
   }
+
+  // AI 摘要兜底：safeSummary 已尽力，没摘要的统一调 DeepSeek 生成（环境变量 DEEPSEEK_API_KEY 存在时才启用）
+  if (process.env.DEEPSEEK_API_KEY) {
+    let aiCount = 0;
+    for (const n of news) {
+      if (!n.summary) {
+        const out = await aiSummarize(n._rawTitle, n._rawSource);
+        if (out && out !== n._rawTitle.trim()) {
+          n.summary = out;
+          aiCount++;
+        }
+      }
+    }
+    console.log(`AI 摘要生成 ${aiCount} 条`);
+  }
+
+  // 清理临时字段
+  news.forEach((n) => { delete n._rawTitle; delete n._rawDesc; delete n._rawSource; });
 
   if (news.length < 10) throw new Error(`生成新闻过少 (${news.length} 条)，保留旧文件不覆盖`);
 
