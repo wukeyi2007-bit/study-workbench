@@ -24,12 +24,12 @@ function stableId(cat, title) {
   return `${cat[0]}${shortHash(`${dateStr}:${cat}:${title}`).slice(0, 6)}`;
 }
 
-// 来源质量分：重点选取时优先高质量来源。百度热搜为低质实时榜（摘要短、无权威出处），
-// 只在 Google News / RSS 兜底都抓不到时才垫底，绝不作为「今日重点」。
+// 来源质量分：重点选取时优先高质量来源。
+// 百度热搜有真 desc（来自 x.desc 字段），摘要有实质内容可读，不是 RSS 里的空标题。
 const SOURCE_QUALITY = {
   '央视': 6, '新华社': 6, '人民网': 5, 'Google新闻': 5,
   '新浪新闻': 4, '新浪财经': 4, 'IT之家': 5, '36氪': 5, '虎嗅': 5,
-  '百度热搜': 0, '百度': 0,
+  '百度热搜': 3, '百度': 0,
 };
 function sourceQuality(src) {
   return SOURCE_QUALITY[src] ?? 3;
@@ -180,43 +180,55 @@ async function collectFallback(cat) {
 }
 
 async function collectFor(cat) {
-  // 1) 主源 Google News 中文（带一次重试）
-  const topic = GOOGLE[cat];
-  const gurl = `https://news.google.com/rss/headlines/section/topic/${topic}?hl=zh-CN&gl=CN&ceid=CN:zh-Hans`;
-  try {
-    const xml = await fetchTextRetry(gurl, 12000, 1);
-    const items = parseRss(xml, 'Google新闻');
-    if (items.length >= 3) {
-      console.log(`  ✓ Google News ${cat} 抓到 ${items.length} 条`);
-      const seen = new Set();
-      return items.filter((it) => {
-        if (seen.has(it.title)) return false;
-        seen.add(it.title);
-        return true;
-      });
-    }
-    console.warn(`  ⚠ Google News ${cat} 条数过少，转兜底`);
-  } catch (e) {
-    console.warn(`  ⚠ Google News ${cat} 失败: ${e.message}，转兜底`);
-  }
-  // 2) RSS 兜底（有摘要、有过滤）
-  const rssItems = await collectFallback(cat);
-  if (rssItems.length >= TARGETS[cat]) {
-    return rssItems.slice(0, TARGETS[cat]);
-  }
-  // 3) 国内/国际最后兜底百度热搜（实时，且已保证非空摘要）
+  const items = [];
+  const seen = new Set();
+
+  // 1) 百度热搜优先（有真摘要 x.desc）：国内 0~6，国际 7~13
   if (cat === 'domestic' || cat === 'international') {
     try {
       const all = await fetchBaiduHot();
-      const start = cat === 'domestic' ? 0 : 6;
+      const start = cat === 'domestic' ? 0 : 7;
       const picked = all.slice(start, start + TARGETS[cat]);
-      console.log(`    ✓ 百度热搜 ${cat} 取 ${picked.length} 条`);
-      return picked;
+      for (const it of picked) {
+        if (!seen.has(it.title)) { seen.add(it.title); items.push(it); }
+      }
+      console.log(`  ✓ 百度热搜 ${cat} 取 ${picked.length} 条（有真摘要）`);
     } catch (e) {
-      console.warn(`    ✗ 百度热搜 ${cat} 失败: ${e.message}`);
+      console.warn(`  ⚠ 百度热搜 ${cat} 失败: ${e.message}`);
     }
   }
-  return rssItems;
+
+  // 2) Google News RSS（补充深度报道、科技财经等无百度热点的类目）
+  try {
+    const topic = GOOGLE[cat];
+    const gurl = `https://news.google.com/rss/headlines/section/topic/${topic}?hl=zh-CN&gl=CN&ceid=CN:zh-Hans`;
+    const xml = await fetchTextRetry(gurl, 12000, 1);
+    const gItems = parseRss(xml, 'Google新闻');
+    for (const it of gItems) {
+      if (!seen.has(it.title)) { seen.add(it.title); items.push(it); }
+    }
+    console.log(`  ✓ Google News ${cat} 补充 ${Math.min(gItems.length, TARGETS[cat])} 条`);
+  } catch (e) {
+    console.warn(`  ⚠ Google News ${cat} 失败: ${e.message}`);
+  }
+
+  // 3) RSS 兜底：还不够就再补
+  if (items.length < TARGETS[cat]) {
+    const rssItems = await collectFallback(cat);
+    for (const it of rssItems) {
+      if (!seen.has(it.title)) { seen.add(it.title); items.push(it); }
+    }
+  }
+
+  // 去重后截取目标数
+  const out = [];
+  const outSeen = new Set();
+  for (const it of items) {
+    if (outSeen.has(it.title)) continue;
+    outSeen.add(it.title);
+    out.push(it);
+  }
+  return out.slice(0, TARGETS[cat]);
 }
 
 // 保证摘要非空：缺失时合成诚实占位，绝不写出空 summary
