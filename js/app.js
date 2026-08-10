@@ -5322,27 +5322,33 @@ function previewLifePhoto() {
 
 var _stickerDragging = null;
 var _stickerDragStart = null;
-var _stickerCanvasReady = false; // canvas 初始化完成标志
+var _stickerImg = null; // 缓存底图，避免每次重绘重新异步加载
 
 function initStickerCanvas() {
   var cv = document.getElementById('stickerCanvas');
   if (!cv || !_lifePhotoData) return;
-  // 用 addEventListener 代替行内事件（微信 WebView 中行内 touch 不生效）
   cv.addEventListener('touchstart', stickerTouchStart, { passive: false });
   cv.addEventListener('touchmove', stickerTouchMove, { passive: false });
   cv.addEventListener('touchend', stickerTouchEnd);
-  var img = new Image();
-  img.onload = function () {
+  _stickerImg = new Image();
+  _stickerImg.onload = function () {
     var maxW = Math.min((cv.parentElement && cv.parentElement.clientWidth) || 400, 600);
     cv.width = maxW;
-    cv.height = Math.round(maxW * img.height / img.width);
-    var ctx = cv.getContext('2d');
-    ctx.drawImage(img, 0, 0, cv.width, cv.height);
-    drawStickersOnCanvas(ctx, cv.width, cv.height);
-    _stickerCanvasReady = true;
+    cv.height = Math.round(maxW * _stickerImg.height / _stickerImg.width);
+    redrawStickerCanvas();
   };
-  img.onerror = function () { console.warn('贴纸底图加载失败'); };
-  img.src = _lifePhotoData;
+  _stickerImg.onerror = function () { console.warn('贴纸底图加载失败'); };
+  _stickerImg.src = _lifePhotoData;
+}
+
+// 用缓存的底图 _stickerImg 直接重绘——同步，不再重新异步加载底图
+function redrawStickerCanvas() {
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv || !cv.width || !_stickerImg) return;
+  var ctx = cv.getContext('2d');
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.drawImage(_stickerImg, 0, 0, cv.width, cv.height);
+  drawStickersOnCanvas(ctx, cv.width, cv.height);
 }
 
 function drawStickersOnCanvas(ctx, w, h) {
@@ -5358,28 +5364,12 @@ function drawStickersOnCanvas(ctx, w, h) {
   });
 }
 
-function renderStickerCanvas() {
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !cv.width) return;
-  var ctx = cv.getContext('2d');
-  if (!_lifePhotoData) return;
-  var img = new Image();
-  img.onload = function () {
-    ctx.clearRect(0, 0, cv.width, cv.height);
-    ctx.drawImage(img, 0, 0, cv.width, cv.height);
-    drawStickersOnCanvas(ctx, cv.width, cv.height);
-  };
-  img.onerror = function () { console.warn('贴纸重绘加载失败'); };
-  img.src = _lifePhotoData;
-}
-
 function addSticker(emoji) {
   _lifeStickers.push({ emoji: emoji, x: 0.5 + (Math.random() - 0.5) * 0.3, y: 0.5 + (Math.random() - 0.5) * 0.3 });
-  if (_stickerCanvasReady) renderStickerCanvas();
-  else setTimeout(function () { renderStickerCanvas(); }, 300); // canvas 还没就绪，稍后再画
+  redrawStickerCanvas();
 }
 
-function undoSticker() { _lifeStickers.pop(); if (_stickerCanvasReady) renderStickerCanvas(); }
+function undoSticker() { _lifeStickers.pop(); redrawStickerCanvas(); }
 
 // ============ Touch 拖拽（兼容微信/移动端） ============
 
