@@ -5263,11 +5263,14 @@ function openLifeModal(editId) {
       if (entry.stickers) _lifeStickers = JSON.parse(JSON.stringify(entry.stickers));
     }
   }
-  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;">' + escapeHtml(existingText) + '</textarea>' +
-    (existingPhoto && !_lifePhotoData ?
-      '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + existingPhoto + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>' :
-      (_lifePhotoData ? '<div style="margin-top:12px;"><canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas></div>' : '')) +
-    '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
+  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;">' + escapeHtml(existingText) + '</textarea>';
+  // 有照片时始终渲染 canvas（新建+编辑），贴纸必须画在 canvas 上
+  body += '<div id="lifePhotoArea" style="margin-top:12px;">';
+  if (_lifePhotoData) {
+    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>';
+  }
+  body += '</div>';
+  body += '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
   // 贴纸栏——始终可见
   var hasPhoto = !!_lifePhotoData;
   body += '<div id="stickerBar" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">' +
@@ -5278,7 +5281,6 @@ function openLifeModal(editId) {
     '<button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>';
   openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, actions);
   setTimeout(function () { var t = document.getElementById('lifeText'); if (t) t.focus(); }, 100);
-  if (existingPhoto && !_lifePhotoData) _lifePhotoData = existingPhoto;
   if (_lifePhotoData) setTimeout(function () { initStickerCanvas(); }, 200);
 }
 
@@ -5292,17 +5294,21 @@ function previewLifePhoto() {
   compressImage(file, 1200, 0.7).then(function (b64) {
     _lifePhotoData = b64;
     _lifeStickers = [];
-    // 替换预览区为 canvas
-    var prev = document.getElementById('lifePhotoPreview');
-    if (prev) prev.outerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>';
-    else { var mBody = document.querySelector('.modal-body'); if (mBody) mBody.insertAdjacentHTML('beforeend', '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;margin-top:12px;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>'); }
+    // 确保有 canvas 元素
+    var area = document.getElementById('lifePhotoArea');
+    var cv = document.getElementById('stickerCanvas');
+    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>'; }
+    // 更新贴纸栏
     var bar = document.getElementById('stickerBar');
     if (bar) {
       bar.querySelectorAll('button').forEach(function (b) { b.style.opacity = ''; b.style.pointerEvents = ''; });
       var hint = bar.querySelector('span');
       if (hint) hint.textContent = '🌸 贴纸：点一下添加，可拖拽移动';
     }
-    setTimeout(function () { initStickerCanvas(); }, 100);
+    // 更新拍照按钮文字
+    var label = document.querySelector('#lifePhotoArea + div label');
+    if (label) label.childNodes[0].textContent = '📷 换照片';
+    setTimeout(function () { initStickerCanvas(); }, 150);
   }).catch(function () { Utils.toast('图片处理失败', 'warning'); });
 }
 
@@ -5317,34 +5323,44 @@ function initStickerCanvas() {
   if (!cv || !_lifePhotoData) return;
   var img = new Image();
   img.onload = function () {
-    var maxW = Math.min(cv.parentElement.clientWidth - 2, 600);
-    var ratio = maxW / img.width;
+    var maxW = Math.min((cv.parentElement && cv.parentElement.clientWidth) || 400, 600);
     cv.width = maxW;
-    cv.height = img.height * ratio;
+    cv.height = Math.round(maxW * img.height / img.width);
     _stickerScaleX = maxW / img.width;
     _stickerScaleY = cv.height / img.height;
-    renderStickerCanvas();
+    var ctx = cv.getContext('2d');
+    ctx.drawImage(img, 0, 0, cv.width, cv.height);
+    drawStickersOnCanvas(ctx, cv.width, cv.height);
   };
+  img.onerror = function () { console.warn('贴纸底图加载失败'); };
   img.src = _lifePhotoData;
+}
+
+function drawStickersOnCanvas(ctx, w, h) {
+  var fs = Math.max(28, Math.round(w / 14));
+  _lifeStickers.forEach(function (s) {
+    var sx = Math.max(0.03, Math.min(0.97, s.x));
+    var sy = Math.max(0.03, Math.min(0.97, s.y));
+    ctx.font = fs + 'px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(s.emoji, sx * w, sy * h);
+    s._w = fs; s._h = fs;
+  });
 }
 
 function renderStickerCanvas() {
   var cv = document.getElementById('stickerCanvas');
-  if (!cv || !_lifePhotoData) return;
+  if (!cv || !cv.width) return;
   var ctx = cv.getContext('2d');
+  if (!_lifePhotoData) return;
   var img = new Image();
   img.onload = function () {
     ctx.clearRect(0, 0, cv.width, cv.height);
     ctx.drawImage(img, 0, 0, cv.width, cv.height);
-    var fs = Math.max(24, Math.round(cv.width / 15));
-    _lifeStickers.forEach(function (s) {
-      ctx.font = fs + 'px sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText(s.emoji, s.x * cv.width, s.y * cv.height);
-      s._w = fs; s._h = fs;
-    });
+    drawStickersOnCanvas(ctx, cv.width, cv.height);
   };
+  img.onerror = function () { console.warn('贴纸重绘加载失败'); };
   img.src = _lifePhotoData;
 }
 
