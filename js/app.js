@@ -5273,7 +5273,7 @@ function openLifeModal(editId) {
   // 有照片时始终渲染 canvas（新建+编辑），贴纸必须画在 canvas 上
   body += '<div id="lifePhotoArea" style="margin-top:12px;">';
   if (_lifePhotoData) {
-    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" ontouchstart="stickerTouchStart(event)" ontouchmove="stickerTouchMove(event)" ontouchend="stickerTouchEnd(event)"></canvas>';
+    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" style="width:100%;max-height:300px;border-radius:8px;"></canvas>';
   }
   body += '</div>';
   body += '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
@@ -5303,7 +5303,7 @@ function previewLifePhoto() {
     // 确保有 canvas 元素
     var area = document.getElementById('lifePhotoArea');
     var cv = document.getElementById('stickerCanvas');
-    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" ontouchstart="stickerTouchStart(event)" ontouchmove="stickerTouchMove(event)" ontouchend="stickerTouchEnd(event)"></canvas>'; }
+    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" style="width:100%;max-height:300px;border-radius:8px;"></canvas>'; }
     // 更新贴纸栏
     var bar = document.getElementById('stickerBar');
     if (bar) {
@@ -5327,6 +5327,10 @@ var _stickerCanvasReady = false; // canvas 初始化完成标志
 function initStickerCanvas() {
   var cv = document.getElementById('stickerCanvas');
   if (!cv || !_lifePhotoData) return;
+  // 用 addEventListener 代替行内事件（微信 WebView 中行内 touch 不生效）
+  cv.addEventListener('touchstart', stickerTouchStart, { passive: false });
+  cv.addEventListener('touchmove', stickerTouchMove, { passive: false });
+  cv.addEventListener('touchend', stickerTouchEnd);
   var img = new Image();
   img.onload = function () {
     var maxW = Math.min((cv.parentElement && cv.parentElement.clientWidth) || 400, 600);
@@ -5380,22 +5384,21 @@ function undoSticker() { _lifeStickers.pop(); if (_stickerCanvasReady) renderSti
 // ============ Touch 拖拽（兼容微信/移动端） ============
 
 function stickerTouchStart(e) {
-  e.preventDefault();
   var cv = document.getElementById('stickerCanvas');
   if (!cv || !e.touches.length) return;
   var t = e.touches[0];
   var rect = cv.getBoundingClientRect();
   var px = (t.clientX - rect.left) / cv.width;
   var py = (t.clientY - rect.top) / cv.height;
-  // 从后往前找
   for (var i = _lifeStickers.length - 1; i >= 0; i--) {
     var s = _lifeStickers[i];
     var sx = s.x * cv.width, sy = s.y * cv.height;
-    var r = (s._w || 50) / 1.6;
+    var r = (s._w || 50);
     var dx = px * cv.width - sx, dy = py * cv.height - sy;
-    if (Math.sqrt(dx * dx + dy * dy) < r) {
+    if (Math.abs(dx) < r && Math.abs(dy) < r) {
       _stickerDragging = i;
       _stickerDragStart = { ex: t.clientX, ey: t.clientY, sx: s.x, sy: s.y };
+      e.preventDefault(); // 只有命中贴纸才阻止默认滚动
       return;
     }
   }
