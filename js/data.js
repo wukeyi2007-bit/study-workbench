@@ -4213,7 +4213,7 @@ const CONFIG = {
 const EXERCISE_CONFIG = {
   running: {
     weeklyGoalDays: 5,      // 每周跑步目标天数
-    weeklyGoalKm: 10,       // 每周跑步目标公里数
+    weeklyGoalKm: 15,       // 每周跑步目标公里数
     perRunKm: 2,            // 每次跑步公里数
   },
   // 默认跟练分类（模块）。每个分类下可添加多个具体视频，分别打卡。
