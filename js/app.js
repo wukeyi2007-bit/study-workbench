@@ -5268,11 +5268,12 @@ function openLifeModal(editId) {
       '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + existingPhoto + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>' :
       (_lifePhotoData ? '<div style="margin-top:12px;"><canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas></div>' : '')) +
     '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
-  // 贴纸栏
-  body += '<div id="stickerBar" style="margin-top:10px;display:' + (_lifePhotoData ? 'flex' : 'none') + ';flex-wrap:wrap;gap:6px;">' +
-    '<span style="font-size:12px;color:var(--text-secondary);width:100%;">贴纸：点一下添加到照片，可拖拽移动</span>' +
-    STICKER_EMOJIS.map(function (e) { return '<button class="btn btn-xs" style="font-size:22px;padding:4px 6px;line-height:1;" onclick="addSticker(\'' + e + '\')">' + e + '</button>'; }).join('') +
-    '<button class="btn btn-xs btn-secondary" style="font-size:18px;padding:4px 8px;" onclick="undoSticker()">↩</button></div>';
+  // 贴纸栏——始终可见
+  var hasPhoto = !!_lifePhotoData;
+  body += '<div id="stickerBar" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">' +
+    '<span style="font-size:12px;color:var(--text-secondary);width:100%;">🌸 贴纸' + (hasPhoto ? '：点一下添加，可拖拽移动' : '：先 📷 拍照或选照片再贴') + '</span>' +
+    STICKER_EMOJIS.map(function (e) { return '<button class="btn btn-xs" style="font-size:22px;padding:4px 6px;line-height:1;' + (hasPhoto ? '' : 'opacity:0.4;pointer-events:none;') + '" onclick="' + (hasPhoto ? 'addSticker(\'' + e + '\')' : 'return false') + '">' + e + '</button>'; }).join('') +
+    '<button class="btn btn-xs btn-secondary" style="font-size:18px;padding:4px 8px;' + (hasPhoto ? '' : 'opacity:0.4;pointer-events:none;') + '" onclick="' + (hasPhoto ? 'undoSticker()' : 'return false') + '">↩</button></div>';
   var actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
     '<button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>';
   openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, actions);
@@ -5296,7 +5297,11 @@ function previewLifePhoto() {
     if (prev) prev.outerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>';
     else { var mBody = document.querySelector('.modal-body'); if (mBody) mBody.insertAdjacentHTML('beforeend', '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;margin-top:12px;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>'); }
     var bar = document.getElementById('stickerBar');
-    if (bar) bar.style.display = 'flex';
+    if (bar) {
+      bar.querySelectorAll('button').forEach(function (b) { b.style.opacity = ''; b.style.pointerEvents = ''; });
+      var hint = bar.querySelector('span');
+      if (hint) hint.textContent = '🌸 贴纸：点一下添加，可拖拽移动';
+    }
     setTimeout(function () { initStickerCanvas(); }, 100);
   }).catch(function () { Utils.toast('图片处理失败', 'warning'); });
 }
