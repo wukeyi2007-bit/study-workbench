@@ -5217,9 +5217,6 @@ function renderWeeklySummary() {
 
 // ==================== 生活记录 ====================
 
-// 贴纸 emoji 候选
-var STICKER_EMOJIS = ['🌸','⭐','💕','✨','🌈','🦋','🌺','🍀','🎀','💫','❤️','☀️','🌙','🔥','🎵','🍓','🐱','💎','🫧','🍡','🥰','🌟','💖','🍩','☁️'];
-
 function compressImage(file, maxW, quality) {
   return new Promise(function (resolve, reject) {
     if (!file || !file.type.startsWith('image/')) return reject(new Error('不是图片文件'));
@@ -5243,277 +5240,86 @@ function compressImage(file, maxW, quality) {
   });
 }
 
-function ensureLife() {
-  if (!state.life) state.life = { log: [] };
-  if (!state.life.log) state.life.log = [];
-}
+function ensureLife() { if (!state.life) state.life = { log: [] }; if (!state.life.log) state.life.log = []; }
 
-// ==================== 新建/编辑弹窗（支持贴纸） ====================
-
-var _lifeStickers = []; // 当前编辑中的贴纸 [{emoji, x, y, w, h}]
 var _lifePhotoData = null;
-var _lifeEditId = null; // 编辑模式下的条目 id
+var _lifeEditId = null;
 
 function openLifeModal(editId) {
-  _lifeStickers = [];
-  _lifePhotoData = null;
-  _lifeEditId = editId || null;
-  var existingText = '';
-  var existingPhoto = null;
-  if (editId) {
-    ensureLife();
-    var entry = state.life.log.find(function (e) { return e.id === editId; });
-    if (entry) {
-      existingText = entry.text || '';
-      existingPhoto = entry.photo || null;
-      if (entry.stickers) _lifeStickers = JSON.parse(JSON.stringify(entry.stickers));
-    }
-  }
-  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;">' + escapeHtml(existingText) + '</textarea>';
-  // 有照片时始终渲染 canvas（新建+编辑），贴纸必须画在 canvas 上
-  body += '<div id="lifePhotoArea" style="margin-top:12px;">';
-  if (_lifePhotoData) {
-    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" style="width:100%;max-height:300px;border-radius:8px;"></canvas>';
-  }
-  body += '</div>';
-  body += '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
-  // 贴纸栏——始终可见
-  var hasPhoto = !!_lifePhotoData;
-  body += '<div id="stickerBar" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;">' +
-    '<span style="font-size:12px;color:var(--text-secondary);width:100%;">🌸 贴纸' + (hasPhoto ? '：点一下添加，可拖拽移动' : '：先 📷 拍照或选照片再贴') + '</span>' +
-    STICKER_EMOJIS.map(function (e) { return '<button class="btn btn-xs" style="font-size:22px;padding:4px 6px;line-height:1;' + (hasPhoto ? '' : 'opacity:0.4;pointer-events:none;') + '" onclick="' + (hasPhoto ? 'addSticker(\'' + e + '\')' : 'return false') + '">' + e + '</button>'; }).join('') +
-    '<button class="btn btn-xs btn-secondary" style="font-size:18px;padding:4px 8px;' + (hasPhoto ? '' : 'opacity:0.4;pointer-events:none;') + '" onclick="' + (hasPhoto ? 'undoSticker()' : 'return false') + '">↩</button></div>';
-  var actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
-    '<button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>';
-  openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, actions);
+  _lifePhotoData = null; _lifeEditId = editId || null;
+  var text = '';
+  if (editId) { ensureLife(); var e = state.life.log.find(function (x) { return x.id === editId; }); if (e) { text = e.text || ''; _lifePhotoData = e.photo || null; } }
+  var body = '<textarea id="lifeText" style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;" placeholder="写点什么...">' + escapeHtml(text) + '</textarea>' +
+    '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
+  if (_lifePhotoData) body += '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + _lifePhotoData + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>';
+  openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, '<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>');
   setTimeout(function () { var t = document.getElementById('lifeText'); if (t) t.focus(); }, 100);
-  if (_lifePhotoData) setTimeout(function () { initStickerCanvas(); }, 200);
 }
 
-// 预览照片
 function previewLifePhoto() {
   var inp = document.getElementById('lifePhotoInput');
-  var nameEl = document.getElementById('lifePhotoName');
   if (!inp || !inp.files || !inp.files[0]) return;
-  var file = inp.files[0];
-  nameEl.textContent = file.name;
-  compressImage(file, 1200, 0.7).then(function (b64) {
+  var f = inp.files[0];
+  var n = document.getElementById('lifePhotoName'); if (n) n.textContent = f.name;
+  compressImage(f, 1200, 0.7).then(function (b64) {
     _lifePhotoData = b64;
-    _lifeStickers = [];
-    // 确保有 canvas 元素
-    var area = document.getElementById('lifePhotoArea');
-    var cv = document.getElementById('stickerCanvas');
-    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" style="width:100%;max-height:300px;border-radius:8px;"></canvas>'; }
-    // 更新贴纸栏
-    var bar = document.getElementById('stickerBar');
-    if (bar) {
-      bar.querySelectorAll('button').forEach(function (b) { b.style.opacity = ''; b.style.pointerEvents = ''; });
-      var hint = bar.querySelector('span');
-      if (hint) hint.textContent = '🌸 贴纸：点一下添加，可拖拽移动';
-    }
-    // 更新拍照按钮文字
-    var label = document.querySelector('#lifePhotoArea + div label');
-    if (label) label.childNodes[0].textContent = '📷 换照片';
-    setTimeout(function () { initStickerCanvas(); }, 150);
-  }).catch(function () { Utils.toast('图片处理失败', 'warning'); });
-}
-
-// ==================== 贴纸 Canvas ====================
-
-var _stickerDragging = null;
-var _stickerDragStart = null;
-var _stickerImg = null; // 缓存底图，避免每次重绘重新异步加载
-
-function initStickerCanvas() {
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !_lifePhotoData) return;
-  cv.addEventListener('touchstart', stickerTouchStart, { passive: false });
-  cv.addEventListener('touchmove', stickerTouchMove, { passive: false });
-  cv.addEventListener('touchend', stickerTouchEnd);
-  _stickerImg = new Image();
-  _stickerImg.onload = function () {
-    var maxW = Math.min((cv.parentElement && cv.parentElement.clientWidth) || 400, 600);
-    cv.width = maxW;
-    cv.height = Math.round(maxW * _stickerImg.height / _stickerImg.width);
-    redrawStickerCanvas();
-  };
-  _stickerImg.onerror = function () { console.warn('贴纸底图加载失败'); };
-  _stickerImg.src = _lifePhotoData;
-}
-
-// 用缓存的底图 _stickerImg 直接重绘——同步，不再重新异步加载底图
-function redrawStickerCanvas() {
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !cv.width || !_stickerImg) return;
-  var ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, cv.width, cv.height);
-  ctx.drawImage(_stickerImg, 0, 0, cv.width, cv.height);
-  drawStickersOnCanvas(ctx, cv.width, cv.height);
-}
-
-function drawStickersOnCanvas(ctx, w, h) {
-  var fs = Math.max(30, Math.round(w / 12));
-  _lifeStickers.forEach(function (s) {
-    var sx = Math.max(0.03, Math.min(0.97, s.x));
-    var sy = Math.max(0.03, Math.min(0.97, s.y));
-    ctx.font = fs + 'px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(s.emoji, sx * w, sy * h);
-    s._w = fs; s._h = fs;
+    var prev = document.getElementById('lifePhotoPreview');
+    if (prev) prev.src = b64;
+    else { var area = document.querySelector('.modal-body'); if (area) area.insertAdjacentHTML('beforeend', '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + b64 + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>'); }
+    var label = document.querySelector('.modal-body label');
+    if (label && label.childNodes[0]) label.childNodes[0].textContent = '📷 换照片';
   });
 }
 
-function addSticker(emoji) {
-  _lifeStickers.push({ emoji: emoji, x: 0.5 + (Math.random() - 0.5) * 0.3, y: 0.5 + (Math.random() - 0.5) * 0.3 });
-  redrawStickerCanvas();
-}
-
-function undoSticker() { _lifeStickers.pop(); redrawStickerCanvas(); }
-
-// ============ Touch 拖拽（兼容微信/移动端） ============
-
-function stickerTouchStart(e) {
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !e.touches.length) return;
-  var t = e.touches[0];
-  var rect = cv.getBoundingClientRect();
-  var px = (t.clientX - rect.left) / cv.width;
-  var py = (t.clientY - rect.top) / cv.height;
-  for (var i = _lifeStickers.length - 1; i >= 0; i--) {
-    var s = _lifeStickers[i];
-    var sx = s.x * cv.width, sy = s.y * cv.height;
-    var r = (s._w || 50);
-    var dx = px * cv.width - sx, dy = py * cv.height - sy;
-    if (Math.abs(dx) < r && Math.abs(dy) < r) {
-      _stickerDragging = i;
-      _stickerDragStart = { ex: t.clientX, ey: t.clientY, sx: s.x, sy: s.y };
-      e.preventDefault(); // 只有命中贴纸才阻止默认滚动
-      return;
-    }
-  }
-}
-
-function stickerTouchMove(e) {
-  if (_stickerDragging === null) return;
-  e.preventDefault();
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !e.touches.length) return;
-  var t = e.touches[0];
-  var dx = (t.clientX - _stickerDragStart.ex) / cv.width;
-  var dy = (t.clientY - _stickerDragStart.ey) / cv.height;
-  _lifeStickers[_stickerDragging].x = Math.max(0.03, Math.min(0.97, _stickerDragStart.sx + dx));
-  _lifeStickers[_stickerDragging].y = Math.max(0.03, Math.min(0.97, _stickerDragStart.sy + dy));
-  renderStickerCanvas();
-}
-
-function stickerTouchEnd(e) {
-  _stickerDragging = null;
-  _stickerDragStart = null;
-}
-
-// 合成最终照片（底图 + 贴纸 → base64）
-function composeFinalPhoto() {
-  var cv = document.getElementById('stickerCanvas');
-  if (!cv || !_lifeStickers.length) return _lifePhotoData; // 没贴纸直接返回原图
-  var finalCv = document.createElement('canvas');
-  finalCv.width = cv.width;
-  finalCv.height = cv.height;
-  var ctx = finalCv.getContext('2d');
-  // 直接 copy 当前 canvas（已经渲染了底图 + 贴纸）
-  ctx.drawImage(cv, 0, 0);
-  return finalCv.toDataURL('image/jpeg', 0.8);
-}
-
-// ==================== 提交/编辑/删除 ====================
-
-async function submitLifeEntry() {
+function submitLifeEntry() {
   var text = (document.getElementById('lifeText')?.value || '').trim();
   if (!text && !_lifePhotoData) { Utils.toast('至少写点文字或拍张照片', 'warning'); return; }
   ensureLife();
-  var photo = (_lifePhotoData && _lifeStickers.length) ? composeFinalPhoto() : _lifePhotoData;
-  var entry = {
-    id: _lifeEditId || Date.now(),
-    date: Utils.today(),
-    time: _lifeEditId ? null : new Date().toTimeString().slice(0, 5),
-    text: text,
-    photo: photo || null,
-    stickers: _lifeStickers.length ? JSON.parse(JSON.stringify(_lifeStickers)) : null
-  };
-  // 编辑模式保留原日期和时间
+  var entry = { id: _lifeEditId || Date.now(), date: Utils.today(), text: text, photo: _lifePhotoData || null };
   if (_lifeEditId) {
     var old = state.life.log.find(function (e) { return e.id === _lifeEditId; });
     if (old) { entry.date = old.date; entry.time = old.time; }
     state.life.log = state.life.log.filter(function (e) { return e.id !== _lifeEditId; });
+  } else {
+    entry.time = new Date().toTimeString().slice(0, 5);
   }
   state.life.log.push(entry);
   try { Store.save(); } catch (e) {}
-  closeModal();
-  _lifeStickers = []; _lifePhotoData = null; _lifeEditId = null;
+  closeModal(); _lifePhotoData = null; _lifeEditId = null;
   renderLifeJournal();
   Utils.toast('已保存', 'success');
 }
 
-function editLifeEntry(id) {
-  ensureLife();
-  var entry = state.life.log.find(function (e) { return e.id === id; });
-  if (!entry) return;
-  _lifePhotoData = entry.photo || null;
-  _lifeStickers = entry.stickers ? JSON.parse(JSON.stringify(entry.stickers)) : [];
-  openLifeModal(id);
-}
+function editLifeEntry(id) { ensureLife(); var e = state.life.log.find(function (x) { return x.id === id; }); if (e) openLifeModal(id); }
 
-function deleteLifeEntry(id) {
-  if (!confirm('确定删除这条记录？')) return;
-  ensureLife();
-  state.life.log = state.life.log.filter(function (e) { return e.id !== id; });
-  try { Store.save(); } catch (e) {}
-  renderLifeJournal();
-}
-
-// ==================== 渲染 ====================
+function deleteLifeEntry(id) { if (!confirm('确定删除？')) return; ensureLife(); state.life.log = state.life.log.filter(function (e) { return e.id !== id; }); try { Store.save(); } catch (e) {} renderLifeJournal(); }
 
 function renderLifeJournal() {
   ensureLife();
   var logs = state.life.log.slice().sort(function (a, b) { return b.id - a.id; });
-  var html = '<div class="life-journal">';
-  html += '<div style="margin-bottom:16px;"><button class="btn btn-primary" onclick="openLifeModal()" style="width:100%;padding:14px;font-size:16px;">✏️ 记录今天的生活</button></div>';
+  var h = '<div class="life-journal"><div style="margin-bottom:16px;"><button class="btn btn-primary" onclick="openLifeModal()" style="width:100%;padding:14px;font-size:16px;">✏️ 记录今天的生活</button></div>';
   if (!logs.length) {
-    html += '<div class="error-empty"><div class="icon">📝</div><div style="font-size:16px;font-weight:600;">还没有生活记录</div><div style="font-size:14px;margin-top:4px;">点击上方按钮，写点小心情或拍张照片吧</div></div>';
+    h += '<div class="error-empty"><div class="icon">📝</div><div style="font-size:16px;font-weight:600;">还没有生活记录</div><div style="font-size:14px;margin-top:4px;">点击上方按钮开始记录吧</div></div>';
   } else {
-    var groups = {};
-    logs.forEach(function (e) { var d = e.date; if (!groups[d]) groups[d] = []; groups[d].push(e); });
-    var dates = Object.keys(groups).sort().reverse();
-    dates.forEach(function (date) {
-      html += '<div class="life-date-header" style="font-size:15px;font-weight:600;margin:16px 0 8px;padding:6px 0;border-bottom:2px solid var(--primary);color:var(--primary);">📅 ' + date + '</div>';
+    var groups = {}; logs.forEach(function (e) { if (!groups[e.date]) groups[e.date] = []; groups[e.date].push(e); });
+    Object.keys(groups).sort().reverse().forEach(function (date) {
+      h += '<div style="font-size:15px;font-weight:600;margin:16px 0 8px;padding:6px 0;border-bottom:2px solid var(--primary);color:var(--primary);">📅 ' + date + '</div>';
       groups[date].forEach(function (e) {
-        html += '<div class="card life-card" style="margin-bottom:12px;padding:14px;">';
-        if (e.photo) {
-          html += '<div style="margin-bottom:10px;position:relative;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" alt="照片" onclick="viewLifePhoto(\'' + e.id + '\')" />';
-          if (e.stickers && e.stickers.length) html += '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.5);color:#fff;font-size:13px;padding:2px 8px;border-radius:10px;">' + e.stickers.length + ' 贴纸</div>';
-          html += '</div>';
-        }
-        if (e.text) {
-          html += '<div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">' + escapeHtml(e.text) + '</div>';
-        }
-        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px;color:var(--text-light);">' +
-          '<span>' + (e.time || '') + '</span>' +
-          '<div style="display:flex;gap:4px;">' +
-          '<button class="btn btn-xs btn-secondary" onclick="editLifeEntry(' + e.id + ')">✎ 编辑</button>' +
-          '<button class="btn btn-xs btn-secondary" onclick="deleteLifeEntry(' + e.id + ')" style="color:var(--danger, #e53e3e);">删除</button>' +
-          '</div></div></div>';
+        h += '<div class="card" style="margin-bottom:12px;padding:14px;">';
+        if (e.photo) h += '<div style="margin-bottom:10px;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" onclick="viewLifePhoto(' + e.id + ')" /></div>';
+        if (e.text) h += '<div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">' + escapeHtml(e.text) + '</div>';
+        h += '<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--text-light);"><span>' + (e.time || '') + '</span><div style="display:flex;gap:4px;"><button class="btn btn-xs btn-secondary" onclick="editLifeEntry(' + e.id + ')">✎ 编辑</button><button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteLifeEntry(' + e.id + ')">删除</button></div></div></div>';
       });
     });
   }
-  html += '</div><div style="height:80px;"></div>';
-  document.getElementById('page-life').innerHTML = html;
+  h += '</div><div style="height:80px;"></div>';
+  document.getElementById('page-life').innerHTML = h;
 }
 
 window.viewLifePhoto = function (id) {
-  ensureLife();
-  var entry = state.life.log.find(function (e) { return String(e.id) === String(id); });
-  if (!entry || !entry.photo) return;
-  openModal("📷 照片", '<div style="text-align:center;"><img src="' + entry.photo + '" style="max-width:100%;max-height:70vh;border-radius:8px;" alt="照片" /></div>', '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  ensureLife(); var e = state.life.log.find(function (x) { return String(x.id) === String(id); });
+  if (!e || !e.photo) return;
+  openModal('📷 照片', '<div style="text-align:center;"><img src="' + e.photo + '" style="max-width:100%;max-height:70vh;border-radius:8px;" /></div>', '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
 };
 
 // ==================== 睡眠记录 ====================
