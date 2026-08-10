@@ -5191,8 +5191,9 @@ function renderWeeklySummary() {
     if (stat.runKm > 0) parts.push(`🏃 ${stat.runKm}km`);
     const cats = Object.entries(stat.videoByCat);
     if (cats.length) {
-      const catStr = cats.map(([name, cnt]) => `${name}${cnt}次`).join(' · ');
-      parts.push(`💪 ${catStr}`);
+      const totalVideo = cats.reduce((s, [, cnt]) => s + cnt, 0);
+      const catNames = cats.map(([name]) => name).join('、');
+      parts.push(`💪 ${catNames} ${totalVideo}次`);
     }
     html += `<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border-light, #eee);font-size:13px;">
       <span style="color:var(--text-secondary);flex-shrink:0;margin-right:10px;">${fmt(stat.monday)} - ${fmt(sunday)}</span>
