@@ -1020,7 +1020,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     case "words": renderWords(); break;
     case "sentences": renderSentences(); break;
     case "exercise": renderExercise(); break;
-    // case "news": renderNews(); break; // 新闻模块已移除
+    // // case "news": renderNews(); break; // 新闻模块已移除 // 新闻模块已移除
     case "reading": renderReading(); break;
     case "finance": renderFinance(); break;
     case "errors": renderErrors(); break;
