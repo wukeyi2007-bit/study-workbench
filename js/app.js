@@ -5242,7 +5242,7 @@ function ensureLife() {
 // 打开新增弹窗
 function openLifeModal() {
   var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;"></textarea>' +
-    '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" capture="environment" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
+    '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
   var actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
     '<button class="btn btn-primary" onclick="submitLifeEntry()">保存</button>';
   openModal("📝 记录生活", body, actions);
