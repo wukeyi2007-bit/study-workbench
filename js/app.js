@@ -1020,7 +1020,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     case "words": renderWords(); break;
     case "sentences": renderSentences(); break;
     case "exercise": renderExercise(); break;
-    case "news": renderNews(); break;
+    // case "news": renderNews(); break; // 新闻模块已移除
     case "reading": renderReading(); break;
     case "finance": renderFinance(); break;
     case "errors": renderErrors(); break;
@@ -1090,13 +1090,8 @@ function renderTodayOverview() {
   const financeDone = getCompletedForDay(financeTodayDay).length;
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
-  // 热点新闻：进度锚定「锁定的今日重点」id，不随 news.json 重跑变化；
-  // 已读按当前新闻日期分桶统计，刷新不会丢失、也不跨天污染。
-  const newsImportantIds = getTodayImportantIds();
-  const newsReadIds = getNewsReadIds();
-  const newsRead = newsImportantIds.filter(id => newsReadIds.includes(id)).length;
-  const newsTotal = newsImportantIds.length;
-  const newsPct = newsTotal ? Math.min(100, Math.round((newsRead / newsTotal) * 100)) : 0;
+  // 新闻模块已移除，进度不再统计
+  const newsPct = 0; const newsRead = 0; const newsTotal = 0;
 
   const listenProgress = getListeningProgress(today);
   const listenPct = listenProgress.pct;
@@ -1118,7 +1113,6 @@ function renderTodayOverview() {
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "视频跟练", pct: videoPct, desc: `${videoDone}/${videoGoal} 类` },
     { icon: "💰", name: "理财学习", pct: financePct, desc: `${financeDone}/${financeTotal} 知识点` },
-    { icon: "📰", name: "热点新闻", pct: newsPct, desc: `${newsRead}/${newsTotal} 重点` },
   ];
 
   const r = 26;
@@ -1159,7 +1153,7 @@ function pageForOverview(name) {
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
   if (name === "理财学习") return "finance";
-  if (name === "热点新闻") return "news";
+  // 新闻模块已移除
   if (name === "听力练习") return "listening";
   if (name === "翻译练习") return "translate";
   return "home";
@@ -6594,10 +6588,10 @@ function init() {
     });
   }
 
-  // 非首屏内容延迟加载：先让首页渲染出来、启动页消失，再拉新闻/弹心情
+  // 非首屏内容延迟加载
   setTimeout(() => {
-    // 运行时拉取线上最新新闻（每日 8 点自动化已刷新 news.json）
-    loadNewsFromServer();
+    // 新闻模块已移除，不再拉取 news.json
+    // loadNewsFromServer();
     // 每天首次打开时选择心情并展示金句
     checkDailyMood();
   }, 50);
