@@ -5167,29 +5167,36 @@ function getWeekExerciseStats() {
 function renderWeeklySummary() {
   const logs = state.exercise?.log || [];
   if (!logs.length) return '';
-  // 按周分组（ISO 周一 ~ 周日）
   const weeks = {};
   logs.forEach(e => {
     const d = new Date(e.date + 'T00:00:00');
-    const day = d.getDay() || 7; // 周日是0，转为7
+    const day = d.getDay() || 7;
     const monday = new Date(d); monday.setDate(d.getDate() - day + 1);
-    const key = monday.toISOString().slice(0, 10); // 周一日期作为 key
-    if (!weeks[key]) { weeks[key] = { runKm: 0, videoCount: 0, monday: monday }; }
+    const key = monday.toISOString().slice(0, 10);
+    if (!weeks[key]) { weeks[key] = { runKm: 0, videoByCat: {}, monday: monday }; }
     if (e.type === 'run') weeks[key].runKm += (e.distance || 0);
-    else if (e.type === 'video') weeks[key].videoCount += 1;
+    else if (e.type === 'video') {
+      const v = getVideoById(e.category);
+      const catName = v ? v.name : (e.category || '其他');
+      weeks[key].videoByCat[catName] = (weeks[key].videoByCat[catName] || 0) + 1;
+    }
   });
-  const entries = Object.entries(weeks).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 8); // 最近8周
-  let html = '<div class="weekly-summary" style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface);">';
+  const entries = Object.entries(weeks).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 8);
+  let html = '<div class="weekly-summary" style="margin-bottom:12px;border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface);">';
   html += '<div style="font-size:14px;font-weight:600;margin-bottom:8px;">📊 每周汇总</div>';
   entries.forEach(([monday, stat]) => {
     const sunday = new Date(stat.monday); sunday.setDate(sunday.getDate() + 6);
     const fmt = d => `${d.getMonth()+1}/${d.getDate()}`;
-    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light, #eee);font-size:13px;">
-      <span style="color:var(--text-secondary);">${fmt(stat.monday)} - ${fmt(sunday)}</span>
-      <span style="display:flex;gap:12px;font-weight:500;">
-        ${stat.runKm > 0 ? `<span>🏃 ${stat.runKm}km</span>` : ''}
-        ${stat.videoCount > 0 ? `<span>💪 ${stat.videoCount}次</span>` : ''}
-      </span>
+    const parts = [];
+    if (stat.runKm > 0) parts.push(`🏃 ${stat.runKm}km`);
+    const cats = Object.entries(stat.videoByCat);
+    if (cats.length) {
+      const catStr = cats.map(([name, cnt]) => `${name}${cnt}次`).join(' · ');
+      parts.push(`💪 ${catStr}`);
+    }
+    html += `<div style="display:flex;justify-content:space-between;align-items:flex-start;padding:6px 0;border-bottom:1px solid var(--border-light, #eee);font-size:13px;">
+      <span style="color:var(--text-secondary);flex-shrink:0;margin-right:10px;">${fmt(stat.monday)} - ${fmt(sunday)}</span>
+      <span style="font-weight:500;text-align:right;line-height:1.5;">${parts.join(' · ')}</span>
     </div>`;
   });
   html += '</div>';
@@ -5423,9 +5430,24 @@ function renderExercise() {
     <div class="card">
       <div class="card-title">📋 锻炼记录</div>
       ${renderWeeklySummary()}
-      ${logHtml}
+      <div style="margin-top:4px;">
+        <button class="btn btn-xs btn-secondary" onclick="toggleExerciseLog()" id="toggleLogBtn" style="font-size:12px;">展开明细 ▸</button>
+      </div>
+      <div id="exerciseLogDetail" style="display:none;margin-top:8px;">${logHtml}</div>
     </div>
   `;
+}
+
+// 切换锻炼明细展开/收起
+let exerciseLogExpanded = false;
+function toggleExerciseLog() {
+  exerciseLogExpanded = !exerciseLogExpanded;
+  const el = document.getElementById('exerciseLogDetail');
+  const btn = document.getElementById('toggleLogBtn');
+  if (el && btn) {
+    el.style.display = exerciseLogExpanded ? '' : 'none';
+    btn.textContent = exerciseLogExpanded ? '收起明细 ▾' : '展开明细 ▸';
+  }
 }
 
 function logExercise(type, category) {
