@@ -5267,7 +5267,7 @@ function openLifeModal(editId) {
   // 有照片时始终渲染 canvas（新建+编辑），贴纸必须画在 canvas 上
   body += '<div id="lifePhotoArea" style="margin-top:12px;">';
   if (_lifePhotoData) {
-    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>';
+    body += '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" ontouchstart="stickerTouchStart(event)" ontouchmove="stickerTouchMove(event)" ontouchend="stickerTouchEnd(event)"></canvas>';
   }
   body += '</div>';
   body += '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
@@ -5297,7 +5297,7 @@ function previewLifePhoto() {
     // 确保有 canvas 元素
     var area = document.getElementById('lifePhotoArea');
     var cv = document.getElementById('stickerCanvas');
-    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>'; }
+    if (!cv && area) { area.innerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" ontouchstart="stickerTouchStart(event)" ontouchmove="stickerTouchMove(event)" ontouchend="stickerTouchEnd(event)"></canvas>'; }
     // 更新贴纸栏
     var bar = document.getElementById('stickerBar');
     if (bar) {
@@ -5316,7 +5316,7 @@ function previewLifePhoto() {
 
 var _stickerDragging = null;
 var _stickerDragStart = null;
-var _stickerScaleX = 1, _stickerScaleY = 1;
+var _stickerCanvasReady = false; // canvas 初始化完成标志
 
 function initStickerCanvas() {
   var cv = document.getElementById('stickerCanvas');
@@ -5326,18 +5326,17 @@ function initStickerCanvas() {
     var maxW = Math.min((cv.parentElement && cv.parentElement.clientWidth) || 400, 600);
     cv.width = maxW;
     cv.height = Math.round(maxW * img.height / img.width);
-    _stickerScaleX = maxW / img.width;
-    _stickerScaleY = cv.height / img.height;
     var ctx = cv.getContext('2d');
     ctx.drawImage(img, 0, 0, cv.width, cv.height);
     drawStickersOnCanvas(ctx, cv.width, cv.height);
+    _stickerCanvasReady = true;
   };
   img.onerror = function () { console.warn('贴纸底图加载失败'); };
   img.src = _lifePhotoData;
 }
 
 function drawStickersOnCanvas(ctx, w, h) {
-  var fs = Math.max(28, Math.round(w / 14));
+  var fs = Math.max(30, Math.round(w / 12));
   _lifeStickers.forEach(function (s) {
     var sx = Math.max(0.03, Math.min(0.97, s.x));
     var sy = Math.max(0.03, Math.min(0.97, s.y));
@@ -5366,48 +5365,50 @@ function renderStickerCanvas() {
 
 function addSticker(emoji) {
   _lifeStickers.push({ emoji: emoji, x: 0.5 + (Math.random() - 0.5) * 0.3, y: 0.5 + (Math.random() - 0.5) * 0.3 });
-  renderStickerCanvas();
+  if (_stickerCanvasReady) renderStickerCanvas();
+  else setTimeout(function () { renderStickerCanvas(); }, 300); // canvas 还没就绪，稍后再画
 }
 
-function undoSticker() { _lifeStickers.pop(); renderStickerCanvas(); }
+function undoSticker() { _lifeStickers.pop(); if (_stickerCanvasReady) renderStickerCanvas(); }
 
-function stickerPointerDown(e) {
+// ============ Touch 拖拽（兼容微信/移动端） ============
+
+function stickerTouchStart(e) {
+  e.preventDefault();
   var cv = document.getElementById('stickerCanvas');
-  if (!cv) return;
+  if (!cv || !e.touches.length) return;
+  var t = e.touches[0];
   var rect = cv.getBoundingClientRect();
-  var px = (e.clientX - rect.left) / cv.width;
-  var py = (e.clientY - rect.top) / cv.height;
-  // 从后往前找（最后放的贴纸在上面）
+  var px = (t.clientX - rect.left) / cv.width;
+  var py = (t.clientY - rect.top) / cv.height;
+  // 从后往前找
   for (var i = _lifeStickers.length - 1; i >= 0; i--) {
     var s = _lifeStickers[i];
     var sx = s.x * cv.width, sy = s.y * cv.height;
-    var r = (s._w || 40) / 2;
+    var r = (s._w || 50) / 1.6;
     var dx = px * cv.width - sx, dy = py * cv.height - sy;
-    if (Math.sqrt(dx * dx + dy * dy) < r * 1.5) {
+    if (Math.sqrt(dx * dx + dy * dy) < r) {
       _stickerDragging = i;
-      _stickerDragStart = { ex: e.clientX, ey: e.clientY, sx: s.x, sy: s.y };
-      cv.setPointerCapture(e.pointerId);
-      e.preventDefault();
+      _stickerDragStart = { ex: t.clientX, ey: t.clientY, sx: s.x, sy: s.y };
       return;
     }
   }
 }
 
-function stickerPointerMove(e) {
+function stickerTouchMove(e) {
   if (_stickerDragging === null) return;
+  e.preventDefault();
   var cv = document.getElementById('stickerCanvas');
-  if (!cv) return;
-  var dx = (e.clientX - _stickerDragStart.ex) / cv.width;
-  var dy = (e.clientY - _stickerDragStart.ey) / cv.height;
-  _lifeStickers[_stickerDragging].x = Math.max(0.05, Math.min(0.95, _stickerDragStart.sx + dx));
-  _lifeStickers[_stickerDragging].y = Math.max(0.05, Math.min(0.95, _stickerDragStart.sy + dy));
+  if (!cv || !e.touches.length) return;
+  var t = e.touches[0];
+  var dx = (t.clientX - _stickerDragStart.ex) / cv.width;
+  var dy = (t.clientY - _stickerDragStart.ey) / cv.height;
+  _lifeStickers[_stickerDragging].x = Math.max(0.03, Math.min(0.97, _stickerDragStart.sx + dx));
+  _lifeStickers[_stickerDragging].y = Math.max(0.03, Math.min(0.97, _stickerDragStart.sy + dy));
   renderStickerCanvas();
 }
 
-function stickerPointerUp(e) {
-  if (_stickerDragging !== null && document.getElementById('stickerCanvas')) {
-    document.getElementById('stickerCanvas').releasePointerCapture(e.pointerId);
-  }
+function stickerTouchEnd(e) {
   _stickerDragging = null;
   _stickerDragStart = null;
 }
