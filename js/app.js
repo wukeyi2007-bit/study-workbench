@@ -989,6 +989,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     words: "单词",
     sentences: "句子",
     exercise: "锻炼",
+    life: "生活记录",
     news: "热点新闻",
     reading: "阅读笔记",
     finance: "理财学习",
@@ -1020,6 +1021,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     case "words": renderWords(); break;
     case "sentences": renderSentences(); break;
     case "exercise": renderExercise(); break;
+    case "life": renderLifeJournal(); break;
     // // case "news": renderNews(); break; // 新闻模块已移除 // 新闻模块已移除
     case "reading": renderReading(); break;
     case "finance": renderFinance(); break;
@@ -5204,6 +5206,143 @@ function renderWeeklySummary() {
   html += '</div>';
   return html;
 }
+
+// ==================== 生活记录 ====================
+
+// 压缩图片到指定最大宽度和质量，返回 base64
+function compressImage(file, maxW, quality) {
+  return new Promise(function (resolve, reject) {
+    if (!file || !file.type.startsWith('image/')) return reject(new Error('不是图片文件'));
+    var reader = new FileReader();
+    reader.onload = function () {
+      var img = new Image();
+      img.onload = function () {
+        var canvas = document.createElement('canvas');
+        var w = img.width, h = img.height;
+        if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+        canvas.width = w; canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.onerror = reject;
+      img.src = reader.result;
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// 初始化生活记录状态
+function ensureLife() {
+  if (!state.life) state.life = { log: [] };
+  if (!state.life.log) state.life.log = [];
+}
+
+// 打开新增弹窗
+function openLifeModal() {
+  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;"></textarea>' +
+    '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" capture="environment" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
+  var actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
+    '<button class="btn btn-primary" onclick="submitLifeEntry()">保存</button>';
+  openModal("📝 记录生活", body, actions);
+  window._lifePhotoData = null;
+  setTimeout(function () { var t = document.getElementById('lifeText'); if (t) t.focus(); }, 100);
+}
+
+// 预览照片
+function previewLifePhoto() {
+  var inp = document.getElementById('lifePhotoInput');
+  var nameEl = document.getElementById('lifePhotoName');
+  if (!inp || !inp.files || !inp.files[0]) return;
+  var file = inp.files[0];
+  nameEl.textContent = file.name;
+  compressImage(file, 800, 0.6).then(function (b64) {
+    window._lifePhotoData = b64;
+  }).catch(function () { Utils.toast('图片处理失败', 'warning'); });
+}
+
+// 提交生活记录
+async function submitLifeEntry() {
+  var text = (document.getElementById('lifeText')?.value || '').trim();
+  if (!text && !window._lifePhotoData) { Utils.toast('至少写点文字或拍张照片', 'warning'); return; }
+  ensureLife();
+  var entry = {
+    id: Date.now(),
+    date: Utils.today(),
+    time: new Date().toTimeString().slice(0, 5),
+    text: text,
+    photo: window._lifePhotoData || null
+  };
+  state.life.log.push(entry);
+  try { Store.save(); } catch (e) {}
+  closeModal();
+  renderLifeJournal();
+  Utils.toast('已记录', 'success');
+}
+
+// 删除生活记录
+function deleteLifeEntry(id) {
+  if (!confirm('确定删除这条记录？')) return;
+  ensureLife();
+  state.life.log = state.life.log.filter(function (e) { return e.id !== id; });
+  try { Store.save(); } catch (e) {}
+  renderLifeJournal();
+}
+
+// 渲染生活记录页
+function renderLifeJournal() {
+  ensureLife();
+  var logs = state.life.log.slice().sort(function (a, b) { return b.id - a.id; });
+  var html = '<div class="life-journal">';
+
+  // 添加按钮
+  html += '<div style="margin-bottom:16px;"><button class="btn btn-primary" onclick="openLifeModal()" style="width:100%;padding:14px;font-size:16px;">✏️ 记录今天的生活</button></div>';
+
+  if (!logs.length) {
+    html += '<div class="error-empty"><div class="icon">📝</div><div style="font-size:16px;font-weight:600;">还没有生活记录</div><div style="font-size:14px;margin-top:4px;">点击上方按钮，写点小心情或拍张照片吧</div></div>';
+  } else {
+    // 按日期分组
+    var groups = {};
+    logs.forEach(function (e) {
+      var d = e.date;
+      if (!groups[d]) groups[d] = [];
+      groups[d].push(e);
+    });
+    var dates = Object.keys(groups).sort().reverse();
+
+    dates.forEach(function (date) {
+      html += '<div class="life-date-header" style="font-size:15px;font-weight:600;margin:16px 0 8px;padding:6px 0;border-bottom:2px solid var(--primary);color:var(--primary);">📅 ' + date + '</div>';
+      groups[date].forEach(function (e) {
+        html += '<div class="card life-card" style="margin-bottom:12px;padding:14px;">';
+        if (e.photo) {
+          html += '<div style="margin-bottom:10px;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" alt="照片" onclick="viewLifePhoto(\'' + e.id + '\')" /></div>';
+        }
+        if (e.text) {
+          html += '<div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">' + escapeHtml(e.text) + '</div>';
+        }
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px;color:var(--text-light);">' +
+          '<span>' + (e.time || '') + '</span>' +
+          '<button class="btn btn-xs btn-secondary" onclick="deleteLifeEntry(' + e.id + ')" style="color:var(--danger, #e53e3e);">删除</button>' +
+          '</div></div>';
+      });
+    });
+  }
+  html += '</div>';
+
+  // 底部间距，避免被底部导航遮挡
+  html += '<div style="height:80px;"></div>';
+
+  document.getElementById('page-life').innerHTML = html;
+}
+
+// 查看大图
+window.viewLifePhoto = function (id) {
+  ensureLife();
+  var entry = state.life.log.find(function (e) { return String(e.id) === String(id); });
+  if (!entry || !entry.photo) return;
+  openModal("📷 照片", '<div style="text-align:center;"><img src="' + entry.photo + '" style="max-width:100%;max-height:70vh;border-radius:8px;" alt="照片" /></div>', '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+};
 
 function renderExercise() {
   // 状态字段补齐（兼容旧存档）
