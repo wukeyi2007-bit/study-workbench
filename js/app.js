@@ -5176,8 +5176,10 @@ function renderWeeklySummary() {
     if (!weeks[key]) { weeks[key] = { runKm: 0, videoByCat: {}, monday: monday }; }
     if (e.type === 'run') weeks[key].runKm += (e.distance || 0);
     else if (e.type === 'video') {
-      const v = getVideoById(e.category);
-      const catName = v ? v.name : (e.category || '其他');
+      // 先按视频 ID 找到分类 ID，再查分类名称（不是视频名——视频名很长，比如"居家改善翼状肩胛正确贴🔥..."）
+      const catId = getVideoCategoryId(e.category);
+      const cat = getVideoCategories().find(c => c.id === catId);
+      const catName = cat ? cat.name : (catId || '其他');
       weeks[key].videoByCat[catName] = (weeks[key].videoByCat[catName] || 0) + 1;
     }
   });
