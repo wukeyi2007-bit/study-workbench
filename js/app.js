@@ -1640,7 +1640,7 @@ function renderReviewCard() {
     const meaningDisplay = senses.length ? senses.map(s => s.meaning).join('；') : cleanSenseText(word.meaning || '');
     body = returnTag + weakToggle + '<div id="reviewStepLabel" style="font-size:13px;color:var(--text-light);margin-bottom:8px;">第 2 步 · 根据中文写出英文</div>' +
       '<div id="reviewSpellMeaning" class="word-display" style="font-size:24px;color:var(--primary);margin-bottom:8px;">' + escapeHtml(meaningDisplay) + '</div>' +
-      '<div class="speech-controls" style="justify-content:center;margin:8px 0 12px;"><button class="btn btn-speech" onmousedown="event.preventDefault();" ontouchstart="event.preventDefault();" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
+      '<div class="speech-controls" style="justify-content:center;margin:8px 0 12px;"><button class="btn btn-speech" onmousedown="event.preventDefault();" onclick="speakWord(\'' + word.word.replace(/'/g,"\\'") + '\')">🔊 听发音</button></div>' +
       '<div style="color:var(--text-secondary);font-size:13px;margin-bottom:16px;">请输入对应的英文单词</div>' +
       '<input id="reviewSpellInput" class="spell-input" style="max-width:360px;" placeholder="输入英文单词..." onkeydown="if(event.key===\'Enter\')submitReviewSpell()" autocomplete="off" />' +
       '<div style="margin-top:12px;"><button id="reviewSpellSubmitBtn" class="btn btn-primary" onclick="submitReviewSpell()">提交拼写</button></div>' +
