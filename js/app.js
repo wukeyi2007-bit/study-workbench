@@ -5163,6 +5163,39 @@ function getWeekExerciseStats() {
   };
 }
 
+// 每周锻炼汇总：按周分组统计跑步公里数和视频跟练次数，替代逐条翻阅
+function renderWeeklySummary() {
+  const logs = state.exercise?.log || [];
+  if (!logs.length) return '';
+  // 按周分组（ISO 周一 ~ 周日）
+  const weeks = {};
+  logs.forEach(e => {
+    const d = new Date(e.date + 'T00:00:00');
+    const day = d.getDay() || 7; // 周日是0，转为7
+    const monday = new Date(d); monday.setDate(d.getDate() - day + 1);
+    const key = monday.toISOString().slice(0, 10); // 周一日期作为 key
+    if (!weeks[key]) { weeks[key] = { runKm: 0, videoCount: 0, monday: monday }; }
+    if (e.type === 'run') weeks[key].runKm += (e.distance || 0);
+    else if (e.type === 'video') weeks[key].videoCount += 1;
+  });
+  const entries = Object.entries(weeks).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 8); // 最近8周
+  let html = '<div class="weekly-summary" style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:var(--surface);">';
+  html += '<div style="font-size:14px;font-weight:600;margin-bottom:8px;">📊 每周汇总</div>';
+  entries.forEach(([monday, stat]) => {
+    const sunday = new Date(stat.monday); sunday.setDate(sunday.getDate() + 6);
+    const fmt = d => `${d.getMonth()+1}/${d.getDate()}`;
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light, #eee);font-size:13px;">
+      <span style="color:var(--text-secondary);">${fmt(stat.monday)} - ${fmt(sunday)}</span>
+      <span style="display:flex;gap:12px;font-weight:500;">
+        ${stat.runKm > 0 ? `<span>🏃 ${stat.runKm}km</span>` : ''}
+        ${stat.videoCount > 0 ? `<span>💪 ${stat.videoCount}次</span>` : ''}
+      </span>
+    </div>`;
+  });
+  html += '</div>';
+  return html;
+}
+
 function renderExercise() {
   // 状态字段补齐（兼容旧存档）
   if (!state.exercise) {
@@ -5389,6 +5422,7 @@ function renderExercise() {
 
     <div class="card">
       <div class="card-title">📋 锻炼记录</div>
+      ${renderWeeklySummary()}
       ${logHtml}
     </div>
   `;
