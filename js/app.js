@@ -5211,7 +5211,9 @@ function renderWeeklySummary() {
 
 // ==================== 生活记录 ====================
 
-// 压缩图片到指定最大宽度和质量，返回 base64
+// 贴纸 emoji 候选
+var STICKER_EMOJIS = ['🌸','⭐','💕','✨','🌈','🦋','🌺','🍀','🎀','💫','❤️','☀️','🌙','🔥','🎵','🍓','🐱','💎','🫧','🍡','🥰','🌟','💖','🍩','☁️'];
+
 function compressImage(file, maxW, quality) {
   return new Promise(function (resolve, reject) {
     if (!file || !file.type.startsWith('image/')) return reject(new Error('不是图片文件'));
@@ -5235,21 +5237,48 @@ function compressImage(file, maxW, quality) {
   });
 }
 
-// 初始化生活记录状态
 function ensureLife() {
   if (!state.life) state.life = { log: [] };
   if (!state.life.log) state.life.log = [];
 }
 
-// 打开新增弹窗
-function openLifeModal() {
-  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;"></textarea>' +
+// ==================== 新建/编辑弹窗（支持贴纸） ====================
+
+var _lifeStickers = []; // 当前编辑中的贴纸 [{emoji, x, y, w, h}]
+var _lifePhotoData = null;
+var _lifeEditId = null; // 编辑模式下的条目 id
+
+function openLifeModal(editId) {
+  _lifeStickers = [];
+  _lifePhotoData = null;
+  _lifeEditId = editId || null;
+  var existingText = '';
+  var existingPhoto = null;
+  if (editId) {
+    ensureLife();
+    var entry = state.life.log.find(function (e) { return e.id === editId; });
+    if (entry) {
+      existingText = entry.text || '';
+      existingPhoto = entry.photo || null;
+      if (entry.stickers) _lifeStickers = JSON.parse(JSON.stringify(entry.stickers));
+    }
+  }
+  var body = '<textarea id="lifeText" class="modal-textarea" placeholder="写点什么..." style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;">' + escapeHtml(existingText) + '</textarea>' +
+    (existingPhoto && !_lifePhotoData ?
+      '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + existingPhoto + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>' :
+      (_lifePhotoData ? '<div style="margin-top:12px;"><canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas></div>' : '')) +
     '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 拍照/选照片<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
+  // 贴纸栏
+  body += '<div id="stickerBar" style="margin-top:10px;display:' + (_lifePhotoData ? 'flex' : 'none') + ';flex-wrap:wrap;gap:6px;">' +
+    '<span style="font-size:12px;color:var(--text-secondary);width:100%;">贴纸：点一下添加到照片，可拖拽移动</span>' +
+    STICKER_EMOJIS.map(function (e) { return '<button class="btn btn-xs" style="font-size:22px;padding:4px 6px;line-height:1;" onclick="addSticker(\'' + e + '\')">' + e + '</button>'; }).join('') +
+    '<button class="btn btn-xs btn-secondary" style="font-size:18px;padding:4px 8px;" onclick="undoSticker()">↩</button></div>';
   var actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
-    '<button class="btn btn-primary" onclick="submitLifeEntry()">保存</button>';
-  openModal("📝 记录生活", body, actions);
-  window._lifePhotoData = null;
+    '<button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>';
+  openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, actions);
   setTimeout(function () { var t = document.getElementById('lifeText'); if (t) t.focus(); }, 100);
+  if (existingPhoto && !_lifePhotoData) _lifePhotoData = existingPhoto;
+  if (_lifePhotoData) setTimeout(function () { initStickerCanvas(); }, 200);
 }
 
 // 预览照片
@@ -5259,31 +5288,160 @@ function previewLifePhoto() {
   if (!inp || !inp.files || !inp.files[0]) return;
   var file = inp.files[0];
   nameEl.textContent = file.name;
-  compressImage(file, 800, 0.6).then(function (b64) {
-    window._lifePhotoData = b64;
+  compressImage(file, 1200, 0.7).then(function (b64) {
+    _lifePhotoData = b64;
+    _lifeStickers = [];
+    // 替换预览区为 canvas
+    var prev = document.getElementById('lifePhotoPreview');
+    if (prev) prev.outerHTML = '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>';
+    else { var mBody = document.querySelector('.modal-body'); if (mBody) mBody.insertAdjacentHTML('beforeend', '<canvas id="stickerCanvas" style="width:100%;max-height:300px;border-radius:8px;touch-action:none;margin-top:12px;" onpointerdown="stickerPointerDown(event)" onpointermove="stickerPointerMove(event)" onpointerup="stickerPointerUp(event)"></canvas>'); }
+    var bar = document.getElementById('stickerBar');
+    if (bar) bar.style.display = 'flex';
+    setTimeout(function () { initStickerCanvas(); }, 100);
   }).catch(function () { Utils.toast('图片处理失败', 'warning'); });
 }
 
-// 提交生活记录
+// ==================== 贴纸 Canvas ====================
+
+var _stickerDragging = null;
+var _stickerDragStart = null;
+var _stickerScaleX = 1, _stickerScaleY = 1;
+
+function initStickerCanvas() {
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv || !_lifePhotoData) return;
+  var img = new Image();
+  img.onload = function () {
+    var maxW = Math.min(cv.parentElement.clientWidth - 2, 600);
+    var ratio = maxW / img.width;
+    cv.width = maxW;
+    cv.height = img.height * ratio;
+    _stickerScaleX = maxW / img.width;
+    _stickerScaleY = cv.height / img.height;
+    renderStickerCanvas();
+  };
+  img.src = _lifePhotoData;
+}
+
+function renderStickerCanvas() {
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv || !_lifePhotoData) return;
+  var ctx = cv.getContext('2d');
+  var img = new Image();
+  img.onload = function () {
+    ctx.clearRect(0, 0, cv.width, cv.height);
+    ctx.drawImage(img, 0, 0, cv.width, cv.height);
+    var fs = Math.max(24, Math.round(cv.width / 15));
+    _lifeStickers.forEach(function (s) {
+      ctx.font = fs + 'px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(s.emoji, s.x * cv.width, s.y * cv.height);
+      s._w = fs; s._h = fs;
+    });
+  };
+  img.src = _lifePhotoData;
+}
+
+function addSticker(emoji) {
+  _lifeStickers.push({ emoji: emoji, x: 0.5 + (Math.random() - 0.5) * 0.3, y: 0.5 + (Math.random() - 0.5) * 0.3 });
+  renderStickerCanvas();
+}
+
+function undoSticker() { _lifeStickers.pop(); renderStickerCanvas(); }
+
+function stickerPointerDown(e) {
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv) return;
+  var rect = cv.getBoundingClientRect();
+  var px = (e.clientX - rect.left) / cv.width;
+  var py = (e.clientY - rect.top) / cv.height;
+  // 从后往前找（最后放的贴纸在上面）
+  for (var i = _lifeStickers.length - 1; i >= 0; i--) {
+    var s = _lifeStickers[i];
+    var sx = s.x * cv.width, sy = s.y * cv.height;
+    var r = (s._w || 40) / 2;
+    var dx = px * cv.width - sx, dy = py * cv.height - sy;
+    if (Math.sqrt(dx * dx + dy * dy) < r * 1.5) {
+      _stickerDragging = i;
+      _stickerDragStart = { ex: e.clientX, ey: e.clientY, sx: s.x, sy: s.y };
+      cv.setPointerCapture(e.pointerId);
+      e.preventDefault();
+      return;
+    }
+  }
+}
+
+function stickerPointerMove(e) {
+  if (_stickerDragging === null) return;
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv) return;
+  var dx = (e.clientX - _stickerDragStart.ex) / cv.width;
+  var dy = (e.clientY - _stickerDragStart.ey) / cv.height;
+  _lifeStickers[_stickerDragging].x = Math.max(0.05, Math.min(0.95, _stickerDragStart.sx + dx));
+  _lifeStickers[_stickerDragging].y = Math.max(0.05, Math.min(0.95, _stickerDragStart.sy + dy));
+  renderStickerCanvas();
+}
+
+function stickerPointerUp(e) {
+  if (_stickerDragging !== null && document.getElementById('stickerCanvas')) {
+    document.getElementById('stickerCanvas').releasePointerCapture(e.pointerId);
+  }
+  _stickerDragging = null;
+  _stickerDragStart = null;
+}
+
+// 合成最终照片（底图 + 贴纸 → base64）
+function composeFinalPhoto() {
+  var cv = document.getElementById('stickerCanvas');
+  if (!cv || !_lifeStickers.length) return _lifePhotoData; // 没贴纸直接返回原图
+  var finalCv = document.createElement('canvas');
+  finalCv.width = cv.width;
+  finalCv.height = cv.height;
+  var ctx = finalCv.getContext('2d');
+  // 直接 copy 当前 canvas（已经渲染了底图 + 贴纸）
+  ctx.drawImage(cv, 0, 0);
+  return finalCv.toDataURL('image/jpeg', 0.8);
+}
+
+// ==================== 提交/编辑/删除 ====================
+
 async function submitLifeEntry() {
   var text = (document.getElementById('lifeText')?.value || '').trim();
-  if (!text && !window._lifePhotoData) { Utils.toast('至少写点文字或拍张照片', 'warning'); return; }
+  if (!text && !_lifePhotoData) { Utils.toast('至少写点文字或拍张照片', 'warning'); return; }
   ensureLife();
+  var photo = (_lifePhotoData && _lifeStickers.length) ? composeFinalPhoto() : _lifePhotoData;
   var entry = {
-    id: Date.now(),
+    id: _lifeEditId || Date.now(),
     date: Utils.today(),
-    time: new Date().toTimeString().slice(0, 5),
+    time: _lifeEditId ? null : new Date().toTimeString().slice(0, 5),
     text: text,
-    photo: window._lifePhotoData || null
+    photo: photo || null,
+    stickers: _lifeStickers.length ? JSON.parse(JSON.stringify(_lifeStickers)) : null
   };
+  // 编辑模式保留原日期和时间
+  if (_lifeEditId) {
+    var old = state.life.log.find(function (e) { return e.id === _lifeEditId; });
+    if (old) { entry.date = old.date; entry.time = old.time; }
+    state.life.log = state.life.log.filter(function (e) { return e.id !== _lifeEditId; });
+  }
   state.life.log.push(entry);
   try { Store.save(); } catch (e) {}
   closeModal();
+  _lifeStickers = []; _lifePhotoData = null; _lifeEditId = null;
   renderLifeJournal();
-  Utils.toast('已记录', 'success');
+  Utils.toast('已保存', 'success');
 }
 
-// 删除生活记录
+function editLifeEntry(id) {
+  ensureLife();
+  var entry = state.life.log.find(function (e) { return e.id === id; });
+  if (!entry) return;
+  _lifePhotoData = entry.photo || null;
+  _lifeStickers = entry.stickers ? JSON.parse(JSON.stringify(entry.stickers)) : [];
+  openLifeModal(id);
+}
+
 function deleteLifeEntry(id) {
   if (!confirm('确定删除这条记录？')) return;
   ensureLife();
@@ -5292,53 +5450,44 @@ function deleteLifeEntry(id) {
   renderLifeJournal();
 }
 
-// 渲染生活记录页
+// ==================== 渲染 ====================
+
 function renderLifeJournal() {
   ensureLife();
   var logs = state.life.log.slice().sort(function (a, b) { return b.id - a.id; });
   var html = '<div class="life-journal">';
-
-  // 添加按钮
   html += '<div style="margin-bottom:16px;"><button class="btn btn-primary" onclick="openLifeModal()" style="width:100%;padding:14px;font-size:16px;">✏️ 记录今天的生活</button></div>';
-
   if (!logs.length) {
     html += '<div class="error-empty"><div class="icon">📝</div><div style="font-size:16px;font-weight:600;">还没有生活记录</div><div style="font-size:14px;margin-top:4px;">点击上方按钮，写点小心情或拍张照片吧</div></div>';
   } else {
-    // 按日期分组
     var groups = {};
-    logs.forEach(function (e) {
-      var d = e.date;
-      if (!groups[d]) groups[d] = [];
-      groups[d].push(e);
-    });
+    logs.forEach(function (e) { var d = e.date; if (!groups[d]) groups[d] = []; groups[d].push(e); });
     var dates = Object.keys(groups).sort().reverse();
-
     dates.forEach(function (date) {
       html += '<div class="life-date-header" style="font-size:15px;font-weight:600;margin:16px 0 8px;padding:6px 0;border-bottom:2px solid var(--primary);color:var(--primary);">📅 ' + date + '</div>';
       groups[date].forEach(function (e) {
         html += '<div class="card life-card" style="margin-bottom:12px;padding:14px;">';
         if (e.photo) {
-          html += '<div style="margin-bottom:10px;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" alt="照片" onclick="viewLifePhoto(\'' + e.id + '\')" /></div>';
+          html += '<div style="margin-bottom:10px;position:relative;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" alt="照片" onclick="viewLifePhoto(\'' + e.id + '\')" />';
+          if (e.stickers && e.stickers.length) html += '<div style="position:absolute;top:6px;right:6px;background:rgba(0,0,0,0.5);color:#fff;font-size:13px;padding:2px 8px;border-radius:10px;">' + e.stickers.length + ' 贴纸</div>';
+          html += '</div>';
         }
         if (e.text) {
           html += '<div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">' + escapeHtml(e.text) + '</div>';
         }
         html += '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px;color:var(--text-light);">' +
           '<span>' + (e.time || '') + '</span>' +
+          '<div style="display:flex;gap:4px;">' +
+          '<button class="btn btn-xs btn-secondary" onclick="editLifeEntry(' + e.id + ')">✎ 编辑</button>' +
           '<button class="btn btn-xs btn-secondary" onclick="deleteLifeEntry(' + e.id + ')" style="color:var(--danger, #e53e3e);">删除</button>' +
-          '</div></div>';
+          '</div></div></div>';
       });
     });
   }
-  html += '</div>';
-
-  // 底部间距，避免被底部导航遮挡
-  html += '<div style="height:80px;"></div>';
-
+  html += '</div><div style="height:80px;"></div>';
   document.getElementById('page-life').innerHTML = html;
 }
 
-// 查看大图
 window.viewLifePhoto = function (id) {
   ensureLife();
   var entry = state.life.log.find(function (e) { return String(e.id) === String(id); });
