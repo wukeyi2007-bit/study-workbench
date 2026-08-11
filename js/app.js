@@ -5324,67 +5324,43 @@ window.viewLifePhoto = function (id) {
 
 // ==================== 睡眠记录 ====================
 
-function ensureSleep() {
-  if (!state.sleep) state.sleep = { log: [] };
-  if (!state.sleep.log) state.sleep.log = [];
-}
+function ensureSleep() { if (!state.sleep) state.sleep = { log: [] }; if (!state.sleep.log) state.sleep.log = []; }
 
-// 记录入睡
-function logSleepStart() {
-  ensureSleep();
-  var now = new Date();
-  var time = now.toTimeString().slice(0, 5);
-  var entry = { id: Date.now(), date: Utils.today(), sleepTime: time, wakeTime: null };
-  state.sleep.log.push(entry);
-  try { Store.save(); } catch (e) {}
-  renderSleep();
-  Utils.toast('🌙 已记录入睡 ' + time);
-}
-
-// 记录醒来（更新今天最后一条未醒来的记录，或新建）
-function logSleepEnd() {
+// 记录一次「入睡」：type = "sleep" 是夜间，type = "nap" 是白天小憩
+function logSleepAction(type) {
   ensureSleep();
   var now = new Date();
   var time = now.toTimeString().slice(0, 5);
   var today = Utils.today();
-  // 找今天还没填醒来时间的最后一条
+  // 找今天还没填醒来时间的最后一条同类型记录
   var entry = null;
   for (var i = state.sleep.log.length - 1; i >= 0; i--) {
     var e = state.sleep.log[i];
-    if (e.date === today && !e.wakeTime) { entry = e; break; }
+    if (e.date === today && e.type === type && !e.wakeTime) { entry = e; break; }
   }
-  if (!entry) {
-    // 没有未填的，新建一条
-    entry = { id: Date.now(), date: today, sleepTime: null, wakeTime: time };
-    state.sleep.log.push(entry);
-  } else {
+  if (entry) {
+    // 已有入睡记录，这次是醒来
     entry.wakeTime = time;
-  }
-  try { Store.save(); } catch (e) {}
-  renderSleep();
-  if (entry.sleepTime) {
-    var dur = calcSleepHours(entry.sleepTime, entry.wakeTime);
-    Utils.toast('☀️ 已记录醒来 ' + time + ' · 约 ' + dur.toFixed(1) + ' h');
+    try { Store.save(); } catch (ex) {}
+    renderSleep();
+    var label = type === 'nap' ? '☕ 小憩' : (Number(time.split(':')[0]) < 12 ? '☀️ 早上' : '☀️ 醒来');
+    Utils.toast(label + ' ' + time);
   } else {
-    Utils.toast('☀️ 已记录醒来 ' + time + '（缺少入睡时间，无法计算时长）');
+    // 新入睡记录
+    entry = { id: Date.now(), date: today, type: type, sleepTime: time, wakeTime: null };
+    state.sleep.log.push(entry);
+    try { Store.save(); } catch (ex) {}
+    renderSleep();
+    Utils.toast((type === 'nap' ? '☕ 开始小憩' : '🌙 准备睡觉') + ' ' + time);
   }
 }
 
-// 计算睡眠小时数（处理跨天：如 23:00 → 07:00 = 8h）
-function calcSleepHours(sleep, wake) {
-  if (!sleep || !wake) return 0;
-  var sh = parseInt(sleep.split(':')[0]) * 60 + parseInt(sleep.split(':')[1]);
-  var wh = parseInt(wake.split(':')[0]) * 60 + parseInt(wake.split(':')[1]);
-  if (wh <= sh) wh += 24 * 60; // 跨天
-  return (wh - sh) / 60;
-}
-
-// 编辑一条睡眠记录的时间
+// 手动修改时间
 function editSleepEntry(id, field) {
   ensureSleep();
   var entry = state.sleep.log.find(function (e) { return e.id === id; });
   if (!entry) return;
-  var label = field === 'sleepTime' ? '入睡时间 (HH:MM)' : '醒来时间 (HH:MM)';
+  var label = field === 'sleepTime' ? '入睡/小憩时间 (HH:MM)' : '醒来时间 (HH:MM)';
   var val = entry[field] || '';
   var body = '<label class="modal-label">' + label + '</label><input class="modal-input" id="editSleepTime" type="time" value="' + val + '" />';
   openModal('✏️ 修改时间', body,
@@ -5404,7 +5380,6 @@ function saveSleepEdit(id, field) {
   renderSleep();
 }
 
-// 删除一条睡眠记录
 function deleteSleepEntry(id) {
   if (!confirm('确定删除？')) return;
   ensureSleep();
@@ -5413,109 +5388,71 @@ function deleteSleepEntry(id) {
   renderSleep();
 }
 
-// 生成睡眠建议（基于近 7 天数据）
-function getSleepAdvice() {
-  ensureSleep();
-  var logs = state.sleep.log.slice().sort(function (a, b) { return b.id - a.id; });
-  var recent = logs.filter(function (e) { return e.sleepTime && e.wakeTime; });
-  if (recent.length < 2) return ''; // 至少 2 条有效数据才出建议
-
-  // 取最近 7 天
-  var sevenDays = recent.slice(0, 7);
-  var hours = sevenDays.map(function (e) { return calcSleepHours(e.sleepTime, e.wakeTime); });
-  var avg = hours.reduce(function (s, v) { return s + v; }, 0) / hours.length;
-  var min = Math.min.apply(null, hours);
-  var max = Math.max.apply(null, hours);
-
-  // 入睡时间分析（统计晚期入睡次数）
-  var lateCount = sevenDays.filter(function (e) {
-    var h = parseInt(e.sleepTime.split(':')[0]);
-    return h >= 24 || h < 5; // 过了午夜或凌晨 5 点前睡
-  }).length;
-
-  // 规律性分析（标准差）
-  var variance = hours.reduce(function (s, v) { return s + (v - avg) * (v - avg); }, 0) / hours.length;
-  var stdDev = Math.sqrt(variance);
-
-  var tips = [];
-  tips.push('<div style="background:var(--surface);border:1px solid var(--primary);border-radius:10px;padding:14px;margin-bottom:16px;">');
-  tips.push('<div style="font-size:14px;font-weight:600;margin-bottom:8px;">💡 睡眠建议（近7天）</div>');
-  tips.push('<div style="font-size:13px;color:var(--text-secondary);margin-bottom:6px;">平均 ' + avg.toFixed(1) + ' h · 最短 ' + min.toFixed(1) + ' h · 最长 ' + max.toFixed(1) + ' h</div>');
-
-  var advice = [];
-  if (avg < 6) advice.push('⚠️ 睡眠不足（< 6h），建议每天比现在早 30 分钟上床，尽量睡满 7 小时');
-  else if (avg < 7) advice.push('📌 睡眠偏少（' + avg.toFixed(1) + 'h），大学生每天建议 7-9 小时，试着比平时提前 15 分钟睡');
-  else if (avg >= 7 && avg <= 9) advice.push('✅ 睡眠时长良好（' + avg.toFixed(1) + 'h），继续保持');
-  else advice.push('📌 睡眠偏长（> 9h），过长时间睡眠可能反而让人疲惫，尝试控制在 8 小时左右');
-
-  if (lateCount >= 4) advice.push('🌙 最近一周有 ' + lateCount + ' 天入睡较晚（午夜后），长期熬夜影响记忆力和学习效率，试着每天比前一天提前 15 分钟上床');
-  else if (lateCount >= 2) advice.push('🌙 最近有 ' + lateCount + ' 天入睡较晚，偶尔熬夜没事，但尽量控制在每周 2 次以内');
-
-  if (stdDev > 1.5) advice.push('⏰ 睡眠时间不够规律（波动 > 1.5h），固定入睡和醒来时间能显著改善睡眠质量和白天状态');
-  else if (stdDev > 0.8) advice.push('⏰ 睡眠略有波动，试着工作日和周末保持一致，不要补觉补太多');
-
-  advice.forEach(function (a) {
-    tips.push('<div style="font-size:13px;padding:4px 0;line-height:1.5;">' + a + '</div>');
-  });
-  tips.push('</div>');
-  return tips.join('');
-}
-
-// 渲染睡眠页面
 function renderSleep() {
   ensureSleep();
-  var logs = state.sleep.log.slice().sort(function (a, b) { return b.id - a.id; });
   var today = Utils.today();
-  var todayEntry = logs.find(function (e) { return e.date === today; });
+  var todaySleep = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'sleep'; });
+  var todayNap = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'nap'; });
+  var lastSleep = todaySleep.length ? todaySleep[todaySleep.length - 1] : null;
+  var lastNap = todayNap.length ? todayNap[todayNap.length - 1] : null;
 
   var html = '<div class="sleep-page">';
 
-  // 今日状态卡片
-  var statusHtml = '';
-  if (todayEntry && todayEntry.sleepTime && todayEntry.wakeTime) {
-    var dur = calcSleepHours(todayEntry.sleepTime, todayEntry.wakeTime);
-    var emoji = dur >= 7 ? '😊' : dur >= 6 ? '😐' : '😴';
-    statusHtml = '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;background:var(--primary-bg);">' +
-      '<div style="font-size:40px;">' + emoji + '</div>' +
-      '<div style="font-size:28px;font-weight:700;color:var(--primary);margin:8px 0;">' + dur.toFixed(1) + ' h</div>' +
-      '<div style="font-size:14px;color:var(--text-secondary);">' + todayEntry.sleepTime + ' → ' + todayEntry.wakeTime + '</div>' +
-      '</div>';
-  } else if (todayEntry && todayEntry.sleepTime) {
-    statusHtml = '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;">' +
-      '<div style="font-size:40px;">🌙</div><div style="font-size:18px;font-weight:600;margin:8px 0;">入睡 ' + todayEntry.sleepTime + '</div>' +
-      '<div style="font-size:14px;color:var(--text-secondary);">还没醒来，起床后记得点「我醒了」</div></div>';
-  } else if (todayEntry && todayEntry.wakeTime) {
-    statusHtml = '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;">' +
-      '<div style="font-size:40px;">☀️</div><div style="font-size:18px;font-weight:600;margin:8px 0;">醒来 ' + todayEntry.wakeTime + '</div>' +
-      '<div style="font-size:14px;color:var(--text-secondary);">缺少入睡时间，时长无法计算</div></div>';
-  } else {
-    statusHtml = '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;">' +
-      '<div style="font-size:40px;">🌙</div><div style="font-size:16px;font-weight:600;margin:8px 0;">今天还没记录</div>' +
-      '<div style="font-size:14px;color:var(--text-secondary);">睡前点"准备睡觉"，醒来点"我醒了"</div></div>';
+  // 今日状态
+  html += '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;background:var(--primary-bg);">';
+  html += '<div style="font-size:40px;">🌙</div>';
+  html += '<div style="font-size:16px;font-weight:600;margin:8px 0;">今天 ' + today + '</div>';
+  if (lastSleep) {
+    html += '<div style="font-size:14px;color:var(--text-secondary);">入睡 ' + lastSleep.sleepTime + (lastSleep.wakeTime ? ' → 醒来 ' + lastSleep.wakeTime : '（还没醒来）') + '</div>';
   }
-  html += statusHtml;
+  if (lastNap) {
+    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">☕ 小憩 ' + lastNap.sleepTime + (lastNap.wakeTime ? ' → 醒来 ' + lastNap.wakeTime : '（还在休息）') + '</div>';
+  }
+  if (!lastSleep && !lastNap) {
+    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:8px;">今天还没有记录</div>';
+  }
+  html += '</div>';
 
-  // 操作按钮
-  html += '<div class="grid grid-2" style="margin-bottom:16px;">' +
-    '<button class="btn" style="background:#2d3748;color:#e2e8f0;padding:16px;font-size:15px;border-radius:10px;" onclick="logSleepStart()">🌙 准备睡觉</button>' +
-    '<button class="btn" style="background:#f6ad55;color:#fff;padding:16px;font-size:15px;border-radius:10px;" onclick="logSleepEnd()">☀️ 我醒了</button>' +
-    '</div>';
+  // 夜间睡眠按钮
+  html += '<div class="card" style="margin-bottom:12px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;">🌙 夜间睡眠</div>';
+  html += '<div class="grid grid-2">' +
+    '<button class="btn" style="background:#2d3748;color:#e2e8f0;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'sleep\')">🌙 准备睡觉</button>' +
+    '<button class="btn" style="background:#f6ad55;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'sleep\')">☀️ 我醒了</button>' +
+    '</div></div>';
 
-  // 睡眠建议
-  html += getSleepAdvice();
+  // 白天小憩按钮
+  html += '<div class="card" style="margin-bottom:16px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;">☕ 白天小憩</div>';
+  html += '<div class="grid grid-2">' +
+    '<button class="btn" style="background:#9b59b6;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'nap\')">😴 我要睡觉</button>' +
+    '<button class="btn" style="background:#e8a87c;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'nap\')">☕ 我醒了</button>' +
+    '</div></div>';
 
-  // 历史记录
-  if (logs.length) {
-    html += '<div class="card"><div class="card-title">📅 睡眠记录</div>';
-    logs.forEach(function (e) {
-      var dur = e.sleepTime && e.wakeTime ? calcSleepHours(e.sleepTime, e.wakeTime) : 0;
-      var durStr = dur > 0 ? ' · ' + dur.toFixed(1) + ' h' : '';
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
-        '<div><span style="font-weight:500;">' + e.date + '</span>' +
-        '<span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + durStr + '</span></div>' +
+  // 历史记录：夜间睡眠
+  var sleepLogs = state.sleep.log.filter(function (e) { return e.type === 'sleep'; }).sort(function (a, b) { return b.id - a.id; });
+  if (sleepLogs.length) {
+    html += '<div class="card" style="margin-bottom:12px;"><div class="card-title">🌙 夜间睡眠记录</div>';
+    sleepLogs.forEach(function (e) {
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
+        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + '</span></div>' +
         '<div style="display:flex;gap:4px;">' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')" title="改入睡时间">✎</button>' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')" title="改醒来时间">✎</button>' +
+        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
+        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
+        '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
+        '</div></div>';
+    });
+    html += '</div>';
+  }
+
+  // 历史记录：白天小憩
+  var napLogs = state.sleep.log.filter(function (e) { return e.type === 'nap'; }).sort(function (a, b) { return b.id - a.id; });
+  if (napLogs.length) {
+    html += '<div class="card"><div class="card-title">☕ 白天小憩记录</div>';
+    napLogs.forEach(function (e) {
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
+        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + '</span></div>' +
+        '<div style="display:flex;gap:4px;">' +
+        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
+        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
         '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
         '</div></div>';
     });
@@ -5525,6 +5462,7 @@ function renderSleep() {
   html += '<div style="height:80px;"></div></div>';
   document.getElementById('page-sleep').innerHTML = html;
 }
+
 
 function renderExercise() {
   // 状态字段补齐（兼容旧存档）
