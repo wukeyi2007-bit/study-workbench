@@ -5324,7 +5324,15 @@ window.viewLifePhoto = function (id) {
 
 // ==================== 睡眠记录 ====================
 
-function ensureSleep() { if (!state.sleep) state.sleep = { log: [] }; if (!state.sleep.log) state.sleep.log = []; }
+function ensureSleep() {
+  if (!state.sleep) state.sleep = { log: [] };
+  if (!state.sleep.log) state.sleep.log = [];
+  // 旧数据迁移：没有 type 字段的默认视为夜间睡眠
+  if (state.sleep.log.some(function (e) { return !e.type; })) {
+    state.sleep.log.forEach(function (e) { if (!e.type) e.type = 'sleep'; });
+    try { Store.save(); } catch (ex) {}
+  }
+}
 
 // 记录一次「入睡」：type = "sleep" 是夜间，type = "nap" 是白天小憩
 function logSleepAction(type) {
