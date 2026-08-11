@@ -1,5 +1,14 @@
 [
   {
+    "id": "d28f846",
+    "cat": "domestic",
+    "important": true,
+    "title": "国家卫健委回应新冠药购买难",
+    "summary": "【百度热搜】国家卫健委回应新冠药购买难",
+    "source": "百度热搜",
+    "date": "2026-08-11"
+  },
+  {
     "id": "d42b8f1",
     "cat": "domestic",
     "important": true,
@@ -11,36 +20,27 @@
   {
     "id": "d528601",
     "cat": "domestic",
-    "important": true,
+    "important": false,
     "title": "“只有我们中国共产党人实现了”",
     "summary": "【百度热搜】“只有我们中国共产党人实现了”",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
   {
-    "id": "d6cf0fd",
+    "id": "d83844b",
     "cat": "domestic",
     "important": false,
-    "title": "15岁男孩骑电瓶车进藏：去看务工父亲",
-    "summary": "【百度热搜】15岁男孩骑电瓶车进藏：去看务工父亲",
+    "title": "蔡磊留给儿子最酷的告白",
+    "summary": "【百度热搜】蔡磊留给儿子最酷的告白",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
   {
-    "id": "d84d489",
+    "id": "d85a61d",
     "cat": "domestic",
     "important": false,
-    "title": "博物馆“非必要不预约”",
-    "summary": "【百度热搜】博物馆“非必要不预约”",
-    "source": "百度热搜",
-    "date": "2026-08-11"
-  },
-  {
-    "id": "db00971",
-    "cat": "domestic",
-    "important": false,
-    "title": "沃尔沃S90价格大幅跳水",
-    "summary": "【百度热搜】沃尔沃S90价格大幅跳水",
+    "title": "今年“984.5高校”火了",
+    "summary": "【百度热搜】今年“984.5高校”火了",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
@@ -54,48 +54,48 @@
     "date": "2026-08-11"
   },
   {
-    "id": "i33be48",
+    "id": "i2ce81c",
     "cat": "international",
     "important": true,
+    "title": "何赛飞感慨容颜老去",
+    "summary": "【百度热搜】何赛飞感慨容颜老去",
+    "source": "百度热搜",
+    "date": "2026-08-11"
+  },
+  {
+    "id": "i33be48",
+    "cat": "international",
+    "important": false,
     "title": "男子瞒着妻子5年给父母转账50万",
     "summary": "【百度热搜】男子瞒着妻子5年给父母转账50万",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
   {
-    "id": "ic1b31a",
+    "id": "ibe3386",
     "cat": "international",
     "important": false,
-    "title": "夫妻结婚40年都AA制 丈夫在家装监控",
-    "summary": "【百度热搜】夫妻结婚40年都AA制 丈夫在家装监控",
+    "title": "沃尔沃S90价格大幅跳水",
+    "summary": "【百度热搜】沃尔沃S90价格大幅跳水",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
   {
-    "id": "idf098a",
+    "id": "id62d32",
     "cat": "international",
     "important": false,
-    "title": "马丽夫妇包70场支持沈腾新片",
-    "summary": "【百度热搜】马丽夫妇包70场支持沈腾新片",
+    "title": "不满房东涨租 于东来自掏65亿建商场",
+    "summary": "【百度热搜】不满房东涨租 于东来自掏65亿建商场",
     "source": "百度热搜",
     "date": "2026-08-11"
   },
   {
-    "id": "ied91a0",
-    "cat": "international",
-    "important": false,
-    "title": "今年“984.5高校”火了",
-    "summary": "【百度热搜】今年“984.5高校”火了",
-    "source": "百度热搜",
-    "date": "2026-08-11"
-  },
-  {
-    "id": "t8e3706",
+    "id": "t244cf8",
     "cat": "tech",
     "important": true,
-    "title": "关键共和党议员敦促行政当局堵住有关AI芯片最终用户的出口管制漏洞",
-    "summary": "【美国之音】关键共和党议员敦促行政当局堵住有关AI芯片最终用户的出口管制漏洞",
-    "source": "美国之音",
+    "title": "应对芯片供应短缺 苹果测试长鑫存储产品",
+    "summary": "【RFI】应对芯片供应短缺 苹果测试长鑫存储产品",
+    "source": "RFI",
     "date": "2026-08-11"
   },
   {
@@ -126,21 +126,12 @@
     "date": "2026-08-11"
   },
   {
-    "id": "f493c57",
+    "id": "f3165cb",
     "cat": "finance",
     "important": true,
-    "title": "港股开盘：恒生指数涨0.24%，恒生科技指数涨0.27%",
-    "summary": "【东方财富】港股开盘：恒生指数涨0.24%，恒生科技指数涨0.27%",
-    "source": "东方财富",
-    "date": "2026-08-11"
-  },
-  {
-    "id": "fbea06d",
-    "cat": "finance",
-    "important": false,
-    "title": "国内期货市场开盘涨多跌少 燃油、原油涨超4%",
-    "summary": "【cs.com.cn】国内期货市场开盘涨多跌少 燃油、原油涨超4%",
-    "source": "cs.com.cn",
+    "title": "港股开盘：恒指、恒科集体高开",
+    "summary": "【finance.eastmoney.com】港股开盘：恒指、恒科集体高开",
+    "source": "finance.eastmoney.com",
     "date": "2026-08-11"
   },
   {
@@ -150,6 +141,15 @@
     "title": "中信建投：宇树IPO定价150.80元/股超预期 利好机器人板块",
     "summary": "【观点网】中信建投：宇树IPO定价150.80元/股超预期 利好机器人板块",
     "source": "观点网",
+    "date": "2026-08-11"
+  },
+  {
+    "id": "fd3315e",
+    "cat": "finance",
+    "important": false,
+    "title": "8月11日国内商品期货开盘多数上行 原油、燃料油涨幅超4%",
+    "summary": "【cnr.cn】8月11日国内商品期货开盘多数上行 原油、燃料油涨幅超4%",
+    "source": "cnr.cn",
     "date": "2026-08-11"
   }
 ]
