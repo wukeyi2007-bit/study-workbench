@@ -651,6 +651,16 @@ function openSettings() {
     </select>
     <div style="font-size:12px;color:var(--text-light);margin-top:4px;">备考建议 0.8–0.9×，清晰又不拖沓。</div>
     <hr style="margin:16px 0;border:none;border-top:1px solid var(--border);" />
+    <label class="modal-label">发音方式（听力 / 单词朗读）</label>
+    <select class="modal-input" id="setAudioSource">
+      <option value="auto" ${(!s.audioSource || (s.audioSource !== 'youdao' && s.audioSource !== 'tts')) ? 'selected' : ''}>自动（真人发音优先，失败用系统音）</option>
+      <option value="youdao" ${s.audioSource === 'youdao' ? 'selected' : ''}>真人发音（有道，自然清晰）</option>
+      <option value="tts" ${s.audioSource === 'tts' ? 'selected' : ''}>系统发音（设备朗读，离线稳定）</option>
+    </select>
+    <div style="font-size:12px;color:var(--text-light);margin-top:4px;line-height:1.6;">
+      在微信里若听着卡顿、发怪声，多半是真人发音的网络被拦；切到「系统发音」即可稳定。若系统音太机械，切回「自动」或「真人发音」。
+    </div>
+    <hr style="margin:16px 0;border:none;border-top:1px solid var(--border);" />
     <div style="font-size:14px;font-weight:600;color:var(--text-secondary);margin-bottom:10px;">🧭 导航设置（自定义左侧任务栏）</div>
     <div style="font-size:12px;color:var(--text-light);margin-bottom:10px;line-height:1.5;">
       勾选你想显示在左侧边栏的模块；取消勾选即可隐藏。隐藏后不会删除数据，随时可再打开。
@@ -734,6 +744,8 @@ function saveSettings() {
   state.settings.speakVoiceURI = vSel ? vSel.value : '';
   const rSel = document.getElementById('setSpeakRate');
   state.settings.speakRate = rSel ? (parseFloat(rSel.value) || 0.9) : 0.9;
+  const aSrc = document.getElementById('setAudioSource');
+  state.settings.audioSource = aSrc ? (aSrc.value || 'auto') : 'auto';
   const gInput = document.getElementById('setDailyGoal');
   const gVal = gInput ? parseInt(gInput.value, 10) : 0;
   state.settings.dailyGoal = (gVal && gVal > 0) ? gVal : 0;

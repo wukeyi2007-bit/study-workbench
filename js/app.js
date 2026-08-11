@@ -66,7 +66,7 @@ const Store = {
 
   default() {
     return {
-      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "四级备考中", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
+      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "四级备考中", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, audioSource: "auto", cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
       progress: {
         currentSet: 1,
         wordsLearned: 0,
@@ -1935,47 +1935,70 @@ function submitReviewSpell() {
 // ===== 真人发音音频（有道词典，联网实时拉取；网络失败自动退回系统 TTS）=====
 const AudioPlayer = {
   el: null,
+  // 播放一个音频 URL：成功放完调用 onend；出错/超时调用 onerror
+  // 注意：onplaying 只负责取消「超时回退」计时器，不要把它当成已结束，否则 onended 会被吞掉（之前这里导致对话只放一句就卡住、按钮一直转圈）
   play(url, onend, onerror) {
     this.stop();
-    let settled = false;
+    let ended = false, failed = false;
     let timer = null;
-    const fail = () => { if (settled) return; settled = true; if (timer) clearTimeout(timer); this.el = null; if (onerror) onerror(); };
+    const onFail = () => { if (ended || failed) return; failed = true; if (timer) clearTimeout(timer); this.el = null; if (onerror) onerror(); };
     try {
       const a = new Audio();
       a.src = url;
       a.preload = 'auto';
       this.el = a;
-      a.onplaying = () => { settled = true; if (timer) clearTimeout(timer); };
-      a.onended = () => { if (settled) return; settled = true; if (timer) clearTimeout(timer); this.el = null; if (onend) onend(); };
-      a.onerror = fail;
-      timer = setTimeout(fail, 6000); // 6 秒还没出声则退回系统 TTS
+      a.onplaying = () => { if (timer) { clearTimeout(timer); timer = null; } };
+      a.onended = () => { if (ended || failed) return; ended = true; if (timer) clearTimeout(timer); this.el = null; if (onend) onend(); };
+      a.onerror = onFail;
+      timer = setTimeout(onFail, 7000); // 7 秒还没出声则退回系统 TTS
       const p = a.play();
-      if (p && p.catch) p.catch(fail);
-    } catch (e) { fail(); }
+      if (p && p.catch) p.catch(onFail);
+    } catch (e) { onFail(); }
   },
   stop() {
     if (this.el) { try { this.el.pause(); } catch (e) {} this.el = null; }
   }
 };
 
-// 播放英文文本：优先真人发音音频，网络失败自动退回系统 TTS
+// 当前选择的发音方式：auto(真人优先) / youdao(仅真人) / tts(仅系统)
+function audioSourceMode() {
+  const m = (state.settings && state.settings.audioSource) || 'auto';
+  return (m === 'youdao' || m === 'youdao-only') ? 'youdao' : (m === 'tts' ? 'tts' : 'auto');
+}
+
+// 播放英文文本：默认真人发音（美音，更自然），失败/超时自动退回系统 TTS
 function playTextAudio(text, opts = {}) {
   if (!text) return;
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
+  const mode = audioSourceMode();
+  if (mode === 'tts') { Speech.speak(text, opts); return; } // 用户指定用系统音，直接播，不联网
   // 加时间戳穿透浏览器/微信内置浏览器的音频缓存，避免串词（如 minute 读到 wear）
-  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1&_t=' + Date.now();
-  AudioPlayer.play(url, opts.onend, function () { Speech.speak(text, opts); });
+  let tried = 0;
+  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2&_t=' + Date.now();
+  const tryYoudao = () => {
+    AudioPlayer.play(mkUrl(), opts.onend, function () {
+      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次
+      else { Speech.speak(text, opts); }            // 最终退回系统发音
+    });
+  };
+  tryYoudao();
 }
 
-// 播放文本并带 TTS 参数作为退回（用于对话逐句，保留男女音高区分）
+// 播放文本并带 TTS 参数作为退回（用于对话逐句）
 function playRemoteWithFallback(text, ttsOpts, onDone) {
   if (!text) { if (onDone) onDone(); return; }
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
-  // 加时间戳穿透浏览器/微信内置浏览器的音频缓存，避免串词
-  const url = 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=1&_t=' + Date.now();
-  AudioPlayer.play(url, function () { if (onDone) onDone(); }, function () {
-    Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone }));
-  });
+  const mode = audioSourceMode();
+  if (mode === 'tts') { Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone })); return; }
+  let tried = 0;
+  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2&_t=' + Date.now();
+  const tryYoudao = () => {
+    AudioPlayer.play(mkUrl(), function () { if (onDone) onDone(); }, function () {
+      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次
+      else { Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone })); }
+    });
+  };
+  tryYoudao();
 }
 
 function speakWord(text) {
@@ -4106,7 +4129,7 @@ function playListeningSlow() {
   const btn = document.getElementById('listenPlayBtn');
   if (btn) btn.classList.add('playing');
   Speech.speak(q.play, {
-    rate: 0.55,
+    rate: 0.7,
     onend: function () { if (btn) btn.classList.remove('playing'); }
   });
   Utils.toast('🐢 慢速播放中…', 'success');
