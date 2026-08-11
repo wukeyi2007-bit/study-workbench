@@ -5390,11 +5390,21 @@ function deleteSleepEntry(id) {
 
 function renderSleep() {
   ensureSleep();
+  var dur = function (s, w) { // 计算时长（处理跨天）
+    if (!s || !w) return 0;
+    var sm = parseInt(s.split(':')[0]) * 60 + parseInt(s.split(':')[1]);
+    var wm = parseInt(w.split(':')[0]) * 60 + parseInt(w.split(':')[1]);
+    if (wm <= sm) wm += 24 * 60;
+    return (wm - sm) / 60;
+  };
+  var durStr = function (h) { return h > 0 ? ' · ' + h.toFixed(1) + ' h' : ''; };
   var today = Utils.today();
   var todaySleep = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'sleep'; });
   var todayNap = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'nap'; });
   var lastSleep = todaySleep.length ? todaySleep[todaySleep.length - 1] : null;
   var lastNap = todayNap.length ? todayNap[todayNap.length - 1] : null;
+  var sleepDur = lastSleep ? dur(lastSleep.sleepTime, lastSleep.wakeTime) : 0;
+  var napDur = lastNap ? dur(lastNap.sleepTime, lastNap.wakeTime) : 0;
 
   var html = '<div class="sleep-page">';
 
@@ -5403,10 +5413,10 @@ function renderSleep() {
   html += '<div style="font-size:40px;">🌙</div>';
   html += '<div style="font-size:16px;font-weight:600;margin:8px 0;">今天 ' + today + '</div>';
   if (lastSleep) {
-    html += '<div style="font-size:14px;color:var(--text-secondary);">入睡 ' + lastSleep.sleepTime + (lastSleep.wakeTime ? ' → 醒来 ' + lastSleep.wakeTime : '（还没醒来）') + '</div>';
+    html += '<div style="font-size:14px;color:var(--text-secondary);">入睡 ' + lastSleep.sleepTime + (lastSleep.wakeTime ? ' → 醒来 ' + lastSleep.wakeTime + durStr(sleepDur) : '（还没醒来）') + '</div>';
   }
   if (lastNap) {
-    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">☕ 小憩 ' + lastNap.sleepTime + (lastNap.wakeTime ? ' → 醒来 ' + lastNap.wakeTime : '（还在休息）') + '</div>';
+    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">☕ 小憩 ' + lastNap.sleepTime + (lastNap.wakeTime ? ' → 醒来 ' + lastNap.wakeTime + durStr(napDur) : '（还在休息）') + '</div>';
   }
   if (!lastSleep && !lastNap) {
     html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:8px;">今天还没有记录</div>';
@@ -5432,8 +5442,9 @@ function renderSleep() {
   if (sleepLogs.length) {
     html += '<div class="card" style="margin-bottom:12px;"><div class="card-title">🌙 夜间睡眠记录</div>';
     sleepLogs.forEach(function (e) {
+      var d = dur(e.sleepTime, e.wakeTime);
       html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
-        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + '</span></div>' +
+        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + durStr(d) + '</span></div>' +
         '<div style="display:flex;gap:4px;">' +
         '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
         '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
@@ -5448,8 +5459,9 @@ function renderSleep() {
   if (napLogs.length) {
     html += '<div class="card"><div class="card-title">☕ 白天小憩记录</div>';
     napLogs.forEach(function (e) {
+      var d = dur(e.sleepTime, e.wakeTime);
       html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
-        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + '</span></div>' +
+        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + durStr(d) + '</span></div>' +
         '<div style="display:flex;gap:4px;">' +
         '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
         '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
