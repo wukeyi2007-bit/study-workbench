@@ -6826,13 +6826,13 @@ function fixTodayWordCount(newCount) {
 }
 
 function init() {
-  // 兜底：无论后续哪步卡住，启动页最多显示 3 秒后强制消失，避免一直停在小猪看书页
+  // 兜底：无论后续哪步卡住，启动页最多 1.5 秒后强制消失
   const splashEl = document.getElementById('appSplash');
   if (splashEl) {
     setTimeout(() => {
       splashEl.classList.add('hidden');
       setTimeout(() => splashEl.remove(), 300);
-    }, 3000);
+    }, 1500);
   }
 
   checkStreak();
