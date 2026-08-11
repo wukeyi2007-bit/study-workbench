@@ -5398,91 +5398,99 @@ function deleteSleepEntry(id) {
 
 function renderSleep() {
   ensureSleep();
-  var dur = function (s, w) { // 计算时长（处理跨天）
+  var tm = function (v) { return (v && typeof v === 'string' && v.indexOf(':') > 0) ? v : '--:--'; };
+  var dur = function (s, w) {
     if (!s || !w) return 0;
     var sm = parseInt(s.split(':')[0]) * 60 + parseInt(s.split(':')[1]);
     var wm = parseInt(w.split(':')[0]) * 60 + parseInt(w.split(':')[1]);
     if (wm <= sm) wm += 24 * 60;
     return (wm - sm) / 60;
   };
-  var durStr = function (h) { return h > 0 ? ' · ' + h.toFixed(1) + ' h' : ''; };
+  var durStr = function (h) { return h > 0 ? ' · 休息 ' + h.toFixed(1) + ' 小时' : ''; };
   var today = Utils.today();
-  var todaySleep = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'sleep'; });
+  var todayRest = state.sleep.log.filter(function (e) { return e.date === today && (e.type === 'sleep' || !e.type); });
   var todayNap = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'nap'; });
-  var lastSleep = todaySleep.length ? todaySleep[todaySleep.length - 1] : null;
+  var lastRest = todayRest.length ? todayRest[todayRest.length - 1] : null;
   var lastNap = todayNap.length ? todayNap[todayNap.length - 1] : null;
-  var sleepDur = lastSleep ? dur(lastSleep.sleepTime, lastSleep.wakeTime) : 0;
+  var restDur = lastRest ? dur(lastRest.sleepTime, lastRest.wakeTime) : 0;
   var napDur = lastNap ? dur(lastNap.sleepTime, lastNap.wakeTime) : 0;
 
-  var html = '<div class="sleep-page">';
+  var html = '<div style="padding-bottom:80px;">';
 
   // 今日状态
-  html += '<div class="card" style="text-align:center;padding:20px;margin-bottom:16px;background:var(--primary-bg);">';
-  html += '<div style="font-size:40px;">🌙</div>';
-  html += '<div style="font-size:16px;font-weight:600;margin:8px 0;">今天 ' + today + '</div>';
-  if (lastSleep) {
-    html += '<div style="font-size:14px;color:var(--text-secondary);">入睡 ' + lastSleep.sleepTime + (lastSleep.wakeTime ? ' → 醒来 ' + lastSleep.wakeTime + durStr(sleepDur) : '（还没醒来）') + '</div>';
+  html += '<div class="card" style="padding:18px 16px;margin-bottom:14px;background:linear-gradient(135deg,#fdf6f0,#fef3eb);text-align:center;">';
+  html += '<div style="font-size:32px;line-height:1;">🌙</div>';
+  html += '<div style="font-size:15px;font-weight:600;margin:8px 0 6px;color:var(--text-primary);">休息记录 · ' + today + '</div>';
+  if (lastRest) {
+    html += '<div style="font-size:14px;color:var(--text-secondary);">' + tm(lastRest.sleepTime) + ' → ' + tm(lastRest.wakeTime) + durStr(restDur) + '</div>';
   }
   if (lastNap) {
-    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">☕ 小憩 ' + lastNap.sleepTime + (lastNap.wakeTime ? ' → 醒来 ' + lastNap.wakeTime + durStr(napDur) : '（还在休息）') + '</div>';
+    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:6px;">☕ 小憩 ' + tm(lastNap.sleepTime) + ' → ' + tm(lastNap.wakeTime) + durStr(napDur) + '</div>';
   }
-  if (!lastSleep && !lastNap) {
-    html += '<div style="font-size:14px;color:var(--text-secondary);margin-top:8px;">今天还没有记录</div>';
+  if (!lastRest && !lastNap) {
+    html += '<div style="font-size:13px;color:var(--text-light);margin-top:6px;">还没有记录</div>';
   }
   html += '</div>';
 
-  // 夜间睡眠按钮
-  html += '<div class="card" style="margin-bottom:12px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;">🌙 夜间睡眠</div>';
-  html += '<div class="grid grid-2">' +
-    '<button class="btn" style="background:#2d3748;color:#e2e8f0;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'sleep\')">🌙 准备睡觉</button>' +
-    '<button class="btn" style="background:#f6ad55;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'sleep\')">☀️ 我醒了</button>' +
+  // 夜间休息按钮
+  html += '<div class="card" style="margin-bottom:12px;padding:14px;">';
+  html += '<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">🌙 夜间休息</div>';
+  html += '<div style="display:flex;gap:8px;">' +
+    '<button class="btn" style="flex:1;background:#2d3748;color:#e2e8f0;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('sleep')">准备睡觉</button>' +
+    '<button class="btn" style="flex:1;background:#f6ad55;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('sleep')">我醒了</button>' +
     '</div></div>';
 
-  // 白天小憩按钮
-  html += '<div class="card" style="margin-bottom:16px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;">☕ 白天小憩</div>';
-  html += '<div class="grid grid-2">' +
-    '<button class="btn" style="background:#9b59b6;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'nap\')">😴 我要睡觉</button>' +
-    '<button class="btn" style="background:#e8a87c;color:#fff;padding:14px;font-size:15px;border-radius:10px;" onclick="logSleepAction(\'nap\')">☕ 我醒了</button>' +
+  // 小憩按钮
+  html += '<div class="card" style="margin-bottom:14px;padding:14px;">';
+  html += '<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">☕ 小憩</div>';
+  html += '<div style="display:flex;gap:8px;">' +
+    '<button class="btn" style="flex:1;background:#9b59b6;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('nap')">我要休息</button>' +
+    '<button class="btn" style="flex:1;background:#e8a87c;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('nap')">休息完了</button>' +
     '</div></div>';
 
-  // 历史记录：夜间睡眠
-  var sleepLogs = state.sleep.log.filter(function (e) { return e.type === 'sleep'; }).sort(function (a, b) { return b.id - a.id; });
-  if (sleepLogs.length) {
-    html += '<div class="card" style="margin-bottom:12px;"><div class="card-title">🌙 夜间睡眠记录</div>';
-    sleepLogs.forEach(function (e) {
+  // 历史：夜间休息
+  var restLogs = state.sleep.log.filter(function (e) { return e.type === 'sleep' || !e.type; }).sort(function (a, b) { return b.id - a.id; });
+  if (restLogs.length) {
+    html += '<div class="card" style="margin-bottom:12px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">🌙 夜间休息记录</div>';
+    restLogs.forEach(function (e) {
       var d = dur(e.sleepTime, e.wakeTime);
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
-        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + durStr(d) + '</span></div>' +
-        '<div style="display:flex;gap:4px;">' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
-        '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
+        '<div style="flex:1;min-width:0;">' +
+          '<div style="font-weight:500;color:var(--text-primary);">' + e.date + '</div>' +
+          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + durStr(d) + '</div>' +
+        '</div>' +
+        '<div style="display:flex;gap:4px;flex-shrink:0;">' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','sleepTime')" title="改入睡时间">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','wakeTime')" title="改醒来时间">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
         '</div></div>';
     });
     html += '</div>';
   }
 
-  // 历史记录：白天小憩
+  // 历史：小憩
   var napLogs = state.sleep.log.filter(function (e) { return e.type === 'nap'; }).sort(function (a, b) { return b.id - a.id; });
   if (napLogs.length) {
-    html += '<div class="card"><div class="card-title">☕ 白天小憩记录</div>';
+    html += '<div class="card" style="padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">☕ 小憩记录</div>';
     napLogs.forEach(function (e) {
       var d = dur(e.sleepTime, e.wakeTime);
-      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
-        '<div><span style="font-weight:500;">' + e.date + '</span><span style="color:var(--text-secondary);margin-left:8px;">' + (e.sleepTime || '?') + ' → ' + (e.wakeTime || '?') + durStr(d) + '</span></div>' +
-        '<div style="display:flex;gap:4px;">' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
-        '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
-        '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
+        '<div style="flex:1;min-width:0;">' +
+          '<div style="font-weight:500;color:var(--text-primary);">' + e.date + '</div>' +
+          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + durStr(d) + '</div>' +
+        '</div>' +
+        '<div style="display:flex;gap:4px;flex-shrink:0;">' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','sleepTime')">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','wakeTime')">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
         '</div></div>';
     });
     html += '</div>';
   }
 
-  html += '<div style="height:80px;"></div></div>';
+  html += '</div>';
   document.getElementById('page-sleep').innerHTML = html;
 }
-
 
 function renderExercise() {
   // 状态字段补齐（兼容旧存档）
