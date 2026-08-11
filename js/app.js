@@ -5332,6 +5332,29 @@ function ensureSleep() {
     state.sleep.log.forEach(function (e) { if (!e.type) e.type = 'sleep'; });
     try { Store.save(); } catch (ex) {}
   }
+  repairSleepLog();
+}
+
+// 自动修复「跨天记录被拆成两条」的脏数据：前一条只有 sleepTime、后一条只有 wakeTime 时合并
+function repairSleepLog() {
+  var log = state.sleep.log;
+  if (!log || log.length < 2) return;
+  var changed = false;
+  for (var i = 0; i < log.length - 1; i++) {
+    var a = log[i], b = log[i + 1];
+    var aSleep = (a.type === 'sleep' || !a.type);
+    var bSleep = (b.type === 'sleep' || !b.type);
+    // a 有入睡、没醒来；b 有醒来、没入睡（或 b 入睡为空）→ 是同一段跨天休息被拆开了
+    if (aSleep && bSleep && a.sleepTime && !a.wakeTime && !b.sleepTime && b.wakeTime) {
+      a.wakeTime = b.wakeTime;
+      log.splice(i + 1, 1);
+      changed = true;
+      i--; // 重新检查当前位置
+    }
+  }
+  if (changed) {
+    try { Store.save(); } catch (ex) {}
+  }
 }
 
 // 记录一次「入睡」：type = "sleep" 是夜间，type = "nap" 是白天小憩
@@ -5340,15 +5363,16 @@ function logSleepAction(type) {
   var now = new Date();
   var time = now.toTimeString().slice(0, 5);
   var today = Utils.today();
-  // 找一张昨天作为 today 的日期-1
-  var d = new Date(today + 'T00:00:00');
-  d.setDate(d.getDate() - 1);
-  var yesterday = d.toISOString().slice(0, 10);
-  // 先找今天还没醒来的，再找昨天的（跨天场景：昨晚点「准备睡觉」，今早醒来日期已变）
+  // 兼容跨天/时区/日期偏移：往前多看 3 天，找到最近一条未醒来的同类型记录
+  var recentDates = [0, -1, -2, -3].map(function (off) {
+    var d = new Date(today + 'T00:00:00');
+    d.setDate(d.getDate() + off);
+    return d.toISOString().slice(0, 10);
+  });
   var entry = null;
   for (var i = state.sleep.log.length - 1; i >= 0; i--) {
     var e = state.sleep.log[i];
-    if (e.type === type && !e.wakeTime && (e.date === today || e.date === yesterday)) { entry = e; break; }
+    if (e.type === type && !e.wakeTime && recentDates.indexOf(e.date) >= 0) { entry = e; break; }
   }
   if (entry) {
     entry.wakeTime = time;
@@ -5473,19 +5497,22 @@ function renderSleep() {
       var d = dur(e.sleepTime, e.wakeTime);
       // 跨天显示：如果醒来时间早于入睡时间（过了午夜），显示两个日期
       var dateStr = e.date;
+      var isCross = false;
       if (e.wakeTime && e.sleepTime) {
         var sh = parseInt(e.sleepTime.split(':')[0]);
         var wh = parseInt(e.wakeTime.split(':')[0]);
         if (wh <= sh) {
+          isCross = true;
           // 跨天了，显示"前一天 → 后一天"
           var dd = new Date(e.date + 'T00:00:00'); dd.setDate(dd.getDate() + 1);
           dateStr = e.date.slice(5) + ' → ' + dd.toISOString().slice(5, 10);
         }
       }
+      var crossMark = isCross ? '（跨天）' : '';
       html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
         '<div style="flex:1;min-width:0;">' +
           '<div style="font-weight:500;color:var(--text-primary);">' + dateStr + '</div>' +
-          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + '（跨天） ' + durStr(d) + '</div>' +
+          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + crossMark + durStr(d) + '</div>' +
         '</div>' +
         '<div style="display:flex;gap:4px;flex-shrink:0;">' +
           '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')" title="改入睡时间">✎</button>' +
