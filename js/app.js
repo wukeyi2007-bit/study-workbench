@@ -5340,21 +5340,28 @@ function logSleepAction(type) {
   var now = new Date();
   var time = now.toTimeString().slice(0, 5);
   var today = Utils.today();
-  // 找今天还没填醒来时间的最后一条同类型记录
+  // 找一张昨天作为 today 的日期-1
+  var d = new Date(today + 'T00:00:00');
+  d.setDate(d.getDate() - 1);
+  var yesterday = d.toISOString().slice(0, 10);
+  // 先找今天还没醒来的，再找昨天的（跨天场景：昨晚点「准备睡觉」，今早醒来日期已变）
   var entry = null;
   for (var i = state.sleep.log.length - 1; i >= 0; i--) {
     var e = state.sleep.log[i];
-    if (e.date === today && e.type === type && !e.wakeTime) { entry = e; break; }
+    if (e.type === type && !e.wakeTime && (e.date === today || e.date === yesterday)) { entry = e; break; }
   }
   if (entry) {
-    // 已有入睡记录，这次是醒来
     entry.wakeTime = time;
     try { Store.save(); } catch (ex) {}
     renderSleep();
-    var label = type === 'nap' ? '☕ 小憩' : (Number(time.split(':')[0]) < 12 ? '☀️ 早上' : '☀️ 醒来');
+    var label = type === 'nap' ? '☕ 小憩' : '☀️ 醒了';
     Utils.toast(label + ' ' + time);
+    // 如果醒来时间填到了昨天的记录上，显示跨天提示
+    if (entry.date === yesterday) {
+      Utils.toast('昨晚 ' + entry.sleepTime + ' → 今早 ' + entry.wakeTime, 'success');
+    }
   } else {
-    // 新入睡记录
+    // 新入睡记录——记在今天
     entry = { id: Date.now(), date: today, type: type, sleepTime: time, wakeTime: null };
     state.sleep.log.push(entry);
     try { Store.save(); } catch (ex) {}
@@ -5454,10 +5461,21 @@ function renderSleep() {
     html += '<div class="card" style="margin-bottom:12px;padding:14px;"><div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">🌙 夜间休息记录</div>';
     restLogs.forEach(function (e) {
       var d = dur(e.sleepTime, e.wakeTime);
+      // 跨天显示：如果醒来时间早于入睡时间（过了午夜），显示两个日期
+      var dateStr = e.date;
+      if (e.wakeTime && e.sleepTime) {
+        var sh = parseInt(e.sleepTime.split(':')[0]);
+        var wh = parseInt(e.wakeTime.split(':')[0]);
+        if (wh <= sh) {
+          // 跨天了，显示"前一天 → 后一天"
+          var dd = new Date(e.date + 'T00:00:00'); dd.setDate(dd.getDate() + 1);
+          dateStr = e.date.slice(5) + ' → ' + dd.toISOString().slice(5, 10);
+        }
+      }
       html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border-light,#eee);font-size:13px;">' +
         '<div style="flex:1;min-width:0;">' +
-          '<div style="font-weight:500;color:var(--text-primary);">' + e.date + '</div>' +
-          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + durStr(d) + '</div>' +
+          '<div style="font-weight:500;color:var(--text-primary);">' + dateStr + '</div>' +
+          '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + '（跨天） ' + durStr(d) + '</div>' +
         '</div>' +
         '<div style="display:flex;gap:4px;flex-shrink:0;">' +
           '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')" title="改入睡时间">✎</button>' +
