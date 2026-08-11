@@ -5436,16 +5436,16 @@ function renderSleep() {
   html += '<div class="card" style="margin-bottom:12px;padding:14px;">';
   html += '<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">🌙 夜间休息</div>';
   html += '<div style="display:flex;gap:8px;">' +
-    '<button class="btn" style="flex:1;background:#2d3748;color:#e2e8f0;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('sleep')">准备睡觉</button>' +
-    '<button class="btn" style="flex:1;background:#f6ad55;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('sleep')">我醒了</button>' +
+    '<button class="btn" style="flex:1;background:#2d3748;color:#e2e8f0;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction(\'sleep\')">准备睡觉</button>' +
+    '<button class="btn" style="flex:1;background:#f6ad55;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction(\'sleep\')">我醒了</button>' +
     '</div></div>';
 
   // 小憩按钮
   html += '<div class="card" style="margin-bottom:14px;padding:14px;">';
   html += '<div style="font-size:14px;font-weight:600;margin-bottom:10px;color:var(--text-primary);">☕ 小憩</div>';
   html += '<div style="display:flex;gap:8px;">' +
-    '<button class="btn" style="flex:1;background:#9b59b6;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('nap')">我要休息</button>' +
-    '<button class="btn" style="flex:1;background:#e8a87c;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction('nap')">休息完了</button>' +
+    '<button class="btn" style="flex:1;background:#9b59b6;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction(\'nap\')">我要休息</button>' +
+    '<button class="btn" style="flex:1;background:#e8a87c;color:#fff;padding:14px;font-size:15px;border:none;border-radius:8px;" onclick="logSleepAction(\'nap\')">休息完了</button>' +
     '</div></div>';
 
   // 历史：夜间休息
@@ -5460,8 +5460,8 @@ function renderSleep() {
           '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + durStr(d) + '</div>' +
         '</div>' +
         '<div style="display:flex;gap:4px;flex-shrink:0;">' +
-          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','sleepTime')" title="改入睡时间">✎</button>' +
-          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','wakeTime')" title="改醒来时间">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')" title="改入睡时间">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')" title="改醒来时间">✎</button>' +
           '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
         '</div></div>';
     });
@@ -5480,8 +5480,8 @@ function renderSleep() {
           '<div style="color:var(--text-secondary);font-size:12px;margin-top:2px;">' + tm(e.sleepTime) + ' → ' + tm(e.wakeTime) + durStr(d) + '</div>' +
         '</div>' +
         '<div style="display:flex;gap:4px;flex-shrink:0;">' +
-          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','sleepTime')">✎</button>' +
-          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ','wakeTime')">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'sleepTime\')">✎</button>' +
+          '<button class="btn btn-xs btn-secondary" onclick="editSleepEntry(' + e.id + ',\'wakeTime\')">✎</button>' +
           '<button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteSleepEntry(' + e.id + ')">✕</button>' +
         '</div></div>';
     });
