@@ -5415,7 +5415,12 @@ function renderSleep() {
   };
   var durStr = function (h) { return h > 0 ? ' · 休息 ' + h.toFixed(1) + ' 小时' : ''; };
   var today = Utils.today();
-  var todayRest = state.sleep.log.filter(function (e) { return e.date === today && (e.type === 'sleep' || !e.type); });
+  var yd = new Date(today + 'T00:00:00'); yd.setDate(yd.getDate() - 1);
+  var yesterday = yd.toISOString().slice(0, 10);
+  // 今日状态：包含「跨天」的夜间休息（昨晚睡→今早醒，记录日期是昨天，也视作今天的休息）
+  var todayRest = state.sleep.log.filter(function (e) {
+    return (e.type === 'sleep' || !e.type) && (e.date === today || e.date === yesterday);
+  });
   var todayNap = state.sleep.log.filter(function (e) { return e.date === today && e.type === 'nap'; });
   var lastRest = todayRest.length ? todayRest[todayRest.length - 1] : null;
   var lastNap = todayNap.length ? todayNap[todayNap.length - 1] : null;
@@ -5429,6 +5434,11 @@ function renderSleep() {
   html += '<div style="font-size:32px;line-height:1;">🌙</div>';
   html += '<div style="font-size:15px;font-weight:600;margin:8px 0 6px;color:var(--text-primary);">休息记录 · ' + today + '</div>';
   if (lastRest) {
+    // 跨天：入睡日期是昨天、醒来是今天，补一行「08-10 → 08-11」便于理解
+    var restCross = lastRest.sleepTime && lastRest.wakeTime && parseInt(lastRest.wakeTime.split(':')[0]) <= parseInt(lastRest.sleepTime.split(':')[0]);
+    if (restCross) {
+      html += '<div style="font-size:12px;color:var(--text-light);">' + lastRest.date.slice(5) + ' → ' + today.slice(5) + '</div>';
+    }
     html += '<div style="font-size:14px;color:var(--text-secondary);">' + tm(lastRest.sleepTime) + ' → ' + tm(lastRest.wakeTime) + durStr(restDur) + '</div>';
   }
   if (lastNap) {
