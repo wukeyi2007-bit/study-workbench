@@ -18,11 +18,20 @@
     "date": "2026-08-13"
   },
   {
-    "id": "d3eb72a",
+    "id": "d3900ae",
     "cat": "domestic",
     "important": false,
-    "title": "普京首次登上俄日争议岛屿",
-    "summary": "【百度热搜】普京首次登上俄日争议岛屿",
+    "title": "白海豚走了 梭子蟹来了",
+    "summary": "【百度热搜】白海豚走了 梭子蟹来了",
+    "source": "百度热搜",
+    "date": "2026-08-13"
+  },
+  {
+    "id": "d5352f7",
+    "cat": "domestic",
+    "important": false,
+    "title": "日本“草莓仙人”挑衅中国人",
+    "summary": "【百度热搜】日本“草莓仙人”挑衅中国人",
     "source": "百度热搜",
     "date": "2026-08-13"
   },
@@ -45,66 +54,57 @@
     "date": "2026-08-13"
   },
   {
-    "id": "dce6057",
-    "cat": "domestic",
-    "important": false,
-    "title": "重罚台风请假员工公司多年0人参保",
-    "summary": "【百度热搜】重罚台风请假员工公司多年0人参保",
-    "source": "百度热搜",
-    "date": "2026-08-13"
-  },
-  {
-    "id": "i09cf88",
+    "id": "i5f3c0a",
     "cat": "international",
     "important": true,
-    "title": "医保局公布住院人次排名第一的疾病",
-    "summary": "【百度热搜】医保局公布住院人次排名第一的疾病",
+    "title": "卖车亏百万的4S店集体“爆改”",
+    "summary": "【百度热搜】卖车亏百万的4S店集体“爆改”",
     "source": "百度热搜",
     "date": "2026-08-13"
   },
   {
-    "id": "i183d9d",
+    "id": "i7cf677",
     "cat": "international",
     "important": false,
-    "title": "日本“草莓仙人”挑衅中国人",
-    "summary": "【百度热搜】日本“草莓仙人”挑衅中国人",
+    "title": "普京首次登上俄日争议岛屿",
+    "summary": "【百度热搜】普京首次登上俄日争议岛屿",
     "source": "百度热搜",
     "date": "2026-08-13"
   },
   {
-    "id": "i8d30bf",
+    "id": "i7ea8c3",
     "cat": "international",
     "important": false,
-    "title": "“两弹一星”元勋王希季逝世",
-    "summary": "【百度热搜】“两弹一星”元勋王希季逝世",
+    "title": "职场人嘴替！曹国舅出场台词火出圈",
+    "summary": "【百度热搜】职场人嘴替！曹国舅出场台词火出圈",
     "source": "百度热搜",
     "date": "2026-08-13"
   },
   {
-    "id": "id3d93b",
+    "id": "i8450f9",
     "cat": "international",
     "important": false,
-    "title": "银行能办结婚证了",
-    "summary": "【百度热搜】银行能办结婚证了",
+    "title": "谁在给可乐“判死刑”",
+    "summary": "【百度热搜】谁在给可乐“判死刑”",
     "source": "百度热搜",
+    "date": "2026-08-13"
+  },
+  {
+    "id": "t689d5e",
+    "cat": "tech",
+    "important": true,
+    "title": "DeepSeek V4 Pro 正式版上线，多项指标逼近 Fable 5",
+    "summary": "【爱范儿】DeepSeek V4 Pro 正式版上线，多项指标逼近 Fable 5",
+    "source": "爱范儿",
     "date": "2026-08-13"
   },
   {
     "id": "t6d770d",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "美国拟投资5000万美元严控AI芯片溯源，防止对华出口管制遭规避，巴拿马成首个试点",
     "summary": "【rfi.fr】美国拟投资5000万美元严控AI芯片溯源，防止对华出口管制遭规避，巴拿马成首个试点",
     "source": "rfi.fr",
-    "date": "2026-08-13"
-  },
-  {
-    "id": "t8d3ecf",
-    "cat": "tech",
-    "important": false,
-    "title": "实测 DeepSeek V4 Pro 正式版：能力直逼 Fable 5，还藏了一个大招",
-    "summary": "【爱范儿】实测 DeepSeek V4 Pro 正式版：能力直逼 Fable 5，还藏了一个大招",
-    "source": "爱范儿",
     "date": "2026-08-13"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-08-13"
   },
   {
-    "id": "f3e8a8e",
+    "id": "f5cd028",
     "cat": "finance",
     "important": true,
-    "title": "宇树科技IPO折射民企硬科技三重跃迁",
-    "summary": "【中国网】宇树科技IPO折射民企硬科技三重跃迁",
-    "source": "中国网",
+    "title": "从长鑫到宇树，券商多元布局兑现科创红利",
+    "summary": "【东方财富】从长鑫到宇树，券商多元布局兑现科创红利",
+    "source": "东方财富",
     "date": "2026-08-13"
   },
   {
-    "id": "f779004",
+    "id": "f67c48f",
     "cat": "finance",
     "important": false,
-    "title": "港股开盘：恒指、恒科集体低开；半导体、硬件设备板块上涨，石油石化、房地产下跌；阿里、腾讯、京东集体下跌",
-    "summary": "【21财经】港股开盘：恒指、恒科集体低开；半导体、硬件设备板块上涨，石油石化、房地产下跌；阿里、腾讯、京东集体下跌",
-    "source": "21财经",
+    "title": "韩股强劲反弹进入技术性牛市，AI热潮卷土重来",
+    "summary": "【金融界】韩股强劲反弹进入技术性牛市，AI热潮卷土重来",
+    "source": "金融界",
     "date": "2026-08-13"
   },
   {
-    "id": "fc48f94",
+    "id": "fd2a1cd",
     "cat": "finance",
     "important": false,
-    "title": "财联社8月13日电，韩国KOSPI指数涨幅扩大至4%，现报6841.97点。三星电子涨近5%，SK海力士涨超6%。",
-    "summary": "【cls.cn】财联社8月13日电，韩国KOSPI指数涨幅扩大至4%，现报6841.97点。三星电子涨近5%，SK海力士涨超6%。",
-    "source": "cls.cn",
+    "title": "美联储政策抉择或进一步陷入两难 通胀数据成关键考验",
+    "summary": "【中华网】美联储政策抉择或进一步陷入两难 通胀数据成关键考验",
+    "source": "中华网",
     "date": "2026-08-13"
   }
 ]
