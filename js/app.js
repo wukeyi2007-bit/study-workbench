@@ -631,7 +631,13 @@ const Speech = {
     if (this.voices.length === 0) this.voices = this.synth.getVoices();
     let voice = null;
     const wantURI = opts.voiceURI || state.settings.speakVoiceURI;
-    if (wantURI) voice = this.voices.find(v => v.voiceURI === wantURI);
+    // 长句（preferLocal）优先本地离线语音：在线神经语音依赖网络，网络差会逐词卡顿
+    if (opts.preferLocal) {
+      const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
+      voice = en.find(v => v.localService === true) || en[0] || null;
+    } else if (wantURI) {
+      voice = this.voices.find(v => v.voiceURI === wantURI);
+    }
     if (!voice && this.selectedVoice && this.selectedVoice.voiceURI === state.settings.speakVoiceURI) voice = this.selectedVoice;
     if (!voice) voice = this.bestEnVoice || this.voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
     if (voice) u.voice = voice;
@@ -2017,7 +2023,7 @@ function playTextAudio(text, opts = {}) {
 
 // 朗读长句：系统 TTS + onend 兜底。
 // 有道 dictvoice 只适合单词；长句 / 对话走它会卡顿、发怪声甚至截断。
-// 这里统一走系统 TTS（Edge 里即神经语音，自然流畅），并用预估时长兜底，
+// 这里统一走系统 TTS 且优先本地离线语音（在线神经语音依赖网络，网络差会逐词卡顿），并用预估时长兜底，
 // 防止个别安卓浏览器 onend 不触发导致对话卡住、按钮一直转圈。
 function speakSentence(text, opts) {
   opts = opts || {};
@@ -2031,7 +2037,7 @@ function speakSentence(text, opts) {
   };
   const words = ((text || '').split(/\s+/).filter(Boolean).length) || 1;
   guard = setTimeout(finish, Math.max(1500, words * 500 + 1200));
-  Speech.speak(text, { rate: opts.rate, onend: finish });
+  Speech.speak(text, { rate: opts.rate, preferLocal: true, onend: finish });
 }
 
 function speakWord(text) {
