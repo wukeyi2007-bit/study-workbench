@@ -2008,6 +2008,12 @@ function audioSourceMode() {
 function playTextAudio(text, opts = {}) {
   if (!text) return;
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
+  // 句子（含空格、多词）统一走系统 TTS + 本地语音，避免有道 dictvoice 对长句卡顿；
+  // 单词（无空格）仍走有道真人发音。
+  if (/\s/.test(text)) {
+    speakSentence(text, opts);
+    return;
+  }
   const mode = audioSourceMode();
   if (mode === 'tts') { Speech.speak(text, opts); return; } // 用户指定用系统音，直接播，不联网
   let tried = 0;
