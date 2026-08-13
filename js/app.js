@@ -636,11 +636,21 @@ const Speech = {
     if (!voice) voice = this.bestEnVoice || this.voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
     if (voice) u.voice = voice;
     if (opts.onstart) u.onstart = opts.onstart;
-    if (opts.onend) u.onend = opts.onend;
+    // Chrome/安卓 播放长句约 15 秒后会自动 pause，导致卡顿、读一半停住；
+    // 播放期间定时 resume，保持连续不卡。
+    if (this._keepAlive) { clearInterval(this._keepAlive); this._keepAlive = null; }
+    this._keepAlive = setInterval(() => {
+      if (this.synth && this.synth.paused) { try { this.synth.resume(); } catch (e) {} }
+    }, 2500);
+    const done = () => { if (this._keepAlive) { clearInterval(this._keepAlive); this._keepAlive = null; } };
+    const origEnd = opts.onend;
+    u.onend = (e) => { done(); if (origEnd) origEnd(e); };
+    u.onerror = () => { done(); };
     this.synth.speak(u);
   },
 
   stopSpeak() {
+    if (this._keepAlive) { clearInterval(this._keepAlive); this._keepAlive = null; }
     if (this.synth) this.synth.cancel();
   },
 
