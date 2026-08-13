@@ -1933,10 +1933,29 @@ function submitReviewSpell() {
 // ===== 真人发音音频（有道词典，联网实时拉取；网络失败自动退回系统 TTS）=====
 const AudioPlayer = {
   el: null,
+  // 已成功加载过的音频缓存：textKey -> { url, el }
+  // 同一句重复播放直接复用元素（currentTime 归零重播），不再重新请求网络，彻底消除“第二次点击还卡”的问题
+  cache: new Map(),
   // 播放一个音频 URL：成功放完调用 onend；出错/超时调用 onerror
+  // textKey：可选，传了则同一文本复用已加载的缓存元素；否则每次重新加载
   // 注意：onplaying 只负责取消「超时回退」计时器，不要把它当成已结束，否则 onended 会被吞掉（之前这里导致对话只放一句就卡住、按钮一直转圈）
-  play(url, onend, onerror) {
+  play(url, onend, onerror, textKey) {
     this.stop();
+    // 命中已加载成功的缓存：直接从头重播，零等待
+    if (textKey) {
+      const hit = this.cache.get(textKey);
+      if (hit && hit.el && !hit.bad) {
+        const el = hit.el;
+        let ended = false, failed = false;
+        el.onended = () => { if (ended || failed) return; ended = true; this.el = null; if (onend) onend(); };
+        el.onerror = () => { if (ended || failed) return; failed = true; this.el = null; hit.bad = true; this.cache.delete(textKey); if (onerror) onerror(); };
+        this.el = el;
+        try { el.currentTime = 0; } catch (e) {}
+        const p = el.play();
+        if (p && p.catch) p.catch(() => { if (ended || failed) return; failed = true; this.el = null; hit.bad = true; this.cache.delete(textKey); if (onerror) onerror(); });
+        return;
+      }
+    }
     let ended = false, failed = false;
     let timer = null;
     const onFail = () => { if (ended || failed) return; failed = true; if (timer) clearTimeout(timer); this.el = null; if (onerror) onerror(); };
@@ -1945,10 +1964,14 @@ const AudioPlayer = {
       a.src = url;
       a.preload = 'auto';
       this.el = a;
-      a.onplaying = () => { if (timer) { clearTimeout(timer); timer = null; } };
+      a.onplaying = () => {
+        if (timer) { clearTimeout(timer); timer = null; }
+        // 确认真正出声后才进缓存，避免把加载失败的坏元素缓存下来
+        if (textKey && !this.cache.has(textKey)) this.cache.set(textKey, { url, el: a });
+      };
       a.onended = () => { if (ended || failed) return; ended = true; if (timer) clearTimeout(timer); this.el = null; if (onend) onend(); };
       a.onerror = onFail;
-      timer = setTimeout(onFail, 7000); // 7 秒还没出声则退回系统 TTS
+      timer = setTimeout(onFail, 5000); // 5 秒还没出声则退回系统 TTS（原 7s，缩短减少“干等”）
       const p = a.play();
       if (p && p.catch) p.catch(onFail);
     } catch (e) { onFail(); }
@@ -1965,38 +1988,40 @@ function audioSourceMode() {
 }
 
 // 播放英文文本：默认真人发音（美音，更自然），失败/超时自动退回系统 TTS
+// 注意：URL 不再加随机时间戳——同一文本 URL 稳定，才能命中 AudioPlayer 内存缓存和浏览器 HTTP 缓存，重复点击秒开（这才是之前“卡顿”的根因）
 function playTextAudio(text, opts = {}) {
   if (!text) return;
   if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
   const mode = audioSourceMode();
   if (mode === 'tts') { Speech.speak(text, opts); return; } // 用户指定用系统音，直接播，不联网
-  // 加时间戳穿透浏览器/微信内置浏览器的音频缓存，避免串词（如 minute 读到 wear）
   let tried = 0;
-  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2&_t=' + Date.now();
+  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
   const tryYoudao = () => {
     AudioPlayer.play(mkUrl(), opts.onend, function () {
-      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次
+      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次（URL 不变，重试会命中 HTTP 缓存，通常很快）
       else { Speech.speak(text, opts); }            // 最终退回系统发音
-    });
+    }, text);
   };
   tryYoudao();
 }
 
-// 播放文本并带 TTS 参数作为退回（用于对话逐句）
-function playRemoteWithFallback(text, ttsOpts, onDone) {
-  if (!text) { if (onDone) onDone(); return; }
-  if (Speech.synth) { try { Speech.synth.cancel(); } catch (e) {} }
-  const mode = audioSourceMode();
-  if (mode === 'tts') { Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone })); return; }
-  let tried = 0;
-  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2&_t=' + Date.now();
-  const tryYoudao = () => {
-    AudioPlayer.play(mkUrl(), function () { if (onDone) onDone(); }, function () {
-      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次
-      else { Speech.speak(text, Object.assign({}, ttsOpts, { onend: onDone })); }
-    });
+// 朗读长句：系统 TTS + onend 兜底。
+// 有道 dictvoice 只适合单词；长句 / 对话走它会卡顿、发怪声甚至截断。
+// 这里统一走系统 TTS（Edge 里即神经语音，自然流畅），并用预估时长兜底，
+// 防止个别安卓浏览器 onend 不触发导致对话卡住、按钮一直转圈。
+function speakSentence(text, opts) {
+  opts = opts || {};
+  if (!text) { if (opts.onend) opts.onend(); return; }
+  let done = false, guard = null;
+  const finish = function () {
+    if (done) return;
+    done = true;
+    if (guard) clearTimeout(guard);
+    if (opts.onend) opts.onend();
   };
-  tryYoudao();
+  const words = ((text || '').split(/\s+/).filter(Boolean).length) || 1;
+  guard = setTimeout(finish, Math.max(1500, words * 500 + 1200));
+  Speech.speak(text, { rate: opts.rate, onend: finish });
 }
 
 function speakWord(text) {
@@ -4488,12 +4513,22 @@ function playListeningCurrent() {
   const btn = document.getElementById('listenPlayBtn');
   if (btn) btn.classList.add('playing');
 
-  // 对话模式：逐句朗读，男音正常音高、女音高音高
+  // 对话模式：逐句朗读
   if (q.type === 'dialogue' && q.dialogue && q.dialogue.lines) {
     playDialogueLines(q.dialogue.lines, 0, btn);
     return;
   }
 
+  // 长句（听句选译 / 句子听写）走系统 TTS，避免有道 dictvoice 卡顿、发怪声
+  if (q.type === 'sentence' || q.type === 'dictation') {
+    speakSentence(q.play, {
+      rate: 0.8,
+      onend: function () { if (btn) btn.classList.remove('playing'); }
+    });
+    return;
+  }
+
+  // 单词（听词选义）仍走真人发音，声音最自然
   playTextAudio(q.play, {
     rate: 0.8,
     onend: function () { if (btn) btn.classList.remove('playing'); }
@@ -4518,10 +4553,10 @@ function playDialogueLines(lines, idx, btn) {
     return;
   }
   const line = lines[idx];
-  playRemoteWithFallback(line.text, { rate: 0.85 }, function () {
+  speakSentence(line.text, { rate: 0.85, onend: function () {
     if (listeningState.aborted) { if (btn) btn.classList.remove('playing'); return; }
-    setTimeout(() => playDialogueLines(lines, idx + 1, btn), 350);
-  });
+    setTimeout(() => playDialogueLines(lines, idx + 1, btn), 300);
+  }});
 }
 
 function answerListening(idx) {
