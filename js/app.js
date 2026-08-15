@@ -1682,7 +1682,8 @@ function renderReviewCard() {
     setTimeout(() => { const inp = document.getElementById('reviewSpellInput'); if (inp) inp.focus(); }, 200);
   }
   // 认单词阶段自动朗读（未看答案时）；默写阶段不读，避免「一听就会写」
-  if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => playTextAudio(word.word), 100);
+  // 自动朗读用系统 TTS 直接读（毫秒级、不联网），避免走有道音频的 5 秒超时回退导致「等选完才开始读、很慢」
+  if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => Speech.speak(word.word), 100);
 }
 
 function revealReviewCard() { wordState.showAnswer = true; renderReviewCard(); }
@@ -2447,8 +2448,9 @@ function renderLearnCard() {
   setTimeout(() => activateWordTap("page-words"), 60);
   // 自动朗读单词发音（低延迟、用默认语速）
   // 看中文拼写轮（r===3）和复习第2步不再自动朗读，避免用户一听就会写；
-  // 保留"听发音"按钮让用户手动播放。
-  if (r !== 3) setTimeout(() => playTextAudio(word.word), 100);
+  // 保留"听发音"按钮让用户手动播放（真人发音）。
+  // 自动朗读改用系统 TTS 直接读（毫秒级、不联网），避免走有道音频 5 秒超时回退导致「等选完才开始读、很慢」
+  if (r !== 3) setTimeout(() => Speech.speak(word.word), 100);
 }
 
 function answerLearnRound(idx) {
