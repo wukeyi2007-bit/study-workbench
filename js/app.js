@@ -1682,8 +1682,8 @@ function renderReviewCard() {
     setTimeout(() => { const inp = document.getElementById('reviewSpellInput'); if (inp) inp.focus(); }, 200);
   }
   // 认单词阶段自动朗读（未看答案时）；默写阶段不读，避免「一听就会写」
-  // 自动朗读用系统 TTS 直接读（毫秒级、不联网），避免走有道音频的 5 秒超时回退导致「等选完才开始读、很慢」
-  if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => Speech.speak(word.word), 100);
+  // 真人音优先，约 1 秒未出声自动回退系统 TTS，不会干等
+  if (r.phase === 'recognize' && word && !wordState.showAnswer) setTimeout(() => playTextAudio(word.word), 100);
 }
 
 function revealReviewCard() { wordState.showAnswer = true; renderReviewCard(); }
@@ -1993,7 +1993,7 @@ const AudioPlayer = {
       };
       a.onended = () => { if (ended || failed) return; ended = true; if (timer) clearTimeout(timer); this.el = null; if (onend) onend(); };
       a.onerror = onFail;
-      timer = setTimeout(onFail, 5000); // 5 秒还没出声则退回系统 TTS（原 7s，缩短减少“干等”）
+      timer = setTimeout(onFail, 1100); // 约 1 秒还没出声则退回系统 TTS，避免久等真人发音
       const p = a.play();
       if (p && p.catch) p.catch(onFail);
     } catch (e) { onFail(); }
@@ -2034,12 +2034,10 @@ function playTextAudio(text, opts = {}) {
   }
   const mode = audioSourceMode();
   if (mode === 'tts') { Speech.speak(text, opts); return; } // 用户指定用系统音，直接播，不联网
-  let tried = 0;
   const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
   const tryYoudao = () => {
     AudioPlayer.play(mkUrl(), opts.onend, function () {
-      if (tried++ < 1) { tryYoudao(); }            // 偶发网络抖动，重试一次（URL 不变，重试会命中 HTTP 缓存，通常很快）
-      else { Speech.speak(text, opts); }            // 最终退回系统发音
+      Speech.speak(text, opts);            // 约 1 秒未出声则直接退回系统发音（不再重试，避免久等）
     }, text);
   };
   tryYoudao();
@@ -2446,11 +2444,9 @@ function renderLearnCard() {
     '<div class="test-question" style="text-align:center;">' + body + '</div></div>';
   if (r === 3) setTimeout(() => { const inp = document.getElementById('learnSpellInput'); if (inp) inp.focus(); }, 200);
   setTimeout(() => activateWordTap("page-words"), 60);
-  // 自动朗读单词发音（低延迟、用默认语速）
-  // 看中文拼写轮（r===3）和复习第2步不再自动朗读，避免用户一听就会写；
-  // 保留"听发音"按钮让用户手动播放（真人发音）。
-  // 自动朗读改用系统 TTS 直接读（毫秒级、不联网），避免走有道音频 5 秒超时回退导致「等选完才开始读、很慢」
-  if (r !== 3) setTimeout(() => Speech.speak(word.word), 100);
+  // 自动朗读单词发音（真人音优先，约 1 秒未出声自动回退系统 TTS，不会干等）
+  // 看中文拼写轮（r===3）不再自动朗读，避免用户一听就会写；保留"听发音"按钮手动播放
+  if (r !== 3) setTimeout(() => playTextAudio(word.word), 100);
 }
 
 function answerLearnRound(idx) {
