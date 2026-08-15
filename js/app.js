@@ -3759,7 +3759,7 @@ function renderFinance() {
     const done = isReview ? reviewedToday.includes(item.id) : completed.includes(item.id);
     const key = isFinanceKey(item.id);
     return `
-      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''} ${isReview ? 'review-card' : ''}" onclick="${isReview ? `markFinanceReview('${item.id}')` : `toggleFinanceKnowledge('${item.id}', ${day})`}">
+      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''} ${isReview ? 'review-card' : ''}" onclick="if(event.target.closest('.knowledge-actions'))return; ${isReview ? `markFinanceReview('${item.id}')` : `toggleFinanceKnowledge('${item.id}', ${day})`}">
         <div class="knowledge-text">${escapeHtml(item.text)}</div>
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
