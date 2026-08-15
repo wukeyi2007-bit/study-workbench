@@ -650,6 +650,14 @@ function openSettings() {
       <option value="1" ${s.speakRate == 1 ? 'selected' : ''}>正常 1.0×</option>
     </select>
     <div style="font-size:12px;color:var(--text-light);margin-top:4px;">备考建议 0.8–0.9×，清晰又不拖沓。</div>
+    <label class="modal-label" style="margin-top:12px;">朗读引擎（句子 / 单词朗读）</label>
+    <select class="modal-input" id="setTtsMode">
+      <option value="natural" ${(!s.ttsMode || s.ttsMode === 'natural') ? 'selected' : ''}>自然优先（推荐：连读流畅、词间不卡）</option>
+      <option value="local" ${s.ttsMode === 'local' ? 'selected' : ''}>本地优先（离线、不联网，部分设备偏机械）</option>
+    </select>
+    <div style="font-size:12px;color:var(--text-light);margin-top:4px;line-height:1.6;">
+      若朗读时「单词之间一顿一顿」，多半是用了系统自带离线引擎——保持「自然优先」即可。若自然优先在你的网络下也卡，再切「本地优先」试试。
+    </div>
     <hr style="margin:16px 0;border:none;border-top:1px solid var(--border);" />
     <label class="modal-label">发音方式（听力 / 单词朗读）</label>
     <select class="modal-input" id="setAudioSource">
@@ -746,6 +754,8 @@ function saveSettings() {
   state.settings.speakRate = rSel ? (parseFloat(rSel.value) || 0.9) : 0.9;
   const aSrc = document.getElementById('setAudioSource');
   state.settings.audioSource = aSrc ? (aSrc.value || 'auto') : 'auto';
+  const tMode = document.getElementById('setTtsMode');
+  state.settings.ttsMode = tMode ? (tMode.value || 'natural') : 'natural';
   const gInput = document.getElementById('setDailyGoal');
   const gVal = gInput ? parseInt(gInput.value, 10) : 0;
   state.settings.dailyGoal = (gVal && gVal > 0) ? gVal : 0;

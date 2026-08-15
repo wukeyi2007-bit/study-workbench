@@ -66,7 +66,7 @@ const Store = {
 
   default() {
     return {
-      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "四级备考中", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, audioSource: "auto", cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
+      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "四级备考中", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, audioSource: "auto", ttsMode: "natural", cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
       progress: {
         currentSet: 1,
         wordsLearned: 0,
@@ -628,16 +628,24 @@ const Speech = {
     u.lang = "en-US";
     u.rate = opts.rate != null ? opts.rate : (parseFloat(state.settings.speakRate) || 0.9);
     u.pitch = opts.pitch || 1;
-    // 语音优先级：调用指定 > 设置指定 > 自动最优英文语音
+    // 语音优先级：调用指定 > 设置指定 > 按 ttsMode 自动选
     if (this.voices.length === 0) this.voices = this.synth.getVoices();
     let voice = null;
     const wantURI = opts.voiceURI || state.settings.speakVoiceURI;
-    // 长句（preferLocal）优先本地离线语音：在线神经语音依赖网络，网络差会逐词卡顿
-    if (opts.preferLocal) {
+    const ttsMode = opts.ttsMode || state.settings.ttsMode || "natural";
+    if (wantURI) {
+      voice = this.voices.find(v => v.voiceURI === wantURI);
+    } else if (ttsMode === "local") {
+      // 本地优先：不依赖网络，适合网络差时（但部分设备本地引擎机械、逐词停顿）
       const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
       voice = en.find(v => v.localService === true) || en[0] || null;
-    } else if (wantURI) {
-      voice = this.voices.find(v => v.voiceURI === wantURI);
+    } else {
+      // 自然优先（默认）：优先非本地神经语音（Google / Samantha / 微软女声），连读自然、词间不卡顿
+      const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
+      const neural = en.filter(v => v.localService === false);
+      const pool = neural.length ? neural : en;
+      pool.sort((a, b) => this.voiceScore(b) - this.voiceScore(a));
+      voice = pool[0] || null;
     }
     if (!voice && this.selectedVoice && this.selectedVoice.voiceURI === state.settings.speakVoiceURI) voice = this.selectedVoice;
     if (!voice) voice = this.bestEnVoice || this.voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
@@ -2044,7 +2052,7 @@ function speakSentence(text, opts) {
   };
   const words = ((text || '').split(/\s+/).filter(Boolean).length) || 1;
   guard = setTimeout(finish, Math.max(1500, words * 500 + 1200));
-  Speech.speak(text, { rate: opts.rate, preferLocal: true, onend: finish });
+  Speech.speak(text, { rate: opts.rate, onend: finish });
 }
 
 function speakWord(text) {
