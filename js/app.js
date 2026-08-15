@@ -3637,21 +3637,35 @@ function toggleFinanceKnowledge(id, day) {
 // ===== 重点知识（标记 + 定期复习）=====
 function getFinanceKeyIds() {
   initFinanceKnowledge();
-  return state.financeKnowledge.keyIds || [];
+  const allIds = new Set();
+  FINANCE_KNOWLEDGE.forEach(d => d.items.forEach(it => allIds.add(it.id)));
+  const arr = state.financeKnowledge.keyIds || [];
+  const valid = arr.filter(id => allIds.has(id));
+  if (valid.length !== arr.length) {
+    state.financeKnowledge.keyIds = valid;
+    Store.save();
+  }
+  return valid;
 }
 
 function isFinanceKey(id) {
   return getFinanceKeyIds().indexOf(id) >= 0;
 }
 
-function toggleFinanceKey(id) {
+function toggleFinanceKey(id, opts = {}) {
   initFinanceKnowledge();
   const arr = state.financeKnowledge.keyIds || (state.financeKnowledge.keyIds = []);
   const i = arr.indexOf(id);
-  if (i >= 0) arr.splice(i, 1);
-  else arr.push(id);
+  if (i >= 0) {
+    // 取消重点前加确认，防止误触丢失
+    if (!opts.force && !confirm('确定要取消这条重点吗？')) return;
+    arr.splice(i, 1);
+  } else {
+    arr.push(id);
+  }
   Store.save();
   renderFinance();
+  if (opts.refreshReview) openKeyReview();
 }
 
 // 把所有标记为重点的知识点对象取出来（按标记顺序），过滤掉已不存在的 id
@@ -3700,7 +3714,7 @@ function openKeyReview() {
         <div class="knowledge-text">${escapeHtml(it.text)}</div>
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(it.keyPoint)}</span>
-          <button class="star-btn active" onclick="toggleFinanceKey('${it.id}');openKeyReview();">⭐ 取消重点</button>
+          <button class="star-btn active" type="button" onclick="toggleFinanceKey('${it.id}', {force: false, refreshReview: true});">⭐ 取消重点</button>
         </div>
       </div>`).join("");
   }
@@ -3767,7 +3781,10 @@ function renderFinance() {
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
           <span class="knowledge-actions">
-            ${key ? '<span class="star-static" title="已是重点 · 在「⭐ 重点复习」中可取消">⭐ 已重点</span>' : '<button class="star-btn" onclick="event.stopPropagation();toggleFinanceKey(\'${item.id}\')">☆ 重点</button>'}
+            ${key
+              ? '<span class="star-static" title="已是重点 · 顶部「⭐ 重点复习」里可取消">⭐ 已重点</span>'
+              : `<button class="star-btn star-add" type="button" data-fid="${item.id}" ontouchstart="event.stopPropagation();" onclick="event.preventDefault();event.stopPropagation();toggleFinanceKey('${item.id}')">☆ 重点</button>`
+            }
             <span class="knowledge-check">${isReview ? (done ? '✅ 已复习' : '🔁 点我复习') : (done ? '✅ 已掌握' : '⭕ 点我掌握')}</span>
           </span>
         </div>
