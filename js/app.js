@@ -123,6 +123,7 @@ const Store = {
         currentDay: 1,         // 当前查看/学习到第几天
         completed: {},         // { day: [itemId, ...] }
         keyIds: [],            // 用户在卡片上标记为重点的理财知识点 id 列表（用于定期复习）
+        reviewed: {},          // { 'YYYY-MM-DD': [itemId,...] } 重点复习日里点过「已复习」的重点 id
         lastFinanceDate: null, // 上次自动推进到今天的天数日期（每天只推进一次）
       },
       listening: {
@@ -3561,6 +3562,7 @@ function initFinanceKnowledge() {
   }
   if (!state.financeKnowledge.completed) state.financeKnowledge.completed = {};
   if (!state.financeKnowledge.keyIds) state.financeKnowledge.keyIds = [];
+  if (!state.financeKnowledge.reviewed) state.financeKnowledge.reviewed = {};
   if (state.financeKnowledge.lastFinanceDate === undefined) state.financeKnowledge.lastFinanceDate = null;
 }
 
@@ -3660,6 +3662,32 @@ function getAllKeyItems() {
   return ids.map(id => map[id]).filter(Boolean);
 }
 
+// 两个数组交错合并（用于把重点复习卡穿插进当天新知识点列表）
+function interleaveArrays(a, b) {
+  const out = [];
+  const n = Math.max(a.length, b.length);
+  for (let i = 0; i < n; i++) {
+    if (i < a.length) out.push(a[i]);
+    if (i < b.length) out.push(b[i]);
+  }
+  return out;
+}
+
+// 每个复习日穿插进当天学习的重点数量（其余名额留给当天新知识点，保证总量 5）
+const FINANCE_REVIEW_PER_DAY = 2;
+
+// 重点复习日：点一下卡片即记为「今天复习过」（不计入当天新知识点掌握进度）
+function markFinanceReview(id) {
+  initFinanceKnowledge();
+  const d = Utils.today();
+  const arr = state.financeKnowledge.reviewed[d] || (state.financeKnowledge.reviewed[d] = []);
+  const i = arr.indexOf(id);
+  if (i >= 0) arr.splice(i, 1);
+  else arr.push(id);
+  Store.save();
+  renderFinance();
+}
+
 // 重点复习弹层：一次性回顾所有标记为重点的知识
 function openKeyReview() {
   const items = getAllKeyItems();
@@ -3691,8 +3719,6 @@ function renderFinance() {
     return;
   }
   const completed = getCompletedForDay(day);
-  const progress = completed.length;
-  const allDone = progress >= dayData.items.length;
   const levelName = getFinanceLevelName(dayIndex);
   const prevDisabled = day <= 1;
   const nextDisabled = day >= todayDay;
@@ -3703,53 +3729,54 @@ function renderFinance() {
   Object.values(state.financeKnowledge.completed || {}).forEach(ids => ids.forEach(id => masteredSet.add(id)));
   const masteredCount = masteredSet.size;
 
-  const cardsHtml = dayData.items.map(item => {
-    const done = completed.includes(item.id);
+  // ===== 当天展示的 5 张卡片：复习日把部分重点穿插进来一起复习（总量仍 5）=====
+  const keyItems = getAllKeyItems();
+  const isReviewDay = (dayIndex % 7 === 0); // 每隔 7 天一个复习日
+  const reviewedToday = (state.financeKnowledge.reviewed && state.financeKnowledge.reviewed[Utils.today()]) || [];
+  let reviewItems = [];
+  if (isReviewDay && keyItems.length > 0) {
+    const rd = Math.floor(dayIndex / 7); // 第几个复习日（1,2,3...）
+    const off = ((rd - 1) % keyItems.length + keyItems.length) % keyItems.length; // 轮换起点，保证每个重点都能轮到
+    const n = Math.min(keyItems.length, FINANCE_REVIEW_PER_DAY);
+    for (let k = 0; k < n; k++) reviewItems.push(keyItems[(off + k) % keyItems.length]);
+  }
+  const remain = 5 - reviewItems.length; // 其余名额留给当天新知识点
+  const unmastered = dayData.items.filter(it => !completed.includes(it.id));
+  const fill = [...unmastered, ...dayData.items.filter(it => completed.includes(it.id))].slice(0, remain);
+  const displayItems = interleaveArrays(
+    reviewItems.map(it => ({ item: it, isReview: true })),
+    fill.map(it => ({ item: it, isReview: false }))
+  );
+
+  const shownRegular = displayItems.filter(d => !d.isReview);
+  const shownDone = shownRegular.filter(d => completed.includes(d.item.id)).length;
+  const progress = shownDone;       // 仅统计当天新知识点（重点复习卡不计入掌握进度）
+  const shownTotal = shownRegular.length;
+  const allDone = shownTotal > 0 && shownDone >= shownTotal;
+
+  const cardsHtml = displayItems.map(({ item, isReview }) => {
+    const done = isReview ? reviewedToday.includes(item.id) : completed.includes(item.id);
     const key = isFinanceKey(item.id);
     return `
-      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''}" onclick="toggleFinanceKnowledge('${item.id}', ${day})">
+      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''} ${isReview ? 'review-card' : ''}" onclick="${isReview ? `markFinanceReview('${item.id}')` : `toggleFinanceKnowledge('${item.id}', ${day})`}">
         <div class="knowledge-text">${escapeHtml(item.text)}</div>
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
           <span class="knowledge-actions">
             <button class="star-btn ${key ? 'active' : ''}" onclick="event.stopPropagation();toggleFinanceKey('${item.id}')">${key ? '⭐ 已重点' : '☆ 重点'}</button>
-            <span class="knowledge-check">${done ? '✅ 已掌握' : '⭕ 点我掌握'}</span>
+            <span class="knowledge-check">${isReview ? (done ? '✅ 已复习' : '🔁 点我复习') : (done ? '✅ 已掌握' : '⭕ 点我掌握')}</span>
           </span>
         </div>
-      </div>
-    `;
+        ${isReview ? '<div class="knowledge-review-badge">🔁 重点复习</div>' : ''}
+      </div>`;
   }).join("");
 
-  const summaryHtml = allDone
-    ? `<div class="finance-summary success">🎉 今日 5 条知识点全部掌握，打卡完成！</div>`
-    : `<div class="finance-summary">今天还有 <strong>${dayData.items.length - progress}</strong> 条知识点待掌握，点击卡片即可标记。</div>`;
-
-  // 重点复习日：每隔 7 天（dayIndex 为 7 的倍数）把标记过的重点知识重新列出，相当于再复习一遍
-  const isReviewDay = (dayIndex % 7 === 0);
-  const keyItems = getAllKeyItems();
-  let reviewBlock = "";
-  if (isReviewDay) {
-    if (keyItems.length > 0) {
-      const show = keyItems.slice(0, 5);
-      reviewBlock = `
-        <div class="finance-review-block">
-          <div class="finance-review-head">📌 重点复习日 · 回顾你的 ${keyItems.length} 个重点知识</div>
-          ${show.map(it => `
-            <div class="knowledge-card key-review" onclick="event.stopPropagation();toggleFinanceKey('${it.id}')">
-              <div class="knowledge-text">${escapeHtml(it.text)}</div>
-              <div class="knowledge-foot">
-                <span class="knowledge-key">💡 ${escapeHtml(it.keyPoint)}</span>
-                <span class="knowledge-check">点此取消重点</span>
-              </div>
-            </div>`).join("")}
-          ${keyItems.length > 5 ? `<div class="finance-review-more">还有 ${keyItems.length - 5} 条可在「重点复习」中查看</div>` : ""}
-        </div>`;
-    } else {
-      reviewBlock = `
-        <div class="finance-review-block empty">
-          📌 今天重点复习日！你还没有标记过重点，点任意知识卡右下角的「☆ 重点」，之后会定期在这里出现复习。
-        </div>`;
-    }
+  let summaryHtml = allDone
+    ? `<div class="finance-summary success">🎉 今日知识点全部掌握，打卡完成！</div>`
+    : `<div class="finance-summary">今天还有 <strong>${shownTotal - progress}</strong> 条新知识点待掌握，点击卡片即可标记。</div>`;
+  if (reviewItems.length > 0) {
+    const revDone = reviewItems.filter(it => reviewedToday.includes(it.id)).length;
+    summaryHtml += `<div class="finance-summary review-hint">🔁 今日穿插 ${reviewItems.length} 条「重点」复习（已复习 ${revDone}/${reviewItems.length}），点带 🔁 的卡片即可回顾一遍。其余位置是当天新知识点，每天总量仍是 5 条。</div>`;
   }
 
   const dayTitle = round === 1
@@ -3778,14 +3805,12 @@ function renderFinance() {
       <button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(${day - 1})" ${prevDisabled ? 'disabled' : ''}>← 前一天</button>
       <div class="day-info">
         <div class="day-title">${dayTitle}</div>
-        <div class="day-progress">掌握 ${progress}/${dayData.items.length}</div>
+        <div class="day-progress">掌握 ${progress}/${shownTotal}</div>
       </div>
       <button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(${day + 1})" ${nextDisabled ? 'disabled' : ''}>后一天 →</button>
     </div>
 
     ${summaryHtml}
-
-    ${reviewBlock}
 
     <div class="knowledge-list">${cardsHtml}</div>
   `;
@@ -6460,6 +6485,8 @@ function cloudMerge(local, remote) {
   });
   if (base.financeKnowledge && inc.financeKnowledge) {
     base.financeKnowledge.completed = _mergeInto(base.financeKnowledge.completed, inc.financeKnowledge.completed,
+      (a, b) => Array.from(new Set((a || []).concat(b || []))));
+    base.financeKnowledge.reviewed = _mergeInto(base.financeKnowledge.reviewed, inc.financeKnowledge.reviewed,
       (a, b) => Array.from(new Set((a || []).concat(b || []))));
     base.financeKnowledge.currentDay = Math.max(base.financeKnowledge.currentDay || 1, inc.financeKnowledge.currentDay || 1);
   }
