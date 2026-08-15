@@ -3758,9 +3758,12 @@ function renderFinance() {
   const cardsHtml = displayItems.map(({ item, isReview }) => {
     const done = isReview ? reviewedToday.includes(item.id) : completed.includes(item.id);
     const key = isFinanceKey(item.id);
+    const cardClick = isReview ? `markFinanceReview('${item.id}')` : `toggleFinanceKnowledge('${item.id}', ${day})`;
     return `
-      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''} ${isReview ? 'review-card' : ''}" onclick="if(event.target.closest('.knowledge-actions'))return; ${isReview ? `markFinanceReview('${item.id}')` : `toggleFinanceKnowledge('${item.id}', ${day})`}">
-        <div class="knowledge-text">${escapeHtml(item.text)}</div>
+      <div class="knowledge-card ${done ? 'done' : ''} ${key ? 'key' : ''} ${isReview ? 'review-card' : ''}">
+        <div class="knowledge-clickable" onclick="${cardClick}">
+          <div class="knowledge-text">${escapeHtml(item.text)}</div>
+        </div>
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
           <span class="knowledge-actions">
