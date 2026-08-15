@@ -977,14 +977,10 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   }
   const prevPage = currentPage;
   currentPage = page;
-  // 离开听力页时停止正在播放的音频，避免返回首页仍继续朗读
-  if (page !== 'listening' && listeningState && listeningState.active) {
-    stopListeningAudio();
-  }
-  // 离开翻译练习页时停止正在播放的英文朗读，避免返回首页仍继续读
-  if (prevPage === 'translate' && page !== 'translate') {
-    Speech.stopSpeak();
-  }
+  // 切换页面（含返回首页 / 手机返回键）时，无条件停掉一切正在播放的朗读，
+  // 避免离开「对话理解」「句子翻译」等板块后声音仍在后台继续读。
+  // 同时覆盖系统 TTS（Speech）与有道音频（AudioPlayer 含缓存元素）。
+  stopAllPlayback();
 
   // 历史栈同步（让手机返回键行为合理）：
   // - 首页(base) → 子板块：pushState，使返回键能回到首页，不会直接退出 APP；
@@ -2003,8 +1999,20 @@ const AudioPlayer = {
   },
   stop() {
     if (this.el) { try { this.el.pause(); } catch (e) {} this.el = null; }
+    // 同时停掉缓存中的音频元素，防止复用缓存时遗漏仍在播放的实例
+    try {
+      this.cache.forEach((v) => { if (v && v.el) { try { v.el.pause(); } catch (e) {} } });
+    } catch (e) {}
   }
 };
+
+// 停止一切正在进行的朗读/音频播放（系统 TTS + 有道音频），用于切换页面时清理
+function stopAllPlayback() {
+  try { Speech.stopSpeak(); } catch (e) {}
+  try { AudioPlayer.stop(); } catch (e) {}
+  try { if (listeningState && listeningState.active) stopListeningAudio(); } catch (e) {}
+}
+
 
 // 当前选择的发音方式：auto(真人优先) / youdao(仅真人) / tts(仅系统)
 function audioSourceMode() {
