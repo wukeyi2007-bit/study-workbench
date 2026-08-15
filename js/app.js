@@ -3763,7 +3763,7 @@ function renderFinance() {
         <div class="knowledge-foot">
           <span class="knowledge-key">💡 ${escapeHtml(item.keyPoint)}</span>
           <span class="knowledge-actions">
-            <button class="star-btn ${key ? 'active' : ''}" onclick="event.stopPropagation();toggleFinanceKey('${item.id}')">${key ? '⭐ 已重点' : '☆ 重点'}</button>
+            ${key ? '<span class="star-static" title="已是重点 · 在「⭐ 重点复习」中可取消">⭐ 已重点</span>' : '<button class="star-btn" onclick="event.stopPropagation();toggleFinanceKey(\'${item.id}\')">☆ 重点</button>'}
             <span class="knowledge-check">${isReview ? (done ? '✅ 已复习' : '🔁 点我复习') : (done ? '✅ 已掌握' : '⭕ 点我掌握')}</span>
           </span>
         </div>
