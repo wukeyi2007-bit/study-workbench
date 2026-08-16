@@ -3618,11 +3618,12 @@ function getFinanceLevelName(dayIndex) {
 
 function getFinanceCurrentDay() {
   initFinanceKnowledge();
-  return Math.min(state.financeKnowledge.currentDay, getFinanceTodayDay());
+  // 允许手动跳到任意已存在天数（含新增进阶内容），不再以真实日期上限把进度拉回
+  return Math.min(state.financeKnowledge.currentDay, FINANCE_KNOWLEDGE.length || 30);
 }
 
 function setFinanceCurrentDay(day) {
-  const maxDay = getFinanceTodayDay();
+  const maxDay = FINANCE_KNOWLEDGE.length || 30; // 放开上限，可跳到任意已存在天数（含进阶内容）
   if (day < 1 || day > maxDay) {
     Utils.toast(day > maxDay ? "明天的内容还没到解锁时间，明天再来吧" : "已经是第一天了", "warning");
     return;
@@ -3750,7 +3751,7 @@ function renderFinance() {
   const completed = getCompletedForDay(day);
   const levelName = getFinanceLevelName(dayIndex);
   const prevDisabled = day <= 1;
-  const nextDisabled = day >= todayDay;
+  const nextDisabled = day >= FINANCE_KNOWLEDGE.length;
 
   // 长期总进度：所有轮次里标记过的知识点去重数 / 总条数
   const totalItems = FINANCE_KNOWLEDGE.reduce((sum, d) => sum + d.items.length, 0);
@@ -3824,6 +3825,7 @@ function renderFinance() {
       </div>
       <div class="toolbar-right">
         <button class="btn btn-sm btn-key" onclick="openKeyReview()">⭐ 重点复习 (${getFinanceKeyIds().length})</button>
+        ${FINANCE_KNOWLEDGE.length >= 31 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(31)">↪ 跳到进阶</button>` : ''}
         <span class="user-badge">长期进度 ${masteredCount}/${totalItems}</span>
       </div>
     </div>
@@ -3831,7 +3833,7 @@ function renderFinance() {
     <div class="finance-hero knowledge-hero">
       <div style="font-size:15px;font-weight:600;">📌 每日 5 条理财知识点</div>
       <div style="font-size:13px;opacity:.92;margin-top:6px;line-height:1.6;">
-        30 天内容学完后会自动进入下一轮复习，重点反复巩固。理财没有终点，每天进步一点就好。
+        共 ${FINANCE_KNOWLEDGE.length} 天内容（基础 30 天 + 进阶 20 天），可自由学习进度，重点反复巩固。理财没有终点，每天进步一点就好。
       </div>
     </div>
 
