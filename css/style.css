@@ -3321,7 +3321,12 @@ body.has-bg-image .main {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-light);
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: manipulation;
+  user-select: none;
 }
+.knowledge-check:active { opacity: 0.6; }
 .knowledge-card.done .knowledge-check { color: var(--success); }
 .knowledge-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: relative; z-index: 10; }
 .star-btn {

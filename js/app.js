@@ -3799,7 +3799,7 @@ function renderFinance() {
               ? '<span class="star-static" title="已是重点 · 顶部「⭐ 重点复习」里可取消">⭐ 已重点</span>'
               : `<button class="star-btn star-add" type="button" data-fid="${item.id}" ontouchstart="event.stopPropagation();" onclick="event.preventDefault();event.stopPropagation();toggleFinanceKey('${item.id}')">☆ 重点</button>`
             }
-            <span class="knowledge-check">${isReview ? (done ? '✅ 已复习' : '🔁 点我复习') : (done ? '✅ 已掌握' : '⭕ 点我掌握')}</span>
+            <span class="knowledge-check" role="button" onclick="event.stopPropagation();${cardClick}">${isReview ? (done ? '✅ 已复习' : '🔁 点我复习') : (done ? '✅ 已掌握' : '⭕ 点我掌握')}</span>
           </span>
         </div>
       </div>`;
