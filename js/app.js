@@ -3384,7 +3384,6 @@ function renderBookDetail(book) {
         <h2 style="font-size:20px;margin-left:8px;">📒 ${escapeHtml(book.title)}</h2>
       </div>
       <div class="toolbar-right">
-        <button class="btn btn-secondary btn-sm" onclick="logReading(${book.id})">📖 读几页</button>
         <button class="btn btn-primary btn-sm" onclick="addBookNote(${book.id})">＋ 写笔记</button>
       </div>
     </div>
@@ -3406,8 +3405,6 @@ function addBookNote(bookId) {
   const book = state.reading.books.find(b => b.id === bookId);
   if (!book) return;
   const body = `
-    <label class="modal-label">页码（可留空）</label>
-    <input class="modal-input" id="ntPage" type="number" min="1" placeholder="如 36" style="max-width:120px;" />
     <label class="modal-label">笔记内容 *</label>
     <textarea class="modal-textarea" id="ntText" placeholder="写下你的想法、摘抄或感悟…" style="min-height:120px;"></textarea>`;
   const actions = `
@@ -3422,7 +3419,7 @@ function submitBookNote(bookId) {
   if (!book) return;
   const text = (document.getElementById("ntText").value || "").trim();
   if (!text) { Utils.toast("笔记内容不能为空", "warning"); return; }
-  const page = parseInt(document.getElementById("ntPage").value || "0", 10);
+  const page = 0;
   if (!book.notes) book.notes = [];
   book.notes.push({ id: Date.now(), date: Utils.today(), page: page > 0 ? page : 0, text: text });
   Store.save();
