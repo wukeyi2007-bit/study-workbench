@@ -628,27 +628,16 @@ const Speech = {
     u.lang = "en-US";
     u.rate = opts.rate != null ? opts.rate : (parseFloat(state.settings.speakRate) || 0.9);
     u.pitch = opts.pitch || 1;
-    // 语音优先级：调用指定 > 设置指定 > 按 ttsMode 自动选
+    // 语音优先级：调用指定 > 设置锁定的固定音 > 固定的最佳英文音；全程不临时换声，保证每个词发音人一致
     if (this.voices.length === 0) this.voices = this.synth.getVoices();
     let voice = null;
     const wantURI = opts.voiceURI || state.settings.speakVoiceURI;
-    const ttsMode = opts.ttsMode || state.settings.ttsMode || "natural";
-    if (wantURI) {
-      voice = this.voices.find(v => v.voiceURI === wantURI);
-    } else if (ttsMode === "local") {
-      // 本地优先：不依赖网络，适合网络差时（但部分设备本地引擎机械、逐词停顿）
-      const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
-      voice = en.find(v => v.localService === true) || en[0] || null;
-    } else {
-      // 自然优先（默认）：优先非本地神经语音（Google / Samantha / 微软女声），连读自然、词间不卡顿
-      const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
-      const neural = en.filter(v => v.localService === false);
-      const pool = neural.length ? neural : en;
-      pool.sort((a, b) => this.voiceScore(b) - this.voiceScore(a));
-      voice = pool[0] || null;
+    if (wantURI) voice = this.voices.find(v => v.voiceURI === wantURI);
+    // 锁定音找不到（声列表变化/首次未锁定）时，回退到固定的 bestEnVoice，绝不临时挑一个不同的声
+    if (!voice) {
+      if (!this.bestEnVoice) this.bestEnVoice = this.pickBestEnVoice();
+      voice = this.bestEnVoice || this.voices.find(v => (v.lang || "").toLowerCase().startsWith("en")) || null;
     }
-    if (!voice && this.selectedVoice && this.selectedVoice.voiceURI === state.settings.speakVoiceURI) voice = this.selectedVoice;
-    if (!voice) voice = this.bestEnVoice || this.voices.find(v => (v.lang || "").toLowerCase().startsWith("en"));
     if (voice) u.voice = voice;
     if (opts.onstart) u.onstart = opts.onstart;
     // Chrome/安卓 播放长句约 15 秒后会自动 pause，导致卡顿、读一半停住；
@@ -2034,13 +2023,19 @@ function playTextAudio(text, opts = {}) {
   }
   const mode = audioSourceMode();
   if (mode === 'tts') { Speech.speak(text, opts); return; } // 用户指定用系统音，直接播，不联网
-  const mkUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
-  const tryYoudao = () => {
-    AudioPlayer.play(mkUrl(), opts.onend, function () {
-      Speech.speak(text, opts);            // 约 1 秒未出声则直接退回系统发音（不再重试，避免久等）
-    }, text);
+  // 真人音优先：先播有道（同一真人音，所有词一致）；若加载失败，先快速重试一次有道，
+  // 仍失败才退回【锁定的系统音】（绝不再随机换声），从根上解决“一会儿女声一会儿男声”
+  const youdaoUrl = () => 'https://dict.youdao.com/dictvoice?audio=' + encodeURIComponent(text) + '&type=2';
+  let youdaoRetried = false;
+  const fallbackLockedTts = () => {
+    Speech.speak(text, Object.assign({}, opts, { voiceURI: state.settings.speakVoiceURI || undefined }));
   };
-  tryYoudao();
+  const onYoudaoFail = () => {
+    if (youdaoRetried) { fallbackLockedTts(); return; }
+    youdaoRetried = true;
+    AudioPlayer.play(youdaoUrl(), opts.onend, onYoudaoFail, text);
+  };
+  AudioPlayer.play(youdaoUrl(), opts.onend, onYoudaoFail, text);
 }
 
 // 朗读长句：系统 TTS + onend 兜底。
