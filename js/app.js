@@ -3086,7 +3086,7 @@ function renderReading() {
         </div>
         <div class="book-actions">
           <button class="btn btn-primary btn-sm" onclick="logReading(${b.id})">📖 +页</button>
-          <button class="btn btn-secondary btn-sm" onclick="openBookDetail(${b.id})">📝 笔记</button>
+          <button class="btn btn-primary btn-sm" onclick="openBookDetail(${b.id})">📝 笔记</button>
           <button class="btn btn-xs btn-ghost" onclick="deleteBook(${b.id})">删除</button>
         </div>
       </div>
@@ -3299,8 +3299,7 @@ function logReading(bookId) {
     <div style="color:var(--text-secondary);margin-bottom:10px;">《${book.title}》· 共 ${book.totalPages} 页（已读 ${book.currentPage}）</div>
     <label class="modal-label">本次读了几页 *</label>
     <input class="modal-input" id="rdPages" type="number" min="1" placeholder="例如：20" />
-    <label class="modal-label">读后感 / 笔记（可留空）</label>
-    <textarea class="modal-textarea" id="rdNote" placeholder="写下你的想法…"></textarea>`;
+`;
   const actions = `
     <button class="btn btn-secondary" onclick="closeModal()">取消</button>
     <button class="btn btn-primary" onclick="submitLogReading(${bookId})">保存</button>`;
@@ -3312,7 +3311,7 @@ function submitLogReading(bookId) {
   if (!book) return;
   const pages = parseInt(document.getElementById("rdPages").value || "0", 10);
   if (!pages || pages <= 0) { Utils.toast("请输入有效页数", "warning"); return; }
-  const note = (document.getElementById("rdNote").value || "").trim();
+  const note = ("").trim();
 
   book.currentPage = Math.min(book.totalPages, book.currentPage + pages);
   state.reading.log.push({
