@@ -3085,7 +3085,8 @@ function renderReading() {
             : `<div class="book-progress-text">📝 ${noteCount} 条笔记</div>`}
         </div>
         <div class="book-actions">
-          <button class="btn btn-primary btn-sm" onclick="openBookDetail(${b.id})">📝 记笔记</button>
+          <button class="btn btn-primary btn-sm" onclick="logReading(${b.id})">📖 +页</button>
+          <button class="btn btn-secondary btn-sm" onclick="openBookDetail(${b.id})">📝 笔记</button>
           <button class="btn btn-xs btn-ghost" onclick="deleteBook(${b.id})">删除</button>
         </div>
       </div>
