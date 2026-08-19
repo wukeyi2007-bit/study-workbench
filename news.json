@@ -1,46 +1,28 @@
 [
   {
-    "id": "d54784e",
+    "id": "d10b4c8",
     "cat": "domestic",
     "important": true,
-    "title": "微信开放520大额红包 限时一天",
-    "summary": "【百度热搜】微信开放520大额红包 限时一天",
+    "title": "三个刻度里的中国答案",
+    "summary": "【百度热搜】三个刻度里的中国答案",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "d583aa2",
+    "id": "d9743d2",
     "cat": "domestic",
     "important": true,
-    "title": "习近平同厄瓜多尔总统举行会谈",
-    "summary": "【百度热搜】习近平同厄瓜多尔总统举行会谈",
+    "title": "蒙古不法分子擅闯中资营地侮辱员工",
+    "summary": "【百度热搜】蒙古不法分子擅闯中资营地侮辱员工",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "d5f1245",
+    "id": "dcdeff5",
     "cat": "domestic",
     "important": false,
-    "title": "厄尔尼诺大概率成为历史最强",
-    "summary": "【百度热搜】厄尔尼诺大概率成为历史最强",
-    "source": "百度热搜",
-    "date": "2026-08-19"
-  },
-  {
-    "id": "d7dac39",
-    "cat": "domestic",
-    "important": false,
-    "title": "杭州酒局事件知情人：涉事者未喝多",
-    "summary": "【百度热搜】杭州酒局事件知情人：涉事者未喝多",
-    "source": "百度热搜",
-    "date": "2026-08-19"
-  },
-  {
-    "id": "dc1e386",
-    "cat": "domestic",
-    "important": false,
-    "title": "事关住房公积金 有这些新变化",
-    "summary": "【百度热搜】事关住房公积金 有这些新变化",
+    "title": "武磊发文寻人",
+    "summary": "【百度热搜】武磊发文寻人",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
@@ -54,48 +36,75 @@
     "date": "2026-08-19"
   },
   {
-    "id": "i5591d4",
+    "id": "dd6d68d",
+    "cat": "domestic",
+    "important": false,
+    "title": "王兴兴 90后新首富",
+    "summary": "【百度热搜】王兴兴 90后新首富",
+    "source": "百度热搜",
+    "date": "2026-08-19"
+  },
+  {
+    "id": "dea1255",
+    "cat": "domestic",
+    "important": false,
+    "title": "胖东来招聘不包含性侵犯罪人员",
+    "summary": "【百度热搜】胖东来招聘不包含性侵犯罪人员",
+    "source": "百度热搜",
+    "date": "2026-08-19"
+  },
+  {
+    "id": "i66966f",
     "cat": "international",
     "important": true,
-    "title": "住房公积金大变化",
-    "summary": "【百度热搜】住房公积金大变化",
+    "title": "宇树科技股价",
+    "summary": "【百度热搜】宇树科技股价",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "i7ad825",
+    "id": "ib22b14",
     "cat": "international",
     "important": false,
-    "title": "医生：泡面不健康不是因为防腐剂",
-    "summary": "【百度热搜】医生：泡面不健康不是因为防腐剂",
+    "title": "这些诗词句句不提爱句句充满爱",
+    "summary": "【百度热搜】这些诗词句句不提爱句句充满爱",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "ic98892",
+    "id": "id8e993",
     "cat": "international",
     "important": false,
-    "title": "今日七夕",
-    "summary": "【百度热搜】今日七夕",
+    "title": "七夕",
+    "summary": "【百度热搜】七夕",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "ie7b106",
+    "id": "if2a64d",
     "cat": "international",
     "important": false,
-    "title": "青海海西州5.6级地震",
-    "summary": "【百度热搜】青海海西州5.6级地震",
+    "title": "金枕榴莲也进入9.9元时代了",
+    "summary": "【百度热搜】金枕榴莲也进入9.9元时代了",
     "source": "百度热搜",
     "date": "2026-08-19"
   },
   {
-    "id": "t0bbeb3",
+    "id": "t18c8bb",
     "cat": "tech",
     "important": true,
-    "title": "人工智能军备竞赛：中国快速进步，美国政策摇摆",
-    "summary": "【纽约时报中文网】人工智能军备竞赛：中国快速进步，美国政策摇摆",
-    "source": "纽约时报中文网",
+    "title": "从DeepSeek到“人工智能+”：中美AI竞赛究竟在比什么？专家预测三种结局",
+    "summary": "【BBC】从DeepSeek到“人工智能+”：中美AI竞赛究竟在比什么？专家预测三种结局",
+    "source": "BBC",
+    "date": "2026-08-19"
+  },
+  {
+    "id": "t5213c0",
+    "cat": "tech",
+    "important": false,
+    "title": "二季度收入仅增18%！OpenAI“暴雷”，远低于Anthropic",
+    "summary": "【华尔街见闻】二季度收入仅增18%！OpenAI“暴雷”，远低于Anthropic",
+    "source": "华尔街见闻",
     "date": "2026-08-19"
   },
   {
@@ -117,38 +126,29 @@
     "date": "2026-08-19"
   },
   {
-    "id": "tbf15f0",
-    "cat": "tech",
-    "important": false,
-    "title": "《牛来》导演专访曝光！穷到在闲鱼淘二手设备 计算机主板都烧了",
-    "summary": "【驱动之家】《牛来》导演专访曝光！穷到在闲鱼淘二手设备 计算机主板都烧了",
-    "source": "驱动之家",
+    "id": "f3b8d21",
+    "cat": "finance",
+    "important": true,
+    "title": "宇树科技上市首日高开629% 总市值达4449亿元",
+    "summary": "【央广财经】宇树科技上市首日高开629% 总市值达4449亿元",
+    "source": "央广财经",
     "date": "2026-08-19"
   },
   {
-    "id": "f4c3e95",
+    "id": "f88724f",
     "cat": "finance",
-    "important": true,
-    "title": "美股存储芯片股深夜跳水，闪迪、SK海力士、英特尔跌超6%，光通信板块大跌",
-    "summary": "【21财经】美股存储芯片股深夜跳水，闪迪、SK海力士、英特尔跌超6%，光通信板块大跌",
+    "important": false,
+    "title": "【环球财经】美债收益率走高叠加油价上涨 纽约股市三大股指18日均下跌",
+    "summary": "【21财经】【环球财经】美债收益率走高叠加油价上涨 纽约股市三大股指18日均下跌",
     "source": "21财经",
     "date": "2026-08-19"
   },
   {
-    "id": "f755d94",
+    "id": "fb6b830",
     "cat": "finance",
     "important": false,
-    "title": "上交所出手，暂停部分账户交易！涉及13天12板大牛股",
-    "summary": "【10jqka.com.cn】上交所出手，暂停部分账户交易！涉及13天12板大牛股",
-    "source": "10jqka.com.cn",
-    "date": "2026-08-19"
-  },
-  {
-    "id": "f9311ef",
-    "cat": "finance",
-    "important": false,
-    "title": "今日新股上市：上交所科创板宇树科技",
-    "summary": "【东方财富】今日新股上市：上交所科创板宇树科技",
+    "title": "港股开盘：恒指、恒科集体低开；半导体板块重挫，硬件设备、有色、汽车下跌；小米涨近3%；百度大跌超12%，联想、阿里、快手飘绿",
+    "summary": "【东方财富】港股开盘：恒指、恒科集体低开；半导体板块重挫，硬件设备、有色、汽车下跌；小米涨近3%；百度大跌超12%，联想、阿里、快手飘绿",
     "source": "东方财富",
     "date": "2026-08-19"
   }
