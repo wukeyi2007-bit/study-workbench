@@ -652,11 +652,11 @@ function openSettings() {
     <div style="font-size:12px;color:var(--text-light);margin-top:4px;">备考建议 0.8–0.9×，清晰又不拖沓。</div>
     <label class="modal-label" style="margin-top:12px;">朗读引擎（句子 / 单词朗读）</label>
     <select class="modal-input" id="setTtsMode">
-      <option value="natural" ${(!s.ttsMode || s.ttsMode === 'natural') ? 'selected' : ''}>自然优先（推荐：连读流畅、词间不卡）</option>
-      <option value="local" ${s.ttsMode === 'local' ? 'selected' : ''}>本地优先（离线、不联网，部分设备偏机械）</option>
+      <option value="natural" ${(!s.ttsMode || s.ttsMode === 'natural') ? 'selected' : ''}>自然优先（在线神经音，有情感、像真人）</option>
+      <option value="local" ${s.ttsMode === 'local' ? 'selected' : ''}>本地优先（离线、流畅不卡，但偏机械）</option>
     </select>
     <div style="font-size:12px;color:var(--text-light);margin-top:4px;line-height:1.6;">
-      若朗读时「单词之间一顿一顿」，多半是用了系统自带离线引擎——保持「自然优先」即可。若自然优先在你的网络下也卡，再切「本地优先」试试。
+      想要<b>有情感、像真人</b>选「自然优先」；若网络差导致朗读<b>卡顿、一顿一顿</b>，再切「本地优先」（流畅但没语气）。两者只能取其一，按你当下的网络情况选。
     </div>
     <hr style="margin:16px 0;border:none;border-top:1px solid var(--border);" />
     <label class="modal-label">发音方式（听力 / 单词朗读）</label>
@@ -755,7 +755,10 @@ function saveSettings() {
   const aSrc = document.getElementById('setAudioSource');
   state.settings.audioSource = aSrc ? (aSrc.value || 'auto') : 'auto';
   const tMode = document.getElementById('setTtsMode');
-  state.settings.ttsMode = tMode ? (tMode.value || 'natural') : 'natural';
+  const newTtsMode = tMode ? (tMode.value || 'natural') : 'natural';
+  // 切换发音模式时清空手动音色锁定，让系统按新模式重新自动挑音色
+  if (newTtsMode !== state.settings.ttsMode) state.settings.speakVoiceURI = '';
+  state.settings.ttsMode = newTtsMode;
   const gInput = document.getElementById('setDailyGoal');
   const gVal = gInput ? parseInt(gInput.value, 10) : 0;
   state.settings.dailyGoal = (gVal && gVal > 0) ? gVal : 0;

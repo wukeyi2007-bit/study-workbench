@@ -574,22 +574,17 @@ const Speech = {
     const load = () => {
       this.voices = this.synth.getVoices();
       this.bestEnVoice = this.pickBestEnVoice();
+      const mode = (state.settings && state.settings.ttsMode) || 'natural';
       const sel = this.voices.find(v => v.voiceURI === state.settings.speakVoiceURI);
-      this.selectedVoice = sel || this.bestEnVoice || null;
-      // 首次未指定音色时，自动锁定当前最佳英文女声，避免每次启动/刷新音色乱跳
-      if (!state.settings.speakVoiceURI && this.bestEnVoice && this.bestEnVoice.voiceURI) {
-        state.settings.speakVoiceURI = this.bestEnVoice.voiceURI;
+      // local 模式下，若锁定的音色不是本地离线音，则重新锁定（保证「本地优先」真正生效）
+      let mismatch = false;
+      if (mode === 'local' && sel && sel.localService !== true) mismatch = true;
+      // 首次未指定音色、锁定音失效、或与 local 模式不匹配时，自动锁定当前最佳音色
+      if (!state.settings.speakVoiceURI || !sel || mismatch) {
+        state.settings.speakVoiceURI = this.bestEnVoice ? this.bestEnVoice.voiceURI : '';
         Store.save();
       }
-      // 已锁定的音色若是在线神经语音（网络差会逐词卡顿），且设备有本地离线语音，则自动迁移到本地音
-      if (state.settings.speakVoiceURI && this.bestEnVoice && this.bestEnVoice.localService === true) {
-        const locked = this.voices.find(v => v.voiceURI === state.settings.speakVoiceURI);
-        if (locked && locked.localService === false) {
-          state.settings.speakVoiceURI = this.bestEnVoice.voiceURI;
-          this.selectedVoice = this.bestEnVoice;
-          Store.save();
-        }
-      }
+      this.selectedVoice = (this.voices.find(v => v.voiceURI === state.settings.speakVoiceURI)) || this.bestEnVoice || null;
     };
     load();
     if (this.voices.length === 0) {
@@ -619,9 +614,6 @@ const Speech = {
     else score = 50;
     // 已知稳定引擎优先
     if (/microsoft|google|apple|amazon|com\.apple/.test(combined)) score += 8;
-    // 本地离线语音优先（不联网、朗读流畅不卡顿）；在线神经语音网络差会逐词卡顿、词与词之间发钝
-    if (v.localService === true) score += 40;
-    else if (v.localService === false) score -= 15;
     // en-US 优先（通常更自然），en-GB 次之
     if (v.lang.toLowerCase() === "en-us") score += 4;
     else if (v.lang.toLowerCase() === "en-gb") score += 2;
@@ -629,11 +621,16 @@ const Speech = {
   },
 
   // 选出系统里最稳定的英文女声；一旦选定就保存到 settings，避免每次启动换声音
+  // 根据 ttsMode 决定候选：natural 用全部语音（在线神经音更自然有情感），local 只用本地离线音（流畅不联网）
   pickBestEnVoice() {
     const en = this.voices.filter(v => (v.lang || "").toLowerCase().startsWith("en"));
     if (!en.length) return null;
-    en.sort((a, b) => this.voiceScore(b) - this.voiceScore(a));
-    return en[0];
+    const mode = (state.settings && state.settings.ttsMode) || 'natural';
+    const local = en.filter(v => v.localService === true);
+    let pool = en;
+    if (mode === 'local' && local.length) pool = local;
+    pool.sort((a, b) => this.voiceScore(b) - this.voiceScore(a));
+    return pool[0];
   },
 
   // 朗读英文文本
