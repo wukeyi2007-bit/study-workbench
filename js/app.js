@@ -59,9 +59,18 @@ const Store = {
   },
 
   save() {
-    localStorage.setItem(this.KEY, JSON.stringify(state));
+    try {
+      localStorage.setItem(this.KEY, JSON.stringify(state));
+    } catch (e) {
+      // 存储配额超限（常见于照片 base64 太大），给明确提示而不是静默卡死
+      if (typeof Utils !== 'undefined' && Utils.toast) {
+        Utils.toast('保存失败：本地存储已满（照片太大）。请删除一些旧的带照片记录，或重新拍一张更小的照片。', 'error');
+      }
+      return false;
+    }
     // 若已开启云端同步，则在短暂防抖后自动把最新数据推送到云端（跨设备互通）
     if (typeof CloudSync !== 'undefined' && CloudSync.enabled) CloudSync.schedulePush();
+    return true;
   },
 
   default() {
@@ -7368,8 +7377,13 @@ function snapFoodPhoto() {
     return;
   }
   const c = document.getElementById("foodCanvas");
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext("2d").drawImage(v, 0, 0, c.width, c.height);
+  // 压缩到最长边 1200px，避免照片 base64 太大撑爆本地存储（localStorage 约 5MB）
+  const MAX_SIDE = 1200;
+  let w = v.videoWidth, h = v.videoHeight;
+  if (w > h && w > MAX_SIDE) { h = Math.round(h * MAX_SIDE / w); w = MAX_SIDE; }
+  else if (h > MAX_SIDE) { w = Math.round(w * MAX_SIDE / h); h = MAX_SIDE; }
+  c.width = w; c.height = h;
+  c.getContext("2d").drawImage(v, 0, 0, w, h);
   const data = c.toDataURL("image/jpeg", 0.7);
   showFoodPhotoPreview(data);
 }
@@ -7524,7 +7538,11 @@ function submitFood() {
   const today = Utils.today();
   if (!state.diet.log[today]) state.diet.log[today] = [];
   state.diet.log[today].push({ id: "f" + Date.now(), meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
-  Store.save();
+  if (Store.save() === false) {
+    // 保存失败（存储满）：撤销本次新增，保留弹窗，让用户能删除旧记录或重拍
+    state.diet.log[today].pop();
+    return;
+  }
   if (foodStream) { foodStream.getTracks().forEach(t => t.stop()); foodStream = null; }
   window.__foodPhoto = null; window.__foodKcal = null; window.__selectedMeal = null;
   window.__foodPortion = DIET_PORTIONS[2]; window.__foodCustomGram = null;
@@ -7553,8 +7571,13 @@ function submitFoodEdit(date, id) {
   const kcal = kcal100 != null ? Math.round(kcal100 * amount / 100) : 0;
   const note = (document.getElementById("afNote").value || "").trim();
   const photo = window.__foodPhoto || null;
+  const oldItem = list[idx];
   list[idx] = Object.assign({}, list[idx], { meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
-  Store.save();
+  if (Store.save() === false) {
+    // 保存失败（存储满）：恢复原记录，保留弹窗
+    list[idx] = oldItem;
+    return;
+  }
   if (foodStream) { foodStream.getTracks().forEach(t => t.stop()); foodStream = null; }
   window.__foodPhoto = null; window.__foodKcal = null; window.__selectedMeal = null;
   window.__foodPortion = DIET_PORTIONS[2]; window.__foodCustomGram = null;
