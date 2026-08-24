@@ -7087,8 +7087,19 @@ function saveDietTarget() {
 
 let foodStream = null;
 
+// 对已绘制好的 canvas 自适应降质量：逐步降 JPEG 质量，直到 base64 体积（字符数）≤ maxBytes
+function canvasToTargetDataURL(c, maxBytes) {
+  let q = 0.7, out = c.toDataURL("image/jpeg", q);
+  while (out.length > maxBytes && q > 0.35) {
+    q -= 0.1;
+    out = c.toDataURL("image/jpeg", q);
+  }
+  return out;
+}
+
 // 将图片文件压缩为 base64 JPEG，限制最大边长与质量，避免 localStorage 被撑爆
-function compressImageToBase64(file, maxSide = 1200, quality = 0.7) {
+// maxBytes>0 时启用自适应降质量（保证最终体积不超过 maxBytes 字符）
+function compressImageToBase64(file, maxSide = 1200, quality = 0.7, maxBytes = 0) {
   return new Promise((resolve, reject) => {
     if (!file || !file.type || !file.type.startsWith("image/")) { reject(new Error("不是图片文件")); return; }
     const reader = new FileReader();
@@ -7101,7 +7112,7 @@ function compressImageToBase64(file, maxSide = 1200, quality = 0.7) {
         const c = document.createElement("canvas");
         c.width = w; c.height = h;
         c.getContext("2d").drawImage(img, 0, 0, w, h);
-        resolve(c.toDataURL("image/jpeg", quality));
+        resolve(maxBytes > 0 ? canvasToTargetDataURL(c, maxBytes) : c.toDataURL("image/jpeg", quality));
       };
       img.onerror = () => reject(new Error("图片加载失败"));
       img.src = e.target.result;
@@ -7377,21 +7388,21 @@ function snapFoodPhoto() {
     return;
   }
   const c = document.getElementById("foodCanvas");
-  // 压缩到最长边 1200px，避免照片 base64 太大撑爆本地存储（localStorage 约 5MB）
-  const MAX_SIDE = 1200;
+  // 压缩到最长边 800px 并自适应降到 200KB 以内（复杂画面自动降质量），避免撑爆本地存储
+  const MAX_SIDE = 800, MAX_BYTES = 200 * 1024;
   let w = v.videoWidth, h = v.videoHeight;
   if (w > h && w > MAX_SIDE) { h = Math.round(h * MAX_SIDE / w); w = MAX_SIDE; }
   else if (h > MAX_SIDE) { w = Math.round(w * MAX_SIDE / h); h = MAX_SIDE; }
   c.width = w; c.height = h;
   c.getContext("2d").drawImage(v, 0, 0, w, h);
-  const data = c.toDataURL("image/jpeg", 0.7);
+  const data = canvasToTargetDataURL(c, MAX_BYTES);
   showFoodPhotoPreview(data);
 }
 
 function selectFoodPhoto(file) {
   if (!file) return;
   Utils.toast("正在处理图片...", "info");
-  compressImageToBase64(file).then(data => {
+  compressImageToBase64(file, 800, 0.7, 200 * 1024).then(data => {
     showFoodPhotoPreview(data);
     Utils.toast("图片已添加", "success");
   }).catch(err => {
