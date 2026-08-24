@@ -581,6 +581,15 @@ const Speech = {
         state.settings.speakVoiceURI = this.bestEnVoice.voiceURI;
         Store.save();
       }
+      // 已锁定的音色若是在线神经语音（网络差会逐词卡顿），且设备有本地离线语音，则自动迁移到本地音
+      if (state.settings.speakVoiceURI && this.bestEnVoice && this.bestEnVoice.localService === true) {
+        const locked = this.voices.find(v => v.voiceURI === state.settings.speakVoiceURI);
+        if (locked && locked.localService === false) {
+          state.settings.speakVoiceURI = this.bestEnVoice.voiceURI;
+          this.selectedVoice = this.bestEnVoice;
+          Store.save();
+        }
+      }
     };
     load();
     if (this.voices.length === 0) {
@@ -610,6 +619,9 @@ const Speech = {
     else score = 50;
     // 已知稳定引擎优先
     if (/microsoft|google|apple|amazon|com\.apple/.test(combined)) score += 8;
+    // 本地离线语音优先（不联网、朗读流畅不卡顿）；在线神经语音网络差会逐词卡顿、词与词之间发钝
+    if (v.localService === true) score += 40;
+    else if (v.localService === false) score -= 15;
     // en-US 优先（通常更自然），en-GB 次之
     if (v.lang.toLowerCase() === "en-us") score += 4;
     else if (v.lang.toLowerCase() === "en-gb") score += 2;
