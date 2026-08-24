@@ -5391,8 +5391,16 @@ function openLifeModal(editId) {
   if (editId) { ensureLife(); var e = state.life.log.find(function (x) { return x.id === editId; }); if (e) { text = e.text || ''; _lifePhotoData = e.photo || null; } }
   var body = '<textarea id="lifeText" style="width:100%;min-height:100px;padding:10px;border:1px solid var(--border);border-radius:8px;font-size:15px;" placeholder="写点什么...">' + escapeHtml(text) + '</textarea>' +
     '<div style="margin-top:12px;"><label style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--primary);font-size:14px;">📷 ' + (_lifePhotoData ? '换照片' : '拍照/选照片') + '<input type="file" id="lifePhotoInput" accept="image/*" style="display:none;" onchange="previewLifePhoto()"></label><span id="lifePhotoName" style="margin-left:8px;font-size:13px;color:var(--text-secondary);"></span></div>';
-  if (_lifePhotoData) body += '<div style="margin-top:12px;"><img id="lifePhotoPreview" src="' + _lifePhotoData + '" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>';
+  if (_lifePhotoData) body += '<div style="margin-top:12px;"><img id="lifePhotoPreview" style="width:100%;max-height:300px;object-fit:cover;border-radius:8px;" /></div>';
   openModal(editId ? '✏️ 编辑记录' : '📝 记录生活', body, '<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="submitLifeEntry()">' + (editId ? '保存修改' : '保存') + '</button>');
+  // 编辑时已有照片：idb 引用需先异步读回 base64 再填预览
+  if (_lifePhotoData) {
+    if (typeof _lifePhotoData === 'string' && _lifePhotoData.startsWith('idb:')) {
+      PhotoDB.get(_lifePhotoData.slice(4)).then(function (b) { var p = document.getElementById('lifePhotoPreview'); if (b && p) p.src = b; }).catch(function(){});
+    } else {
+      var p = document.getElementById('lifePhotoPreview'); if (p) p.src = _lifePhotoData;
+    }
+  }
   setTimeout(function () { var t = document.getElementById('lifeText'); if (t) t.focus(); }, 100);
 }
 
@@ -5411,14 +5419,21 @@ function previewLifePhoto() {
   });
 }
 
-function submitLifeEntry() {
+async function submitLifeEntry() {
   var text = (document.getElementById('lifeText')?.value || '').trim();
   if (!text && !_lifePhotoData) { Utils.toast('至少写点文字或拍张照片', 'warning'); return; }
   ensureLife();
-  var entry = { id: _lifeEditId || Date.now(), date: Utils.today(), text: text, photo: _lifePhotoData || null };
+  var photo = await storePhoto(_lifePhotoData || null);
+  var entry = { id: _lifeEditId || Date.now(), date: Utils.today(), text: text, photo: photo };
   if (_lifeEditId) {
     var old = state.life.log.find(function (e) { return e.id === _lifeEditId; });
-    if (old) { entry.date = old.date; entry.time = old.time; }
+    if (old) {
+      entry.date = old.date; entry.time = old.time;
+      // 换了照片且旧照片是 idb 引用时，删除旧的 IndexedDB 数据
+      if (photo && photo !== (old.photo || null) && typeof old.photo === 'string' && old.photo.startsWith('idb:')) {
+        PhotoDB.remove(old.photo.slice(4)).catch(function(){});
+      }
+    }
     state.life.log = state.life.log.filter(function (e) { return e.id !== _lifeEditId; });
   } else {
     entry.time = new Date().toTimeString().slice(0, 5);
@@ -5432,7 +5447,14 @@ function submitLifeEntry() {
 
 function editLifeEntry(id) { ensureLife(); var e = state.life.log.find(function (x) { return x.id === id; }); if (e) openLifeModal(id); }
 
-function deleteLifeEntry(id) { if (!confirm('确定删除？')) return; ensureLife(); state.life.log = state.life.log.filter(function (e) { return e.id !== id; }); try { Store.save(); } catch (e) {} renderLifeJournal(); }
+function deleteLifeEntry(id) {
+  if (!confirm('确定删除？')) return;
+  ensureLife();
+  var e = state.life.log.find(function (x) { return String(x.id) === String(id); });
+  if (e && e.photo && typeof e.photo === 'string' && e.photo.startsWith('idb:')) PhotoDB.remove(e.photo.slice(4)).catch(function(){});
+  state.life.log = state.life.log.filter(function (e) { return e.id !== id; });
+  try { Store.save(); } catch (e) {} renderLifeJournal();
+}
 
 function renderLifeJournal() {
   ensureLife();
@@ -5446,20 +5468,39 @@ function renderLifeJournal() {
       h += '<div style="font-size:15px;font-weight:600;margin:16px 0 8px;padding:6px 0;border-bottom:2px solid var(--primary);color:var(--primary);">📅 ' + date + '</div>';
       groups[date].forEach(function (e) {
         h += '<div class="card" style="margin-bottom:12px;padding:14px;">';
-        if (e.photo) h += '<div style="margin-bottom:10px;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" onclick="viewLifePhoto(' + e.id + ')" /></div>';
+        if (e.photo) {
+          if (typeof e.photo === 'string' && e.photo.startsWith('idb:')) {
+            h += '<div style="margin-bottom:10px;"><img class="life-photo" data-idb="' + e.photo.slice(4) + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" onclick="viewLifePhoto(' + e.id + ')" /></div>';
+          } else {
+            h += '<div style="margin-bottom:10px;"><img src="' + e.photo + '" style="width:100%;max-height:400px;object-fit:cover;border-radius:8px;" onclick="viewLifePhoto(' + e.id + ')" /></div>';
+          }
+        }
         if (e.text) h += '<div style="font-size:15px;line-height:1.6;white-space:pre-wrap;">' + escapeHtml(e.text) + '</div>';
         h += '<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:12px;color:var(--text-light);"><span>' + (e.time || '') + '</span><div style="display:flex;gap:4px;"><button class="btn btn-xs btn-secondary" onclick="editLifeEntry(' + e.id + ')">✎ 编辑</button><button class="btn btn-xs btn-secondary" style="color:var(--danger,#e53e3e);" onclick="deleteLifeEntry(' + e.id + ')">删除</button></div></div></div>';
       });
     });
   }
   h += '</div><div style="height:80px;"></div>';
-  document.getElementById('page-life').innerHTML = h;
+  var page = document.getElementById('page-life');
+  page.innerHTML = h;
+  // 照片异步回填：idb 引用从 IndexedDB 读取后填充
+  page.querySelectorAll('.life-photo[data-idb]').forEach(function (img) {
+    var id = img.getAttribute('data-idb');
+    PhotoDB.get(id).then(function (b) { if (b) img.src = b; }).catch(function(){});
+  });
 }
 
 window.viewLifePhoto = function (id) {
   ensureLife(); var e = state.life.log.find(function (x) { return String(x.id) === String(id); });
   if (!e || !e.photo) return;
-  openModal('📷 照片', '<div style="text-align:center;"><img src="' + e.photo + '" style="max-width:100%;max-height:70vh;border-radius:8px;" /></div>', '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  var show = function (src) {
+    openModal('📷 照片', '<div style="text-align:center;"><img src="' + src + '" style="max-width:100%;max-height:70vh;border-radius:8px;" /></div>', '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  };
+  if (typeof e.photo === 'string' && e.photo.startsWith('idb:')) {
+    PhotoDB.get(e.photo.slice(4)).then(function (b) { if (b) show(b); }).catch(function(){});
+  } else {
+    show(e.photo);
+  }
 };
 
 
@@ -6830,6 +6871,13 @@ function init() {
   // 这里写回一次，固化缺失字段，之后刷新即稳定
   try { Store.save(); } catch (e) { /* 忽略保存失败 */ }
 
+  // 照片迁移：把 localStorage 里的历史照片 base64 搬到 IndexedDB（后台静默执行，释放本地存储）
+  setTimeout(() => {
+    migratePhotosToIDB().then(n => {
+      if (n > 0 && currentPage === 'diet') renderDiet();
+    }).catch(() => {});
+  }, 0);
+
   // 绑定导航
   document.querySelectorAll(".nav-tab").forEach(tab => {
     // 历史层级交由 navigate 内部统一处理：
@@ -7002,9 +7050,18 @@ function renderDiet() {
     const [y, m, d] = dateStr.split("-").map(Number);
     return `${m}月${d}日`;
   };
-  const renderItems = (date, items) => items.slice().reverse().map(x => `
+  const renderItems = (date, items) => items.slice().reverse().map(x => {
+    let photoHtml = "";
+    if (x.photo) {
+      if (typeof x.photo === 'string' && x.photo.startsWith("idb:")) {
+        photoHtml = `<img class="diet-log-photo" data-idb="${x.photo.slice(4)}" alt="">`;
+      } else {
+        photoHtml = `<img class="diet-log-photo" src="${x.photo}" alt="">`;
+      }
+    }
+    return `
     <div class="diet-log-item" onclick="openEditFood('${date}','${x.id}')">
-      ${x.photo ? `<img class="diet-log-photo" src="${x.photo}" alt="">` : ""}
+      ${photoHtml}
       <div class="diet-log-info">
         <div class="diet-log-top">
           <span class="diet-log-meal">${mealLabel(x.meal)}</span>
@@ -7014,7 +7071,8 @@ function renderDiet() {
       </div>
       <button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();deleteFood('${date}','${x.id}')">✕</button>
     </div>
-  `).join("");
+  `;
+  }).join("");
 
   const dates = Object.keys(log).filter(d => Array.isArray(log[d]) && log[d].length).sort().reverse();
   const pastDates = dates.filter(d => d !== today);
@@ -7054,6 +7112,11 @@ function renderDiet() {
     </div>
   `;
   page.innerHTML = html;
+  // 照片异步回填：idb 引用从 IndexedDB 读取后填充
+  page.querySelectorAll('.diet-log-photo[data-idb]').forEach(img => {
+    const id = img.getAttribute('data-idb');
+    PhotoDB.get(id).then(b => { if (b) img.src = b; }).catch(() => {});
+  });
 }
 
 function toggleDietHistory() {
@@ -7191,6 +7254,109 @@ function compressImageToBase64(file, maxSide = 1200, quality = 0.7, maxBytes = 0
     reader.onerror = () => reject(new Error("读取文件失败"));
     reader.readAsDataURL(file);
   });
+}
+
+// ===== 照片存储：IndexedDB（容量大，照片单独存这里；localStorage 只存 "idb:xxx" 引用） =====
+const PhotoDB = {
+  _db: null,
+  open() {
+    return new Promise((resolve, reject) => {
+      if (this._db) return resolve(this._db);
+      if (!window.indexedDB) { reject(new Error("当前环境不支持 IndexedDB")); return; }
+      const req = indexedDB.open('keyi-photos', 1);
+      req.onupgradeneeded = e => {
+        const db = e.target.result;
+        if (!db.objectStoreNames.contains('photos')) db.createObjectStore('photos', { keyPath: 'id' });
+      };
+      req.onsuccess = e => { this._db = e.target.result; resolve(this._db); };
+      req.onerror = e => reject(e.target.error);
+    });
+  },
+  put(id, data) {
+    return this.open().then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readwrite');
+      tx.objectStore('photos').put({ id, data });
+      tx.oncomplete = () => resolve(id);
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    }));
+  },
+  get(id) {
+    return this.open().then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readonly');
+      const req = tx.objectStore('photos').get(id);
+      req.onsuccess = () => resolve(req.result ? req.result.data : null);
+      req.onerror = () => reject(req.error);
+    }));
+  },
+  remove(id) {
+    return this.open().then(db => new Promise((resolve, reject) => {
+      const tx = db.transaction('photos', 'readwrite');
+      tx.objectStore('photos').delete(id);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+      tx.onabort = () => reject(tx.error);
+    }));
+  }
+};
+
+// 生成照片引用 id
+function newPhotoId() {
+  return 'p' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+}
+
+// 把照片规范化：base64 存入 IndexedDB 返回引用；已是 idb 引用则原样返回；IndexedDB 不可用时回退 base64
+async function storePhoto(photo) {
+  if (!photo) return null;
+  if (typeof photo === 'string' && photo.startsWith('idb:')) return photo;
+  if (typeof photo === 'string' && photo.startsWith('data:')) {
+    try {
+      const id = newPhotoId();
+      await PhotoDB.put(id, photo);
+      return 'idb:' + id;
+    } catch (e) {
+      return photo;
+    }
+  }
+  return photo;
+}
+
+// 把 localStorage 里存的历史照片 base64（饮食 + 生活记录）迁移到 IndexedDB，localStorage 只留引用
+async function migratePhotosToIDB() {
+  if (!window.indexedDB) return 0;
+  let migrated = 0;
+
+  // 饮食照片
+  const dietLog = state.diet.log || {};
+  for (const date of Object.keys(dietLog)) {
+    for (const item of (dietLog[date] || [])) {
+      if (item.photo && typeof item.photo === 'string' && item.photo.startsWith('data:')) {
+        try {
+          const id = newPhotoId();
+          await PhotoDB.put(id, item.photo);
+          item.photo = 'idb:' + id;
+          migrated++;
+        } catch (e) { /* 单张失败跳过，保留原 base64 */ }
+      }
+    }
+  }
+
+  // 生活记录照片
+  if (state.life && Array.isArray(state.life.log)) {
+    for (const item of state.life.log) {
+      if (item.photo && typeof item.photo === 'string' && item.photo.startsWith('data:')) {
+        try {
+          const id = newPhotoId();
+          await PhotoDB.put(id, item.photo);
+          item.photo = 'idb:' + id;
+          migrated++;
+        } catch (e) { /* 单张失败跳过，保留原 base64 */ }
+      }
+    }
+  }
+
+  if (migrated > 0) { try { Store.save(); } catch (e) {} }
+  return migrated;
 }
 
 // ===== 自定义图片（背景 / 金句背景 / 头像）=====
@@ -7347,8 +7513,12 @@ function openAddFood(preselectMeal, editDate, editItem) {
   window.__foodPortion = DIET_PORTIONS[initPortionIdx];
   window.__foodCustomGram = null;
   if (isEdit && initPhoto) {
-    // 延迟一下，等 modal 渲染到 DOM 后再显示已有照片
-    setTimeout(() => showFoodPhotoPreview(initPhoto), 0);
+    // 延迟一下，等 modal 渲染到 DOM 后再显示已有照片；idb 引用需先异步读回 base64
+    if (typeof initPhoto === 'string' && initPhoto.startsWith('idb:')) {
+      PhotoDB.get(initPhoto.slice(4)).then(b => { if (b) showFoodPhotoPreview(b); }).catch(() => {});
+    } else {
+      setTimeout(() => showFoodPhotoPreview(initPhoto), 0);
+    }
   }
   startFoodCamera();
   updateFoodKcalPreview();
@@ -7616,7 +7786,7 @@ async function submitFood() {
   if (kcal100 == null) { const f = findFood(name); if (f) kcal100 = f.kcal; }
   const kcal = kcal100 != null ? Math.round(kcal100 * amount / 100) : 0;
   const note = (document.getElementById("afNote").value || "").trim();
-  const photo = window.__foodPhoto || null;
+  const photo = await storePhoto(window.__foodPhoto || null);
   const today = Utils.today();
   if (!state.diet.log[today]) state.diet.log[today] = [];
   state.diet.log[today].push({ id: "f" + Date.now(), meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
@@ -7653,8 +7823,12 @@ async function submitFoodEdit(date, id) {
   if (kcal100 == null) { const f = findFood(name); if (f) kcal100 = f.kcal; }
   const kcal = kcal100 != null ? Math.round(kcal100 * amount / 100) : 0;
   const note = (document.getElementById("afNote").value || "").trim();
-  const photo = window.__foodPhoto || null;
+  const photo = await storePhoto(window.__foodPhoto || null);
   const oldItem = list[idx];
+  // 换了新照片且旧照片是 idb 引用时，删除旧的 IndexedDB 数据避免堆积
+  if (photo && photo !== (oldItem.photo || null) && typeof oldItem.photo === 'string' && oldItem.photo.startsWith('idb:')) {
+    PhotoDB.remove(oldItem.photo.slice(4)).catch(() => {});
+  }
   list[idx] = Object.assign({}, list[idx], { meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
   if (!(await saveDietWithCompress())) {
     // 压缩历史照片后仍存不下：恢复原记录，保留弹窗
@@ -7672,6 +7846,11 @@ async function submitFoodEdit(date, id) {
 
 function deleteFood(date, id) {
   if (!state.diet.log[date]) return;
+  const item = (state.diet.log[date] || []).find(x => x.id === id);
+  // 照片存在 IndexedDB 时一并删除，避免孤儿数据堆积
+  if (item && item.photo && typeof item.photo === 'string' && item.photo.startsWith('idb:')) {
+    PhotoDB.remove(item.photo.slice(4)).catch(() => {});
+  }
   state.diet.log[date] = state.diet.log[date].filter(x => x.id !== id);
   if (!state.diet.log[date].length) delete state.diet.log[date];
   Store.save();
