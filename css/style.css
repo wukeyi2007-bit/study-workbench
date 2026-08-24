@@ -4442,6 +4442,15 @@ body.has-bg-image .main {
 .diet-record-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(249,115,22,.22); }
 .diet-record-btn:active { transform: translateY(0); }
 
+.diet-compress-hint {
+  display: flex; align-items: center; gap: 6px;
+  padding: 11px 14px; margin-bottom: 12px;
+  background: #fff7ed; color: #c2410c; font-size: 14px; font-weight: 600;
+  border: 1px dashed #fdba74; border-radius: var(--radius);
+  cursor: pointer; text-align: left; line-height: 1.4;
+}
+.diet-compress-hint:active { background: #ffedd5; }
+
 .diet-log { display: flex; flex-direction: column; gap: 10px; }
 .diet-log-title { font-size: 14px; font-weight: 700; color: var(--text-secondary); margin-bottom: 2px; }
 .diet-log-item {

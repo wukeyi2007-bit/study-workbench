@@ -7036,11 +7036,17 @@ function renderDiet() {
     `).join("") : ""}
   ` : "";
 
+  const largeCount = countLargeDietPhotos();
+  const compressHint = largeCount > 0 ? `
+    <div class="diet-compress-hint" onclick="compressDietPhotosNow()">
+      🗜️ 有 ${largeCount} 张历史照片占用空间偏大，点这里压缩（记录不会删）
+    </div>` : "";
   let html = `
     <div class="section-head">
       <h2>🍱 饮食记录</h2>
     </div>
     <button class="diet-record-btn" onclick="openAddFood()">＋ 记录饮食</button>
+    ${compressHint}
     <div class="diet-log">
       <div class="diet-log-title">今日记录</div>
       ${todayItems.length ? renderItems(today, todayItems) : '<div class="diet-empty">今天还没记录，点击上方按钮开始记录～</div>'}
@@ -7095,6 +7101,71 @@ function canvasToTargetDataURL(c, maxBytes) {
     out = c.toDataURL("image/jpeg", q);
   }
   return out;
+}
+
+// 压缩一张「已存储」的照片 base64（历史大照片瘦身用，记录保留、只减体积）
+function compressStoredPhoto(base64, maxSide = 800, maxBytes = 200 * 1024) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      let w = img.width, h = img.height;
+      if (w > h && w > maxSide) { h = Math.round(h * maxSide / w); w = maxSide; }
+      else if (h > maxSide) { w = Math.round(w * maxSide / h); h = maxSide; }
+      const c = document.createElement("canvas");
+      c.width = w; c.height = h;
+      c.getContext("2d").drawImage(img, 0, 0, w, h);
+      resolve(canvasToTargetDataURL(c, maxBytes));
+    };
+    img.onerror = () => resolve(base64); // 压缩失败保留原图，绝不丢记录
+    img.src = base64;
+  });
+}
+
+// 统计体积偏大的历史饮食照片数量（>250KB），供提示按钮显示
+function countLargeDietPhotos() {
+  const log = state.diet.log || {};
+  const THRESHOLD = 250 * 1024;
+  let n = 0;
+  for (const date of Object.keys(log)) {
+    for (const item of (log[date] || [])) {
+      if (item.photo && item.photo.length > THRESHOLD) n++;
+    }
+  }
+  return n;
+}
+
+// 遍历压缩所有超大的历史饮食照片（保留记录，只减体积），返回压缩数量
+async function compressAllDietPhotos() {
+  const log = state.diet.log || {};
+  const THRESHOLD = 250 * 1024;
+  let count = 0;
+  for (const date of Object.keys(log)) {
+    const items = log[date] || [];
+    for (const item of items) {
+      if (item.photo && item.photo.length > THRESHOLD) {
+        item.photo = await compressStoredPhoto(item.photo);
+        count++;
+      }
+    }
+  }
+  return count;
+}
+
+// 尝试保存；失败则压缩历史大照片释放空间后重试一次。成功返回 true
+async function saveDietWithCompress() {
+  if (Store.save() !== false) return true;
+  const n = await compressAllDietPhotos();
+  if (n === 0) return false;
+  return Store.save() !== false;
+}
+
+// 手动触发：压缩历史大照片（按钮入口）
+async function compressDietPhotosNow() {
+  Utils.toast("正在压缩历史照片，请稍候...", "info");
+  const n = await compressAllDietPhotos();
+  if (n > 0) Store.save();
+  renderDiet();
+  Utils.toast(n > 0 ? "已压缩 " + n + " 张照片，记录都在，空间已释放" : "没有需要压缩的照片了", n > 0 ? "success" : "info");
 }
 
 // 将图片文件压缩为 base64 JPEG，限制最大边长与质量，避免 localStorage 被撑爆
@@ -7536,7 +7607,7 @@ function updateFoodKcalPreview() {
   el.textContent = `${label} · 每 100g ${kcal100} kcal ≈ ${total} kcal`;
 }
 
-function submitFood() {
+async function submitFood() {
   const meal = window.__selectedMeal || "breakfast";
   const name = (document.getElementById("afName").value || "").trim();
   if (!name) { Utils.toast("请填写吃了什么", "warning"); return; }
@@ -7549,9 +7620,10 @@ function submitFood() {
   const today = Utils.today();
   if (!state.diet.log[today]) state.diet.log[today] = [];
   state.diet.log[today].push({ id: "f" + Date.now(), meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
-  if (Store.save() === false) {
-    // 保存失败（存储满）：撤销本次新增，保留弹窗，让用户能删除旧记录或重拍
+  if (!(await saveDietWithCompress())) {
+    // 压缩历史照片后仍存不下：撤销本次新增，保留弹窗
     state.diet.log[today].pop();
+    Utils.toast("存储空间不足，请删除一些旧记录（右上角 ✕）再试", "error");
     return;
   }
   if (foodStream) { foodStream.getTracks().forEach(t => t.stop()); foodStream = null; }
@@ -7568,7 +7640,7 @@ function openEditFood(date, id) {
   openAddFood(null, date, item);
 }
 
-function submitFoodEdit(date, id) {
+async function submitFoodEdit(date, id) {
   const list = state.diet.log[date];
   if (!list) return;
   const idx = list.findIndex(x => x.id === id);
@@ -7584,9 +7656,10 @@ function submitFoodEdit(date, id) {
   const photo = window.__foodPhoto || null;
   const oldItem = list[idx];
   list[idx] = Object.assign({}, list[idx], { meal, name, amount, kcal, kcal100: kcal100 || null, portionLabel: label, note, photo });
-  if (Store.save() === false) {
-    // 保存失败（存储满）：恢复原记录，保留弹窗
+  if (!(await saveDietWithCompress())) {
+    // 压缩历史照片后仍存不下：恢复原记录，保留弹窗
     list[idx] = oldItem;
+    Utils.toast("存储空间不足，请删除一些旧记录（右上角 ✕）再试", "error");
     return;
   }
   if (foodStream) { foodStream.getTracks().forEach(t => t.stop()); foodStream = null; }
