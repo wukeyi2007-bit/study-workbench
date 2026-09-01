@@ -4488,7 +4488,7 @@ body.has-bg-image .main {
 .diet-history-date:hover { background: var(--surface-alt); }
 .diet-history-day .diet-log-item { margin-top: 6px; }
 
-/* ===== 学习笔记 ===== */
+/* ===== 英语笔记 ===== */
 .note-toolbar { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
 .note-review-btn {
   width: 100%; padding: 14px 18px;
