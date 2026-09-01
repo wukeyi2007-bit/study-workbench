@@ -6999,8 +6999,8 @@ function renderNotes() {
     let photoHtml = "";
     if (n.photo) {
       photoHtml = (typeof n.photo === 'string' && n.photo.startsWith('idb:'))
-        ? `<img class="note-photo" data-idb="${n.photo.slice(4)}" alt="">`
-        : `<img class="note-photo" src="${n.photo}" alt="">`;
+        ? `<img class="note-photo" data-idb="${n.photo.slice(4)}" onclick="event.stopPropagation();viewNotePhoto('${n.id}')" alt="">`
+        : `<img class="note-photo" src="${n.photo}" onclick="event.stopPropagation();viewNotePhoto('${n.id}')" alt="">`;
     }
     return `
       <div class="note-card" onclick="openNoteEditor('${n.id}')">
@@ -7084,7 +7084,7 @@ function pickNotePhoto(input) {
   const file = input && input.files && input.files[0];
   if (!file) return;
   Utils.toast("正在处理图片...", "info");
-  compressImageToBase64(file, 1400, 0.75, 300 * 1024).then(data => {
+  compressImageToBase64(file, 2000, 0.85, 800 * 1024).then(data => {
     window.__notePhoto = data;
     showNotePhotoPreview(data);
     Utils.toast("照片已添加", "success");
@@ -7103,6 +7103,20 @@ function clearNotePhoto() {
   if (wrap) wrap.style.display = 'none';
   if (rm) rm.style.display = 'none';
   if (input) input.value = '';
+}
+
+// 点开照片看大图（按笔记 id 查找，idb 引用先读 IndexedDB）
+function viewNotePhoto(id) {
+  ensureNotes();
+  const n = state.notes.items.find(x => x.id === id);
+  if (!n || !n.photo) return;
+  const ref = n.photo;
+  const show = src => openModal('📷 照片', `<div style="text-align:center;"><img src="${src}" style="max-width:100%;max-height:72vh;border-radius:8px;" /></div>`, '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  if (typeof ref === 'string' && ref.startsWith('idb:')) {
+    PhotoDB.get(ref.slice(4)).then(b => { if (b) show(b); }).catch(() => {});
+  } else {
+    show(ref);
+  }
 }
 
 async function saveNote(id) {
@@ -7180,8 +7194,8 @@ function renderNoteReviewCard() {
   let photoHtml = "";
   if (n.photo) {
     photoHtml = (typeof n.photo === 'string' && n.photo.startsWith('idb:'))
-      ? `<img class="note-photo review" data-idb="${n.photo.slice(4)}" alt="">`
-      : `<img class="note-photo review" src="${n.photo}" alt="">`;
+      ? `<img class="note-photo review" data-idb="${n.photo.slice(4)}" onclick="viewNotePhoto('${n.id}')" alt="">`
+      : `<img class="note-photo review" src="${n.photo}" onclick="viewNotePhoto('${n.id}')" alt="">`;
   }
   page.innerHTML = `
     <div class="section-head"><h2>📓 复习</h2></div>
