@@ -6964,20 +6964,11 @@ function init() {
 }
 
 // ==========================================
-// 学习笔记（记录知识点 / 易混淆词 / 句子，带间隔复习）
+// 学习笔记（记录各类英语知识点，带间隔复习）
 // ==========================================
-const NOTE_TYPES = [
-  { key: "knowledge", label: "💡 知识点", short: "知识点" },
-  { key: "word", label: "🔤 易混淆词", short: "易混淆词" },
-  { key: "sentence", label: "✍️ 句子", short: "句子" },
-];
 
 // 间隔复习间隔（天）：level 0..5 对应「复习后到下次复习」的天数
 const NOTE_INTERVALS = [0, 1, 2, 4, 7, 15];
-
-function noteTypeInfo(key) {
-  return NOTE_TYPES.find(t => t.key === key) || NOTE_TYPES[0];
-}
 
 function ensureNotes() {
   if (!state.notes) state.notes = { items: [] };
@@ -6997,20 +6988,13 @@ function renderNotes() {
   ensureNotes();
   const items = state.notes.items.slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   const due = dueNotes();
-  const filter = window.__noteFilter || "all";
-  const filtered = filter === "all" ? items : items.filter(n => n.type === filter);
-
-  const filterBtns = [["all", "全部"], ...NOTE_TYPES.map(t => [t.key, t.label])]
-    .map(([k, label]) => `<button class="note-filter ${filter === k ? 'active' : ''}" onclick="setNoteFilter('${k}')">${label}</button>`).join("");
 
   const renderCard = n => {
-    const info = noteTypeInfo(n.type);
     const overdue = n.dueDate && n.dueDate <= Utils.today();
     const dueText = !n.dueDate ? "待复习" : (overdue ? "🔔 待复习" : `🕐 ${Utils.daysUntil(n.dueDate)} 天后复习`);
     return `
       <div class="note-card" onclick="openNoteEditor('${n.id}')">
         <div class="note-card-top">
-          <span class="note-type">${info.icon} ${info.short}</span>
           <span class="note-due ${overdue ? 'overdue' : ''}">${dueText}</span>
         </div>
         <div class="note-content">${escapeHtml(n.content)}</div>
@@ -7030,43 +7014,25 @@ function renderNotes() {
       <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
       ${due.length ? `<button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>` : ''}
     </div>
-    <div class="note-filters">${filterBtns}</div>
     <div class="note-list">
-      ${filtered.length ? filtered.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
+      ${items.length ? items.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
     </div>
   `;
   page.innerHTML = html;
-}
-
-function setNoteFilter(key) {
-  window.__noteFilter = key;
-  renderNotes();
 }
 
 function openNoteEditor(id) {
   ensureNotes();
   const isEdit = !!id;
   const item = isEdit ? state.notes.items.find(n => n.id === id) : null;
-  const initType = item ? item.type : "knowledge";
-  const typeBtns = NOTE_TYPES.map(t =>
-    `<button type="button" class="note-type-opt ${t.key === initType ? 'active' : ''}" data-type="${t.key}" onclick="selectNoteType('${t.key}')">${t.label}</button>`
-  ).join("");
   const body = `
-    <label class="modal-label">类型</label>
-    <div class="note-type-opts">${typeBtns}</div>
-    <label class="modal-label" style="margin-top:12px;">内容 *</label>
-    <textarea class="modal-input" id="noteContent" rows="4" style="min-height:90px;resize:vertical;" placeholder="记下知识点 / 易混淆的单词 / 句子…">${escapeHtml(item ? item.content : '')}</textarea>
+    <label class="modal-label">内容 *</label>
+    <textarea class="modal-input" id="noteContent" rows="5" style="min-height:100px;resize:vertical;" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
     <label class="modal-label" style="margin-top:12px;">补充说明（可选）</label>
     <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:70px;resize:vertical;" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
   `;
   const actions = `<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveNote('${isEdit ? id : ''}')">${isEdit ? '保存修改' : '保存'}</button>`;
   openModal(isEdit ? "✏️ 编辑笔记" : "＋ 记笔记", body, actions);
-  window.__noteType = initType;
-}
-
-function selectNoteType(key) {
-  window.__noteType = key;
-  document.querySelectorAll(".note-type-opt").forEach(btn => btn.classList.toggle("active", btn.dataset.type === key));
 }
 
 function saveNote(id) {
@@ -7074,18 +7040,17 @@ function saveNote(id) {
   const content = (document.getElementById("noteContent").value || "").trim();
   if (!content) { Utils.toast("请填写内容", "warning"); return; }
   const detail = (document.getElementById("noteDetail").value || "").trim();
-  const type = window.__noteType || "knowledge";
   const today = Utils.today();
   if (id) {
     const n = state.notes.items.find(x => x.id === id);
     if (n) {
-      n.type = type; n.content = content; n.detail = detail;
+      n.content = content; n.detail = detail;
       n.level = 0; n.dueDate = today; n.reviewCount = 0;
     }
   } else {
     state.notes.items.push({
       id: "n" + Date.now(),
-      type, content, detail,
+      content, detail,
       createdAt: today, level: 0, dueDate: today, reviewCount: 0
     });
   }
@@ -7133,12 +7098,10 @@ function renderNoteReviewCard() {
     return;
   }
   const n = noteReviewQueue[noteReviewIndex];
-  const info = noteTypeInfo(n.type);
   page.innerHTML = `
     <div class="section-head"><h2>📓 复习</h2></div>
     <div class="note-review-progress">${noteReviewIndex + 1} / ${noteReviewQueue.length}</div>
     <div class="note-review-card">
-      <div class="note-type">${info.icon} ${info.short}</div>
       <div class="note-content" style="font-size:18px;">${escapeHtml(n.content)}</div>
       ${n.detail ? `<div class="note-detail">${escapeHtml(n.detail)}</div>` : ""}
     </div>
