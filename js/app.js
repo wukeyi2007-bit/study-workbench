@@ -6996,12 +6996,19 @@ function renderNotes() {
   const renderCard = n => {
     const overdue = n.dueDate && n.dueDate <= Utils.today();
     const dueText = !n.dueDate ? "待复习" : (overdue ? "🔔 待复习" : `🕐 ${Utils.daysUntil(n.dueDate)} 天后复习`);
+    let photoHtml = "";
+    if (n.photo) {
+      photoHtml = (typeof n.photo === 'string' && n.photo.startsWith('idb:'))
+        ? `<img class="note-photo" data-idb="${n.photo.slice(4)}" alt="">`
+        : `<img class="note-photo" src="${n.photo}" alt="">`;
+    }
     return `
       <div class="note-card" onclick="openNoteEditor('${n.id}')">
         <div class="note-card-top">
           <span class="note-due ${overdue ? 'overdue' : ''}">${dueText}</span>
         </div>
         <div class="note-content">${escapeHtml(n.content)}</div>
+        ${photoHtml}
         ${n.detail ? `<div class="note-detail">${escapeHtml(n.detail)}</div>` : ""}
         <div class="note-card-bottom">
           <span class="note-date">${n.createdAt || ''}</span>
@@ -7023,38 +7030,102 @@ function renderNotes() {
     </div>
   `;
   page.innerHTML = html;
+  // 照片异步回填：idb 引用从 IndexedDB 读取后填充
+  page.querySelectorAll('.note-photo[data-idb]').forEach(img => {
+    const id = img.getAttribute('data-idb');
+    PhotoDB.get(id).then(b => { if (b) img.src = b; }).catch(() => {});
+  });
 }
 
 function openNoteEditor(id) {
   ensureNotes();
   const isEdit = !!id;
   const item = isEdit ? state.notes.items.find(n => n.id === id) : null;
+  window.__notePhoto = item ? (item.photo || null) : null;
   const body = `
     <label class="modal-label">内容 *</label>
-    <textarea class="modal-input" id="noteContent" rows="5" style="min-height:100px;resize:vertical;" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
+    <textarea class="modal-input" id="noteContent" rows="4" style="min-height:90px;resize:vertical;" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
+    <label class="modal-label" style="margin-top:12px;">照片（可选，可直接拍书页）</label>
+    <div class="note-photo-area">
+      <input type="file" id="notePhotoInput" accept="image/*" style="display:none" onchange="pickNotePhoto(this)">
+      <div class="note-photo-preview" id="notePhotoPreviewWrap" style="display:none;">
+        <img id="notePhotoPreview" alt="照片预览">
+      </div>
+      <div class="note-photo-btns">
+        <button type="button" class="btn btn-sm btn-secondary" onclick="document.getElementById('notePhotoInput').click()">📷 拍照 / 选照片</button>
+        <button type="button" class="btn btn-sm btn-ghost" id="notePhotoRemove" style="display:none" onclick="clearNotePhoto()">移除</button>
+      </div>
+    </div>
     <label class="modal-label" style="margin-top:12px;">补充说明（可选）</label>
     <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:70px;resize:vertical;" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
   `;
   const actions = `<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveNote('${isEdit ? id : ''}')">${isEdit ? '保存修改' : '保存'}</button>`;
   openModal(isEdit ? "✏️ 编辑笔记" : "＋ 记笔记", body, actions);
+  // 编辑时回显已有照片（只预览，不改变要保存的引用）
+  if (window.__notePhoto) {
+    if (typeof window.__notePhoto === 'string' && window.__notePhoto.startsWith('idb:')) {
+      PhotoDB.get(window.__notePhoto.slice(4)).then(b => { if (b) showNotePhotoPreview(b); }).catch(() => {});
+    } else {
+      showNotePhotoPreview(window.__notePhoto);
+    }
+  }
 }
 
-function saveNote(id) {
+function showNotePhotoPreview(dataUrl) {
+  const img = document.getElementById('notePhotoPreview');
+  const wrap = document.getElementById('notePhotoPreviewWrap');
+  const rm = document.getElementById('notePhotoRemove');
+  if (img) img.src = dataUrl;
+  if (wrap) wrap.style.display = 'block';
+  if (rm) rm.style.display = 'inline-flex';
+}
+
+function pickNotePhoto(input) {
+  const file = input && input.files && input.files[0];
+  if (!file) return;
+  Utils.toast("正在处理图片...", "info");
+  compressImageToBase64(file, 1400, 0.75, 300 * 1024).then(data => {
+    window.__notePhoto = data;
+    showNotePhotoPreview(data);
+    Utils.toast("照片已添加", "success");
+  }).catch(err => {
+    Utils.toast(err.message || "图片处理失败", "error");
+  });
+}
+
+function clearNotePhoto() {
+  window.__notePhoto = null;
+  const img = document.getElementById('notePhotoPreview');
+  const wrap = document.getElementById('notePhotoPreviewWrap');
+  const rm = document.getElementById('notePhotoRemove');
+  const input = document.getElementById('notePhotoInput');
+  if (img) img.src = '';
+  if (wrap) wrap.style.display = 'none';
+  if (rm) rm.style.display = 'none';
+  if (input) input.value = '';
+}
+
+async function saveNote(id) {
   ensureNotes();
   const content = (document.getElementById("noteContent").value || "").trim();
-  if (!content) { Utils.toast("请填写内容", "warning"); return; }
   const detail = (document.getElementById("noteDetail").value || "").trim();
+  const photo = await storePhoto(window.__notePhoto || null);
+  if (!content && !photo) { Utils.toast("请填写内容或添加照片", "warning"); return; }
   const today = Utils.today();
   if (id) {
     const n = state.notes.items.find(x => x.id === id);
     if (n) {
-      n.content = content; n.detail = detail;
+      // 换了照片且旧照片是 idb 引用时，删除旧的 IndexedDB 数据避免堆积
+      if (photo && photo !== (n.photo || null) && typeof n.photo === 'string' && n.photo.startsWith('idb:')) {
+        PhotoDB.remove(n.photo.slice(4)).catch(() => {});
+      }
+      n.content = content; n.detail = detail; n.photo = photo;
       n.level = 0; n.dueDate = today; n.reviewCount = 0;
     }
   } else {
     state.notes.items.push({
       id: "n" + Date.now(),
-      content, detail,
+      content, detail, photo,
       createdAt: today, level: 0, dueDate: today, reviewCount: 0
     });
   }
@@ -7067,6 +7138,10 @@ function saveNote(id) {
 function deleteNote(id) {
   if (!confirm("确定删除这条笔记？")) return;
   ensureNotes();
+  const n = state.notes.items.find(x => x.id === id);
+  if (n && n.photo && typeof n.photo === 'string' && n.photo.startsWith('idb:')) {
+    PhotoDB.remove(n.photo.slice(4)).catch(() => {});
+  }
   state.notes.items = state.notes.items.filter(n => n.id !== id);
   Store.save();
   renderNotes();
@@ -7102,11 +7177,18 @@ function renderNoteReviewCard() {
     return;
   }
   const n = noteReviewQueue[noteReviewIndex];
+  let photoHtml = "";
+  if (n.photo) {
+    photoHtml = (typeof n.photo === 'string' && n.photo.startsWith('idb:'))
+      ? `<img class="note-photo review" data-idb="${n.photo.slice(4)}" alt="">`
+      : `<img class="note-photo review" src="${n.photo}" alt="">`;
+  }
   page.innerHTML = `
     <div class="section-head"><h2>📓 复习</h2></div>
     <div class="note-review-progress">${noteReviewIndex + 1} / ${noteReviewQueue.length}</div>
     <div class="note-review-card">
       <div class="note-content" style="font-size:18px;">${escapeHtml(n.content)}</div>
+      ${photoHtml}
       ${n.detail ? `<div class="note-detail">${escapeHtml(n.detail)}</div>` : ""}
     </div>
     <div class="note-review-actions">
@@ -7114,6 +7196,11 @@ function renderNoteReviewCard() {
       <button class="btn btn-primary" onclick="answerNoteReview(true)">✅ 记住了</button>
     </div>
   `;
+  // 复习照片异步回填
+  page.querySelectorAll('.note-photo[data-idb]').forEach(img => {
+    const pid = img.getAttribute('data-idb');
+    PhotoDB.get(pid).then(b => { if (b) img.src = b; }).catch(() => {});
+  });
 }
 
 function answerNoteReview(remembered) {
