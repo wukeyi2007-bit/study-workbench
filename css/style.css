@@ -4488,6 +4488,54 @@ body.has-bg-image .main {
 .diet-history-date:hover { background: var(--surface-alt); }
 .diet-history-day .diet-log-item { margin-top: 6px; }
 
+/* ===== 学习笔记 ===== */
+.note-toolbar { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.note-review-btn {
+  width: 100%; padding: 14px 18px;
+  background: linear-gradient(90deg, #f97316, #ef4444);
+  color: #fff; font-size: 16px; font-weight: 700;
+  border: none; border-radius: var(--radius); box-shadow: var(--shadow);
+  cursor: pointer; transition: transform .1s;
+}
+.note-review-btn:active { transform: translateY(0); }
+.note-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.note-filter {
+  padding: 6px 14px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--border); border-radius: 99px;
+  background: var(--surface); color: var(--text-secondary); cursor: pointer;
+  transition: all .15s;
+}
+.note-filter.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.note-list { display: flex; flex-direction: column; gap: 10px; }
+.note-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px 14px; box-shadow: var(--shadow); cursor: pointer; transition: all .15s;
+}
+.note-card:hover { background: var(--surface-alt); }
+.note-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.note-type { font-size: 12px; font-weight: 700; color: var(--primary-dark); }
+.note-due { font-size: 12px; color: var(--text-light); }
+.note-due.overdue { color: var(--danger, #e53e3e); font-weight: 700; }
+.note-content { font-weight: 600; font-size: 15px; color: var(--text); line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.note-detail { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+.note-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+.note-date { font-size: 11px; color: var(--text-light); }
+.note-type-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.note-type-opt {
+  padding: 8px 14px; font-size: 13px; font-weight: 600;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text-secondary); cursor: pointer; transition: all .15s;
+}
+.note-type-opt.active { background: var(--primary-bg); color: var(--primary-dark); border-color: var(--primary); }
+.note-review-progress { text-align: center; font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+.note-review-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px 18px; box-shadow: var(--shadow); margin-bottom: 16px;
+}
+.note-review-card .note-content { font-size: 18px; }
+.note-review-actions { display: flex; gap: 12px; }
+.note-review-actions .btn { flex: 1; padding: 14px; font-size: 16px; }
+
 .diet-meal-opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .diet-meal-opt {
   flex: 1; min-width: 72px; padding: 9px 10px;
