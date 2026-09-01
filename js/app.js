@@ -30,6 +30,7 @@ const Store = {
     out.progress = Object.assign({}, base.progress, stored.progress || {});
     out.news = Object.assign({}, base.news, stored.news || {});
     out.reading = Object.assign({}, base.reading, stored.reading || {});
+    out.notes = Object.assign({}, base.notes, stored.notes || {});
     out.finance = Object.assign({}, base.finance, stored.finance || {});
     out.financeKnowledge = Object.assign({}, base.financeKnowledge, stored.financeKnowledge || {});
     out.listening = Object.assign({}, base.listening, stored.listening || {});
@@ -111,6 +112,11 @@ const Store = {
         log: [],        // { id, date, bookId, pages, note }
         streak: 0,
         lastReadDate: null,
+      },
+      notes: {
+        // 英语学习笔记：记录知识点 / 易混淆单词 / 句子，带间隔复习
+        // items: [{ id, type:'knowledge'|'word'|'sentence', content, detail, createdAt, level, dueDate, reviewCount }]
+        items: [],
       },
       diet: {
         // 每日饮食记录：{ 'YYYY-MM-DD': [ {id, meal:'breakfast|lunch|dinner|snack', name, amount(克), kcal, photo(base64|null), note} ] }
@@ -1015,7 +1021,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   const titleMap = {
     home: "首页",
     words: "单词",
-    sentences: "句子",
+    notes: "学习笔记",
     exercise: "锻炼",
     life: "生活记录",
     news: "热点新闻",
@@ -1023,8 +1029,6 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     finance: "理财学习",
     errors: "错题本",
     stats: "统计",
-    listening: "听力练习",
-    translate: "翻译练习",
     diet: "饮食",
     weight: "体重"
   };
@@ -1047,7 +1051,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   switch (page) {
     case "home": renderDashboard(); break;
     case "words": renderWords(); break;
-    case "sentences": renderSentences(); break;
+    case "notes": renderNotes(); break;
     case "exercise": renderExercise(); break;
     case "life": renderLifeJournal(); break;
     // // case "news": renderNews(); break; // 新闻模块已移除 // 新闻模块已移除
@@ -1055,8 +1059,6 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     case "finance": renderFinance(); break;
     case "errors": renderErrors(); break;
     case "stats": renderStats(); break;
-    case "listening": renderListening(); break;
-    case "translate": renderTranslate(); break;
     case "diet": renderDiet(); break;
     case "weight": renderWeight(); break;
   }
@@ -1087,10 +1089,6 @@ function renderTodayOverview() {
   const unlearnedWords = Math.max(0, VOCABULARY.length - masteredWords - learningWords);
   const dueReviewWords = getDueReviewWords().length;
   const wordPct = VOCABULARY.length ? Math.min(100, Math.round(((masteredWords + learningWords) / VOCABULARY.length) * 100)) : 0;
-
-  const SENTENCE_DAILY = 5; // 句子翻译每日目标
-  const sentenceDoneToday = state.sentenceDaily && state.sentenceDaily[today] ? state.sentenceDaily[today] : 0;
-  const sentencePct = Math.min(100, Math.round((sentenceDoneToday / SENTENCE_DAILY) * 100));
 
   const exStats = getWeekExerciseStats();
   const runPct = Math.min(100, Math.round((exStats.runKm / exStats.runGoalKm) * 100));
@@ -1123,11 +1121,10 @@ function renderTodayOverview() {
   // 新闻模块已移除，进度不再统计
   const newsPct = 0; const newsRead = 0; const newsTotal = 0;
 
-  const listenProgress = getListeningProgress(today);
-  const listenPct = listenProgress.pct;
-
-  const translateDone = state.translate.daily[today] || 0;
-  const translatePct = Math.min(100, Math.round((translateDone / TRANSLATE_GOAL) * 100));
+  // 学习笔记：今日待复习条数
+  const notesDue = dueNotes().length;
+  const notesPct = notesDue > 0 ? 0 : 100;
+  const notesDesc = notesDue > 0 ? `待复习 ${notesDue} 条` : "今日已复习";
 
   const dailyWordGoal = state.settings.dailyGoal || 0;
   const dailyWordPct = dailyWordGoal > 0
@@ -1136,9 +1133,7 @@ function renderTodayOverview() {
 
   const items = [
     { icon: "📖", name: "单词学习", pct: dailyWordPct, desc: `今日背词 ${todayWords}${dailyWordGoal > 0 ? '/' + dailyWordGoal : ''} · 待复习 ${dueReviewWords}` },
-    { icon: "🔄", name: "句子翻译", pct: sentencePct, desc: `${sentenceDoneToday}/${SENTENCE_DAILY} 句` },
-    { icon: "🎧", name: "听力练习", pct: listenPct, desc: `${listenProgress.totalDone}/${listenProgress.totalGoal} 题` },
-    { icon: "📝", name: "翻译练习", pct: translatePct, desc: `${translateDone}/${TRANSLATE_GOAL} 篇` },
+    { icon: "📓", name: "学习笔记", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "视频跟练", pct: videoPct, desc: `${videoDone}/${videoGoal} 类` },
@@ -1179,13 +1174,10 @@ function renderTodayOverview() {
 
 function pageForOverview(name) {
   if (name === "单词闭环" || name === "单词学习") return "words";
-  if (name === "句子翻译") return "sentences";
+  if (name === "学习笔记") return "notes";
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
   if (name === "理财学习") return "finance";
-  // 新闻模块已移除
-  if (name === "听力练习") return "listening";
-  if (name === "翻译练习") return "translate";
   return "home";
 }
 
@@ -3888,9 +3880,6 @@ function renderErrorsFiltered(type) {
     <div class="filter-tab ${type === 'mastered' ? 'active' : ''}" onclick="renderErrorsFiltered('mastered')">已掌握 (${state.errorBook.filter(e => e.mastered).length})</div>
     <div class="filter-tab ${type === 'choice' ? 'active' : ''}" onclick="renderErrorsFiltered('choice')">选择题</div>
     <div class="filter-tab ${type === 'spell' ? 'active' : ''}" onclick="renderErrorsFiltered('spell')">拼写</div>
-    <div class="filter-tab ${type === 'sentence' ? 'active' : ''}" onclick="renderErrorsFiltered('sentence')">句子</div>
-    <div class="filter-tab ${type === 'listening' ? 'active' : ''}" onclick="renderErrorsFiltered('listening')">听力</div>
-    <div class="filter-tab ${type === 'translate' ? 'active' : ''}" onclick="renderErrorsFiltered('translate')">翻译</div>
   `;
 
   let listHtml = "";
@@ -5101,12 +5090,6 @@ function renderStats() {
     heatmapHtml += `<div class="heatmap-cell ${level > 0 ? 'studied-' + level : ''} ${isToday ? 'today' : ''}" title="${date}: ${words}词">${dayNum}</div>`;
   }
 
-  // 句子统计
-  let sentenceMastered = 0;
-  Object.values(state.sentenceStatus).forEach(s => {
-    if (s.level >= 3) sentenceMastered++;
-  });
-
   const daysLeft = Utils.daysUntil(CONFIG.examDate);
   const dueReview = getDueReviewWords().length;
 
@@ -5163,10 +5146,6 @@ function renderStats() {
         </div>
         <div style="margin-top:8px;padding-top:16px;border-top:1px solid var(--border);">
           <div style="display:flex;justify-content:space-between;">
-            <span style="font-size:14px;color:var(--text-secondary);">句子已掌握</span>
-            <span style="font-size:14px;font-weight:600;">${sentenceMastered} / ${SENTENCES.length}</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px;">
             <span style="font-size:14px;color:var(--text-secondary);">总测试次数</span>
             <span style="font-size:14px;font-weight:600;">${totalTests}</span>
           </div>
@@ -6984,13 +6963,208 @@ function init() {
   }
 }
 
+// ==========================================
+// 学习笔记（记录知识点 / 易混淆词 / 句子，带间隔复习）
+// ==========================================
+const NOTE_TYPES = [
+  { key: "knowledge", label: "💡 知识点", short: "知识点" },
+  { key: "word", label: "🔤 易混淆词", short: "易混淆词" },
+  { key: "sentence", label: "✍️ 句子", short: "句子" },
+];
+
+// 间隔复习间隔（天）：level 0..5 对应「复习后到下次复习」的天数
+const NOTE_INTERVALS = [0, 1, 2, 4, 7, 15];
+
+function noteTypeInfo(key) {
+  return NOTE_TYPES.find(t => t.key === key) || NOTE_TYPES[0];
+}
+
+function ensureNotes() {
+  if (!state.notes) state.notes = { items: [] };
+  if (!Array.isArray(state.notes.items)) state.notes.items = [];
+}
+
+// 今日待复习的笔记（dueDate <= 今天）
+function dueNotes() {
+  ensureNotes();
+  const today = Utils.today();
+  return state.notes.items.filter(n => !n.dueDate || n.dueDate <= today);
+}
+
+function renderNotes() {
+  const page = document.getElementById("page-notes");
+  if (!page) return;
+  ensureNotes();
+  const items = state.notes.items.slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+  const due = dueNotes();
+  const filter = window.__noteFilter || "all";
+  const filtered = filter === "all" ? items : items.filter(n => n.type === filter);
+
+  const filterBtns = [["all", "全部"], ...NOTE_TYPES.map(t => [t.key, t.label])]
+    .map(([k, label]) => `<button class="note-filter ${filter === k ? 'active' : ''}" onclick="setNoteFilter('${k}')">${label}</button>`).join("");
+
+  const renderCard = n => {
+    const info = noteTypeInfo(n.type);
+    const overdue = n.dueDate && n.dueDate <= Utils.today();
+    const dueText = !n.dueDate ? "待复习" : (overdue ? "🔔 待复习" : `🕐 ${Utils.daysUntil(n.dueDate)} 天后复习`);
+    return `
+      <div class="note-card" onclick="openNoteEditor('${n.id}')">
+        <div class="note-card-top">
+          <span class="note-type">${info.icon} ${info.short}</span>
+          <span class="note-due ${overdue ? 'overdue' : ''}">${dueText}</span>
+        </div>
+        <div class="note-content">${escapeHtml(n.content)}</div>
+        ${n.detail ? `<div class="note-detail">${escapeHtml(n.detail)}</div>` : ""}
+        <div class="note-card-bottom">
+          <span class="note-date">${n.createdAt || ''}</span>
+          <button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();deleteNote('${n.id}')">✕</button>
+        </div>
+      </div>`;
+  };
+
+  const html = `
+    <div class="section-head">
+      <h2>📓 学习笔记</h2>
+    </div>
+    <div class="note-toolbar">
+      <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
+      ${due.length ? `<button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>` : ''}
+    </div>
+    <div class="note-filters">${filterBtns}</div>
+    <div class="note-list">
+      ${filtered.length ? filtered.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
+    </div>
+  `;
+  page.innerHTML = html;
+}
+
+function setNoteFilter(key) {
+  window.__noteFilter = key;
+  renderNotes();
+}
+
+function openNoteEditor(id) {
+  ensureNotes();
+  const isEdit = !!id;
+  const item = isEdit ? state.notes.items.find(n => n.id === id) : null;
+  const initType = item ? item.type : "knowledge";
+  const typeBtns = NOTE_TYPES.map(t =>
+    `<button type="button" class="note-type-opt ${t.key === initType ? 'active' : ''}" data-type="${t.key}" onclick="selectNoteType('${t.key}')">${t.label}</button>`
+  ).join("");
+  const body = `
+    <label class="modal-label">类型</label>
+    <div class="note-type-opts">${typeBtns}</div>
+    <label class="modal-label" style="margin-top:12px;">内容 *</label>
+    <textarea class="modal-input" id="noteContent" rows="4" style="min-height:90px;resize:vertical;" placeholder="记下知识点 / 易混淆的单词 / 句子…">${escapeHtml(item ? item.content : '')}</textarea>
+    <label class="modal-label" style="margin-top:12px;">补充说明（可选）</label>
+    <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:70px;resize:vertical;" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
+  `;
+  const actions = `<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveNote('${isEdit ? id : ''}')">${isEdit ? '保存修改' : '保存'}</button>`;
+  openModal(isEdit ? "✏️ 编辑笔记" : "＋ 记笔记", body, actions);
+  window.__noteType = initType;
+}
+
+function selectNoteType(key) {
+  window.__noteType = key;
+  document.querySelectorAll(".note-type-opt").forEach(btn => btn.classList.toggle("active", btn.dataset.type === key));
+}
+
+function saveNote(id) {
+  ensureNotes();
+  const content = (document.getElementById("noteContent").value || "").trim();
+  if (!content) { Utils.toast("请填写内容", "warning"); return; }
+  const detail = (document.getElementById("noteDetail").value || "").trim();
+  const type = window.__noteType || "knowledge";
+  const today = Utils.today();
+  if (id) {
+    const n = state.notes.items.find(x => x.id === id);
+    if (n) {
+      n.type = type; n.content = content; n.detail = detail;
+      n.level = 0; n.dueDate = today; n.reviewCount = 0;
+    }
+  } else {
+    state.notes.items.push({
+      id: "n" + Date.now(),
+      type, content, detail,
+      createdAt: today, level: 0, dueDate: today, reviewCount: 0
+    });
+  }
+  Store.save();
+  closeModal();
+  renderNotes();
+  Utils.toast("已保存", "success");
+}
+
+function deleteNote(id) {
+  if (!confirm("确定删除这条笔记？")) return;
+  ensureNotes();
+  state.notes.items = state.notes.items.filter(n => n.id !== id);
+  Store.save();
+  renderNotes();
+}
+
+// ===== 间隔复习 =====
+let noteReviewQueue = null;
+let noteReviewIndex = 0;
+
+function startNoteReview() {
+  ensureNotes();
+  const due = dueNotes();
+  if (!due.length) { Utils.toast("今天没有需要复习的笔记", "info"); return; }
+  noteReviewQueue = Utils.shuffle(due);
+  noteReviewIndex = 0;
+  renderNoteReviewCard();
+}
+
+function renderNoteReviewCard() {
+  const page = document.getElementById("page-notes");
+  if (!page) return;
+  if (!noteReviewQueue || noteReviewIndex >= noteReviewQueue.length) {
+    const total = noteReviewQueue ? noteReviewQueue.length : 0;
+    page.innerHTML = `
+      <div class="section-head"><h2>📓 学习笔记</h2></div>
+      <div class="card" style="text-align:center;padding:32px 20px;">
+        <div style="font-size:40px;">🎉</div>
+        <div style="font-weight:600;margin-top:8px;">今日复习完成！</div>
+        <div style="font-size:13px;color:var(--text-secondary);margin-top:6px;">共复习 ${total} 条</div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="renderNotes()">返回笔记列表</button>
+      </div>`;
+    noteReviewQueue = null;
+    return;
+  }
+  const n = noteReviewQueue[noteReviewIndex];
+  const info = noteTypeInfo(n.type);
+  page.innerHTML = `
+    <div class="section-head"><h2>📓 复习</h2></div>
+    <div class="note-review-progress">${noteReviewIndex + 1} / ${noteReviewQueue.length}</div>
+    <div class="note-review-card">
+      <div class="note-type">${info.icon} ${info.short}</div>
+      <div class="note-content" style="font-size:18px;">${escapeHtml(n.content)}</div>
+      ${n.detail ? `<div class="note-detail">${escapeHtml(n.detail)}</div>` : ""}
+    </div>
+    <div class="note-review-actions">
+      <button class="btn btn-secondary" onclick="answerNoteReview(false)">😵 没记住</button>
+      <button class="btn btn-primary" onclick="answerNoteReview(true)">✅ 记住了</button>
+    </div>
+  `;
+}
+
+function answerNoteReview(remembered) {
+  if (!noteReviewQueue || noteReviewIndex >= noteReviewQueue.length) return;
+  const n = noteReviewQueue[noteReviewIndex];
+  n.reviewCount = (n.reviewCount || 0) + 1;
+  n.level = remembered ? Math.min((n.level || 0) + 1, NOTE_INTERVALS.length - 1) : 0;
+  n.dueDate = Utils.dateOffset(NOTE_INTERVALS[n.level]);
+  Store.save();
+  noteReviewIndex++;
+  renderNoteReviewCard();
+}
+
 // 侧边栏模块清单（key 对应 data-page，label 用于设置页展示）
 const SIDEBAR_MODULES = [
   { key: "home", label: "🏠 首页", group: "学习" },
   { key: "words", label: "📖 单词", group: "学习" },
-  { key: "sentences", label: "🔄 句子", group: "学习" },
-  { key: "listening", label: "🎧 听力", group: "学习" },
-  { key: "translate", label: "📝 翻译", group: "学习" },
+  { key: "notes", label: "📓 学习笔记", group: "学习" },
   { key: "errors", label: "❌ 错题本", group: "学习" },
   { key: "stats", label: "📊 统计", group: "学习" },
   { key: "exercise", label: "💪 锻炼", group: "生活" },
