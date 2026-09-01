@@ -1,5 +1,5 @@
 // 柯仪学习工作台 - Service Worker（离线缓存 + 应用壳）
-const CACHE = 'keyi-app-v33';
+const CACHE = 'keyi-app-v34';
 const PRECACHE = [
   './',
   './index.html',
