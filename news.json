@@ -1,19 +1,37 @@
 [
   {
-    "id": "d616518",
+    "id": "d016f6d",
     "cat": "domestic",
     "important": true,
-    "title": "习近平会见普京",
-    "summary": "【百度热搜】习近平会见普京",
+    "title": "台风沙德尔复活",
+    "summary": "【百度热搜】台风沙德尔复活",
     "source": "百度热搜",
     "date": "2026-09-01"
   },
   {
-    "id": "d85d855",
+    "id": "d089dbc",
     "cat": "domestic",
     "important": true,
-    "title": "杨瀚森绝杀",
-    "summary": "【百度热搜】杨瀚森绝杀",
+    "title": "为何不炸开一条泄流通道",
+    "summary": "【百度热搜】为何不炸开一条泄流通道",
+    "source": "百度热搜",
+    "date": "2026-09-01"
+  },
+  {
+    "id": "d2cdea5",
+    "cat": "domestic",
+    "important": false,
+    "title": "百万级产能缺口 订单排到3年后",
+    "summary": "【百度热搜】百万级产能缺口 订单排到3年后",
+    "source": "百度热搜",
+    "date": "2026-09-01"
+  },
+  {
+    "id": "d616518",
+    "cat": "domestic",
+    "important": false,
+    "title": "习近平会见普京",
+    "summary": "【百度热搜】习近平会见普京",
     "source": "百度热搜",
     "date": "2026-09-01"
   },
@@ -27,38 +45,29 @@
     "date": "2026-09-01"
   },
   {
-    "id": "db41fad",
+    "id": "dbf26ee",
     "cat": "domestic",
     "important": false,
-    "title": "山姆9个月卖了100万个会员",
-    "summary": "【百度热搜】山姆9个月卖了100万个会员",
-    "source": "百度热搜",
-    "date": "2026-09-01"
-  },
-  {
-    "id": "dc7df7f",
-    "cat": "domestic",
-    "important": false,
-    "title": "吉隆口岸核心区现存建筑仅剩水塔",
-    "summary": "【百度热搜】吉隆口岸核心区现存建筑仅剩水塔",
-    "source": "百度热搜",
-    "date": "2026-09-01"
-  },
-  {
-    "id": "df6299a",
-    "cat": "domestic",
-    "important": false,
-    "title": "顾客多次仅退款 老板气不过上门要餐",
-    "summary": "【百度热搜】顾客多次仅退款 老板气不过上门要餐",
-    "source": "百度热搜",
-    "date": "2026-09-01"
-  },
-  {
-    "id": "i5ef093",
-    "cat": "international",
-    "important": true,
     "title": "库克任苹果CEO最后一天",
     "summary": "【百度热搜】库克任苹果CEO最后一天",
+    "source": "百度热搜",
+    "date": "2026-09-01"
+  },
+  {
+    "id": "i526c9c",
+    "cat": "international",
+    "important": true,
+    "title": "胡军给陈丽君当助理处得像父女",
+    "summary": "【百度热搜】胡军给陈丽君当助理处得像父女",
+    "source": "百度热搜",
+    "date": "2026-09-01"
+  },
+  {
+    "id": "i8138d1",
+    "cat": "international",
+    "important": false,
+    "title": "开学了家长松了一口气",
+    "summary": "【百度热搜】开学了家长松了一口气",
     "source": "百度热搜",
     "date": "2026-09-01"
   },
@@ -72,20 +81,11 @@
     "date": "2026-09-01"
   },
   {
-    "id": "i979858",
+    "id": "ide9bbf",
     "cat": "international",
     "important": false,
-    "title": "于东来发文力挺韩红",
-    "summary": "【百度热搜】于东来发文力挺韩红",
-    "source": "百度热搜",
-    "date": "2026-09-01"
-  },
-  {
-    "id": "id36562",
-    "cat": "international",
-    "important": false,
-    "title": "女子误诊抑郁症治疗3个月暴瘦20斤",
-    "summary": "【百度热搜】女子误诊抑郁症治疗3个月暴瘦20斤",
+    "title": "江苏省委：坚决拥护党中央决定",
+    "summary": "【百度热搜】江苏省委：坚决拥护党中央决定",
     "source": "百度热搜",
     "date": "2026-09-01"
   },
@@ -126,30 +126,30 @@
     "date": "2026-09-01"
   },
   {
-    "id": "f3e7553",
+    "id": "fa6f1fb",
     "cat": "finance",
     "important": true,
-    "title": "8月份制造业PMI为49.8%",
-    "summary": "【finance.people.com.cn】8月份制造业PMI为49.8%",
-    "source": "finance.people.com.cn",
+    "title": "鹰派“冷箭”击穿4400美元关口 黄金涨势或短暂承压",
+    "summary": "【同花顺】鹰派“冷箭”击穿4400美元关口 黄金涨势或短暂承压",
+    "source": "同花顺",
     "date": "2026-09-01"
   },
   {
-    "id": "f3f50b6",
+    "id": "fb6ccda",
     "cat": "finance",
     "important": false,
-    "title": "周二你需要知道的隔夜全球要闻：受美伊局势影响布伦特油价站上每桶90美元；黄仁勋称VeraRubin可为英伟达带来每吉瓦超400亿美元的营收",
-    "summary": "【东方财富】周二你需要知道的隔夜全球要闻：受美伊局势影响布伦特油价站上每桶90美元；黄仁勋称VeraRubin可为英伟达带来每吉瓦超400亿美元的营收",
+    "title": "美股收盘：三大指数集体下跌，道指跌0.7%；半导体、存储板块多数上涨，闪迪涨超5%，SK海力士涨超2%",
+    "summary": "【东方财富】美股收盘：三大指数集体下跌，道指跌0.7%；半导体、存储板块多数上涨，闪迪涨超5%，SK海力士涨超2%",
     "source": "东方财富",
     "date": "2026-09-01"
   },
   {
-    "id": "fad6ca1",
+    "id": "fed9603",
     "cat": "finance",
     "important": false,
-    "title": "中国人保上半年科技金融投资规模增长32.1%",
-    "summary": "【新华网】中国人保上半年科技金融投资规模增长32.1%",
-    "source": "新华网",
+    "title": "一旦马六甲海峡被封，中国到底能撑多久？",
+    "summary": "【文学城】一旦马六甲海峡被封，中国到底能撑多久？",
+    "source": "文学城",
     "date": "2026-09-01"
   }
 ]
