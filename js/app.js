@@ -114,7 +114,7 @@ const Store = {
         lastReadDate: null,
       },
       notes: {
-        // 英语学习笔记：记录知识点 / 易混淆单词 / 句子，带间隔复习
+        // 英语笔记：记录知识点 / 易混淆单词 / 句子，带间隔复习
         // items: [{ id, type:'knowledge'|'word'|'sentence', content, detail, createdAt, level, dueDate, reviewCount }]
         items: [],
       },
@@ -1021,7 +1021,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   const titleMap = {
     home: "首页",
     words: "单词",
-    notes: "学习笔记",
+    notes: "英语笔记",
     exercise: "锻炼",
     life: "生活记录",
     news: "热点新闻",
@@ -1121,10 +1121,14 @@ function renderTodayOverview() {
   // 新闻模块已移除，进度不再统计
   const newsPct = 0; const newsRead = 0; const newsTotal = 0;
 
-  // 学习笔记：今日待复习条数
+  // 英语笔记：今日待复习条数
+  const notesTotal = state.notes && Array.isArray(state.notes.items) ? state.notes.items.length : 0;
   const notesDue = dueNotes().length;
-  const notesPct = notesDue > 0 ? 0 : 100;
-  const notesDesc = notesDue > 0 ? `待复习 ${notesDue} 条` : "今日已复习";
+  let notesPct = 0, notesDesc = "还没记过";
+  if (notesTotal > 0) {
+    if (notesDue > 0) { notesPct = 0; notesDesc = `待复习 ${notesDue} 条`; }
+    else { notesPct = 100; notesDesc = "今日已复习"; }
+  }
 
   const dailyWordGoal = state.settings.dailyGoal || 0;
   const dailyWordPct = dailyWordGoal > 0
@@ -1133,7 +1137,7 @@ function renderTodayOverview() {
 
   const items = [
     { icon: "📖", name: "单词学习", pct: dailyWordPct, desc: `今日背词 ${todayWords}${dailyWordGoal > 0 ? '/' + dailyWordGoal : ''} · 待复习 ${dueReviewWords}` },
-    { icon: "📓", name: "学习笔记", pct: notesPct, desc: notesDesc },
+    { icon: "📓", name: "英语笔记", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "视频跟练", pct: videoPct, desc: `${videoDone}/${videoGoal} 类` },
@@ -1174,7 +1178,7 @@ function renderTodayOverview() {
 
 function pageForOverview(name) {
   if (name === "单词闭环" || name === "单词学习") return "words";
-  if (name === "学习笔记") return "notes";
+  if (name === "英语笔记") return "notes";
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
   if (name === "理财学习") return "finance";
@@ -6964,7 +6968,7 @@ function init() {
 }
 
 // ==========================================
-// 学习笔记（记录各类英语知识点，带间隔复习）
+// 英语笔记（记录各类英语知识点，带间隔复习）
 // ==========================================
 
 // 间隔复习间隔（天）：level 0..5 对应「复习后到下次复习」的天数
@@ -7008,7 +7012,7 @@ function renderNotes() {
 
   const html = `
     <div class="section-head">
-      <h2>📓 学习笔记</h2>
+      <h2>📓 英语笔记</h2>
     </div>
     <div class="note-toolbar">
       <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
@@ -7087,7 +7091,7 @@ function renderNoteReviewCard() {
   if (!noteReviewQueue || noteReviewIndex >= noteReviewQueue.length) {
     const total = noteReviewQueue ? noteReviewQueue.length : 0;
     page.innerHTML = `
-      <div class="section-head"><h2>📓 学习笔记</h2></div>
+      <div class="section-head"><h2>📓 英语笔记</h2></div>
       <div class="card" style="text-align:center;padding:32px 20px;">
         <div style="font-size:40px;">🎉</div>
         <div style="font-weight:600;margin-top:8px;">今日复习完成！</div>
@@ -7127,7 +7131,7 @@ function answerNoteReview(remembered) {
 const SIDEBAR_MODULES = [
   { key: "home", label: "🏠 首页", group: "学习" },
   { key: "words", label: "📖 单词", group: "学习" },
-  { key: "notes", label: "📓 学习笔记", group: "学习" },
+  { key: "notes", label: "📓 英语笔记", group: "学习" },
   { key: "errors", label: "❌ 错题本", group: "学习" },
   { key: "stats", label: "📊 统计", group: "学习" },
   { key: "exercise", label: "💪 锻炼", group: "生活" },
