@@ -4535,6 +4535,12 @@ body.has-bg-image .main {
 .note-review-card .note-content { font-size: 18px; }
 .note-review-actions { display: flex; gap: 12px; }
 .note-review-actions .btn { flex: 1; padding: 14px; font-size: 16px; }
+.note-photo { width: 100%; max-height: 220px; object-fit: cover; border-radius: 8px; margin-top: 10px; display: block; }
+.note-photo.review { max-height: 300px; }
+.note-photo-area { margin-top: 4px; }
+.note-photo-preview { margin-bottom: 10px; }
+.note-photo-preview img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 8px; display: block; }
+.note-photo-btns { display: flex; gap: 8px; }
 
 .diet-meal-opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .diet-meal-opt {
