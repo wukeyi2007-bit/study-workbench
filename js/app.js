@@ -7016,7 +7016,7 @@ function renderNotes() {
     </div>
     <div class="note-toolbar">
       <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
-      ${due.length ? `<button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>` : ''}
+      <button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>
     </div>
     <div class="note-list">
       ${items.length ? items.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
