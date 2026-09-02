@@ -1,37 +1,19 @@
 [
   {
-    "id": "d03c83a",
+    "id": "d34f5f0",
     "cat": "domestic",
     "important": true,
-    "title": "皇马 不删帖不道歉",
-    "summary": "【百度热搜】皇马 不删帖不道歉",
+    "title": "不满舍友排名2600 排名260学生要退学",
+    "summary": "【百度热搜】不满舍友排名2600 排名260学生要退学",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "d3eb2ca",
+    "id": "d822440",
     "cat": "domestic",
     "important": true,
-    "title": "温州多地紧急通知：停课一天",
-    "summary": "【百度热搜】温州多地紧急通知：停课一天",
-    "source": "百度热搜",
-    "date": "2026-09-02"
-  },
-  {
-    "id": "d77c7d4",
-    "cat": "domestic",
-    "important": false,
-    "title": "徐州12345涌入万件演唱会诉求",
-    "summary": "【百度热搜】徐州12345涌入万件演唱会诉求",
-    "source": "百度热搜",
-    "date": "2026-09-02"
-  },
-  {
-    "id": "d957544",
-    "cat": "domestic",
-    "important": false,
-    "title": "微信新增2个功能",
-    "summary": "【百度热搜】微信新增2个功能",
+    "title": "戴森牙刷 不坑穷人",
+    "summary": "【百度热搜】戴森牙刷 不坑穷人",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
@@ -45,6 +27,24 @@
     "date": "2026-09-02"
   },
   {
+    "id": "dd2c8b2",
+    "cat": "domestic",
+    "important": false,
+    "title": "重庆立法：学校可禁止学生带手机入校",
+    "summary": "【百度热搜】重庆立法：学校可禁止学生带手机入校",
+    "source": "百度热搜",
+    "date": "2026-09-02"
+  },
+  {
+    "id": "ddfaeda",
+    "cat": "domestic",
+    "important": false,
+    "title": "孙女盗走爷爷金镯和钱：他们会原谅我",
+    "summary": "【百度热搜】孙女盗走爷爷金镯和钱：他们会原谅我",
+    "source": "百度热搜",
+    "date": "2026-09-02"
+  },
+  {
     "id": "deb8a61",
     "cat": "domestic",
     "important": false,
@@ -54,29 +54,29 @@
     "date": "2026-09-02"
   },
   {
-    "id": "i2e5c8f",
+    "id": "i614035",
     "cat": "international",
     "important": true,
-    "title": "这届学生的名字都很个性",
-    "summary": "【百度热搜】这届学生的名字都很个性",
+    "title": "福建福鼎：全市停工停产停课休市",
+    "summary": "【百度热搜】福建福鼎：全市停工停产停课休市",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "i39dd6e",
+    "id": "i78fe4c",
     "cat": "international",
     "important": false,
-    "title": "“药中茅台”片仔癀跌落神坛",
-    "summary": "【百度热搜】“药中茅台”片仔癀跌落神坛",
+    "title": "张一山新剧演技大受好评",
+    "summary": "【百度热搜】张一山新剧演技大受好评",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "i8ab38f",
+    "id": "ia1428e",
     "cat": "international",
     "important": false,
-    "title": "花儿与少年2026官宣",
-    "summary": "【百度热搜】花儿与少年2026官宣",
+    "title": "香港武打巨星陈观泰去世",
+    "summary": "【百度热搜】香港武打巨星陈观泰去世",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
@@ -117,39 +117,39 @@
     "date": "2026-09-02"
   },
   {
-    "id": "ta0b75e",
+    "id": "t326de5",
     "cat": "tech",
     "important": false,
-    "title": "尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "summary": "【BBC】尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "source": "BBC",
+    "title": "中国紧追下，美国急于留人",
+    "summary": "【guancha.cn】中国紧追下，美国急于留人",
+    "source": "guancha.cn",
     "date": "2026-09-02"
   },
   {
-    "id": "f46d0a5",
+    "id": "f817e05",
     "cat": "finance",
     "important": true,
-    "title": "美股三大指数再度走弱：半导体、存储板块普跌，油价飙升、金银重挫",
-    "summary": "【thepaper.cn】美股三大指数再度走弱：半导体、存储板块普跌，油价飙升、金银重挫",
-    "source": "thepaper.cn",
+    "title": "港股午评：恒生指数跌0.96% 恒生科技指数跌1.54%",
+    "summary": "【东方财富】港股午评：恒生指数跌0.96% 恒生科技指数跌1.54%",
+    "source": "东方财富",
     "date": "2026-09-02"
   },
   {
-    "id": "f51e29d",
+    "id": "fcc1cca",
     "cat": "finance",
     "important": false,
-    "title": "现货黄金失守4310美元/盎司 金价承压下行",
-    "summary": "【中华网】现货黄金失守4310美元/盎司 金价承压下行",
-    "source": "中华网",
+    "title": "现货黄金跌破4300美元关口",
+    "summary": "【21财经】现货黄金跌破4300美元关口",
+    "source": "21财经",
     "date": "2026-09-02"
   },
   {
-    "id": "ff00a6f",
+    "id": "fccf267",
     "cat": "finance",
     "important": false,
-    "title": "港股午评：恒指、恒科齐跌；黄金股重挫，汽车、煤炭、半导体下跌，医药生物上涨；科网股多数飘绿，智谱跌超5%，“蔚小理”齐跌",
-    "summary": "【finance.eastmoney.com】港股午评：恒指、恒科齐跌；黄金股重挫，汽车、煤炭、半导体下跌，医药生物上涨；科网股多数飘绿，智谱跌超5%，“蔚小理”齐跌",
-    "source": "finance.eastmoney.com",
+    "title": "刚刚，暴跌超1700点！美联储，加息大消息！日韩股市集体重挫",
+    "summary": "【证券时报】刚刚，暴跌超1700点！美联储，加息大消息！日韩股市集体重挫",
+    "source": "证券时报",
     "date": "2026-09-02"
   }
 ]
