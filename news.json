@@ -1,14 +1,5 @@
 [
   {
-    "id": "d438bde",
-    "cat": "domestic",
-    "important": true,
-    "title": "美国银行副总裁在时报广场被刺身亡",
-    "summary": "【百度热搜】美国银行副总裁在时报广场被刺身亡",
-    "source": "百度热搜",
-    "date": "2026-09-02"
-  },
-  {
     "id": "d6ebe2d",
     "cat": "domestic",
     "important": true,
@@ -18,102 +9,111 @@
     "date": "2026-09-02"
   },
   {
-    "id": "db29051",
+    "id": "d7dbce3",
     "cat": "domestic",
-    "important": false,
-    "title": "金价下跌 油价大涨",
-    "summary": "【百度热搜】金价下跌 油价大涨",
+    "important": true,
+    "title": "全国小学初中已全部替换新教材",
+    "summary": "【百度热搜】全国小学初中已全部替换新教材",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "dd51875",
+    "id": "dd37048",
     "cat": "domestic",
     "important": false,
-    "title": "秘鲁宣布与伊朗断绝外交关系",
-    "summary": "【百度热搜】秘鲁宣布与伊朗断绝外交关系",
+    "title": "深圳校服为何让全网感叹真香",
+    "summary": "【百度热搜】深圳校服为何让全网感叹真香",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "ddd65db",
+    "id": "ddf889e",
     "cat": "domestic",
     "important": false,
-    "title": "伊朗多地传出爆炸声",
-    "summary": "【百度热搜】伊朗多地传出爆炸声",
+    "title": "有银行称办40年房贷需35岁以下",
+    "summary": "【百度热搜】有银行称办40年房贷需35岁以下",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "de3c4c9",
+    "id": "deb8a61",
     "cat": "domestic",
     "important": false,
-    "title": "救援救援！再难也要继续",
-    "summary": "【百度热搜】救援救援！再难也要继续",
+    "title": "中国运载火箭为啥叫长征",
+    "summary": "【百度热搜】中国运载火箭为啥叫长征",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "i55113f",
+    "id": "deef106",
+    "cat": "domestic",
+    "important": false,
+    "title": "78名学生住1间宿舍 这是谁的点子",
+    "summary": "【百度热搜】78名学生住1间宿舍 这是谁的点子",
+    "source": "百度热搜",
+    "date": "2026-09-02"
+  },
+  {
+    "id": "i5a0be4",
     "cat": "international",
     "important": true,
-    "title": "找了29年的人已离世24年男子崩溃大哭",
-    "summary": "【百度热搜】找了29年的人已离世24年男子崩溃大哭",
+    "title": "中网海报不见郑钦文",
+    "summary": "【百度热搜】中网海报不见郑钦文",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "i5c8ed8",
+    "id": "i5fa24c",
     "cat": "international",
     "important": false,
-    "title": "81年前的今天 日本签署投降书",
-    "summary": "【百度热搜】81年前的今天 日本签署投降书",
+    "title": "博主芳芳离世 曾众筹止痛药",
+    "summary": "【百度热搜】博主芳芳离世 曾众筹止痛药",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "i86c4a4",
+    "id": "ie08484",
     "cat": "international",
     "important": false,
-    "title": "搜救犬在吉隆口岸搜救累到趴地",
-    "summary": "【百度热搜】搜救犬在吉隆口岸搜救累到趴地",
+    "title": "网红村支书因女儿重度抑郁决定辞职",
+    "summary": "【百度热搜】网红村支书因女儿重度抑郁决定辞职",
     "source": "百度热搜",
     "date": "2026-09-02"
   },
   {
-    "id": "id76acf",
+    "id": "ifc51ad",
     "cat": "international",
     "important": false,
-    "title": "丁俊晖4比0横扫奥沙利文",
-    "summary": "【百度热搜】丁俊晖4比0横扫奥沙利文",
+    "title": "夜间徒步抵达国门 记者看到了什么",
+    "summary": "【百度热搜】夜间徒步抵达国门 记者看到了什么",
     "source": "百度热搜",
-    "date": "2026-09-02"
-  },
-  {
-    "id": "t033b92",
-    "cat": "tech",
-    "important": true,
-    "title": "特朗普称美国反对数据中心“中国会很高兴”",
-    "summary": "【RFI】特朗普称美国反对数据中心“中国会很高兴”",
-    "source": "RFI",
     "date": "2026-09-02"
   },
   {
     "id": "t042031",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "情况又变，35岁成香饽饽了",
     "summary": "【凤凰网】情况又变，35岁成香饽饽了",
     "source": "凤凰网",
     "date": "2026-09-02"
   },
   {
-    "id": "t295640",
+    "id": "t0c3ad5",
     "cat": "tech",
     "important": false,
-    "title": "人工智能“脱缰”在美国引发焦虑，中国则从中看到机遇",
-    "summary": "【纽约时报中文网】人工智能“脱缰”在美国引发焦虑，中国则从中看到机遇",
-    "source": "纽约时报中文网",
+    "title": "早报｜库克卸任苹果CEO,内部告别信曝光/《牛来》密钥延期,冲刺国庆档/网易云音乐鸿蒙版开放测试",
+    "summary": "【爱范儿】早报｜库克卸任苹果CEO,内部告别信曝光/《牛来》密钥延期,冲刺国庆档/网易云音乐鸿蒙版开放测试",
+    "source": "爱范儿",
+    "date": "2026-09-02"
+  },
+  {
+    "id": "t367f05",
+    "cat": "tech",
+    "important": false,
+    "title": "众议院一小组委员会通过旨在禁止与中共有关的危险机器人的跨党法案",
+    "summary": "【美国之音】众议院一小组委员会通过旨在禁止与中共有关的危险机器人的跨党法案",
+    "source": "美国之音",
     "date": "2026-09-02"
   },
   {
@@ -121,35 +121,35 @@
     "cat": "tech",
     "important": false,
     "title": "尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "summary": "【bbc.com】尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "source": "bbc.com",
+    "summary": "【BBC】尼泊尔水力发电隧道救援：家属焦急等待消息",
+    "source": "BBC",
     "date": "2026-09-02"
   },
   {
-    "id": "f169c21",
+    "id": "f46d0a5",
     "cat": "finance",
     "important": true,
-    "title": "燧原科技明日申购！国产AI芯片“最后一块拼图”集齐",
-    "summary": "【金融界】燧原科技明日申购！国产AI芯片“最后一块拼图”集齐",
-    "source": "金融界",
+    "title": "美股三大指数再度走弱：半导体、存储板块普跌，油价飙升、金银重挫",
+    "summary": "【thepaper.cn】美股三大指数再度走弱：半导体、存储板块普跌，油价飙升、金银重挫",
+    "source": "thepaper.cn",
     "date": "2026-09-02"
   },
   {
-    "id": "f8ace39",
+    "id": "f57275c",
     "cat": "finance",
     "important": false,
-    "title": "【环球财经】贵金属再遇抛售 纽约金价1日下挫近3%跌破4400美元关口",
-    "summary": "【finance.eastmoney.com】【环球财经】贵金属再遇抛售 纽约金价1日下挫近3%跌破4400美元关口",
-    "source": "finance.eastmoney.com",
+    "title": "9月2日港股开盘：恒指低开0.19% 洛阳钼业领跌成分股",
+    "summary": "【东方财富】9月2日港股开盘：恒指低开0.19% 洛阳钼业领跌成分股",
+    "source": "东方财富",
     "date": "2026-09-02"
   },
   {
-    "id": "fb4d987",
+    "id": "ff552c3",
     "cat": "finance",
     "important": false,
-    "title": "房地产将告别期房预售时代 渐进式改革推动行业转型",
-    "summary": "【news.china.com】房地产将告别期房预售时代 渐进式改革推动行业转型",
-    "source": "news.china.com",
+    "title": "全球债市齐跌！30年期美债收益率重回干预前水平 贝森特淡化抛售潮",
+    "summary": "【21财经】全球债市齐跌！30年期美债收益率重回干预前水平 贝森特淡化抛售潮",
+    "source": "21财经",
     "date": "2026-09-02"
   }
 ]
