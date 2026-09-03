@@ -4490,6 +4490,7 @@ body.has-bg-image .main {
 
 /* ===== 英语笔记 ===== */
 .note-toolbar { display: flex; flex-direction: column; gap: 10px; margin-bottom: 12px; }
+.note-stats { font-size: 12px; color: var(--text-light); margin-bottom: 10px; }
 .note-review-btn {
   width: 100%; padding: 14px 18px;
   background: linear-gradient(90deg, #f97316, #ef4444);
