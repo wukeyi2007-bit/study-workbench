@@ -9,38 +9,20 @@
     "date": "2026-09-03"
   },
   {
-    "id": "d6214b6",
-    "cat": "domestic",
-    "important": true,
-    "title": "微信新功能专治各种看不见",
-    "summary": "【百度热搜】微信新功能专治各种看不见",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "d6583f9",
-    "cat": "domestic",
-    "important": false,
-    "title": "教育局回应“家长晒纪委身份”",
-    "summary": "【百度热搜】教育局回应“家长晒纪委身份”",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
     "id": "d72975a",
     "cat": "domestic",
-    "important": false,
+    "important": true,
     "title": "充值1000误到账26419933亿元",
     "summary": "【百度热搜】充值1000误到账26419933亿元",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "dbdf754",
+    "id": "d8fdc70",
     "cat": "domestic",
     "important": false,
-    "title": "中国人民抗日战争胜利81周年纪念日",
-    "summary": "【百度热搜】中国人民抗日战争胜利81周年纪念日",
+    "title": "建议取消ETC 热议核心是什么",
+    "summary": "【百度热搜】建议取消ETC 热议核心是什么",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
@@ -54,57 +36,75 @@
     "date": "2026-09-03"
   },
   {
-    "id": "i474e8b",
+    "id": "dd2ea00",
+    "cat": "domestic",
+    "important": false,
+    "title": "81年 山河记得我们记得",
+    "summary": "【百度热搜】81年 山河记得我们记得",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "de86d50",
+    "cat": "domestic",
+    "important": false,
+    "title": "微信 单删提示",
+    "summary": "【百度热搜】微信 单删提示",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "i2fc41a",
     "cat": "international",
     "important": true,
-    "title": "乌克兰两部门在基辅发生交火",
-    "summary": "【百度热搜】乌克兰两部门在基辅发生交火",
+    "title": "韩国发生严重涉台错误 中方发声",
+    "summary": "【百度热搜】韩国发生严重涉台错误 中方发声",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "i9c4e95",
+    "id": "i71e6db",
     "cat": "international",
     "important": false,
-    "title": "福建“中国白茶第一街”被淹",
-    "summary": "【百度热搜】福建“中国白茶第一街”被淹",
+    "title": "上百名犹太裔人士声援“绿巨人”",
+    "summary": "【百度热搜】上百名犹太裔人士声援“绿巨人”",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "ie4beed",
+    "id": "id88c08",
     "cat": "international",
     "important": false,
-    "title": "娄艺潇杨玏积压12年剧播了",
-    "summary": "【百度热搜】娄艺潇杨玏积压12年剧播了",
+    "title": "福建仙游突发山洪 三层民房被冲垮",
+    "summary": "【百度热搜】福建仙游突发山洪 三层民房被冲垮",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "ifc4355",
+    "id": "id960a9",
     "cat": "international",
     "important": false,
-    "title": "《花少2》毛阿敏 放现在算虐待老人",
-    "summary": "【百度热搜】《花少2》毛阿敏 放现在算虐待老人",
+    "title": "3714元买的鞋第二天就开胶 商家拒退",
+    "summary": "【百度热搜】3714元买的鞋第二天就开胶 商家拒退",
     "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "t04bc21",
-    "cat": "tech",
-    "important": true,
-    "title": "刚刚，李飞飞掀桌！全球首个多模态世界模型发布，几张照片省掉几百个机位",
-    "summary": "【36氪】刚刚，李飞飞掀桌！全球首个多模态世界模型发布，几张照片省掉几百个机位",
-    "source": "36氪",
     "date": "2026-09-03"
   },
   {
     "id": "tf08407",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
     "summary": "【36氪】Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
     "source": "36氪",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "tbb52ab",
+    "cat": "tech",
+    "important": false,
+    "title": "可看谁删了你！微信单删提示冲上热搜 腾讯客服回应",
+    "summary": "【news.mydrivers.com】可看谁删了你！微信单删提示冲上热搜 腾讯客服回应",
+    "source": "news.mydrivers.com",
     "date": "2026-09-03"
   },
   {
@@ -112,8 +112,8 @@
     "cat": "tech",
     "important": false,
     "title": "iPhone Ultra/iPhone 18 Pro Max机模开箱上手：外观彻底定了",
-    "summary": "【驱动之家】iPhone Ultra/iPhone 18 Pro Max机模开箱上手：外观彻底定了",
-    "source": "驱动之家",
+    "summary": "【news.mydrivers.com】iPhone Ultra/iPhone 18 Pro Max机模开箱上手：外观彻底定了",
+    "source": "news.mydrivers.com",
     "date": "2026-09-03"
   },
   {
@@ -121,35 +121,35 @@
     "cat": "tech",
     "important": false,
     "title": "狱中黄之锋认游说外国制裁中港 港警调查软件因此被停 法官押後判刑",
-    "summary": "【RFI】狱中黄之锋认游说外国制裁中港 港警调查软件因此被停 法官押後判刑",
-    "source": "RFI",
+    "summary": "【rfi.fr】狱中黄之锋认游说外国制裁中港 港警调查软件因此被停 法官押後判刑",
+    "source": "rfi.fr",
     "date": "2026-09-03"
   },
   {
-    "id": "f175118",
+    "id": "f9b55eb",
     "cat": "finance",
     "important": true,
-    "title": "纽约股市三大股指2日上涨",
-    "summary": "【新华网】纽约股市三大股指2日上涨",
-    "source": "新华网",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "f2cff85",
-    "cat": "finance",
-    "important": false,
-    "title": "9月3日港股午盘：恒指涨0.02% 中国宏桥领涨成分股",
-    "summary": "【东方财富】9月3日港股午盘：恒指涨0.02% 中国宏桥领涨成分股",
+    "title": "美股盘后速递：存储芯片多数下跌，三大股指期货齐涨；戴尔科技收盘暴涨超15%现转跌；特朗普提议将霍尔木兹海峡更名为“特朗普海峡”",
+    "summary": "【东方财富】美股盘后速递：存储芯片多数下跌，三大股指期货齐涨；戴尔科技收盘暴涨超15%现转跌；特朗普提议将霍尔木兹海峡更名为“特朗普海峡”",
     "source": "东方财富",
     "date": "2026-09-03"
   },
   {
-    "id": "f9d1c0d",
+    "id": "f9c1385",
     "cat": "finance",
     "important": false,
-    "title": "首设“中国服务”展区 2026年服贸会国际范儿足",
-    "summary": "【中国科技网】首设“中国服务”展区 2026年服贸会国际范儿足",
-    "source": "中国科技网",
+    "title": "日韩股市收盘，日股下跌，韩股上涨",
+    "summary": "【东方财富】日韩股市收盘，日股下跌，韩股上涨",
+    "source": "东方财富",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "fb9339a",
+    "cat": "finance",
+    "important": false,
+    "title": "长债收益率持续走高 海外债市掀抛售潮",
+    "summary": "【finance.cnr.cn】长债收益率持续走高 海外债市掀抛售潮",
+    "source": "finance.cnr.cn",
     "date": "2026-09-03"
   }
 ]
