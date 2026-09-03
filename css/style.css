@@ -4542,9 +4542,8 @@ body.has-bg-image .main {
 .note-photo-preview { margin-bottom: 10px; }
 .note-photo-preview img { width: 100%; max-height: 280px; object-fit: cover; border-radius: 8px; display: block; }
 .note-photo-btns { display: flex; gap: 8px; }
-.note-viewer { text-align: center; overflow: auto; max-height: 78vh; padding: 4px; -webkit-overflow-scrolling: touch; }
-.note-view-img { max-width: 100%; max-height: 72vh; border-radius: 8px; cursor: zoom-in; transition: transform 0.2s; display: block; margin: 0 auto; }
-.note-view-img.zoomed { max-width: none; max-height: none; cursor: zoom-out; }
+.note-viewer { display: flex; align-items: center; justify-content: center; overflow: auto; max-height: 78vh; max-width: 100%; padding: 4px; -webkit-overflow-scrolling: touch; }
+.note-view-img { display: block; max-width: none; max-height: none; border-radius: 8px; }
 
 .diet-meal-opts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
 .diet-meal-opt {
