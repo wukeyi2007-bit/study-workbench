@@ -1100,9 +1100,9 @@ function renderTodayOverview() {
     const catId = getVideoCategoryId(e.category);
     if (catId) todayVideoCats.add(catId);
   });
-  const videoGoal = getVideoCategories().length;
+  const videoGoal = getActiveVideoCategories().length;
   const videoDone = todayVideoCats.size;
-  const videoPct = Math.min(100, Math.round((videoDone / videoGoal) * 100));
+  const videoPct = videoGoal > 0 ? Math.min(100, Math.round((videoDone / videoGoal) * 100)) : 0;
 
   const readPagesToday = state.reading.log
     .filter(l => l.date === today)
@@ -1140,7 +1140,7 @@ function renderTodayOverview() {
     { icon: "📓", name: "英语笔记", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
-    { icon: "💪", name: "视频跟练", pct: videoPct, desc: `${videoDone}/${videoGoal} 类` },
+    { icon: "💪", name: "视频跟练", pct: videoPct, desc: videoGoal > 0 ? `${videoDone}/${videoGoal} 类` : "暂无内容" },
     { icon: "💰", name: "理财学习", pct: financePct, desc: `${financeDone}/${financeTotal} 知识点` },
   ];
 
@@ -5222,6 +5222,12 @@ function getVideoCategories() {
   return [...defaults, ...userCats];
 }
 
+// 当前启用（未隐藏）的跟练分类
+function getActiveVideoCategories() {
+  const disabled = new Set(state.exercise?.disabledVideos || []);
+  return getVideoCategories().filter(c => !disabled.has(c.id));
+}
+
 // 默认分类对应的主视频
 function getDefaultVideoForCategory(cat) {
   return { id: cat.id, name: cat.name, icon: cat.icon, desc: cat.desc, link: "", catId: cat.id, default: true };
@@ -7017,6 +7023,7 @@ function renderNotes() {
       </div>`;
   };
 
+  const photoCount = state.notes.items.filter(n => n.photo).length;
   const html = `
     <div class="section-head">
       <h2>📓 英语笔记</h2>
@@ -7025,6 +7032,7 @@ function renderNotes() {
       <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
       <button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>
     </div>
+    ${items.length ? `<div class="note-stats">共 ${items.length} 条笔记${photoCount > 0 ? ` · ${photoCount} 张照片` : ''}</div>` : ''}
     <div class="note-list">
       ${items.length ? items.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
     </div>
