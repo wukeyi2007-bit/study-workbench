@@ -7119,16 +7119,28 @@ function viewNotePhoto(id) {
   const n = state.notes.items.find(x => x.id === id);
   if (!n || !n.photo) return;
   const ref = n.photo;
-  const show = src => openModal('📷 照片',
-    `<div id="notePhotoViewer" class="note-viewer">
-       <img id="noteViewImg" class="note-view-img" src="${src}" alt="笔记照片" />
-     </div>`,
-    '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  const show = src => {
+    let viewer = document.getElementById('notePhotoFullscreen');
+    if (!viewer) {
+      viewer = document.createElement('div');
+      viewer.id = 'notePhotoFullscreen';
+      viewer.className = 'note-photo-fullscreen';
+      document.body.appendChild(viewer);
+    }
+    viewer.innerHTML = '<button class="note-photo-close" onclick="closeNotePhoto()" aria-label="关闭">✕</button>' +
+      '<div class="note-photo-scroll"><img src="' + src + '" alt="笔记照片" /></div>';
+    viewer.style.display = 'flex';
+  };
   if (typeof ref === 'string' && ref.startsWith('idb:')) {
     PhotoDB.get(ref.slice(4)).then(b => { if (b) show(b); }).catch(() => {});
   } else {
     show(ref);
   }
+}
+
+function closeNotePhoto() {
+  const viewer = document.getElementById('notePhotoFullscreen');
+  if (viewer) viewer.style.display = 'none';
 }
 
 function toggleNotePhotoZoom() {
