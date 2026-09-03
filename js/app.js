@@ -7119,12 +7119,23 @@ function viewNotePhoto(id) {
   const n = state.notes.items.find(x => x.id === id);
   if (!n || !n.photo) return;
   const ref = n.photo;
-  const show = src => openModal('📷 照片', `<div style="text-align:center;"><img src="${src}" style="max-width:100%;max-height:72vh;border-radius:8px;" /></div>`, '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
+  const show = src => openModal('📷 照片',
+    `<div id="notePhotoViewer" class="note-viewer">
+       <img id="noteViewImg" class="note-view-img" src="${src}" onclick="toggleNotePhotoZoom()" alt="笔记照片" />
+       <div style="font-size:12px;color:var(--text-light);margin-top:10px;">点照片可放大到原图查看，可滚动</div>
+     </div>`,
+    '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
   if (typeof ref === 'string' && ref.startsWith('idb:')) {
     PhotoDB.get(ref.slice(4)).then(b => { if (b) show(b); }).catch(() => {});
   } else {
     show(ref);
   }
+}
+
+function toggleNotePhotoZoom() {
+  const img = document.getElementById('noteViewImg');
+  if (!img) return;
+  img.classList.toggle('zoomed');
 }
 
 async function saveNote(id) {
