@@ -7121,8 +7121,7 @@ function viewNotePhoto(id) {
   const ref = n.photo;
   const show = src => openModal('📷 照片',
     `<div id="notePhotoViewer" class="note-viewer">
-       <img id="noteViewImg" class="note-view-img" src="${src}" onclick="toggleNotePhotoZoom()" alt="笔记照片" />
-       <div style="font-size:12px;color:var(--text-light);margin-top:10px;">点照片可放大到原图查看，可滚动</div>
+       <img id="noteViewImg" class="note-view-img" src="${src}" alt="笔记照片" />
      </div>`,
     '<button class="btn btn-secondary" onclick="closeModal()">关闭</button>');
   if (typeof ref === 'string' && ref.startsWith('idb:')) {
