@@ -1,88 +1,25 @@
 [
   {
-    "id": "d07248b",
+    "id": "d2b5356",
     "cat": "domestic",
     "important": true,
-    "title": "多地小学老师转教初中",
-    "summary": "【百度热搜】多地小学老师转教初中",
+    "title": "《后西游记》没真人演员却拿下收视第一",
+    "summary": "【百度热搜】《后西游记》没真人演员却拿下收视第一",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "d14d248",
+    "id": "d430953",
     "cat": "domestic",
     "important": true,
-    "title": "今天 致敬伟大胜利",
-    "summary": "【百度热搜】今天 致敬伟大胜利",
+    "title": "“中国冷极”根河已经开始供暖了",
+    "summary": "【百度热搜】“中国冷极”根河已经开始供暖了",
     "source": "百度热搜",
     "date": "2026-09-03"
   },
   {
-    "id": "d61138c",
+    "id": "d6214b6",
     "cat": "domestic",
-    "important": false,
-    "title": "读懂这个“50.9%”的分量",
-    "summary": "【百度热搜】读懂这个“50.9%”的分量",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "d6dca3e",
-    "cat": "domestic",
-    "important": false,
-    "title": "习近平同埃及总统塞西会谈",
-    "summary": "【百度热搜】习近平同埃及总统塞西会谈",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "d74e888",
-    "cat": "domestic",
-    "important": false,
-    "title": "家长自报干部身份让关照？中学回应",
-    "summary": "【百度热搜】家长自报干部身份让关照？中学回应",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "d9807d6",
-    "cat": "domestic",
-    "important": false,
-    "title": "全球股市大反转",
-    "summary": "【百度热搜】全球股市大反转",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "i377620",
-    "cat": "international",
-    "important": true,
-    "title": "《倩女幽魂》“姥姥”刘兆铭去世",
-    "summary": "【百度热搜】《倩女幽魂》“姥姥”刘兆铭去世",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "i396367",
-    "cat": "international",
-    "important": false,
-    "title": "告别机顶盒",
-    "summary": "【百度热搜】告别机顶盒",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "i76230b",
-    "cat": "international",
-    "important": false,
-    "title": "荷兰将约86吨黄金储备从美加转至英国",
-    "summary": "【百度热搜】荷兰将约86吨黄金储备从美加转至英国",
-    "source": "百度热搜",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "ibd683c",
-    "cat": "international",
     "important": false,
     "title": "微信新功能专治各种看不见",
     "summary": "【百度热搜】微信新功能专治各种看不见",
@@ -90,30 +27,93 @@
     "date": "2026-09-03"
   },
   {
-    "id": "t01f83d",
+    "id": "d72975a",
+    "cat": "domestic",
+    "important": false,
+    "title": "充值1000误到账26419933亿元",
+    "summary": "【百度热搜】充值1000误到账26419933亿元",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "dbdf754",
+    "cat": "domestic",
+    "important": false,
+    "title": "中国人民抗日战争胜利81周年纪念日",
+    "summary": "【百度热搜】中国人民抗日战争胜利81周年纪念日",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "dccb6ad",
+    "cat": "domestic",
+    "important": false,
+    "title": "时光见证中埃情谊历久弥新",
+    "summary": "【百度热搜】时光见证中埃情谊历久弥新",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "i2461f8",
+    "cat": "international",
+    "important": true,
+    "title": "乱港艺人何韵诗等5人上诉遭驳回",
+    "summary": "【百度热搜】乱港艺人何韵诗等5人上诉遭驳回",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "ib00839",
+    "cat": "international",
+    "important": false,
+    "title": "苹果新机三种颜色卡托曝光 没有黑色",
+    "summary": "【百度热搜】苹果新机三种颜色卡托曝光 没有黑色",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "ie4beed",
+    "cat": "international",
+    "important": false,
+    "title": "娄艺潇杨玏积压12年剧播了",
+    "summary": "【百度热搜】娄艺潇杨玏积压12年剧播了",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "ieac5ee",
+    "cat": "international",
+    "important": false,
+    "title": "葫芦娃爷爷的孩子已经不在了",
+    "summary": "【百度热搜】葫芦娃爷爷的孩子已经不在了",
+    "source": "百度热搜",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "t6137d2",
     "cat": "tech",
     "important": true,
-    "title": "电动牙刷+摄像头+冲牙器+AI识图=3899？网友：不坑穷人",
-    "summary": "【观察者】电动牙刷+摄像头+冲牙器+AI识图=3899？网友：不坑穷人",
-    "source": "观察者",
+    "title": "玩家把PS5挂墙上炫耀：被网友喷 \"蠢出天际\"",
+    "summary": "【驱动之家】玩家把PS5挂墙上炫耀：被网友喷 \"蠢出天际\"",
+    "source": "驱动之家",
     "date": "2026-09-03"
   },
   {
-    "id": "tc99f33",
+    "id": "tf3f158",
     "cat": "tech",
     "important": false,
-    "title": "100元报销需王兴兴亲自审批？宇树科技回应",
-    "summary": "【凤凰网】100元报销需王兴兴亲自审批？宇树科技回应",
-    "source": "凤凰网",
+    "title": "2万亿美元IPO前夕打出组合拳！Anthropic Fable 5.1发布：基准测试“屠榜”、成本大幅削减、反蒸馏机制落地",
+    "summary": "【华尔街见闻】2万亿美元IPO前夕打出组合拳！Anthropic Fable 5.1发布：基准测试“屠榜”、成本大幅削减、反蒸馏机制落地",
+    "source": "华尔街见闻",
     "date": "2026-09-03"
   },
   {
-    "id": "te452f6",
+    "id": "tf62be0",
     "cat": "tech",
     "important": false,
-    "title": "尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "summary": "【BBC】尼泊尔水力发电隧道救援：家属焦急等待消息",
-    "source": "BBC",
+    "title": "iPhone Ultra/iPhone 18 Pro Max机模开箱上手：外观彻底定了",
+    "summary": "【驱动之家】iPhone Ultra/iPhone 18 Pro Max机模开箱上手：外观彻底定了",
+    "source": "驱动之家",
     "date": "2026-09-03"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-09-03"
   },
   {
-    "id": "f54331b",
+    "id": "f2cff85",
     "cat": "finance",
     "important": true,
-    "title": "优化职能，服务创新型中小企业",
-    "summary": "【人民网财经】优化职能，服务创新型中小企业",
-    "source": "人民网财经",
-    "date": "2026-09-03"
-  },
-  {
-    "id": "f962b2d",
-    "cat": "finance",
-    "important": false,
-    "title": "纳斯达克金龙中国指数收跌0.05%，报6051.33点",
-    "summary": "【东方财富】纳斯达克金龙中国指数收跌0.05%，报6051.33点",
+    "title": "9月3日港股午盘：恒指涨0.02% 中国宏桥领涨成分股",
+    "summary": "【东方财富】9月3日港股午盘：恒指涨0.02% 中国宏桥领涨成分股",
     "source": "东方财富",
     "date": "2026-09-03"
   },
   {
-    "id": "fe186a1",
+    "id": "f9d1c0d",
     "cat": "finance",
     "important": false,
-    "title": "央行行长潘功胜出席二十国集团财长和央行行长会议",
-    "summary": "【新京报】央行行长潘功胜出席二十国集团财长和央行行长会议",
-    "source": "新京报",
+    "title": "首设“中国服务”展区 2026年服贸会国际范儿足",
+    "summary": "【中国科技网】首设“中国服务”展区 2026年服贸会国际范儿足",
+    "source": "中国科技网",
+    "date": "2026-09-03"
+  },
+  {
+    "id": "fa18ca7",
+    "cat": "finance",
+    "important": false,
+    "title": "美股终结三连跌：半导体、存储板块多数上涨，戴尔大涨超15%",
+    "summary": "【东方财富】美股终结三连跌：半导体、存储板块多数上涨，戴尔大涨超15%",
+    "source": "东方财富",
     "date": "2026-09-03"
   }
 ]
