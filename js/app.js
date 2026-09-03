@@ -7128,8 +7128,9 @@ function viewNotePhoto(id) {
       document.body.appendChild(viewer);
     }
     viewer.innerHTML = '<button class="note-photo-close" onclick="closeNotePhoto()" aria-label="关闭">✕</button>' +
-      '<div class="note-photo-scroll"><img src="' + src + '" alt="笔记照片" /></div>';
+      '<div class="note-photo-scroll" id="notePhotoScroll"><img id="notePhotoImg" src="' + src + '" alt="笔记照片" /></div>';
     viewer.style.display = 'flex';
+    initNotePhotoZoom();
   };
   if (typeof ref === 'string' && ref.startsWith('idb:')) {
     PhotoDB.get(ref.slice(4)).then(b => { if (b) show(b); }).catch(() => {});
@@ -7141,6 +7142,46 @@ function viewNotePhoto(id) {
 function closeNotePhoto() {
   const viewer = document.getElementById('notePhotoFullscreen');
   if (viewer) viewer.style.display = 'none';
+}
+
+// 照片查看：双指捏合缩放（1~5 倍）+ 单指拖动（放大后可拖动）+ 双击快速切换
+function initNotePhotoZoom() {
+  const img = document.getElementById('notePhotoImg');
+  if (!img) return;
+  const st = { scale: 1, tx: 0, ty: 0 };
+  const apply = () => { img.style.transform = 'translate(' + st.tx + 'px,' + st.ty + 'px) scale(' + st.scale + ')'; };
+  const dist2 = (a, b) => Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+  let pinch = null, drag = null, lastTap = 0;
+
+  img.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    if (e.touches.length === 2) {
+      pinch = { dist: dist2(e.touches[0], e.touches[1]), scale: st.scale };
+      drag = null;
+    } else if (e.touches.length === 1) {
+      drag = { x: e.touches[0].clientX, y: e.touches[0].clientY, tx: st.tx, ty: st.ty };
+      pinch = null;
+      const now = Date.now();
+      if (now - lastTap < 300) {
+        if (st.scale > 1) { st.scale = 1; st.tx = 0; st.ty = 0; }
+        else { st.scale = 2.5; }
+        apply();
+        lastTap = 0;
+      } else { lastTap = now; }
+    }
+  }, { passive: false });
+
+  img.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+    if (e.touches.length === 2 && pinch) {
+      st.scale = Math.min(5, Math.max(1, pinch.scale * (dist2(e.touches[0], e.touches[1]) / pinch.dist)));
+      apply();
+    } else if (e.touches.length === 1 && drag && st.scale > 1) {
+      st.tx = drag.tx + (e.touches[0].clientX - drag.x);
+      st.ty = drag.ty + (e.touches[0].clientY - drag.y);
+      apply();
+    }
+  }, { passive: false });
 }
 
 function toggleNotePhotoZoom() {
