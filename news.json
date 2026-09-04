@@ -1,28 +1,46 @@
 [
   {
-    "id": "d4585f8",
+    "id": "d0db653",
     "cat": "domestic",
     "important": true,
-    "title": "“没有Token的CS学生 应立即退学”",
-    "summary": "【百度热搜】“没有Token的CS学生 应立即退学”",
+    "title": "一次“时髦”尝试 换来生活不能自理",
+    "summary": "【百度热搜】一次“时髦”尝试 换来生活不能自理",
+    "source": "百度热搜",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "d52e2a4",
+    "cat": "domestic",
+    "important": true,
+    "title": "“Token贷”火出圈",
+    "summary": "【百度热搜】“Token贷”火出圈",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
     "id": "d60be1e",
     "cat": "domestic",
-    "important": true,
+    "important": false,
     "title": "新学期建议家长每天抓好这3件小事",
     "summary": "【百度热搜】新学期建议家长每天抓好这3件小事",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "d945bde",
+    "id": "d7d1ede",
     "cat": "domestic",
     "important": false,
-    "title": "世界已进入极端天气危险区",
-    "summary": "【百度热搜】世界已进入极端天气危险区",
+    "title": "深夜突发！美国AI大宕机",
+    "summary": "【百度热搜】深夜突发！美国AI大宕机",
+    "source": "百度热搜",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "d9253ed",
+    "cat": "domestic",
+    "important": false,
+    "title": "OpenAI总裁宣布AGI到来",
+    "summary": "【百度热搜】OpenAI总裁宣布AGI到来",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
@@ -36,56 +54,38 @@
     "date": "2026-09-04"
   },
   {
-    "id": "db6ecc6",
-    "cat": "domestic",
-    "important": false,
-    "title": "手机集体涨价 吓跑了买手机的人",
-    "summary": "【百度热搜】手机集体涨价 吓跑了买手机的人",
-    "source": "百度热搜",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "dd6e237",
-    "cat": "domestic",
-    "important": false,
-    "title": "1名中国公民在菲被羁押期间离世",
-    "summary": "【百度热搜】1名中国公民在菲被羁押期间离世",
-    "source": "百度热搜",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "i2aab28",
+    "id": "i29ef04",
     "cat": "international",
     "important": true,
-    "title": "折叠屏三国杀",
-    "summary": "【百度热搜】折叠屏三国杀",
+    "title": "“没有Token的CS学生 应立即退学”",
+    "summary": "【百度热搜】“没有Token的CS学生 应立即退学”",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i77f587",
+    "id": "i5a0568",
     "cat": "international",
     "important": false,
-    "title": "青海海西州地震",
-    "summary": "【百度热搜】青海海西州地震",
+    "title": "外交部：已向韩方提出严正交涉",
+    "summary": "【百度热搜】外交部：已向韩方提出严正交涉",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i8f9edc",
+    "id": "i972307",
     "cat": "international",
     "important": false,
-    "title": "张一山谈《重案六组》：不是都得谈恋爱",
-    "summary": "【百度热搜】张一山谈《重案六组》：不是都得谈恋爱",
+    "title": "OpenAI发布GPT-6 Astra",
+    "summary": "【百度热搜】OpenAI发布GPT-6 Astra",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i96bd66",
+    "id": "i9a58ca",
     "cat": "international",
     "important": false,
-    "title": "教官在新生面前像个新兵蛋子",
-    "summary": "【百度热搜】教官在新生面前像个新兵蛋子",
+    "title": "财商祖师爷欠了85亿",
+    "summary": "【百度热搜】财商祖师爷欠了85亿",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
@@ -108,12 +108,12 @@
     "date": "2026-09-04"
   },
   {
-    "id": "tee5f62",
+    "id": "tca4d03",
     "cat": "tech",
     "important": false,
-    "title": "国家医保给机器人手术单独分组，什么信号？",
-    "summary": "【观察者】国家医保给机器人手术单独分组，什么信号？",
-    "source": "观察者",
+    "title": "利润暴跌94% 老板还在谈理想？影石刘靖康让676名骨干陷入两难",
+    "summary": "【驱动之家】利润暴跌94% 老板还在谈理想？影石刘靖康让676名骨干陷入两难",
+    "source": "驱动之家",
     "date": "2026-09-04"
   },
   {
@@ -121,17 +121,17 @@
     "cat": "tech",
     "important": false,
     "title": "雷军宣布小米18 Fold新功能：是不是超级棒！",
-    "summary": "【3DM】雷军宣布小米18 Fold新功能：是不是超级棒！",
-    "source": "3DM",
+    "summary": "【3dmgame.com】雷军宣布小米18 Fold新功能：是不是超级棒！",
+    "source": "3dmgame.com",
     "date": "2026-09-04"
   },
   {
-    "id": "f716ee5",
+    "id": "f4d0cd6",
     "cat": "finance",
     "important": true,
-    "title": "十部门联合印发《促进中小企业发展“十五五”规划》 2030年专精特新“小巨人”企业达到2.2万家",
-    "summary": "【news.10jqka.com.cn】十部门联合印发《促进中小企业发展“十五五”规划》 2030年专精特新“小巨人”企业达到2.2万家",
-    "source": "news.10jqka.com.cn",
+    "title": "十部门：大力发展创业投资 加强中小企业上市培育力度",
+    "summary": "【中国经济网】十部门：大力发展创业投资 加强中小企业上市培育力度",
+    "source": "中国经济网",
     "date": "2026-09-04"
   },
   {
