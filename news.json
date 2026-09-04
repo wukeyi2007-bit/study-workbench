@@ -9,29 +9,38 @@
     "date": "2026-09-04"
   },
   {
-    "id": "d0db653",
+    "id": "d4dc806",
     "cat": "domestic",
     "important": true,
-    "title": "一次“时髦”尝试 换来生活不能自理",
-    "summary": "【百度热搜】一次“时髦”尝试 换来生活不能自理",
+    "title": "被要求补缴社保 老板店门口滚屏抱怨",
+    "summary": "【百度热搜】被要求补缴社保 老板店门口滚屏抱怨",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "d419812",
+    "id": "d539d9a",
     "cat": "domestic",
     "important": false,
-    "title": "OpenAI：欢迎来到AGI时代",
-    "summary": "【百度热搜】OpenAI：欢迎来到AGI时代",
+    "title": "760元一粒的片仔癀 卖不动了",
+    "summary": "【百度热搜】760元一粒的片仔癀 卖不动了",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "d60be1e",
+    "id": "d650232",
     "cat": "domestic",
     "important": false,
-    "title": "新学期建议家长每天抓好这3件小事",
-    "summary": "【百度热搜】新学期建议家长每天抓好这3件小事",
+    "title": "尼泊尔不向中国寻求气候正义赔偿",
+    "summary": "【百度热搜】尼泊尔不向中国寻求气候正义赔偿",
+    "source": "百度热搜",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "d70326e",
+    "cat": "domestic",
+    "important": false,
+    "title": "在吉隆 这些坚定的身影令人动容",
+    "summary": "【百度热搜】在吉隆 这些坚定的身影令人动容",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
@@ -45,66 +54,66 @@
     "date": "2026-09-04"
   },
   {
-    "id": "dccde45",
-    "cat": "domestic",
-    "important": false,
-    "title": "人民日报：12345不是饭圈“掐架”平台",
-    "summary": "【百度热搜】人民日报：12345不是饭圈“掐架”平台",
-    "source": "百度热搜",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "i8ecca6",
+    "id": "i624539",
     "cat": "international",
     "important": true,
-    "title": "大众汽车计划再裁员5万人",
-    "summary": "【百度热搜】大众汽车计划再裁员5万人",
+    "title": "莱昂纳尔里奇进ICU 曾登上央视春晚",
+    "summary": "【百度热搜】莱昂纳尔里奇进ICU 曾登上央视春晚",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "ia8b8d3",
+    "id": "i7c594d",
     "cat": "international",
     "important": false,
-    "title": "《早春晴朗》火到台湾",
-    "summary": "【百度热搜】《早春晴朗》火到台湾",
+    "title": "AGI时代真到来了吗",
+    "summary": "【百度热搜】AGI时代真到来了吗",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "iac6968",
+    "id": "i83b8e2",
     "cat": "international",
     "important": false,
-    "title": "郑钦文倒地怒吼庆祝",
-    "summary": "【百度热搜】郑钦文倒地怒吼庆祝",
+    "title": "王楚钦退出WTT澳门冠军赛",
+    "summary": "【百度热搜】王楚钦退出WTT澳门冠军赛",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "id6318f",
+    "id": "i8f5397",
     "cat": "international",
     "important": false,
-    "title": "地球最强大模型GPT-6",
-    "summary": "【百度热搜】地球最强大模型GPT-6",
+    "title": "毛阿敏对许晴称呼的变化",
+    "summary": "【百度热搜】毛阿敏对许晴称呼的变化",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "t48d1cf",
+    "id": "t1d82d0",
     "cat": "tech",
     "important": true,
-    "title": "“没有Token的CS学生，应立即退学”",
-    "summary": "【智源社区】“没有Token的CS学生，应立即退学”",
-    "source": "智源社区",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "t6a0c0a",
-    "cat": "tech",
-    "important": false,
-    "title": "Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
-    "summary": "【36 Kr】Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
+    "title": "刚刚，GPT-6 震撼发布！人类进入 AGI 大分工时代",
+    "summary": "【36 Kr】刚刚，GPT-6 震撼发布！人类进入 AGI 大分工时代",
     "source": "36 Kr",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "t3208a0",
+    "cat": "tech",
+    "important": false,
+    "title": "人工智能全面接管？为什么你应该更担心AI有多危险",
+    "summary": "【纽约时报中文网】人工智能全面接管？为什么你应该更担心AI有多危险",
+    "source": "纽约时报中文网",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "t55b063",
+    "cat": "tech",
+    "important": false,
+    "title": "特纳斯正式接棒库克，苹果新CEO面临平衡考验",
+    "summary": "【纽约时报中文网】特纳斯正式接棒库克，苹果新CEO面临平衡考验",
+    "source": "纽约时报中文网",
     "date": "2026-09-04"
   },
   {
@@ -117,39 +126,30 @@
     "date": "2026-09-04"
   },
   {
-    "id": "tdd99bd",
-    "cat": "tech",
-    "important": false,
-    "title": "OpenAI发布地球最强大模型GPT-6 并宣告“欢迎来到AGI时代”",
-    "summary": "【东方财富】OpenAI发布地球最强大模型GPT-6 并宣告“欢迎来到AGI时代”",
-    "source": "东方财富",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "f25e7eb",
+    "id": "f3d9077",
     "cat": "finance",
     "important": true,
-    "title": "牛市早报｜促进中小企业发展“十五五”规划发布",
-    "summary": "【东方财富】牛市早报｜促进中小企业发展“十五五”规划发布",
-    "source": "东方财富",
+    "title": "琪观｜中国安静地拯救了世界？",
+    "summary": "【人民视频】琪观｜中国安静地拯救了世界？",
+    "source": "人民视频",
     "date": "2026-09-04"
   },
   {
-    "id": "fc3128f",
+    "id": "f7ca236",
     "cat": "finance",
     "important": false,
-    "title": "美元兑日元大跌逼近155关口，CME：若跌破155，期权卖压或加速日元涨势",
-    "summary": "【wallstreetcn.com】美元兑日元大跌逼近155关口，CME：若跌破155，期权卖压或加速日元涨势",
-    "source": "wallstreetcn.com",
+    "title": "万钢：鼓励新型钠离子电池等研发应用",
+    "summary": "【中国能源新闻网】万钢：鼓励新型钠离子电池等研发应用",
+    "source": "中国能源新闻网",
     "date": "2026-09-04"
   },
   {
-    "id": "fd40806",
+    "id": "fec2dc8",
     "cat": "finance",
     "important": false,
-    "title": "2026世界动力电池大会在四川宜宾开幕，三维度读懂全球产业进阶路线",
-    "summary": "【钛媒体】2026世界动力电池大会在四川宜宾开幕，三维度读懂全球产业进阶路线",
-    "source": "钛媒体",
+    "title": "SK海力士拉升，涨近3%；三星电子涨近2%！日韩股市涨幅扩大，韩股涨1.47%，日股涨0.87%｜日韩股市",
+    "summary": "【Sohu】SK海力士拉升，涨近3%；三星电子涨近2%！日韩股市涨幅扩大，韩股涨1.47%，日股涨0.87%｜日韩股市",
+    "source": "Sohu",
     "date": "2026-09-04"
   }
 ]
