@@ -1,5 +1,14 @@
 [
   {
+    "id": "d025b15",
+    "cat": "domestic",
+    "important": true,
+    "title": "“一本读不完的书”",
+    "summary": "【百度热搜】“一本读不完的书”",
+    "source": "百度热搜",
+    "date": "2026-09-04"
+  },
+  {
     "id": "d0db653",
     "cat": "domestic",
     "important": true,
@@ -9,11 +18,11 @@
     "date": "2026-09-04"
   },
   {
-    "id": "d52e2a4",
+    "id": "d419812",
     "cat": "domestic",
-    "important": true,
-    "title": "“Token贷”火出圈",
-    "summary": "【百度热搜】“Token贷”火出圈",
+    "important": false,
+    "title": "OpenAI：欢迎来到AGI时代",
+    "summary": "【百度热搜】OpenAI：欢迎来到AGI时代",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
@@ -27,119 +36,101 @@
     "date": "2026-09-04"
   },
   {
-    "id": "d7d1ede",
+    "id": "d9c3d55",
     "cat": "domestic",
     "important": false,
-    "title": "深夜突发！美国AI大宕机",
-    "summary": "【百度热搜】深夜突发！美国AI大宕机",
+    "title": "多国从美国运回黄金",
+    "summary": "【百度热搜】多国从美国运回黄金",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "d9253ed",
+    "id": "dccde45",
     "cat": "domestic",
     "important": false,
-    "title": "OpenAI总裁宣布AGI到来",
-    "summary": "【百度热搜】OpenAI总裁宣布AGI到来",
+    "title": "人民日报：12345不是饭圈“掐架”平台",
+    "summary": "【百度热搜】人民日报：12345不是饭圈“掐架”平台",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "da6f644",
-    "cat": "domestic",
-    "important": false,
-    "title": "习近平主席的“比什凯克时间”",
-    "summary": "【百度热搜】习近平主席的“比什凯克时间”",
-    "source": "百度热搜",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "i29ef04",
+    "id": "i8ecca6",
     "cat": "international",
     "important": true,
-    "title": "“没有Token的CS学生 应立即退学”",
-    "summary": "【百度热搜】“没有Token的CS学生 应立即退学”",
+    "title": "大众汽车计划再裁员5万人",
+    "summary": "【百度热搜】大众汽车计划再裁员5万人",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i5a0568",
+    "id": "ia8b8d3",
     "cat": "international",
     "important": false,
-    "title": "外交部：已向韩方提出严正交涉",
-    "summary": "【百度热搜】外交部：已向韩方提出严正交涉",
+    "title": "《早春晴朗》火到台湾",
+    "summary": "【百度热搜】《早春晴朗》火到台湾",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i972307",
+    "id": "iac6968",
     "cat": "international",
     "important": false,
-    "title": "OpenAI发布GPT-6 Astra",
-    "summary": "【百度热搜】OpenAI发布GPT-6 Astra",
+    "title": "郑钦文倒地怒吼庆祝",
+    "summary": "【百度热搜】郑钦文倒地怒吼庆祝",
     "source": "百度热搜",
     "date": "2026-09-04"
   },
   {
-    "id": "i9a58ca",
+    "id": "id6318f",
     "cat": "international",
     "important": false,
-    "title": "财商祖师爷欠了85亿",
-    "summary": "【百度热搜】财商祖师爷欠了85亿",
+    "title": "地球最强大模型GPT-6",
+    "summary": "【百度热搜】地球最强大模型GPT-6",
     "source": "百度热搜",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "t48d1cf",
+    "cat": "tech",
+    "important": true,
+    "title": "“没有Token的CS学生，应立即退学”",
+    "summary": "【智源社区】“没有Token的CS学生，应立即退学”",
+    "source": "智源社区",
     "date": "2026-09-04"
   },
   {
     "id": "t6a0c0a",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
     "summary": "【36 Kr】Gemini 3.8 Flash 光速发布：干活挺勤快，就是没开窍",
     "source": "36 Kr",
     "date": "2026-09-04"
   },
   {
-    "id": "t86c1d9",
+    "id": "t8bef8e",
     "cat": "tech",
     "important": false,
-    "title": "人人影视正式回归！正版片源 老用户送1个月会员、终身VIP 888元",
-    "summary": "【驱动之家】人人影视正式回归！正版片源 老用户送1个月会员、终身VIP 888元",
-    "source": "驱动之家",
+    "title": "“鲁莽至极”，美智库竟提议袭击中国数据中心",
+    "summary": "【观察者】“鲁莽至极”，美智库竟提议袭击中国数据中心",
+    "source": "观察者",
     "date": "2026-09-04"
   },
   {
-    "id": "tca4d03",
+    "id": "tdd99bd",
     "cat": "tech",
     "important": false,
-    "title": "利润暴跌94% 老板还在谈理想？影石刘靖康让676名骨干陷入两难",
-    "summary": "【驱动之家】利润暴跌94% 老板还在谈理想？影石刘靖康让676名骨干陷入两难",
-    "source": "驱动之家",
+    "title": "OpenAI发布地球最强大模型GPT-6 并宣告“欢迎来到AGI时代”",
+    "summary": "【东方财富】OpenAI发布地球最强大模型GPT-6 并宣告“欢迎来到AGI时代”",
+    "source": "东方财富",
     "date": "2026-09-04"
   },
   {
-    "id": "tf87240",
-    "cat": "tech",
-    "important": false,
-    "title": "雷军宣布小米18 Fold新功能：是不是超级棒！",
-    "summary": "【3dmgame.com】雷军宣布小米18 Fold新功能：是不是超级棒！",
-    "source": "3dmgame.com",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "f4d0cd6",
+    "id": "f25e7eb",
     "cat": "finance",
     "important": true,
-    "title": "十部门：大力发展创业投资 加强中小企业上市培育力度",
-    "summary": "【中国经济网】十部门：大力发展创业投资 加强中小企业上市培育力度",
-    "source": "中国经济网",
-    "date": "2026-09-04"
-  },
-  {
-    "id": "f8e3445",
-    "cat": "finance",
-    "important": false,
-    "title": "工信部：加快动力电池标准制定 推动产业加速向高端化、智能化、绿色化、国际化迈进",
-    "summary": "【东方财富】工信部：加快动力电池标准制定 推动产业加速向高端化、智能化、绿色化、国际化迈进",
+    "title": "牛市早报｜促进中小企业发展“十五五”规划发布",
+    "summary": "【东方财富】牛市早报｜促进中小企业发展“十五五”规划发布",
     "source": "东方财富",
     "date": "2026-09-04"
   },
@@ -148,8 +139,17 @@
     "cat": "finance",
     "important": false,
     "title": "美元兑日元大跌逼近155关口，CME：若跌破155，期权卖压或加速日元涨势",
-    "summary": "【华尔街见闻】美元兑日元大跌逼近155关口，CME：若跌破155，期权卖压或加速日元涨势",
-    "source": "华尔街见闻",
+    "summary": "【wallstreetcn.com】美元兑日元大跌逼近155关口，CME：若跌破155，期权卖压或加速日元涨势",
+    "source": "wallstreetcn.com",
+    "date": "2026-09-04"
+  },
+  {
+    "id": "fd40806",
+    "cat": "finance",
+    "important": false,
+    "title": "2026世界动力电池大会在四川宜宾开幕，三维度读懂全球产业进阶路线",
+    "summary": "【钛媒体】2026世界动力电池大会在四川宜宾开幕，三维度读懂全球产业进阶路线",
+    "source": "钛媒体",
     "date": "2026-09-04"
   }
 ]
