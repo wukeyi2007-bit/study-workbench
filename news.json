@@ -1,5 +1,14 @@
 [
   {
+    "id": "d0ccda5",
+    "cat": "domestic",
+    "important": true,
+    "title": "徐广源病逝 曾亲手整理慈禧遗体",
+    "summary": "【百度热搜】徐广源病逝 曾亲手整理慈禧遗体",
+    "source": "百度热搜",
+    "date": "2026-09-06"
+  },
+  {
     "id": "d34b414",
     "cat": "domestic",
     "important": true,
@@ -9,38 +18,29 @@
     "date": "2026-09-06"
   },
   {
-    "id": "d8dc7de",
+    "id": "d533112",
     "cat": "domestic",
-    "important": true,
-    "title": "“一带一路”上的新路有多重要",
-    "summary": "【百度热搜】“一带一路”上的新路有多重要",
+    "important": false,
+    "title": "增加优质供给 挖掘消费潜力",
+    "summary": "【百度热搜】增加优质供给 挖掘消费潜力",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
   {
-    "id": "dbeea9e",
+    "id": "d69e679",
     "cat": "domestic",
     "important": false,
-    "title": "看跨越时空的文明对话",
-    "summary": "【百度热搜】看跨越时空的文明对话",
+    "title": "多地严查赵一鸣、好想来等",
+    "summary": "【百度热搜】多地严查赵一鸣、好想来等",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
   {
-    "id": "dec03fd",
+    "id": "d9465e7",
     "cat": "domestic",
     "important": false,
-    "title": "“葫芦娃爷爷”：明年大概率不会种了",
-    "summary": "【百度热搜】“葫芦娃爷爷”：明年大概率不会种了",
-    "source": "百度热搜",
-    "date": "2026-09-06"
-  },
-  {
-    "id": "df860ae",
-    "cat": "domestic",
-    "important": false,
-    "title": "被救车手发文感谢：我欠你一条命",
-    "summary": "【百度热搜】被救车手发文感谢：我欠你一条命",
+    "title": "历史坐标里的“中埃时刻”",
+    "summary": "【百度热搜】历史坐标里的“中埃时刻”",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
@@ -54,54 +54,45 @@
     "date": "2026-09-06"
   },
   {
-    "id": "i26db14",
+    "id": "i04fe57",
     "cat": "international",
     "important": true,
-    "title": "章泽天采访 没有一个菜入味",
-    "summary": "【百度热搜】章泽天采访 没有一个菜入味",
+    "title": "郑钦文是16强唯一资格赛突围选手",
+    "summary": "【百度热搜】郑钦文是16强唯一资格赛突围选手",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
   {
-    "id": "i2d7897",
+    "id": "i07da7d",
     "cat": "international",
     "important": false,
-    "title": "王一博赛车夺冠",
-    "summary": "【百度热搜】王一博赛车夺冠",
+    "title": "特斯拉赛博出租车被查",
+    "summary": "【百度热搜】特斯拉赛博出租车被查",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
   {
-    "id": "i63e3fd",
+    "id": "i377532",
     "cat": "international",
     "important": false,
-    "title": "徐良演唱会抽奖太实在了",
-    "summary": "【百度热搜】徐良演唱会抽奖太实在了",
+    "title": "江苏主持人在湖南卫视拿冠军",
+    "summary": "【百度热搜】江苏主持人在湖南卫视拿冠军",
     "source": "百度热搜",
     "date": "2026-09-06"
   },
   {
-    "id": "i7302bb",
+    "id": "i9d3b4d",
     "cat": "international",
     "important": false,
-    "title": "“香港大药房”连续被曝光仍卖出上亿",
-    "summary": "【百度热搜】“香港大药房”连续被曝光仍卖出上亿",
+    "title": "研究生卖黄金所得12.4万被跨省冻结",
+    "summary": "【百度热搜】研究生卖黄金所得12.4万被跨省冻结",
     "source": "百度热搜",
-    "date": "2026-09-06"
-  },
-  {
-    "id": "t079302",
-    "cat": "tech",
-    "important": true,
-    "title": "互联网最古老的恐惧，被AI复活了",
-    "summary": "【文学城】互联网最古老的恐惧，被AI复活了",
-    "source": "文学城",
     "date": "2026-09-06"
   },
   {
     "id": "t175c74",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "何庭波最新论文：华为无法获得EUV光刻机，必须另寻出路",
     "summary": "【观察者】何庭波最新论文：华为无法获得EUV光刻机，必须另寻出路",
     "source": "观察者",
@@ -126,12 +117,21 @@
     "date": "2026-09-06"
   },
   {
-    "id": "f1be14f",
+    "id": "tfb04fd",
+    "cat": "tech",
+    "important": false,
+    "title": "人工智能全面接管？为什么你应该更担心AI有多危险",
+    "summary": "【纽约时报中文网】人工智能全面接管？为什么你应该更担心AI有多危险",
+    "source": "纽约时报中文网",
+    "date": "2026-09-06"
+  },
+  {
+    "id": "f678573",
     "cat": "finance",
     "important": true,
-    "title": "调查报告显示日本尼得科公司存在大规模造假行为",
-    "summary": "【中华网】调查报告显示日本尼得科公司存在大规模造假行为",
-    "source": "中华网",
+    "title": "山西青年志愿者服务太原能源低碳发展论坛",
+    "summary": "【China Daily】山西青年志愿者服务太原能源低碳发展论坛",
+    "source": "China Daily",
     "date": "2026-09-06"
   },
   {
@@ -144,12 +144,12 @@
     "date": "2026-09-06"
   },
   {
-    "id": "fdbf30a",
+    "id": "fc1bf02",
     "cat": "finance",
     "important": false,
-    "title": "走进2026中国（太原）国际能源产业博览会- 首页幻灯片",
-    "summary": "【中工网】走进2026中国（太原）国际能源产业博览会- 首页幻灯片",
-    "source": "中工网",
+    "title": "四川宜宾48亿元储能电芯基地冲刺年底试产",
+    "summary": "【见道网】四川宜宾48亿元储能电芯基地冲刺年底试产",
+    "source": "见道网",
     "date": "2026-09-06"
   }
 ]
