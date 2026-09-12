@@ -9,11 +9,20 @@
     "date": "2026-09-12"
   },
   {
-    "id": "d922ad2",
+    "id": "d56ce46",
     "cat": "domestic",
     "important": true,
-    "title": "红海告急",
-    "summary": "【百度热搜】红海告急",
+    "title": "支付宝回应出现假APP",
+    "summary": "【百度热搜】支付宝回应出现假APP",
+    "source": "百度热搜",
+    "date": "2026-09-12"
+  },
+  {
+    "id": "d5e1198",
+    "cat": "domestic",
+    "important": false,
+    "title": "“超级充电宝”上线",
+    "summary": "【百度热搜】“超级充电宝”上线",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
@@ -27,56 +36,47 @@
     "date": "2026-09-12"
   },
   {
-    "id": "da314cb",
+    "id": "dc59b24",
     "cat": "domestic",
     "important": false,
-    "title": "南太行乱象：200斤驴友被挤下悬崖",
-    "summary": "【百度热搜】南太行乱象：200斤驴友被挤下悬崖",
+    "title": "六小龄童张一山演师徒",
+    "summary": "【百度热搜】六小龄童张一山演师徒",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
   {
-    "id": "dd4d095",
+    "id": "df060da",
     "cat": "domestic",
     "important": false,
-    "title": "小伙撞车后流血仍忙着开视频会议",
-    "summary": "【百度热搜】小伙撞车后流血仍忙着开视频会议",
+    "title": "习近平抵达印度新德里",
+    "summary": "【百度热搜】习近平抵达印度新德里",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
   {
-    "id": "de6802d",
-    "cat": "domestic",
-    "important": false,
-    "title": "25位菲尔兹奖得主警告：AI正毁掉数学",
-    "summary": "【百度热搜】25位菲尔兹奖得主警告：AI正毁掉数学",
-    "source": "百度热搜",
-    "date": "2026-09-12"
-  },
-  {
-    "id": "i340a86",
+    "id": "i15a56a",
     "cat": "international",
     "important": true,
-    "title": "医生常说的这些话代表什么",
-    "summary": "【百度热搜】医生常说的这些话代表什么",
+    "title": "红海告急",
+    "summary": "【百度热搜】红海告急",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
   {
-    "id": "i34e126",
+    "id": "i85dcb2",
     "cat": "international",
     "important": false,
-    "title": "DeepSeek 开口说话",
-    "summary": "【百度热搜】DeepSeek 开口说话",
+    "title": "“这下不得不早起了”",
+    "summary": "【百度热搜】“这下不得不早起了”",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
   {
-    "id": "i7cb2be",
+    "id": "ie82478",
     "cat": "international",
     "important": false,
-    "title": "房东上门收租反给租客转了2万",
-    "summary": "【百度热搜】房东上门收租反给租客转了2万",
+    "title": "周启豪不敌张本智和 国乒男单均出局",
+    "summary": "【百度热搜】周启豪不敌张本智和 国乒男单均出局",
     "source": "百度热搜",
     "date": "2026-09-12"
   },
@@ -90,66 +90,66 @@
     "date": "2026-09-12"
   },
   {
-    "id": "tc80f67",
+    "id": "t232ffd",
     "cat": "tech",
     "important": true,
-    "title": "8点1氪丨英伟达被调查；罗永浩连用7个“抄的”吐槽苹果折叠屏；欧洲央行将三大关键利率上调25个基点",
-    "summary": "【36 Kr】8点1氪丨英伟达被调查；罗永浩连用7个“抄的”吐槽苹果折叠屏；欧洲央行将三大关键利率上调25个基点",
-    "source": "36 Kr",
+    "title": "小米 18 Fold 中折叠手机首销情况曝光，开售当日约 3.6 万台",
+    "summary": "【IT之家】小米 18 Fold 中折叠手机首销情况曝光，开售当日约 3.6 万台",
+    "source": "IT之家",
     "date": "2026-09-12"
   },
   {
-    "id": "tea7738",
+    "id": "t4f5e64",
     "cat": "tech",
     "important": false,
-    "title": "中国AI公司如何试图克隆美国AI模型",
-    "summary": "【cn.wsj.com】中国AI公司如何试图克隆美国AI模型",
-    "source": "cn.wsj.com",
+    "title": "AMD 发布 R5 7500 和 5500F：售价 189/99 美元，扩展 AM5、AM4 桌面处理器产品线",
+    "summary": "【IT之家】AMD 发布 R5 7500 和 5500F：售价 189/99 美元，扩展 AM5、AM4 桌面处理器产品线",
+    "source": "IT之家",
     "date": "2026-09-12"
   },
   {
-    "id": "teb4ead",
+    "id": "t62275e",
     "cat": "tech",
     "important": false,
-    "title": "人工智能末日论：人类为何会如此担忧？",
-    "summary": "【纽约时报中文网】人工智能末日论：人类为何会如此担忧？",
-    "source": "纽约时报中文网",
+    "title": "阿维塔 9 系旗舰 SUV 黑色款官图亮相，全新设计语言",
+    "summary": "【IT之家】阿维塔 9 系旗舰 SUV 黑色款官图亮相，全新设计语言",
+    "source": "IT之家",
     "date": "2026-09-12"
   },
   {
-    "id": "tf0d143",
+    "id": "t71cbde",
     "cat": "tech",
     "important": false,
-    "title": "Anthropic指中国AI公司发起蒸馏攻击 北京：反对歪曲事实",
-    "summary": "【联合早报】Anthropic指中国AI公司发起蒸馏攻击 北京：反对歪曲事实",
-    "source": "联合早报",
+    "title": "国家超算互联网注册用户量突破 170 万，国产算力占比超 95%",
+    "summary": "【IT之家】国家超算互联网注册用户量突破 170 万，国产算力占比超 95%",
+    "source": "IT之家",
     "date": "2026-09-12"
   },
   {
-    "id": "f2e9405",
+    "id": "f1da688",
     "cat": "finance",
     "important": true,
-    "title": "8月CPI“热”得刚好？华尔街密集押注美联储下周加息，沃什这次没法再“喊狼来了”",
-    "summary": "【华尔街见闻】8月CPI“热”得刚好？华尔街密集押注美联储下周加息，沃什这次没法再“喊狼来了”",
-    "source": "华尔街见闻",
+    "title": "主题演讲：中国太空钙钛矿光伏与新一代空间能源系统开拓者｜36氪2026产业未来大会",
+    "summary": "【36氪】主题演讲：中国太空钙钛矿光伏与新一代空间能源系统开拓者｜36氪2026产业未来大会",
+    "source": "36氪",
     "date": "2026-09-12"
   },
   {
-    "id": "fb2fd4f",
+    "id": "f321ddc",
     "cat": "finance",
     "important": false,
-    "title": "霍尔木兹海峡，有新消息！国际油价，跌了",
-    "summary": "【极目新闻】霍尔木兹海峡，有新消息！国际油价，跌了",
-    "source": "极目新闻",
+    "title": "9点1氪丨房贷延长到40年但申请人不能超过35岁？机构回应；长鑫利润率反超三星SK海力士；戴尔市值一夜飙升2500亿元，创历史新高",
+    "summary": "【36氪】9点1氪丨房贷延长到40年但申请人不能超过35岁？机构回应；长鑫利润率反超三星SK海力士；戴尔市值一夜飙升2500亿元，创历史新高",
+    "source": "36氪",
     "date": "2026-09-12"
   },
   {
-    "id": "fb3863d",
+    "id": "f3ee4db",
     "cat": "finance",
     "important": false,
-    "title": "如何看待“国产GPU四小龙”齐聚资本市场",
-    "summary": "【21财经】如何看待“国产GPU四小龙”齐聚资本市场",
-    "source": "21财经",
+    "title": "情感智能珠宝硬件公司完成天使轮融资，荣耀AI Connect生态企业等押注｜硬氪首发",
+    "summary": "【36氪】情感智能珠宝硬件公司完成天使轮融资，荣耀AI Connect生态企业等押注｜硬氪首发",
+    "source": "36氪",
     "date": "2026-09-12"
   }
 ]
