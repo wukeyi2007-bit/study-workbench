@@ -114,7 +114,7 @@ const Store = {
         lastReadDate: null,
       },
       notes: {
-        // 英语笔记：记录知识点 / 易混淆单词 / 句子，带间隔复习
+        // 知识点：记录各科目知识点（科目由用户手动填写），带间隔复习
         // items: [{ id, type:'knowledge'|'word'|'sentence', content, detail, createdAt, level, dueDate, reviewCount }]
         items: [],
       },
@@ -1171,7 +1171,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   const titleMap = {
     home: "首页",
     words: "单词",
-    notes: "英语笔记",
+    notes: "知识点",
     exercise: "锻炼",
     life: "生活记录",
     news: "热点新闻",
@@ -1271,7 +1271,7 @@ function renderTodayOverview() {
   // 新闻模块已移除，进度不再统计
   const newsPct = 0; const newsRead = 0; const newsTotal = 0;
 
-  // 英语笔记：今日待复习条数
+  // 知识点：今日待复习条数
   const notesTotal = state.notes && Array.isArray(state.notes.items) ? state.notes.items.length : 0;
   const notesDue = dueNotes().length;
   let notesPct = 0, notesDesc = "还没记过";
@@ -1287,7 +1287,7 @@ function renderTodayOverview() {
 
   const items = [
     { icon: "📖", name: "单词学习", pct: dailyWordPct, desc: `今日背词 ${todayWords}${dailyWordGoal > 0 ? '/' + dailyWordGoal : ''} · 待复习 ${dueReviewWords}` },
-    { icon: "📓", name: "英语笔记", pct: notesPct, desc: notesDesc },
+    { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "视频跟练", pct: videoPct, desc: videoGoal > 0 ? `${videoDone}/${videoGoal} 类` : "暂无内容" },
@@ -1328,7 +1328,7 @@ function renderTodayOverview() {
 
 function pageForOverview(name) {
   if (name === "单词闭环" || name === "单词学习") return "words";
-  if (name === "英语笔记") return "notes";
+  if (name === "知识点") return "notes";
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
   if (name === "理财学习") return "finance";
@@ -7124,7 +7124,7 @@ function init() {
 }
 
 // ==========================================
-// 英语笔记（记录各类英语知识点，带间隔复习）
+// 知识点（记录各科目知识点，科目由用户手动填写，带间隔复习）
 // ==========================================
 
 // 间隔复习间隔（天）：level 0..5 对应「复习后到下次复习」的天数
@@ -7148,6 +7148,10 @@ function renderNotes() {
   ensureNotes();
   const items = state.notes.items.slice().sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
   const due = dueNotes();
+  // 科目列表（从已有笔记里提取，用于筛选；科目全部由用户手动填写）
+  const subjects = [...new Set(state.notes.items.map(n => (n.subject || '').trim()).filter(Boolean))];
+  const curSubject = window.__noteSubject || 'all';
+  const filtered = curSubject === 'all' ? items : items.filter(n => (n.subject || '').trim() === curSubject);
 
   const renderCard = n => {
     const overdue = n.dueDate && n.dueDate <= Utils.today();
@@ -7158,9 +7162,11 @@ function renderNotes() {
         ? `<img class="note-photo" data-idb="${n.photo.slice(4)}" onclick="event.stopPropagation();viewNotePhoto('${n.id}')" alt="">`
         : `<img class="note-photo" src="${n.photo}" onclick="event.stopPropagation();viewNotePhoto('${n.id}')" alt="">`;
     }
+    const subj = (n.subject || '').trim();
     return `
       <div class="note-card" onclick="openNoteEditor('${n.id}')">
         <div class="note-card-top">
+          ${subj ? `<span class="note-subject">${escapeHtml(subj)}</span>` : '<span></span>'}
           <span class="note-due ${overdue ? 'overdue' : ''}">${dueText}</span>
         </div>
         <div class="note-content">${escapeHtml(n.content)}</div>
@@ -7174,17 +7180,24 @@ function renderNotes() {
   };
 
   const photoCount = state.notes.items.filter(n => n.photo).length;
+  const subjectChips = subjects.length
+    ? '<div class="note-filters">' +
+        '<button class="note-filter ' + (curSubject === 'all' ? 'active' : '') + '" data-subject="all" onclick="setNoteSubject(this.dataset.subject)">全部</button>' +
+        subjects.map(s => '<button class="note-filter ' + (curSubject === s ? 'active' : '') + '" data-subject="' + escapeHtml(s) + '" onclick="setNoteSubject(this.dataset.subject)">' + escapeHtml(s) + '</button>').join('') +
+      '</div>'
+    : '';
   const html = `
     <div class="section-head">
-      <h2>📓 英语笔记</h2>
+      <h2>📓 知识点</h2>
     </div>
     <div class="note-toolbar">
-      <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条笔记</button>
+      <button class="diet-record-btn" onclick="openNoteEditor()">＋ 记一条知识点</button>
       <button class="note-review-btn" onclick="startNoteReview()">🔔 今日复习（${due.length}）</button>
     </div>
-    ${items.length ? `<div class="note-stats">共 ${items.length} 条笔记${photoCount > 0 ? ` · ${photoCount} 张照片` : ''}</div>` : ''}
+    ${items.length ? `<div class="note-stats">共 ${items.length} 条${photoCount > 0 ? ` · ${photoCount} 张照片` : ''}${subjects.length > 0 ? ` · ${subjects.length} 个科目` : ''}</div>` : ''}
+    ${subjectChips}
     <div class="note-list">
-      ${items.length ? items.map(renderCard).join("") : '<div class="diet-empty">还没有笔记，点上方按钮开始记～</div>'}
+      ${filtered.length ? filtered.map(renderCard).join("") : (items.length ? '<div class="diet-empty">该科目下暂无内容</div>' : '<div class="diet-empty">还没有知识点，点上方按钮开始记～</div>')}
     </div>
   `;
   page.innerHTML = html;
@@ -7195,13 +7208,21 @@ function renderNotes() {
   });
 }
 
+function setNoteSubject(s) {
+  window.__noteSubject = s || 'all';
+  renderNotes();
+}
+
 function openNoteEditor(id) {
   ensureNotes();
   const isEdit = !!id;
   const item = isEdit ? state.notes.items.find(n => n.id === id) : null;
   window.__notePhoto = item ? (item.photo || null) : null;
   const body = `
-    <label class="modal-label">内容 *</label>
+    <label class="modal-label">科目（可选，自己填）</label>
+    <input class="modal-input" id="noteSubject" list="noteSubjectOptions" placeholder="例如：英语、动物药学…（不填也行）" value="${escapeHtml(item ? (item.subject || '') : '')}">
+    <datalist id="noteSubjectOptions">${[...new Set(state.notes.items.map(n => (n.subject || '').trim()).filter(Boolean))].map(s => `<option value="${escapeHtml(s)}"></option>`).join('')}</datalist>
+    <label class="modal-label" style="margin-top:12px;">内容 *</label>
     <textarea class="modal-input" id="noteContent" rows="4" style="min-height:90px;resize:vertical;" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
     <label class="modal-label" style="margin-top:12px;">照片（可选，可直接拍书页）</label>
     <div class="note-photo-area">
@@ -7218,7 +7239,7 @@ function openNoteEditor(id) {
     <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:70px;resize:vertical;" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
   `;
   const actions = `<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveNote('${isEdit ? id : ''}')">${isEdit ? '保存修改' : '保存'}</button>`;
-  openModal(isEdit ? "✏️ 编辑笔记" : "＋ 记笔记", body, actions);
+  openModal(isEdit ? "✏️ 编辑知识点" : "＋ 记知识点", body, actions);
   // 编辑时回显已有照片（只预览，不改变要保存的引用）
   if (window.__notePhoto) {
     if (typeof window.__notePhoto === 'string' && window.__notePhoto.startsWith('idb:')) {
@@ -7360,6 +7381,8 @@ async function saveNote(id) {
   ensureNotes();
   const content = (document.getElementById("noteContent").value || "").trim();
   const detail = (document.getElementById("noteDetail").value || "").trim();
+  const subjectEl = document.getElementById("noteSubject");
+  const subject = subjectEl ? (subjectEl.value || "").trim() : "";
   const photo = await storePhoto(window.__notePhoto || null);
   if (!content && !photo) { Utils.toast("请填写内容或添加照片", "warning"); return; }
   const today = Utils.today();
@@ -7370,13 +7393,13 @@ async function saveNote(id) {
       if (photo && photo !== (n.photo || null) && typeof n.photo === 'string' && n.photo.startsWith('idb:')) {
         PhotoDB.remove(n.photo.slice(4)).catch(() => {});
       }
-      n.content = content; n.detail = detail; n.photo = photo;
+      n.content = content; n.detail = detail; n.photo = photo; n.subject = subject;
       n.level = 0; n.dueDate = today; n.reviewCount = 0;
     }
   } else {
     state.notes.items.push({
       id: "n" + Date.now(),
-      content, detail, photo,
+      subject, content, detail, photo,
       createdAt: today, level: 0, dueDate: today, reviewCount: 0
     });
   }
@@ -7417,7 +7440,7 @@ function renderNoteReviewCard() {
   if (!noteReviewQueue || noteReviewIndex >= noteReviewQueue.length) {
     const total = noteReviewQueue ? noteReviewQueue.length : 0;
     page.innerHTML = `
-      <div class="section-head"><h2>📓 英语笔记</h2></div>
+      <div class="section-head"><h2>📓 知识点</h2></div>
       <div class="card" style="text-align:center;padding:32px 20px;">
         <div style="font-size:40px;">🎉</div>
         <div style="font-weight:600;margin-top:8px;">今日复习完成！</div>
@@ -7469,7 +7492,7 @@ function answerNoteReview(remembered) {
 const SIDEBAR_MODULES = [
   { key: "home", label: "🏠 首页", group: "学习" },
   { key: "words", label: "📖 单词", group: "学习" },
-  { key: "notes", label: "📓 英语笔记", group: "学习" },
+  { key: "notes", label: "📓 知识点", group: "学习" },
   { key: "errors", label: "❌ 错题本", group: "学习" },
   { key: "stats", label: "📊 统计", group: "学习" },
   { key: "exercise", label: "💪 锻炼", group: "生活" },
