@@ -7223,7 +7223,7 @@ function openNoteEditor(id) {
     <input class="modal-input" id="noteSubject" list="noteSubjectOptions" placeholder="例如：英语、动物药学…（不填也行）" value="${escapeHtml(item ? (item.subject || '') : '')}">
     <datalist id="noteSubjectOptions">${[...new Set(state.notes.items.map(n => (n.subject || '').trim()).filter(Boolean))].map(s => `<option value="${escapeHtml(s)}"></option>`).join('')}</datalist>
     <label class="modal-label" style="margin-top:12px;">内容 *</label>
-    <textarea class="modal-input" id="noteContent" rows="4" style="min-height:90px;resize:vertical;" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
+    <textarea class="modal-input" id="noteContent" rows="4" style="min-height:110px;" oninput="autoGrowNoteTextarea(this)" placeholder="记下知识点、易混淆的单词、句子…想到什么记什么">${escapeHtml(item ? item.content : '')}</textarea>
     <label class="modal-label" style="margin-top:12px;">照片（可选，可直接拍书页）</label>
     <div class="note-photo-area">
       <input type="file" id="notePhotoInput" accept="image/*" style="display:none" onchange="pickNotePhoto(this)">
@@ -7236,10 +7236,15 @@ function openNoteEditor(id) {
       </div>
     </div>
     <label class="modal-label" style="margin-top:12px;">补充说明（可选）</label>
-    <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:70px;resize:vertical;" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
+    <textarea class="modal-input" id="noteDetail" rows="3" style="min-height:90px;" oninput="autoGrowNoteTextarea(this)" placeholder="比如：用法、区别、例句、容易记错的地方…">${escapeHtml(item ? (item.detail || '') : '')}</textarea>
   `;
   const actions = `<button class="btn btn-secondary" onclick="closeModal()">取消</button><button class="btn btn-primary" onclick="saveNote('${isEdit ? id : ''}')">${isEdit ? '保存修改' : '保存'}</button>`;
   openModal(isEdit ? "✏️ 编辑知识点" : "＋ 记知识点", body, actions);
+  // 输入框随内容自动变高，长内容也能一眼看全
+  setTimeout(() => {
+    autoGrowNoteTextarea(document.getElementById('noteContent'));
+    autoGrowNoteTextarea(document.getElementById('noteDetail'));
+  }, 30);
   // 编辑时回显已有照片（只预览，不改变要保存的引用）
   if (window.__notePhoto) {
     if (typeof window.__notePhoto === 'string' && window.__notePhoto.startsWith('idb:')) {
@@ -7248,6 +7253,15 @@ function openNoteEditor(id) {
       showNotePhotoPreview(window.__notePhoto);
     }
   }
+}
+
+// 多行输入框随内容自动增高（上限 60vh，超过则内部滚动）
+function autoGrowNoteTextarea(el) {
+  if (!el) return;
+  el.style.height = 'auto';
+  const max = Math.round(window.innerHeight * 0.6);
+  el.style.height = Math.min(el.scrollHeight + 2, max) + 'px';
+  el.style.overflowY = el.scrollHeight + 2 > max ? 'auto' : 'hidden';
 }
 
 function showNotePhotoPreview(dataUrl) {
