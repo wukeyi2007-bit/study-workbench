@@ -1,19 +1,19 @@
 [
   {
-    "id": "d040bb2",
-    "cat": "domestic",
-    "important": true,
-    "title": "服贸会见证中国服务贸易焕新升级",
-    "summary": "【百度热搜】服贸会见证中国服务贸易焕新升级",
-    "source": "百度热搜",
-    "date": "2026-09-13"
-  },
-  {
     "id": "d0ebabf",
     "cat": "domestic",
     "important": true,
     "title": "“是他撞的你吗”“不是 他是好心”",
     "summary": "【百度热搜】“是他撞的你吗”“不是 他是好心”",
+    "source": "百度热搜",
+    "date": "2026-09-13"
+  },
+  {
+    "id": "d117a70",
+    "cat": "domestic",
+    "important": true,
+    "title": "胖东来新招工准则：合同四年、不续签",
+    "summary": "【百度热搜】胖东来新招工准则：合同四年、不续签",
     "source": "百度热搜",
     "date": "2026-09-13"
   },
@@ -27,26 +27,44 @@
     "date": "2026-09-13"
   },
   {
-    "id": "d5a0c54",
+    "id": "d569c9f",
     "cat": "domestic",
     "important": false,
-    "title": "年轻人开始规划提前退休了",
-    "summary": "【百度热搜】年轻人开始规划提前退休了",
+    "title": "广州绿化带惊现拳头大蜗牛",
+    "summary": "【百度热搜】广州绿化带惊现拳头大蜗牛",
     "source": "百度热搜",
     "date": "2026-09-13"
   },
   {
-    "id": "db18288",
+    "id": "da9ea6b",
     "cat": "domestic",
     "important": false,
-    "title": "遇到“马刀树”“醉汉林” 快跑",
-    "summary": "【百度热搜】遇到“马刀树”“醉汉林” 快跑",
+    "title": "治理龟速开车",
+    "summary": "【百度热搜】治理龟速开车",
     "source": "百度热搜",
     "date": "2026-09-13"
   },
   {
-    "id": "dbef750",
+    "id": "dfd74b7",
     "cat": "domestic",
+    "important": false,
+    "title": "首个、首次、首台 中国硬核成果上新",
+    "summary": "【百度热搜】首个、首次、首台 中国硬核成果上新",
+    "source": "百度热搜",
+    "date": "2026-09-13"
+  },
+  {
+    "id": "i0dbb12",
+    "cat": "international",
+    "important": true,
+    "title": "敬一丹账号讣告：感谢这世界让我走过",
+    "summary": "【百度热搜】敬一丹账号讣告：感谢这世界让我走过",
+    "source": "百度热搜",
+    "date": "2026-09-13"
+  },
+  {
+    "id": "i4b9779",
+    "cat": "international",
     "important": false,
     "title": "脑出血急救 记住这几步",
     "summary": "【百度热搜】脑出血急救 记住这几步",
@@ -54,38 +72,20 @@
     "date": "2026-09-13"
   },
   {
-    "id": "i28b7f5",
+    "id": "i6732c4",
     "cat": "international",
-    "important": true,
-    "title": "男生去年考上北大放弃 今年又进北大",
-    "summary": "【百度热搜】男生去年考上北大放弃 今年又进北大",
+    "important": false,
+    "title": "黑撒乐队在西安秦腔摇滚整活儿",
+    "summary": "【百度热搜】黑撒乐队在西安秦腔摇滚整活儿",
     "source": "百度热搜",
     "date": "2026-09-13"
   },
   {
-    "id": "i7ff0ee",
+    "id": "ibedc7f",
     "cat": "international",
     "important": false,
-    "title": "女子澳门遗失的大疆在杭州找到了",
-    "summary": "【百度热搜】女子澳门遗失的大疆在杭州找到了",
-    "source": "百度热搜",
-    "date": "2026-09-13"
-  },
-  {
-    "id": "i8985c1",
-    "cat": "international",
-    "important": false,
-    "title": "敬一丹去世",
-    "summary": "【百度热搜】敬一丹去世",
-    "source": "百度热搜",
-    "date": "2026-09-13"
-  },
-  {
-    "id": "i8b9548",
-    "cat": "international",
-    "important": false,
-    "title": "小七龄童去世：系六小龄童堂兄",
-    "summary": "【百度热搜】小七龄童去世：系六小龄童堂兄",
+    "title": "受害人和嫌疑人同时走进派出所",
+    "summary": "【百度热搜】受害人和嫌疑人同时走进派出所",
     "source": "百度热搜",
     "date": "2026-09-13"
   },
@@ -103,17 +103,17 @@
     "cat": "tech",
     "important": false,
     "title": "Anthropic阿莫迪：AI研发竞赛亟需放缓 提与中方进行AI的类比冷战战略武器限制谈判",
-    "summary": "【rfi.fr】Anthropic阿莫迪：AI研发竞赛亟需放缓 提与中方进行AI的类比冷战战略武器限制谈判",
-    "source": "rfi.fr",
+    "summary": "【RFI】Anthropic阿莫迪：AI研发竞赛亟需放缓 提与中方进行AI的类比冷战战略武器限制谈判",
+    "source": "RFI",
     "date": "2026-09-13"
   },
   {
-    "id": "t3415fd",
+    "id": "t7f9e65",
     "cat": "tech",
     "important": false,
-    "title": "传创始人等16名员工被带走 月之暗面：恶意造谣",
-    "summary": "【联合早报】传创始人等16名员工被带走 月之暗面：恶意造谣",
-    "source": "联合早报",
+    "title": "陶哲轩、邓煜等25位菲尔兹奖得主联合发警告！",
+    "summary": "【凤凰网】陶哲轩、邓煜等25位菲尔兹奖得主联合发警告！",
+    "source": "凤凰网",
     "date": "2026-09-13"
   },
   {
@@ -121,34 +121,34 @@
     "cat": "tech",
     "important": false,
     "title": "中国军方敏感信息疑外泄 美AI巨头揭内情",
-    "summary": "【dw.com】中国军方敏感信息疑外泄 美AI巨头揭内情",
-    "source": "dw.com",
+    "summary": "【DW.com】中国军方敏感信息疑外泄 美AI巨头揭内情",
+    "source": "DW.com",
+    "date": "2026-09-13"
+  },
+  {
+    "id": "f9d8bfb",
+    "cat": "finance",
+    "important": true,
+    "title": "中国工程院院士邬贺铨：2030 年中国算力有望占到全球30%",
+    "summary": "【IT之家】中国工程院院士邬贺铨：2030 年中国算力有望占到全球30%",
+    "source": "IT之家",
     "date": "2026-09-13"
   },
   {
     "id": "f543f50",
     "cat": "finance",
-    "important": true,
+    "important": false,
     "title": "高盛、摩根大通相继调整预期，预测美联储9月加息",
     "summary": "【21财经】高盛、摩根大通相继调整预期，预测美联储9月加息",
     "source": "21财经",
     "date": "2026-09-13"
   },
   {
-    "id": "f7fec1b",
+    "id": "f655237",
     "cat": "finance",
     "important": false,
-    "title": "苹果公司2026年秋季新品发布会点评：折叠屏+端侧AI双催化，果链价值重估_行业研究_研报",
-    "summary": "【证券之星】苹果公司2026年秋季新品发布会点评：折叠屏+端侧AI双催化，果链价值重估_行业研究_研报",
-    "source": "证券之星",
-    "date": "2026-09-13"
-  },
-  {
-    "id": "fee7ead",
-    "cat": "finance",
-    "important": false,
-    "title": "雄安国际算力一体化调度中心上线运行 打造国家级跨域算力调度枢纽",
-    "summary": "【中华网】雄安国际算力一体化调度中心上线运行 打造国家级跨域算力调度枢纽",
+    "title": "半年内订单爆发！百亿风口来了 机器人皮肤商业化加速",
+    "summary": "【中华网】半年内订单爆发！百亿风口来了 机器人皮肤商业化加速",
     "source": "中华网",
     "date": "2026-09-13"
   }
