@@ -1,110 +1,101 @@
 [
   {
-    "id": "d21dea3",
+    "id": "d0c22ea",
     "cat": "domestic",
     "important": true,
-    "title": "中国足球小将西班牙捧杯",
-    "summary": "【百度热搜】中国足球小将西班牙捧杯",
+    "title": "共同书写全球南方团结自强新篇章",
+    "summary": "【百度热搜】共同书写全球南方团结自强新篇章",
     "source": "百度热搜",
     "date": "2026-09-14"
   },
   {
-    "id": "d288f70",
+    "id": "d1ced86",
     "cat": "domestic",
     "important": true,
+    "title": "野人先生 不要回答不要回答不要回答",
+    "summary": "【百度热搜】野人先生 不要回答不要回答不要回答",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "d5546a1",
+    "cat": "domestic",
+    "important": false,
+    "title": "央视评“HYROX选手赛场失禁”",
+    "summary": "【百度热搜】央视评“HYROX选手赛场失禁”",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "d5a2eff",
+    "cat": "domestic",
+    "important": false,
+    "title": "词元出海怎么实现？服贸会上有答案",
+    "summary": "【百度热搜】词元出海怎么实现？服贸会上有答案",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "dbd1c44",
+    "cat": "domestic",
+    "important": false,
+    "title": "上5休1上5休3上3休7上3休1",
+    "summary": "【百度热搜】上5休1上5休3上3休7上3休1",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "dc83c06",
+    "cat": "domestic",
+    "important": false,
+    "title": "广汽集团停牌",
+    "summary": "【百度热搜】广汽集团停牌",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "i210e81",
+    "cat": "international",
+    "important": true,
+    "title": "人民日报：不顾底线追逐流量必遭反噬",
+    "summary": "【百度热搜】人民日报：不顾底线追逐流量必遭反噬",
+    "source": "百度热搜",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "i8e6e26",
+    "cat": "international",
+    "important": false,
     "title": "“次抛衣”走红",
     "summary": "【百度热搜】“次抛衣”走红",
     "source": "百度热搜",
     "date": "2026-09-14"
   },
   {
-    "id": "d591b5b",
-    "cat": "domestic",
-    "important": false,
-    "title": "寻找“金砖温度”的答案",
-    "summary": "【百度热搜】寻找“金砖温度”的答案",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "d6ecbe4",
-    "cat": "domestic",
-    "important": false,
-    "title": "筑牢金砖合作根基 壮大全球南方力量",
-    "summary": "【百度热搜】筑牢金砖合作根基 壮大全球南方力量",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "dd1e8a7",
-    "cat": "domestic",
-    "important": false,
-    "title": "成都一越野车高架上坠落致1死1伤",
-    "summary": "【百度热搜】成都一越野车高架上坠落致1死1伤",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "df3c22c",
-    "cat": "domestic",
-    "important": false,
-    "title": "人民日报曝光后 苏州市委表态：严查",
-    "summary": "【百度热搜】人民日报曝光后 苏州市委表态：严查",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "i2be6a4",
-    "cat": "international",
-    "important": true,
-    "title": "出现这种感觉 说明你AI成瘾了",
-    "summary": "【百度热搜】出现这种感觉 说明你AI成瘾了",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "i3153e4",
+    "id": "icddbc4",
     "cat": "international",
     "important": false,
-    "title": "新疆昭苏上演大地“鸳鸯锅”",
-    "summary": "【百度热搜】新疆昭苏上演大地“鸳鸯锅”",
+    "title": "海南暴雨",
+    "summary": "【百度热搜】海南暴雨",
     "source": "百度热搜",
     "date": "2026-09-14"
   },
   {
-    "id": "i8150e6",
+    "id": "id5aa79",
     "cat": "international",
     "important": false,
-    "title": "苏格兰、威尔士、北爱尔兰",
-    "summary": "【百度热搜】苏格兰、威尔士、北爱尔兰",
+    "title": "一汽 广汽",
+    "summary": "【百度热搜】一汽 广汽",
     "source": "百度热搜",
     "date": "2026-09-14"
   },
   {
-    "id": "i8f09a8",
-    "cat": "international",
-    "important": false,
-    "title": "在读75万 中国博士真的过剩了吗",
-    "summary": "【百度热搜】在读75万 中国博士真的过剩了吗",
-    "source": "百度热搜",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "t34f99e",
+    "id": "t28ce21",
     "cat": "tech",
     "important": true,
-    "title": "Anthropic阿莫迪：AI研发竞赛亟需放缓 提与中方进行AI的类比冷战战略武器限制谈判",
-    "summary": "【RFI】Anthropic阿莫迪：AI研发竞赛亟需放缓 提与中方进行AI的类比冷战战略武器限制谈判",
-    "source": "RFI",
-    "date": "2026-09-14"
-  },
-  {
-    "id": "t3c7021",
-    "cat": "tech",
-    "important": false,
-    "title": "北京进一步收紧无人机管制：11月15日全域禁飞禁存禁运",
-    "summary": "【RFI】北京进一步收紧无人机管制：11月15日全域禁飞禁存禁运",
-    "source": "RFI",
+    "title": "“一种新的核武器”：微信蠕虫事件敲响中国AI安全警钟",
+    "summary": "【cn.nytimes.com】“一种新的核武器”：微信蠕虫事件敲响中国AI安全警钟",
+    "source": "cn.nytimes.com",
     "date": "2026-09-14"
   },
   {
@@ -121,35 +112,44 @@
     "cat": "tech",
     "important": false,
     "title": "中国军方敏感信息疑外泄 美AI巨头揭内情",
-    "summary": "【DW.com】中国军方敏感信息疑外泄 美AI巨头揭内情",
-    "source": "DW.com",
+    "summary": "【dw.com】中国军方敏感信息疑外泄 美AI巨头揭内情",
+    "source": "dw.com",
     "date": "2026-09-14"
   },
   {
-    "id": "f5a0ac9",
+    "id": "tf01ea3",
+    "cat": "tech",
+    "important": false,
+    "title": "从Intel跳到M5！苹果神仙售后：2020款MacBook Air直接换新机",
+    "summary": "【驱动之家】从Intel跳到M5！苹果神仙售后：2020款MacBook Air直接换新机",
+    "source": "驱动之家",
+    "date": "2026-09-14"
+  },
+  {
+    "id": "f594e32",
     "cat": "finance",
     "important": true,
-    "title": "人类可能会失去对人工智能的控制？马斯克、奥尔特曼都回应了",
-    "summary": "【news.bjd.com.cn】人类可能会失去对人工智能的控制？马斯克、奥尔特曼都回应了",
-    "source": "news.bjd.com.cn",
+    "title": "9月14日国内期货主力合约多数下跌 SC原油涨幅逼近12%",
+    "summary": "【央广财经】9月14日国内期货主力合约多数下跌 SC原油涨幅逼近12%",
+    "source": "央广财经",
     "date": "2026-09-14"
   },
   {
-    "id": "fe6585d",
+    "id": "f6ff18a",
     "cat": "finance",
     "important": false,
-    "title": "苹果首款折叠机的妥协 古尔曼：两大缺失功能有望在第三代回归",
-    "summary": "【凤凰网科技】苹果首款折叠机的妥协 古尔曼：两大缺失功能有望在第三代回归",
-    "source": "凤凰网科技",
+    "title": "Anthropic CEO谈放缓AI研发：有人用AI“研发生物武器、增强病毒传染性”，必须引入第三方监管",
+    "summary": "【华尔街见闻】Anthropic CEO谈放缓AI研发：有人用AI“研发生物武器、增强病毒传染性”，必须引入第三方监管",
+    "source": "华尔街见闻",
     "date": "2026-09-14"
   },
   {
-    "id": "ff9d77e",
+    "id": "fecde27",
     "cat": "finance",
     "important": false,
-    "title": "国泰海通：美联储9月加息或已近在咫尺",
-    "summary": "【金融界】国泰海通：美联储9月加息或已近在咫尺",
-    "source": "金融界",
+    "title": "美联储加息预期扰动短期行情 国际金价震荡",
+    "summary": "【21财经】美联储加息预期扰动短期行情 国际金价震荡",
+    "source": "21财经",
     "date": "2026-09-14"
   }
 ]
