@@ -1,19 +1,28 @@
 [
   {
-    "id": "d1543c7",
+    "id": "d3c67bc",
     "cat": "domestic",
     "important": true,
-    "title": "祖国统一的大势滚滚向前 不可阻挡",
-    "summary": "【百度热搜】祖国统一的大势滚滚向前 不可阻挡",
+    "title": "周星驰御用配角成功应聘景区NPC",
+    "summary": "【百度热搜】周星驰御用配角成功应聘景区NPC",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "d24c664",
+    "id": "d400204",
     "cat": "domestic",
     "important": true,
-    "title": "影院不再只放电影",
-    "summary": "【百度热搜】影院不再只放电影",
+    "title": "平陆运河集齐多个“最硬核”标签",
+    "summary": "【百度热搜】平陆运河集齐多个“最硬核”标签",
+    "source": "百度热搜",
+    "date": "2026-09-16"
+  },
+  {
+    "id": "d7a55b4",
+    "cat": "domestic",
+    "important": false,
+    "title": "啄木鸟维修换1个开关收费2800",
+    "summary": "【百度热搜】啄木鸟维修换1个开关收费2800",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
@@ -27,84 +36,75 @@
     "date": "2026-09-16"
   },
   {
-    "id": "db82231",
+    "id": "da143bc",
     "cat": "domestic",
     "important": false,
-    "title": "电动汽车充电不花钱 多地试点",
-    "summary": "【百度热搜】电动汽车充电不花钱 多地试点",
+    "title": "赵家驹 从外卖小哥到世界冠军",
+    "summary": "【百度热搜】赵家驹 从外卖小哥到世界冠军",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "dc41d04",
+    "id": "dedf2c6",
     "cat": "domestic",
     "important": false,
-    "title": "世纪工程4年完工",
-    "summary": "【百度热搜】世纪工程4年完工",
+    "title": "警方介入南方医科大学坠亡事件",
+    "summary": "【百度热搜】警方介入南方医科大学坠亡事件",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "dee1d07",
-    "cat": "domestic",
-    "important": false,
-    "title": "“订单绕了一圈还是回到中国”",
-    "summary": "【百度热搜】“订单绕了一圈还是回到中国”",
-    "source": "百度热搜",
-    "date": "2026-09-16"
-  },
-  {
-    "id": "i6a869a",
+    "id": "i01251e",
     "cat": "international",
     "important": true,
-    "title": "我不得不把才华埋葬在昨天",
-    "summary": "【百度热搜】我不得不把才华埋葬在昨天",
+    "title": "32岁教师因病去世 朋友圈留绝笔信",
+    "summary": "【百度热搜】32岁教师因病去世 朋友圈留绝笔信",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "i7d76ee",
+    "id": "i80adae",
     "cat": "international",
     "important": false,
-    "title": "老人接到女儿离世噩耗 导游助其回家",
-    "summary": "【百度热搜】老人接到女儿离世噩耗 导游助其回家",
+    "title": "昔日“彩电大王”要退市了",
+    "summary": "【百度热搜】昔日“彩电大王”要退市了",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "idd82d9",
+    "id": "i86aeaa",
     "cat": "international",
     "important": false,
-    "title": "为工作23年未见父母也算先进事迹吗",
-    "summary": "【百度热搜】为工作23年未见父母也算先进事迹吗",
+    "title": "A股收盘：科创50指数震荡反弹涨超4%",
+    "summary": "【百度热搜】A股收盘：科创50指数震荡反弹涨超4%",
     "source": "百度热搜",
     "date": "2026-09-16"
   },
   {
-    "id": "ie6201e",
+    "id": "i882fe4",
     "cat": "international",
     "important": false,
-    "title": "赵露思自导自演新剧《告别信》",
-    "summary": "【百度热搜】赵露思自导自演新剧《告别信》",
+    "title": "小沈阳一开口直接封神",
+    "summary": "【百度热搜】小沈阳一开口直接封神",
     "source": "百度热搜",
-    "date": "2026-09-16"
-  },
-  {
-    "id": "t12df8c",
-    "cat": "tech",
-    "important": true,
-    "title": "特朗普真急了，一个电话打到黄仁勋那里",
-    "summary": "【凤凰网】特朗普真急了，一个电话打到黄仁勋那里",
-    "source": "凤凰网",
     "date": "2026-09-16"
   },
   {
     "id": "t314a9b",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "中国AI使用比例过半",
     "summary": "【日经中文网】中国AI使用比例过半",
     "source": "日经中文网",
+    "date": "2026-09-16"
+  },
+  {
+    "id": "t8f4142",
+    "cat": "tech",
+    "important": false,
+    "title": "人工智能竞赛 美中陷入了“囚徒困境“？",
+    "summary": "【RFI】人工智能竞赛 美中陷入了“囚徒困境“？",
+    "source": "RFI",
     "date": "2026-09-16"
   },
   {
@@ -126,12 +126,21 @@
     "date": "2026-09-16"
   },
   {
-    "id": "f6c2e3d",
+    "id": "f006cfa",
     "cat": "finance",
     "important": true,
-    "title": "“三稳”格局稳固 新动能支撑增强 ——8月份国民经济运行保持平稳向好",
-    "summary": "【经济形势报告网】“三稳”格局稳固 新动能支撑增强 ——8月份国民经济运行保持平稳向好",
-    "source": "经济形势报告网",
+    "title": "金饰克价1个月内下跌超110元 美联储加息预期压制金价",
+    "summary": "【news.china.com】金饰克价1个月内下跌超110元 美联储加息预期压制金价",
+    "source": "news.china.com",
+    "date": "2026-09-16"
+  },
+  {
+    "id": "f35e948",
+    "cat": "finance",
+    "important": false,
+    "title": "A股四大指数开盘跌多涨少，海运、油气板块表现强势",
+    "summary": "【第一财经】A股四大指数开盘跌多涨少，海运、油气板块表现强势",
+    "source": "第一财经",
     "date": "2026-09-16"
   },
   {
@@ -141,15 +150,6 @@
     "title": "美股三大股指全线收跌：大型科技股承压，国际油价再度飙升",
     "summary": "【thepaper.cn】美股三大股指全线收跌：大型科技股承压，国际油价再度飙升",
     "source": "thepaper.cn",
-    "date": "2026-09-16"
-  },
-  {
-    "id": "ff36b8f",
-    "cat": "finance",
-    "important": false,
-    "title": "金价失守4270美元 市场加息预期打压",
-    "summary": "【中华网】金价失守4270美元 市场加息预期打压",
-    "source": "中华网",
     "date": "2026-09-16"
   }
 ]
