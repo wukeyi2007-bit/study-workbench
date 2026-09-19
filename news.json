@@ -1,10 +1,10 @@
 [
   {
-    "id": "d12817a",
+    "id": "d1eb837",
     "cat": "domestic",
     "important": true,
-    "title": "村庄杆子上装了84个监控 村干部回应",
-    "summary": "【百度热搜】村庄杆子上装了84个监控 村干部回应",
+    "title": "“不得报销烟酒、扑克牌”",
+    "summary": "【百度热搜】“不得报销烟酒、扑克牌”",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
@@ -18,29 +18,29 @@
     "date": "2026-09-19"
   },
   {
-    "id": "d367b3a",
+    "id": "d38888a",
     "cat": "domestic",
     "important": false,
-    "title": "12306：已拒绝出票133.1万张",
-    "summary": "【百度热搜】12306：已拒绝出票133.1万张",
+    "title": "亚运会开幕式",
+    "summary": "【百度热搜】亚运会开幕式",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "d4542e6",
+    "id": "d5faac8",
     "cat": "domestic",
     "important": false,
-    "title": "70万新车出现异响 要求换车被拒",
-    "summary": "【百度热搜】70万新车出现异响 要求换车被拒",
+    "title": "昨天放错国歌 今天直接不放了",
+    "summary": "【百度热搜】昨天放错国歌 今天直接不放了",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "d60fa0c",
+    "id": "d6dd9a1",
     "cat": "domestic",
     "important": false,
-    "title": "西贝回应“彻底倒闭”",
-    "summary": "【百度热搜】西贝回应“彻底倒闭”",
+    "title": "啄木鸟被曝换开关收2800后态度反转",
+    "summary": "【百度热搜】啄木鸟被曝换开关收2800后态度反转",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
@@ -54,48 +54,57 @@
     "date": "2026-09-19"
   },
   {
-    "id": "i3bcbe5",
+    "id": "iad66e5",
     "cat": "international",
     "important": true,
-    "title": "亚运组委会致歉",
-    "summary": "【百度热搜】亚运组委会致歉",
+    "title": "中国代表团独享1分45秒超长转播镜头",
+    "summary": "【百度热搜】中国代表团独享1分45秒超长转播镜头",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "i613420",
+    "id": "ie1b927",
     "cat": "international",
     "important": false,
-    "title": "舒畅脸部状态",
-    "summary": "【百度热搜】舒畅脸部状态",
+    "title": "专家怒斥尸皮针：救命材料拿去做医美",
+    "summary": "【百度热搜】专家怒斥尸皮针：救命材料拿去做医美",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "iede5a9",
+    "id": "ie7b6ab",
     "cat": "international",
     "important": false,
-    "title": "佟丽娅回应在董璇婚礼上的表情",
-    "summary": "【百度热搜】佟丽娅回应在董璇婚礼上的表情",
+    "title": "新高一学生 不愿意住校",
+    "summary": "【百度热搜】新高一学生 不愿意住校",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "iff8cec",
+    "id": "ieca4af",
     "cat": "international",
     "important": false,
-    "title": "张雪称签了个顶级车手定了个小目标",
-    "summary": "【百度热搜】张雪称签了个顶级车手定了个小目标",
+    "title": "人民日报评“前面欠的债我凭什么还”",
+    "summary": "【百度热搜】人民日报评“前面欠的债我凭什么还”",
     "source": "百度热搜",
     "date": "2026-09-19"
   },
   {
-    "id": "t78653c",
+    "id": "t07f2c9",
     "cat": "tech",
     "important": true,
-    "title": "字节腾讯AI办公决战：梁汝波称企业需重构工作方式，WorkBuddy月访问量突破2000万",
-    "summary": "【虎嗅网】字节腾讯AI办公决战：梁汝波称企业需重构工作方式，WorkBuddy月访问量突破2000万",
-    "source": "虎嗅网",
+    "title": "分析师用AI协助生产情报险促美军对载有“核武器项目部件”的中国船只武装登船",
+    "summary": "【RFI】分析师用AI协助生产情报险促美军对载有“核武器项目部件”的中国船只武装登船",
+    "source": "RFI",
+    "date": "2026-09-19"
+  },
+  {
+    "id": "t222abf",
+    "cat": "tech",
+    "important": false,
+    "title": "一个“不说话”的AI刷屏，Jev真是新范式吗？",
+    "summary": "【36Kr】一个“不说话”的AI刷屏，Jev真是新范式吗？",
+    "source": "36Kr",
     "date": "2026-09-19"
   },
   {
@@ -112,44 +121,35 @@
     "cat": "tech",
     "important": false,
     "title": "AI女演员接受英文采访时突然说粤语，制作公司：并非故障",
-    "summary": "【guancha.cn】AI女演员接受英文采访时突然说粤语，制作公司：并非故障",
-    "source": "guancha.cn",
+    "summary": "【观察者网】AI女演员接受英文采访时突然说粤语，制作公司：并非故障",
+    "source": "观察者网",
     "date": "2026-09-19"
   },
   {
-    "id": "tf25398",
-    "cat": "tech",
-    "important": false,
-    "title": "奥特曼自曝「后Astra」模型，已超越全球最强数学家",
-    "summary": "【36Kr】奥特曼自曝「后Astra」模型，已超越全球最强数学家",
-    "source": "36Kr",
-    "date": "2026-09-19"
-  },
-  {
-    "id": "ffc2b8d",
+    "id": "f0df559",
     "cat": "finance",
     "important": true,
-    "title": "北京市场监管局对四家在线酒店旅游平台立案调查，涉及淘美航空、同程、途家、北京三快",
-    "summary": "【IT之家】北京市场监管局对四家在线酒店旅游平台立案调查，涉及淘美航空、同程、途家、北京三快",
-    "source": "IT之家",
-    "date": "2026-09-19"
-  },
-  {
-    "id": "f130c56",
-    "cat": "finance",
-    "important": false,
-    "title": "住建部定调：楼市进入存量时代，加快构建房地产发展新模式",
-    "summary": "【21财经】住建部定调：楼市进入存量时代，加快构建房地产发展新模式",
+    "title": "北京对飞猪、同程、途家、美团酒旅立案调查",
+    "summary": "【21财经】北京对飞猪、同程、途家、美团酒旅立案调查",
     "source": "21财经",
     "date": "2026-09-19"
   },
   {
-    "id": "fbb2d69",
+    "id": "f51bb1b",
     "cat": "finance",
     "important": false,
-    "title": "视频丨习近平总书记就发展先进制造业作出的重要指示引发热烈反响",
-    "summary": "【紫牛新闻】视频丨习近平总书记就发展先进制造业作出的重要指示引发热烈反响",
-    "source": "紫牛新闻",
+    "title": "三大央行同步加息！人民币汇率关键突破",
+    "summary": "【金融界】三大央行同步加息！人民币汇率关键突破",
+    "source": "金融界",
+    "date": "2026-09-19"
+  },
+  {
+    "id": "ff6ae14",
+    "cat": "finance",
+    "important": false,
+    "title": "做大做强先进制造业巩固壮大实体经济根基——习近平总书记就发展先进制造业作出的重要指示引发热烈反响",
+    "summary": "【中国之声】做大做强先进制造业巩固壮大实体经济根基——习近平总书记就发展先进制造业作出的重要指示引发热烈反响",
+    "source": "中国之声",
     "date": "2026-09-19"
   }
 ]
