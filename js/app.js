@@ -3774,8 +3774,9 @@ function getFinanceDayInfo(day) {
 
 function getFinanceLevelName(dayIndex) {
   if (dayIndex <= 10) return "入门";
-  if (dayIndex <= 20) return "进阶";
-  return "综合";
+  if (dayIndex <= 30) return "进阶";
+  if (dayIndex <= 50) return "高级";
+  return "实战";
 }
 
 function getFinanceCurrentDay() {
@@ -4017,6 +4018,7 @@ function renderFinance() {
       <div class="toolbar-right">
         <button class="btn btn-sm btn-key" onclick="openKeyReview()">⭐ 重点复习 (${getFinanceKeyIds().length})</button>
         ${FINANCE_KNOWLEDGE.length >= 31 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(31)">↪ 跳到进阶</button>` : ''}
+        ${FINANCE_KNOWLEDGE.length >= 51 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(51)">↪ 跳到高级</button>` : ''}
         <span class="user-badge">长期进度 ${masteredCount}/${totalItems}</span>
       </div>
     </div>
@@ -4024,7 +4026,7 @@ function renderFinance() {
     <div class="finance-hero knowledge-hero">
       <div style="font-size:15px;font-weight:600;">📌 每日 5 条理财知识点</div>
       <div style="font-size:13px;opacity:.92;margin-top:6px;line-height:1.6;">
-        共 ${FINANCE_KNOWLEDGE.length} 天内容（基础 30 天 + 进阶 20 天），可自由学习进度，重点反复巩固。理财没有终点，每天进步一点就好。
+        共 ${FINANCE_KNOWLEDGE.length} 天内容（基础 30 天 + 进阶 20 天 + 高级 30 天），可自由学习进度，重点反复巩固。理财没有终点，每天进步一点就好。
       </div>
     </div>
 
