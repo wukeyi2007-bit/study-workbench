@@ -1260,10 +1260,9 @@ function renderTodayOverview() {
   const readingGoal = state.reading.goalPages || READING_CONFIG.dailyGoalPages;
   const readingPct = Math.min(100, Math.round((readPagesToday / readingGoal) * 100));
 
-  // 理财学习：取和理财页完全相同的「当前天数」来统计，
-  // 否则会出现「理财页在看第 31 天、首页却按第 37 天统计」→ 进度永远 0% 的问题
-  advanceFinanceDayIfNeeded();
-  const financeTodayDay = getFinanceCurrentDay();
+  // 理财学习：统计「当前该学的那一天」（从第 1 天起第一个还没全部掌握的天）的进度。
+  // 这里只是算出来用于展示，不改动 currentDay，避免影响用户在理财页的手动翻看。
+  const financeTodayDay = getFinanceUnfinishedDayFrom(1);
   const { dayIndex: financeTodayIdx } = getFinanceDayInfo(financeTodayDay);
   const financeTodayData = FINANCE_KNOWLEDGE.find(d => d.day === financeTodayIdx);
   const financeTotal = financeTodayData ? financeTodayData.items.length : 5;
@@ -3739,19 +3738,27 @@ function initFinanceKnowledge() {
   if (state.financeKnowledge.manualDate === undefined) state.financeKnowledge.manualDate = null;
 }
 
-// 理财进度完全由「学习动作」驱动（点完当天全部知识点才前进一天），
-// 这里只做越界修正，绝不主动跳天。
-// （此前会连续跳过「已全部掌握」的天，一旦某些天的记录异常，就会一口气跳到很后面，
-//  比如突然显示第 50 天——见 commit ba7a4511 的回归。）
+// 从 start 天开始往后找「第一个还没全部掌握的天」。
+// 关键：从指定位置往后扫，而不是从"今天对应的日期"扫——
+// 从今天扫会把没学完的旧天直接跳过，用户再也补不上（commit ba7a4511 的回归）。
+function getFinanceUnfinishedDayFrom(start) {
+  const total = FINANCE_KNOWLEDGE.length || 80;
+  for (let d = Math.max(1, start); d <= total; d++) {
+    const dayData = FINANCE_KNOWLEDGE.find(x => x.day === d);
+    if (!dayData || dayData.items.length === 0) continue;
+    const done = getCompletedForDay(d);
+    if (!dayData.items.every(it => done.includes(it.id))) return d; // 这天还没全掌握
+  }
+  return total; // 全都掌握完了
+}
+
+// 打开 App 时自动定位到「第一个还没全部掌握的天」：
+// 先把没学完的补上（不管它在第几天），全补完才继续往后走。
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
-  const total = FINANCE_KNOWLEDGE.length || 50;
-  const d = state.financeKnowledge.currentDay;
-  if (!d || d < 1) {
-    state.financeKnowledge.currentDay = 1;
-    Store.save();
-  } else if (d > total) {
-    state.financeKnowledge.currentDay = total;
+  const target = getFinanceUnfinishedDayFrom(1);
+  if (state.financeKnowledge.currentDay !== target) {
+    state.financeKnowledge.currentDay = target;
     Store.save();
   }
 }
@@ -3822,15 +3829,17 @@ function toggleFinanceKnowledge(id, day) {
   if (i >= 0) list.splice(i, 1);
   else list.push(id);
   state.financeKnowledge.completed[day] = list;
-  // 把当天知识点全部点成「已掌握」后，自动进入下一天（只前进这一步）。
-  // 没学完就停留在当天，第二天打开继续，不会被跳过。
+  // 把当天知识点全部点成「已掌握」后，自动跳到「下一个还没全部掌握的天」。
+  // 会跳过已经掌握完的天（比如 32-44 都掌握完了，就直接到 45）。
+  // 当天没学完则停留在原地，第二天打开继续，不会被跳过。
   const dayData = FINANCE_KNOWLEDGE.find(x => x.day === day);
-  const total = FINANCE_KNOWLEDGE.length || 50;
+  const total = FINANCE_KNOWLEDGE.length || 80;
   if (dayData && dayData.items.length > 0 && day < total &&
       dayData.items.every(it => list.includes(it.id))) {
-    state.financeKnowledge.currentDay = day + 1;
-    state.financeKnowledge.manualDate = Utils.today();
-    Utils.toast("🎉 第 " + day + " 天已全部掌握，进入第 " + (day + 1) + " 天", "success");
+    const next = getFinanceUnfinishedDayFrom(day + 1);
+    state.financeKnowledge.currentDay = next;
+    Store.save();
+    Utils.toast("🎉 第 " + day + " 天已全部掌握，接下来第 " + next + " 天", "success");
   }
   Store.save();
   renderFinance();
@@ -3927,7 +3936,9 @@ function openKeyReview() {
 
 function renderFinance() {
   initFinanceKnowledge();
-  advanceFinanceDayIfNeeded(); // 每次进入理财页都检查是否跨天，避免停留在旧进度
+  // 注意：这里不调用 advanceFinanceDayIfNeeded()。
+  // 自动定位只在打开 App 时做一次（以及学完当天时前进），
+  // 否则用户手动「前一天/后一天/跳转」会被立即覆盖、完全没法翻看。
   const day = getFinanceCurrentDay();
   const todayDay = getFinanceTodayDay();
   const { dayIndex, round } = getFinanceDayInfo(day);
@@ -3960,7 +3971,10 @@ function renderFinance() {
   }
   const remain = 5 - reviewItems.length; // 其余名额留给当天新知识点
   const unmastered = dayData.items.filter(it => !completed.includes(it.id));
-  const fill = [...unmastered, ...dayData.items.filter(it => completed.includes(it.id))].slice(0, remain);
+  // 只展示「还没掌握」的知识点——已掌握的排到后面、不占位置。
+  // 等这一天全部掌握后，才把已掌握的显示出来作为完成回顾。
+  const masteredOfDay = dayData.items.filter(it => completed.includes(it.id));
+  const fill = (unmastered.length > 0 ? unmastered : masteredOfDay).slice(0, remain);
   const displayItems = interleaveArrays(
     reviewItems.map(it => ({ item: it, isReview: true })),
     fill.map(it => ({ item: it, isReview: false }))
