@@ -3739,24 +3739,19 @@ function initFinanceKnowledge() {
   if (state.financeKnowledge.manualDate === undefined) state.financeKnowledge.manualDate = null;
 }
 
-// 进度采用「学习驱动」：只有当前这一天的知识点全部点成「已掌握」，
-// 才会自动进入下一天；没学完就停留在那一天，第二天打开继续学。
-// 关键：起点用「当前所在的天」而不是「今天对应的日期」——
-// 后者会在几天没看时把没学的那天直接跳过，想补也补不回来。
+// 理财进度完全由「学习动作」驱动（点完当天全部知识点才前进一天），
+// 这里只做越界修正，绝不主动跳天。
+// （此前会连续跳过「已全部掌握」的天，一旦某些天的记录异常，就会一口气跳到很后面，
+//  比如突然显示第 50 天——见 commit ba7a4511 的回归。）
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
   const total = FINANCE_KNOWLEDGE.length || 50;
-  let d = Math.max(1, Math.min(state.financeKnowledge.currentDay || 1, total));
-  for (let step = 0; step < total; step++) {
-    const dayData = FINANCE_KNOWLEDGE.find(x => x.day === d);
-    if (!dayData || dayData.items.length === 0) break;
-    const done = getCompletedForDay(d);
-    if (!dayData.items.every(it => done.includes(it.id))) break; // 这天还有没掌握的 → 停在这里
-    if (d >= total) break;
-    d += 1;
-  }
-  if (state.financeKnowledge.currentDay !== d) {
-    state.financeKnowledge.currentDay = d;
+  const d = state.financeKnowledge.currentDay;
+  if (!d || d < 1) {
+    state.financeKnowledge.currentDay = 1;
+    Store.save();
+  } else if (d > total) {
+    state.financeKnowledge.currentDay = total;
     Store.save();
   }
 }
@@ -3801,6 +3796,19 @@ function setFinanceCurrentDay(day) {
   renderFinance();
 }
 
+// 「直接跳到第 N 天」：方便快速回到想学的那一天
+function jumpFinanceDay() {
+  const el = document.getElementById("financeJumpDay");
+  const maxDay = FINANCE_KNOWLEDGE.length || 50;
+  if (!el) return;
+  const day = parseInt(el.value, 10);
+  if (!day || day < 1 || day > maxDay) {
+    Utils.toast("请输入 1-" + maxDay + " 之间的天数", "warning");
+    return;
+  }
+  setFinanceCurrentDay(day);
+}
+
 function getCompletedForDay(day) {
   initFinanceKnowledge();
   return state.financeKnowledge.completed[day] || [];
@@ -3813,6 +3821,16 @@ function toggleFinanceKnowledge(id, day) {
   if (i >= 0) list.splice(i, 1);
   else list.push(id);
   state.financeKnowledge.completed[day] = list;
+  // 把当天知识点全部点成「已掌握」后，自动进入下一天（只前进这一步）。
+  // 没学完就停留在当天，第二天打开继续，不会被跳过。
+  const dayData = FINANCE_KNOWLEDGE.find(x => x.day === day);
+  const total = FINANCE_KNOWLEDGE.length || 50;
+  if (dayData && dayData.items.length > 0 && day < total &&
+      dayData.items.every(it => list.includes(it.id))) {
+    state.financeKnowledge.currentDay = day + 1;
+    state.financeKnowledge.manualDate = Utils.today();
+    Utils.toast("🎉 第 " + day + " 天已全部掌握，进入第 " + (day + 1) + " 天", "success");
+  }
   Store.save();
   renderFinance();
 }
@@ -4017,6 +4035,12 @@ function renderFinance() {
         <div class="day-progress">掌握 ${progress}/${shownTotal}</div>
       </div>
       <button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(${day + 1})" ${nextDisabled ? 'disabled' : ''}>后一天 →</button>
+    </div>
+    <div class="finance-jump">
+      直接跳到第
+      <input type="number" id="financeJumpDay" min="1" max="${FINANCE_KNOWLEDGE.length || 50}" value="${day}">
+      天
+      <button class="btn btn-xs btn-secondary" onclick="jumpFinanceDay()">跳转</button>
     </div>
 
     ${summaryHtml}
