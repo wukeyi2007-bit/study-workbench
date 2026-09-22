@@ -1260,9 +1260,9 @@ function renderTodayOverview() {
   const readingGoal = state.reading.goalPages || READING_CONFIG.dailyGoalPages;
   const readingPct = Math.min(100, Math.round((readPagesToday / readingGoal) * 100));
 
-  // 理财学习：统计「当前该学的那一天」（从第 1 天起第一个还没全部掌握的天）的进度。
-  // 这里只是算出来用于展示，不改动 currentDay，避免影响用户在理财页的手动翻看。
-  const financeTodayDay = getFinanceUnfinishedDayFrom(1);
+  // 理财学习：显示「最近有完成记录的那一天」的进度——刚点完某天就能看到 100%；
+  // 还没开始学时退回到第一个待学的那天。不改动 currentDay，避免影响理财页翻看。
+  const financeTodayDay = getFinanceLatestActiveDay();
   const { dayIndex: financeTodayIdx } = getFinanceDayInfo(financeTodayDay);
   const financeTodayData = FINANCE_KNOWLEDGE.find(d => d.day === financeTodayIdx);
   const financeTotal = financeTodayData ? financeTodayData.items.length : 5;
@@ -3752,6 +3752,19 @@ function getFinanceUnfinishedDayFrom(start) {
   return total; // 全都掌握完了
 }
 
+// 找「最近有完成记录的那一天」，用于首页概览展示进度。
+// 这样刚点完某天的 5 条就能立刻看到 100%，而不会因为进度已推进到下一天而显示 0%。
+function getFinanceLatestActiveDay() {
+  initFinanceKnowledge();
+  const total = FINANCE_KNOWLEDGE.length || 80;
+  const completed = state.financeKnowledge.completed || {};
+  let last = 0;
+  for (let d = 1; d <= total; d++) {
+    if ((completed[d] || []).length > 0) last = d;
+  }
+  return last > 0 ? last : getFinanceUnfinishedDayFrom(1);
+}
+
 // 打开 App 时自动定位到「第一个还没全部掌握的天」：
 // 先把没学完的补上（不管它在第几天），全补完才继续往后走。
 function advanceFinanceDayIfNeeded() {
@@ -3829,17 +3842,12 @@ function toggleFinanceKnowledge(id, day) {
   if (i >= 0) list.splice(i, 1);
   else list.push(id);
   state.financeKnowledge.completed[day] = list;
-  // 把当天知识点全部点成「已掌握」后，自动跳到「下一个还没全部掌握的天」。
-  // 会跳过已经掌握完的天（比如 32-44 都掌握完了，就直接到 45）。
-  // 当天没学完则停留在原地，第二天打开继续，不会被跳过。
+  // 当天全部掌握时给个提示，但**页面停在这一天**（不自动跳走），
+  // 这样你能看到 5 条都变绿了；下次打开 App 会自动定位到下一个还没掌握的天。
   const dayData = FINANCE_KNOWLEDGE.find(x => x.day === day);
-  const total = FINANCE_KNOWLEDGE.length || 80;
-  if (dayData && dayData.items.length > 0 && day < total &&
+  if (dayData && dayData.items.length > 0 &&
       dayData.items.every(it => list.includes(it.id))) {
-    const next = getFinanceUnfinishedDayFrom(day + 1);
-    state.financeKnowledge.currentDay = next;
-    Store.save();
-    Utils.toast("🎉 第 " + day + " 天已全部掌握，接下来第 " + next + " 天", "success");
+    Utils.toast("🎉 第 " + day + " 天已全部掌握！", "success");
   }
   Store.save();
   renderFinance();
@@ -3971,10 +3979,10 @@ function renderFinance() {
   }
   const remain = 5 - reviewItems.length; // 其余名额留给当天新知识点
   const unmastered = dayData.items.filter(it => !completed.includes(it.id));
-  // 只展示「还没掌握」的知识点——已掌握的排到后面、不占位置。
-  // 等这一天全部掌握后，才把已掌握的显示出来作为完成回顾。
   const masteredOfDay = dayData.items.filter(it => completed.includes(it.id));
-  const fill = (unmastered.length > 0 ? unmastered : masteredOfDay).slice(0, remain);
+  // 未掌握的在前面（方便直接点），已掌握的在后面且「留在页面上变绿」——
+  // 点过之后不消失，方便看到自己完成了哪些。
+  const fill = [...unmastered, ...masteredOfDay].slice(0, remain);
   const displayItems = interleaveArrays(
     reviewItems.map(it => ({ item: it, isReview: true })),
     fill.map(it => ({ item: it, isReview: false }))
