@@ -1260,8 +1260,10 @@ function renderTodayOverview() {
   const readingGoal = state.reading.goalPages || READING_CONFIG.dailyGoalPages;
   const readingPct = Math.min(100, Math.round((readPagesToday / readingGoal) * 100));
 
-  // 理财学习：按今日知识点 5 条计算（循环轮次映射到 1~30）
-  const financeTodayDay = getFinanceTodayDay();
+  // 理财学习：取和理财页完全相同的「当前天数」来统计，
+  // 否则会出现「理财页在看第 31 天、首页却按第 37 天统计」→ 进度永远 0% 的问题
+  advanceFinanceDayIfNeeded();
+  const financeTodayDay = getFinanceCurrentDay();
   const { dayIndex: financeTodayIdx } = getFinanceDayInfo(financeTodayDay);
   const financeTodayData = FINANCE_KNOWLEDGE.find(d => d.day === financeTodayIdx);
   const financeTotal = financeTodayData ? financeTodayData.items.length : 5;
@@ -3734,20 +3736,24 @@ function initFinanceKnowledge() {
   if (!state.financeKnowledge.keyIds) state.financeKnowledge.keyIds = [];
   if (!state.financeKnowledge.reviewed) state.financeKnowledge.reviewed = {};
   if (state.financeKnowledge.lastFinanceDate === undefined) state.financeKnowledge.lastFinanceDate = null;
+  if (state.financeKnowledge.manualDate === undefined) state.financeKnowledge.manualDate = null;
 }
 
-// 新的一天首次打开时，把进度对齐到「今天对应的天数」。
-// 关键：无条件对齐（而不是只增不减）——否则用户手动点到较后的天数后，
-// currentDay 会一直大于「今天该学的那天」，导致每天打开都停在同一页、不再推进。
+// 把进度对齐到「今天对应的天数」。
+// 规则：只有用户「今天手动切换过天数」才尊重其选择；否则一律对齐到今天该学的那天。
+// 之前用 lastFinanceDate 做守卫，导致同一天内 currentDay 永不纠正——
+// 于是会出现「理财页显示的是第 31 天、首页却按第 37 天统计进度」这种对不上的情况。
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
   const today = Utils.today();
-  if (state.financeKnowledge.lastFinanceDate === today) return;
+  if (state.financeKnowledge.manualDate === today) return; // 用户今天手动选过天数，不覆盖
   const total = FINANCE_KNOWLEDGE.length || 50;
   const todayDay = Math.min(getFinanceTodayDay(), total);
-  state.financeKnowledge.currentDay = todayDay;
-  state.financeKnowledge.lastFinanceDate = today;
-  Store.save();
+  if (state.financeKnowledge.currentDay !== todayDay) {
+    state.financeKnowledge.currentDay = todayDay;
+    state.financeKnowledge.lastFinanceDate = today;
+    Store.save();
+  }
 }
 
 function getFinanceTodayDay() {
@@ -3785,6 +3791,7 @@ function setFinanceCurrentDay(day) {
     return;
   }
   state.financeKnowledge.currentDay = day;
+  state.financeKnowledge.manualDate = Utils.today(); // 记下「今天手动切过」，当天内不再被自动对齐覆盖
   Store.save();
   renderFinance();
 }
