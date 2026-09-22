@@ -3739,34 +3739,24 @@ function initFinanceKnowledge() {
   if (state.financeKnowledge.manualDate === undefined) state.financeKnowledge.manualDate = null;
 }
 
-// 今天该学的天：从「今天对应的天数」出发，跳过所有已全部掌握的天，
-// 保证打开后看到的总是「还有内容要学」的那一天。
-// （否则会出现：之前用「跳到进阶」提前学过某天并标了掌握，等日期追上那天时，
-//  整页都是「已掌握」，既没有新内容、看起来又像卡住了。）
-function getFinanceTargetDay() {
-  const total = FINANCE_KNOWLEDGE.length || 50;
-  let d = Math.min(getFinanceTodayDay(), total);
-  for (let step = 0; step < total; step++) {
-    const dayData = FINANCE_KNOWLEDGE.find(x => x.day === d);
-    if (!dayData) break;
-    const done = getCompletedForDay(d);
-    if (!dayData.items.every(it => done.includes(it.id))) return d; // 这天还有没掌握的
-    d += 1;
-    if (d > total) return total;
-  }
-  return Math.min(d, total);
-}
-
-// 把进度对齐到「今天该学的那天」。
-// 规则：只有用户「今天手动切换过天数」才尊重其选择；否则自动对齐（并自动跳过已全部掌握的天）。
+// 进度采用「学习驱动」：只有当前这一天的知识点全部点成「已掌握」，
+// 才会自动进入下一天；没学完就停留在那一天，第二天打开继续学。
+// 关键：起点用「当前所在的天」而不是「今天对应的日期」——
+// 后者会在几天没看时把没学的那天直接跳过，想补也补不回来。
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
-  const today = Utils.today();
-  if (state.financeKnowledge.manualDate === today) return; // 用户今天手动选过天数，不覆盖
-  const target = getFinanceTargetDay();
-  if (state.financeKnowledge.currentDay !== target) {
-    state.financeKnowledge.currentDay = target;
-    state.financeKnowledge.lastFinanceDate = today;
+  const total = FINANCE_KNOWLEDGE.length || 50;
+  let d = Math.max(1, Math.min(state.financeKnowledge.currentDay || 1, total));
+  for (let step = 0; step < total; step++) {
+    const dayData = FINANCE_KNOWLEDGE.find(x => x.day === d);
+    if (!dayData || dayData.items.length === 0) break;
+    const done = getCompletedForDay(d);
+    if (!dayData.items.every(it => done.includes(it.id))) break; // 这天还有没掌握的 → 停在这里
+    if (d >= total) break;
+    d += 1;
+  }
+  if (state.financeKnowledge.currentDay !== d) {
+    state.financeKnowledge.currentDay = d;
     Store.save();
   }
 }
