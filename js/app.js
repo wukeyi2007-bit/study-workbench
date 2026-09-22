@@ -3736,16 +3736,16 @@ function initFinanceKnowledge() {
   if (state.financeKnowledge.lastFinanceDate === undefined) state.financeKnowledge.lastFinanceDate = null;
 }
 
-// 新的一天首次打开时，自动把当前学习天数推进到「今天对应的天数」，
-// 但用户当天手动切回前一天复习后，不再反复弹回今天。
+// 新的一天首次打开时，把进度对齐到「今天对应的天数」。
+// 关键：无条件对齐（而不是只增不减）——否则用户手动点到较后的天数后，
+// currentDay 会一直大于「今天该学的那天」，导致每天打开都停在同一页、不再推进。
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
   const today = Utils.today();
   if (state.financeKnowledge.lastFinanceDate === today) return;
-  const todayDay = getFinanceTodayDay();
-  if (state.financeKnowledge.currentDay < todayDay) {
-    state.financeKnowledge.currentDay = todayDay;
-  }
+  const total = FINANCE_KNOWLEDGE.length || 50;
+  const todayDay = Math.min(getFinanceTodayDay(), total);
+  state.financeKnowledge.currentDay = todayDay;
   state.financeKnowledge.lastFinanceDate = today;
   Store.save();
 }
@@ -3896,6 +3896,7 @@ function openKeyReview() {
 
 function renderFinance() {
   initFinanceKnowledge();
+  advanceFinanceDayIfNeeded(); // 每次进入理财页都检查是否跨天，避免停留在旧进度
   const day = getFinanceCurrentDay();
   const todayDay = getFinanceTodayDay();
   const { dayIndex, round } = getFinanceDayInfo(day);
@@ -3962,9 +3963,13 @@ function renderFinance() {
       </div>`;
   }).join("");
 
+  const allDaysLearned = getFinanceTodayDay() > (FINANCE_KNOWLEDGE.length || 50);
   let summaryHtml = allDone
     ? `<div class="finance-summary success">🎉 今日知识点全部掌握，打卡完成！</div>`
     : `<div class="finance-summary">今天还有 <strong>${shownTotal - progress}</strong> 条新知识点待掌握，点击卡片即可标记。</div>`;
+  if (allDaysLearned) {
+    summaryHtml += `<div class="finance-summary success">🎉 全部 ${FINANCE_KNOWLEDGE.length} 天的内容都学完了！现在可以自由回看巩固，或点顶部「⭐ 重点复习」复习你标过的重点。</div>`;
+  }
   if (reviewItems.length > 0) {
     const revDone = reviewItems.filter(it => reviewedToday.includes(it.id)).length;
     summaryHtml += `<div class="finance-summary review-hint">🔁 今日穿插 ${reviewItems.length} 条「重点」复习（已复习 ${revDone}/${reviewItems.length}），右下角会显示「🔁 点我复习」。其余位置是当天新知识点，每天总量仍是 5 条。</div>`;
@@ -7127,8 +7132,9 @@ function init() {
 // 知识点（记录各科目知识点，科目由用户手动填写，带间隔复习）
 // ==========================================
 
-// 间隔复习间隔（天）：level 0..5 对应「复习后到下次复习」的天数
-const NOTE_INTERVALS = [0, 1, 2, 4, 7, 15];
+// 间隔复习间隔（天）：level 0..5 对应「下次复习距今天数」
+// 记录后隔 1 天才首次复习，之后逐步拉长（1→2→4→7→15→30 天），不会每天都要求复习
+const NOTE_INTERVALS = [1, 2, 4, 7, 15, 30];
 
 function ensureNotes() {
   if (!state.notes) state.notes = { items: [] };
@@ -7408,13 +7414,13 @@ async function saveNote(id) {
         PhotoDB.remove(n.photo.slice(4)).catch(() => {});
       }
       n.content = content; n.detail = detail; n.photo = photo; n.subject = subject;
-      n.level = 0; n.dueDate = today; n.reviewCount = 0;
+      n.level = 0; n.dueDate = Utils.dateOffset(NOTE_INTERVALS[0]); n.reviewCount = 0;
     }
   } else {
     state.notes.items.push({
       id: "n" + Date.now(),
       subject, content, detail, photo,
-      createdAt: today, level: 0, dueDate: today, reviewCount: 0
+      createdAt: today, level: 0, dueDate: Utils.dateOffset(NOTE_INTERVALS[0]), reviewCount: 0
     });
   }
   Store.save();
