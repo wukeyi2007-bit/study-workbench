@@ -3273,6 +3273,15 @@ body.has-bg-image .main {
   margin-bottom: 16px;
 }
 .finance-day-bar .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.finance-jump {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin: -6px 0 14px; font-size: 13px; color: var(--text-secondary); flex-wrap: wrap;
+}
+.finance-jump input {
+  width: 64px; padding: 6px 8px; text-align: center; font-size: 13px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface); color: var(--text);
+}
 .day-info { text-align: center; flex: 1; min-width: 0; }
 .day-title {
   font-size: 16px;
