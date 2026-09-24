@@ -1260,13 +1260,13 @@ function renderTodayOverview() {
   const readingGoal = state.reading.goalPages || READING_CONFIG.dailyGoalPages;
   const readingPct = Math.min(100, Math.round((readPagesToday / readingGoal) * 100));
 
-  // 理财学习：显示「最近有完成记录的那一天」的进度——刚点完某天就能看到 100%；
-  // 还没开始学时退回到第一个待学的那天。不改动 currentDay，避免影响理财页翻看。
-  const financeTodayDay = getFinanceLatestActiveDay();
-  const { dayIndex: financeTodayIdx } = getFinanceDayInfo(financeTodayDay);
-  const financeTodayData = FINANCE_KNOWLEDGE.find(d => d.day === financeTodayIdx);
-  const financeTotal = financeTodayData ? financeTodayData.items.length : 5;
-  const financeDone = getCompletedForDay(financeTodayDay).length;
+  // 理财学习：进度 = 已掌握的知识点条数 / 总条数。
+  // 直接反映用户实际点过「掌握」的记录，不做任何"最近哪天/今天该学哪天"的推断。
+  const financeTotal = FINANCE_KNOWLEDGE.reduce((s, d) => s + d.items.length, 0);
+  const financeMasteredSet = new Set();
+  Object.values((state.financeKnowledge && state.financeKnowledge.completed) || {})
+    .forEach(ids => (ids || []).forEach(id => financeMasteredSet.add(id)));
+  const financeDone = financeMasteredSet.size;
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
   // 新闻模块已移除，进度不再统计
@@ -3836,21 +3836,6 @@ function jumpFinanceDay() {
   setFinanceCurrentDay(day);
 }
 
-// 重置理财学习进度：清空所有「已掌握」记录，回到第 1 天（重点标记保留）
-function resetFinanceProgress() {
-  initFinanceKnowledge();
-  const done = Object.values(state.financeKnowledge.completed || {}).reduce((s, a) => s + (a ? a.length : 0), 0);
-  if (done === 0) { Utils.toast("当前还没有任何掌握记录", "info"); return; }
-  if (!confirm("确定清空理财学习的「已掌握」记录吗？\n\n将清除 " + done + " 条掌握记录，并回到第 1 天。\n（「⭐ 重点」标记会保留）")) return;
-  state.financeKnowledge.completed = {};
-  state.financeKnowledge.reviewed = {};
-  state.financeKnowledge.currentDay = 1;
-  state.financeKnowledge.manualDate = null;
-  Store.save();
-  renderFinance();
-  Utils.toast("已重置理财学习进度，回到第 1 天", "success");
-}
-
 function getCompletedForDay(day) {
   initFinanceKnowledge();
   return state.financeKnowledge.completed[day] || [];
@@ -4066,7 +4051,6 @@ function renderFinance() {
         <button class="btn btn-sm btn-key" onclick="openKeyReview()">⭐ 重点复习 (${getFinanceKeyIds().length})</button>
         ${FINANCE_KNOWLEDGE.length >= 31 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(31)">↪ 跳到进阶</button>` : ''}
         ${FINANCE_KNOWLEDGE.length >= 51 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(51)">↪ 跳到高级</button>` : ''}
-        <button class="btn btn-sm btn-ghost" onclick="resetFinanceProgress()" title="清空所有已掌握记录，回到第 1 天">↺ 重置进度</button>
         <span class="user-badge">长期进度 ${masteredCount}/${totalItems}</span>
       </div>
     </div>
