@@ -3736,6 +3736,9 @@ function initFinanceKnowledge() {
   if (!state.financeKnowledge.reviewed) state.financeKnowledge.reviewed = {};
   if (state.financeKnowledge.lastFinanceDate === undefined) state.financeKnowledge.lastFinanceDate = null;
   if (state.financeKnowledge.manualDate === undefined) state.financeKnowledge.manualDate = null;
+  // 记录"最后一次自动定位的日期"：同一天内只定位一次，
+  // 这样当天学完之后页面会停在当天（可以当复习看），第二天打开才前进。
+  if (state.financeKnowledge.locateDate === undefined) state.financeKnowledge.locateDate = null;
 }
 
 // 从 start 天开始往后找「第一个还没全部掌握的天」。
@@ -3765,15 +3768,18 @@ function getFinanceLatestActiveDay() {
   return last > 0 ? last : getFinanceUnfinishedDayFrom(1);
 }
 
-// 打开 App 时自动定位到「第一个还没全部掌握的天」：
+// 每天首次打开时自动定位一次到「第一个还没全部掌握的天」：
 // 先把没学完的补上（不管它在第几天），全补完才继续往后走。
+// 同一天内只定位一次——当天学完后页面会停在当天（可当复习看），第二天打开才前进。
 function advanceFinanceDayIfNeeded() {
   initFinanceKnowledge();
+  const today = Utils.today();
+  if (state.financeKnowledge.locateDate === today) return;  // 今天已定位过，当天不再变动
+  if (state.financeKnowledge.manualDate === today) return;  // 今天手动选过天数，尊重选择
   const target = getFinanceUnfinishedDayFrom(1);
-  if (state.financeKnowledge.currentDay !== target) {
-    state.financeKnowledge.currentDay = target;
-    Store.save();
-  }
+  state.financeKnowledge.currentDay = target;
+  state.financeKnowledge.locateDate = today;
+  Store.save();
 }
 
 function getFinanceTodayDay() {
@@ -3959,17 +3965,11 @@ function openKeyReview() {
 
 function renderFinance() {
   initFinanceKnowledge();
-  // 关键：如果当前这一天的内容已经全部掌握，自动前进到下一个还没掌握的天。
-  // 否则用户会一直停在一个「已 100%」的旧页面上（之前的 bug）。
-  // 用户当天手动切换过天数时不干预（方便回看）。
-  if (state.financeKnowledge.manualDate !== Utils.today()) {
-    const cur = state.financeKnowledge.currentDay || 1;
-    const next = getFinanceUnfinishedDayFrom(cur);
-    if (next !== cur) {
-      state.financeKnowledge.currentDay = next;
-      Store.save();
-    }
-  }
+  // 每天首次进入理财页时定位一次（同一天只生效一次，见 advanceFinanceDayIfNeeded）：
+  // - 当天学完后再进来 → 仍停在当天，方便当复习回看
+  // - 第二天进来 → 自动前进到下一个还没掌握的天
+  // - 当天手动切换过天数 → 尊重用户选择
+  advanceFinanceDayIfNeeded();
   const day = getFinanceCurrentDay();
   const todayDay = getFinanceTodayDay();
   const { dayIndex, round } = getFinanceDayInfo(day);
