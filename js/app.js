@@ -3830,6 +3830,21 @@ function jumpFinanceDay() {
   setFinanceCurrentDay(day);
 }
 
+// 重置理财学习进度：清空所有「已掌握」记录，回到第 1 天（重点标记保留）
+function resetFinanceProgress() {
+  initFinanceKnowledge();
+  const done = Object.values(state.financeKnowledge.completed || {}).reduce((s, a) => s + (a ? a.length : 0), 0);
+  if (done === 0) { Utils.toast("当前还没有任何掌握记录", "info"); return; }
+  if (!confirm("确定清空理财学习的「已掌握」记录吗？\n\n将清除 " + done + " 条掌握记录，并回到第 1 天。\n（「⭐ 重点」标记会保留）")) return;
+  state.financeKnowledge.completed = {};
+  state.financeKnowledge.reviewed = {};
+  state.financeKnowledge.currentDay = 1;
+  state.financeKnowledge.manualDate = null;
+  Store.save();
+  renderFinance();
+  Utils.toast("已重置理财学习进度，回到第 1 天", "success");
+}
+
 function getCompletedForDay(day) {
   initFinanceKnowledge();
   return state.financeKnowledge.completed[day] || [];
@@ -3944,9 +3959,17 @@ function openKeyReview() {
 
 function renderFinance() {
   initFinanceKnowledge();
-  // 注意：这里不调用 advanceFinanceDayIfNeeded()。
-  // 自动定位只在打开 App 时做一次（以及学完当天时前进），
-  // 否则用户手动「前一天/后一天/跳转」会被立即覆盖、完全没法翻看。
+  // 关键：如果当前这一天的内容已经全部掌握，自动前进到下一个还没掌握的天。
+  // 否则用户会一直停在一个「已 100%」的旧页面上（之前的 bug）。
+  // 用户当天手动切换过天数时不干预（方便回看）。
+  if (state.financeKnowledge.manualDate !== Utils.today()) {
+    const cur = state.financeKnowledge.currentDay || 1;
+    const next = getFinanceUnfinishedDayFrom(cur);
+    if (next !== cur) {
+      state.financeKnowledge.currentDay = next;
+      Store.save();
+    }
+  }
   const day = getFinanceCurrentDay();
   const todayDay = getFinanceTodayDay();
   const { dayIndex, round } = getFinanceDayInfo(day);
@@ -4016,7 +4039,9 @@ function renderFinance() {
       </div>`;
   }).join("");
 
-  const allDaysLearned = getFinanceTodayDay() > (FINANCE_KNOWLEDGE.length || 50);
+  // 「全部学完」的两种情形：所有条目都掌握过，或日期已越过全部内容
+  const allDaysLearned = (totalItems > 0 && masteredCount >= totalItems) ||
+    getFinanceTodayDay() > (FINANCE_KNOWLEDGE.length || 80);
   let summaryHtml = allDone
     ? `<div class="finance-summary success">🎉 今日知识点全部掌握，打卡完成！</div>`
     : `<div class="finance-summary">今天还有 <strong>${shownTotal - progress}</strong> 条新知识点待掌握，点击卡片即可标记。</div>`;
@@ -4041,6 +4066,7 @@ function renderFinance() {
         <button class="btn btn-sm btn-key" onclick="openKeyReview()">⭐ 重点复习 (${getFinanceKeyIds().length})</button>
         ${FINANCE_KNOWLEDGE.length >= 31 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(31)">↪ 跳到进阶</button>` : ''}
         ${FINANCE_KNOWLEDGE.length >= 51 ? `<button class="btn btn-sm btn-secondary" onclick="setFinanceCurrentDay(51)">↪ 跳到高级</button>` : ''}
+        <button class="btn btn-sm btn-ghost" onclick="resetFinanceProgress()" title="清空所有已掌握记录，回到第 1 天">↺ 重置进度</button>
         <span class="user-badge">长期进度 ${masteredCount}/${totalItems}</span>
       </div>
     </div>
