@@ -1260,13 +1260,17 @@ function renderTodayOverview() {
   const readingGoal = state.reading.goalPages || READING_CONFIG.dailyGoalPages;
   const readingPct = Math.min(100, Math.round((readPagesToday / readingGoal) * 100));
 
-  // 理财学习：进度 = 已掌握的知识点条数 / 总条数。
-  // 直接反映用户实际点过「掌握」的记录，不做任何"最近哪天/今天该学哪天"的推断。
-  const financeTotal = FINANCE_KNOWLEDGE.reduce((s, d) => s + d.items.length, 0);
-  const financeMasteredSet = new Set();
-  Object.values((state.financeKnowledge && state.financeKnowledge.completed) || {})
-    .forEach(ids => (ids || []).forEach(id => financeMasteredSet.add(id)));
-  const financeDone = financeMasteredSet.size;
+  // 理财学习：**按天算**——显示"当前正在学的那一天"的完成度（一天 5 条，点完就是 100%），
+  // 和理财页里看到的完全是同一天、同一个数字，不会出现两处对不上的情况。
+  advanceFinanceDayIfNeeded();
+  const financeTodayDay = getFinanceCurrentDay();
+  const { dayIndex: financeTodayIdx } = getFinanceDayInfo(financeTodayDay);
+  const financeTodayData = FINANCE_KNOWLEDGE.find(d => d.day === financeTodayIdx);
+  const financeTotal = financeTodayData ? financeTodayData.items.length : 5;
+  const financeDoneList = getCompletedForDay(financeTodayDay);
+  const financeDone = financeTodayData
+    ? financeTodayData.items.filter(it => financeDoneList.includes(it.id)).length
+    : 0;
   const financePct = financeTotal ? Math.min(100, Math.round((financeDone / financeTotal) * 100)) : 0;
 
   // 新闻模块已移除，进度不再统计
