@@ -9,38 +9,29 @@
     "date": "2026-09-25"
   },
   {
-    "id": "d38a791",
+    "id": "d17601b",
     "cat": "domestic",
     "important": true,
-    "title": "特朗普听到大熊猫将落户美国笑了",
-    "summary": "【百度热搜】特朗普听到大熊猫将落户美国笑了",
+    "title": "中美建设性战略稳定关系",
+    "summary": "【百度热搜】中美建设性战略稳定关系",
     "source": "百度热搜",
     "date": "2026-09-25"
   },
   {
-    "id": "d54f4f2",
+    "id": "d798367",
     "cat": "domestic",
     "important": false,
-    "title": "习近平和彭丽媛出席欢迎宴会",
-    "summary": "【百度热搜】习近平和彭丽媛出席欢迎宴会",
+    "title": "特朗普赠送亲自参与设计白头鹰雕像",
+    "summary": "【百度热搜】特朗普赠送亲自参与设计白头鹰雕像",
     "source": "百度热搜",
     "date": "2026-09-25"
   },
   {
-    "id": "d73b46c",
+    "id": "db53f47",
     "cat": "domestic",
     "important": false,
-    "title": "两国元首有一段“特别互动”",
-    "summary": "【百度热搜】两国元首有一段“特别互动”",
-    "source": "百度热搜",
-    "date": "2026-09-25"
-  },
-  {
-    "id": "dd01be6",
-    "cat": "domestic",
-    "important": false,
-    "title": "张展硕 亚运第7金",
-    "summary": "【百度热搜】张展硕 亚运第7金",
+    "title": "特朗普致辞专门提到一个中文词",
+    "summary": "【百度热搜】特朗普致辞专门提到一个中文词",
     "source": "百度热搜",
     "date": "2026-09-25"
   },
@@ -54,11 +45,29 @@
     "date": "2026-09-25"
   },
   {
-    "id": "i43873a",
+    "id": "df6662c",
+    "cat": "domestic",
+    "important": false,
+    "title": "央视中秋晚会",
+    "summary": "【百度热搜】央视中秋晚会",
+    "source": "百度热搜",
+    "date": "2026-09-25"
+  },
+  {
+    "id": "i0fc685",
     "cat": "international",
     "important": true,
-    "title": "中国女篮不敌韩国无缘决赛",
-    "summary": "【百度热搜】中国女篮不敌韩国无缘决赛",
+    "title": "张展硕 亚运第7金",
+    "summary": "【百度热搜】张展硕 亚运第7金",
+    "source": "百度热搜",
+    "date": "2026-09-25"
+  },
+  {
+    "id": "i8c685b",
+    "cat": "international",
+    "important": false,
+    "title": "美媒记者绕圈参观中国红旗汽车",
+    "summary": "【百度热搜】美媒记者绕圈参观中国红旗汽车",
     "source": "百度热搜",
     "date": "2026-09-25"
   },
@@ -72,20 +81,11 @@
     "date": "2026-09-25"
   },
   {
-    "id": "ibb6903",
+    "id": "ie86268",
     "cat": "international",
     "important": false,
-    "title": "特斯拉 尾款减5000",
-    "summary": "【百度热搜】特斯拉 尾款减5000",
-    "source": "百度热搜",
-    "date": "2026-09-25"
-  },
-  {
-    "id": "icbfa1c",
-    "cat": "international",
-    "important": false,
-    "title": "中国女足1比0击败越南女足 晋级四强",
-    "summary": "【百度热搜】中国女足1比0击败越南女足 晋级四强",
+    "title": "“莎头”“栋曼”会师决赛",
+    "summary": "【百度热搜】“莎头”“栋曼”会师决赛",
     "source": "百度热搜",
     "date": "2026-09-25"
   },
@@ -99,21 +99,12 @@
     "date": "2026-09-25"
   },
   {
-    "id": "t9820a7",
-    "cat": "tech",
-    "important": false,
-    "title": "腾讯将关停QClaw，基于 OpenClaw 的本地Agent 路线被放弃- OSCHINA - 开源 × AI · 开发者生态社区",
-    "summary": "【OSCHINA】腾讯将关停QClaw，基于 OpenClaw 的本地Agent 路线被放弃- OSCHINA - 开源 × AI · 开发者生态社区",
-    "source": "OSCHINA",
-    "date": "2026-09-25"
-  },
-  {
     "id": "tabb3ef",
     "cat": "tech",
     "important": false,
     "title": "倾国之力：习近平希望用人工智能助中国赢得未来",
-    "summary": "【纽约时报中文网】倾国之力：习近平希望用人工智能助中国赢得未来",
-    "source": "纽约时报中文网",
+    "summary": "【cn.nytimes.com】倾国之力：习近平希望用人工智能助中国赢得未来",
+    "source": "cn.nytimes.com",
     "date": "2026-09-25"
   },
   {
@@ -121,35 +112,44 @@
     "cat": "tech",
     "important": false,
     "title": "中美AI竞赛：美国在哪些领域领先、哪些领域落后？",
-    "summary": "【纽约时报中文网】中美AI竞赛：美国在哪些领域领先、哪些领域落后？",
-    "source": "纽约时报中文网",
+    "summary": "【cn.nytimes.com】中美AI竞赛：美国在哪些领域领先、哪些领域落后？",
+    "source": "cn.nytimes.com",
     "date": "2026-09-25"
   },
   {
-    "id": "f0fd42f",
+    "id": "tfe80f9",
+    "cat": "tech",
+    "important": false,
+    "title": "钟文泽被指对华为苹果双标 本人回应：断章取义",
+    "summary": "【驱动之家】钟文泽被指对华为苹果双标 本人回应：断章取义",
+    "source": "驱动之家",
+    "date": "2026-09-25"
+  },
+  {
+    "id": "fffa7b1",
     "cat": "finance",
     "important": true,
-    "title": "预售要封顶、定金不超1%……北京楼市新政将带来哪些影响？",
-    "summary": "【央视网】预售要封顶、定金不超1%……北京楼市新政将带来哪些影响？",
-    "source": "央视网",
+    "title": "多项“首发首秀”亮相第五届数贸会",
+    "summary": "【人民网】多项“首发首秀”亮相第五届数贸会",
+    "source": "人民网",
     "date": "2026-09-25"
   },
   {
-    "id": "f24f42f",
+    "id": "f925326",
     "cat": "finance",
     "important": false,
-    "title": "港股收盘 | 恒指周线冲高回落失守25000点 AI应用股表现居前",
-    "summary": "【财联社】港股收盘 | 恒指周线冲高回落失守25000点 AI应用股表现居前",
-    "source": "财联社",
+    "title": "中秋月饼卖不动了？“液体月饼”已经冲上奶茶店销量Top1！",
+    "summary": "【36kr.com】中秋月饼卖不动了？“液体月饼”已经冲上奶茶店销量Top1！",
+    "source": "36kr.com",
     "date": "2026-09-25"
   },
   {
-    "id": "f3b3741",
+    "id": "fc5c2fd",
     "cat": "finance",
     "important": false,
-    "title": "全球首款RISC-V数据流物理AI芯片高光D35正式量产 数贸会首发首秀引关注",
-    "summary": "【DoNews】全球首款RISC-V数据流物理AI芯片高光D35正式量产 数贸会首发首秀引关注",
-    "source": "DoNews",
+    "title": "还没破百万日活，Meta Muse就频频掉链子：服务降级、Agent失败，算力瓶颈浮出水面",
+    "summary": "【华尔街见闻】还没破百万日活，Meta Muse就频频掉链子：服务降级、Agent失败，算力瓶颈浮出水面",
+    "source": "华尔街见闻",
     "date": "2026-09-25"
   }
 ]
