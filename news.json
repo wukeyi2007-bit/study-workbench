@@ -1,46 +1,46 @@
 [
   {
-    "id": "d08133e",
+    "id": "d34dabc",
     "cat": "domestic",
     "important": true,
-    "title": "感悟“大国正确相处的新路”",
-    "summary": "【百度热搜】感悟“大国正确相处的新路”",
+    "title": "欧洲人发现：中国车真香",
+    "summary": "【百度热搜】欧洲人发现：中国车真香",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "d453f6b",
+    "id": "d3d52f8",
     "cat": "domestic",
     "important": true,
-    "title": "多方回应五常大米造假乱象",
-    "summary": "【百度热搜】多方回应五常大米造假乱象",
+    "title": "央视曝光网红核桃油",
+    "summary": "【百度热搜】央视曝光网红核桃油",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "d475fc9",
+    "id": "d5e8655",
     "cat": "domestic",
     "important": false,
-    "title": "比赛0时8分开打 日本观众都走了",
-    "summary": "【百度热搜】比赛0时8分开打 日本观众都走了",
+    "title": "亚运乒乓球女双中日争冠",
+    "summary": "【百度热搜】亚运乒乓球女双中日争冠",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "d6bbade",
+    "id": "db35c56",
     "cat": "domestic",
     "important": false,
-    "title": "日本选手现役亚洲第一 但我是冠军",
-    "summary": "【百度热搜】日本选手现役亚洲第一 但我是冠军",
+    "title": "习近平主席对美国进行国事访问纪实",
+    "summary": "【百度热搜】习近平主席对美国进行国事访问纪实",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "d9f97c7",
+    "id": "dd20fa5",
     "cat": "domestic",
     "important": false,
-    "title": "商务部解读第八轮中美经贸磋商成果",
-    "summary": "【百度热搜】商务部解读第八轮中美经贸磋商成果",
+    "title": "王楚钦4比1伊朗老将 晋级男单决赛",
+    "summary": "【百度热搜】王楚钦4比1伊朗老将 晋级男单决赛",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
@@ -54,38 +54,38 @@
     "date": "2026-09-28"
   },
   {
-    "id": "i484daf",
+    "id": "i15017b",
     "cat": "international",
     "important": true,
-    "title": "火腿肠也卖不动了",
-    "summary": "【百度热搜】火腿肠也卖不动了",
+    "title": "陈雨菲0比2不敌安洗莹",
+    "summary": "【百度热搜】陈雨菲0比2不敌安洗莹",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "i4a5072",
+    "id": "i54d142",
     "cat": "international",
     "important": false,
-    "title": "拾荒21年被救助时发现42万养老金没领",
-    "summary": "【百度热搜】拾荒21年被救助时发现42万养老金没领",
+    "title": "苹果回应iPhone18 Pro系列严重漏洞",
+    "summary": "【百度热搜】苹果回应iPhone18 Pro系列严重漏洞",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "i53c736",
+    "id": "i62a595",
     "cat": "international",
     "important": false,
-    "title": "中方：特奥多罗极端反华",
-    "summary": "【百度热搜】中方：特奥多罗极端反华",
+    "title": "陪看：亚运乒乓球男单半决赛",
+    "summary": "【百度热搜】陪看：亚运乒乓球男单半决赛",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
   {
-    "id": "i82466a",
+    "id": "icd02cc",
     "cat": "international",
     "important": false,
-    "title": "武契奇宣布辞职",
-    "summary": "【百度热搜】武契奇宣布辞职",
+    "title": "阿根廷街头著名景点是中国工商银行",
+    "summary": "【百度热搜】阿根廷街头著名景点是中国工商银行",
     "source": "百度热搜",
     "date": "2026-09-28"
   },
@@ -99,6 +99,15 @@
     "date": "2026-09-28"
   },
   {
+    "id": "t9f8bf9",
+    "cat": "tech",
+    "important": false,
+    "title": "腾讯悄悄做了个“中国版Muse”",
+    "summary": "【36kr.com】腾讯悄悄做了个“中国版Muse”",
+    "source": "36kr.com",
+    "date": "2026-09-28"
+  },
+  {
     "id": "ta1ff5f",
     "cat": "tech",
     "important": false,
@@ -108,48 +117,39 @@
     "date": "2026-09-28"
   },
   {
-    "id": "tc59d0d",
+    "id": "tbf2d01",
     "cat": "tech",
     "important": false,
-    "title": "OpenAI自曝：AI模型或已在全网秘密植入自我复制提示词，训练已被迫叫停",
-    "summary": "【华尔街见闻】OpenAI自曝：AI模型或已在全网秘密植入自我复制提示词，训练已被迫叫停",
-    "source": "华尔街见闻",
+    "title": "刚刚，Gemini 4 Pro全新曝光，实测碾压Opus 5.5",
+    "summary": "【36kr.com】刚刚，Gemini 4 Pro全新曝光，实测碾压Opus 5.5",
+    "source": "36kr.com",
     "date": "2026-09-28"
   },
   {
-    "id": "tca8b6f",
-    "cat": "tech",
-    "important": false,
-    "title": "访美前夕两把火真要点了龙椅？习近平押注AI溃败，机器人IPO连夜刹车，最忠诚国师冒死反水，背后藏著多大的窟窿？",
-    "summary": "【soundofhope.org】访美前夕两把火真要点了龙椅？习近平押注AI溃败，机器人IPO连夜刹车，最忠诚国师冒死反水，背后藏著多大的窟窿？",
-    "source": "soundofhope.org",
-    "date": "2026-09-28"
-  },
-  {
-    "id": "f24a946",
+    "id": "f74a564",
     "cat": "finance",
     "important": true,
-    "title": "两大存储芯片巨头，集体下跌",
-    "summary": "【东方财富】两大存储芯片巨头，集体下跌",
-    "source": "东方财富",
+    "title": "09:53:25【光纤概念震荡下挫 亨通光电、华脉科技双双跌停】",
+    "summary": "【财联社】09:53:25【光纤概念震荡下挫 亨通光电、华脉科技双双跌停】",
+    "source": "财联社",
     "date": "2026-09-28"
   },
   {
-    "id": "f7c576d",
+    "id": "fe040b5",
     "cat": "finance",
     "important": false,
-    "title": "第五届数贸会AI特色凸显 多项指标创新高",
-    "summary": "【新华网】第五届数贸会AI特色凸显 多项指标创新高",
+    "title": "第五届数贸会闭幕 超5万名专业客商到会采购",
+    "summary": "【中国军网】第五届数贸会闭幕 超5万名专业客商到会采购",
+    "source": "中国军网",
+    "date": "2026-09-28"
+  },
+  {
+    "id": "ff14c23",
+    "cat": "finance",
+    "important": false,
+    "title": "商务部公布中美贸易理事会和“300亿对300亿”对等降税框架有关情况",
+    "summary": "【新华网】商务部公布中美贸易理事会和“300亿对300亿”对等降税框架有关情况",
     "source": "新华网",
-    "date": "2026-09-28"
-  },
-  {
-    "id": "fae3698",
-    "cat": "finance",
-    "important": false,
-    "title": "英伟达据报评估玻璃基板，最快2028年前导入；澳大利亚国会传唤OpenAI、Anthropic CEO，调查AI安全问题｜全球科技早参",
-    "summary": "【东方财富】英伟达据报评估玻璃基板，最快2028年前导入；澳大利亚国会传唤OpenAI、Anthropic CEO，调查AI安全问题｜全球科技早参",
-    "source": "东方财富",
     "date": "2026-09-28"
   }
 ]
