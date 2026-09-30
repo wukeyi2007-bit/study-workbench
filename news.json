@@ -9,29 +9,20 @@
     "date": "2026-09-30"
   },
   {
-    "id": "da1b65b",
+    "id": "d679865",
     "cat": "domestic",
     "important": true,
+    "title": "朱忠明当选上海市市长",
+    "summary": "【百度热搜】朱忠明当选上海市市长",
+    "source": "百度热搜",
+    "date": "2026-09-30"
+  },
+  {
+    "id": "da1b65b",
+    "cat": "domestic",
+    "important": false,
     "title": "中国亚运男足遭韩国逆转 无缘决赛",
     "summary": "【百度热搜】中国亚运男足遭韩国逆转 无缘决赛",
-    "source": "百度热搜",
-    "date": "2026-09-30"
-  },
-  {
-    "id": "da4cdf3",
-    "cat": "domestic",
-    "important": false,
-    "title": "“免费试用”被扣738元",
-    "summary": "【百度热搜】“免费试用”被扣738元",
-    "source": "百度热搜",
-    "date": "2026-09-30"
-  },
-  {
-    "id": "db7999f",
-    "cat": "domestic",
-    "important": false,
-    "title": "家中漏水 维修人员灌了50多斤胶水",
-    "summary": "【百度热搜】家中漏水 维修人员灌了50多斤胶水",
     "source": "百度热搜",
     "date": "2026-09-30"
   },
@@ -54,6 +45,15 @@
     "date": "2026-09-30"
   },
   {
+    "id": "df5481d",
+    "cat": "domestic",
+    "important": false,
+    "title": "“心相印”背后的男人走了",
+    "summary": "【百度热搜】“心相印”背后的男人走了",
+    "source": "百度热搜",
+    "date": "2026-09-30"
+  },
+  {
     "id": "i2ec99a",
     "cat": "international",
     "important": true,
@@ -63,20 +63,20 @@
     "date": "2026-09-30"
   },
   {
-    "id": "i537ba8",
+    "id": "i2f4ec6",
     "cat": "international",
     "important": false,
-    "title": "买房也有“国补”了",
-    "summary": "【百度热搜】买房也有“国补”了",
+    "title": "国足亚运队主帅：对球队表现非常满意",
+    "summary": "【百度热搜】国足亚运队主帅：对球队表现非常满意",
     "source": "百度热搜",
     "date": "2026-09-30"
   },
   {
-    "id": "i6ad6b3",
+    "id": "i79a39f",
     "cat": "international",
     "important": false,
-    "title": "中方回应日方有关核武器狂言",
-    "summary": "【百度热搜】中方回应日方有关核武器狂言",
+    "title": "惠英红团队在巴黎被抢劫",
+    "summary": "【百度热搜】惠英红团队在巴黎被抢劫",
     "source": "百度热搜",
     "date": "2026-09-30"
   },
@@ -90,12 +90,12 @@
     "date": "2026-09-30"
   },
   {
-    "id": "ta0d2b6",
+    "id": "t7f4cb9",
     "cat": "tech",
     "important": true,
-    "title": "隆重推出 Dot",
-    "summary": "【OpenAI】隆重推出 Dot",
-    "source": "OpenAI",
+    "title": "特朗普排除美中合作开发人工智能的可能",
+    "summary": "【BBC】特朗普排除美中合作开发人工智能的可能",
+    "source": "BBC",
     "date": "2026-09-30"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-09-30"
   },
   {
-    "id": "f26d9c7",
+    "id": "f21db79",
     "cat": "finance",
     "important": true,
+    "title": "AI支出和消费者首当其冲？英仕曼：5.5%的美债恐动摇美经济支柱！",
+    "summary": "【ZAKER新闻】AI支出和消费者首当其冲？英仕曼：5.5%的美债恐动摇美经济支柱！",
+    "source": "ZAKER新闻",
+    "date": "2026-09-30"
+  },
+  {
+    "id": "f26d9c7",
+    "cat": "finance",
+    "important": false,
     "title": "国庆假期前再传利好！9月PMI重返扩张区间，经济景气水平回升",
     "summary": "【新京报】国庆假期前再传利好！9月PMI重返扩张区间，经济景气水平回升",
     "source": "新京报",
     "date": "2026-09-30"
   },
   {
-    "id": "f937d6c",
+    "id": "f997399",
     "cat": "finance",
     "important": false,
-    "title": "美债期货市场做空交易扎堆 轧空风险悄然升温",
-    "summary": "【财联社】美债期货市场做空交易扎堆 轧空风险悄然升温",
-    "source": "财联社",
-    "date": "2026-09-30"
-  },
-  {
-    "id": "fb0270b",
-    "cat": "finance",
-    "important": false,
-    "title": "免申即享！房贷贴息政策落地次日，六大行集体公告！",
-    "summary": "【华尔街见闻】免申即享！房贷贴息政策落地次日，六大行集体公告！",
-    "source": "华尔街见闻",
+    "title": "多家银行公告：明起对居民购房贷款提供“免申即享”贴息服务",
+    "summary": "【央视网】多家银行公告：明起对居民购房贷款提供“免申即享”贴息服务",
+    "source": "央视网",
     "date": "2026-09-30"
   }
 ]
