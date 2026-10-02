@@ -1,88 +1,25 @@
 [
   {
-    "id": "d3e6049",
+    "id": "d1065cd",
     "cat": "domestic",
     "important": true,
-    "title": "实干为笔 书写时代答卷",
-    "summary": "【百度热搜】实干为笔 书写时代答卷",
+    "title": "95后维修女工月入3000上一休二",
+    "summary": "【百度热搜】95后维修女工月入3000上一休二",
     "source": "百度热搜",
     "date": "2026-10-02"
   },
   {
-    "id": "d6f6809",
+    "id": "d473b17",
     "cat": "domestic",
     "important": true,
-    "title": "到祖国大江南北邂逅山河盛景",
-    "summary": "【百度热搜】到祖国大江南北邂逅山河盛景",
+    "title": "全世界都知道中国人放假了",
+    "summary": "【百度热搜】全世界都知道中国人放假了",
     "source": "百度热搜",
     "date": "2026-10-02"
   },
   {
-    "id": "d79d030",
+    "id": "d5091a7",
     "cat": "domestic",
-    "important": false,
-    "title": "金店客流暴涨 金镯子半天卖空",
-    "summary": "【百度热搜】金店客流暴涨 金镯子半天卖空",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "d8dddd8",
-    "cat": "domestic",
-    "important": false,
-    "title": "普京：买吧 中国汽车又便宜又好",
-    "summary": "【百度热搜】普京：买吧 中国汽车又便宜又好",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "d94871b",
-    "cat": "domestic",
-    "important": false,
-    "title": "华为赛力斯 分手15天后闪电复合",
-    "summary": "【百度热搜】华为赛力斯 分手15天后闪电复合",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "da1116c",
-    "cat": "domestic",
-    "important": false,
-    "title": "“充电至80%必须离场”",
-    "summary": "【百度热搜】“充电至80%必须离场”",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "i4362c0",
-    "cat": "international",
-    "important": true,
-    "title": "孙千1条日常分享带6个软广",
-    "summary": "【百度热搜】孙千1条日常分享带6个软广",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "i6da574",
-    "cat": "international",
-    "important": false,
-    "title": "安徽多地行政区划调整",
-    "summary": "【百度热搜】安徽多地行政区划调整",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "ia40f1b",
-    "cat": "international",
-    "important": false,
-    "title": "“幸福者退让不是软弱”",
-    "summary": "【百度热搜】“幸福者退让不是软弱”",
-    "source": "百度热搜",
-    "date": "2026-10-02"
-  },
-  {
-    "id": "id75da9",
-    "cat": "international",
     "important": false,
     "title": "电视剧《喜剧之王》定档",
     "summary": "【百度热搜】电视剧《喜剧之王》定档",
@@ -90,20 +27,74 @@
     "date": "2026-10-02"
   },
   {
-    "id": "t1733ea",
-    "cat": "tech",
-    "important": true,
-    "title": "Manus续了一命",
-    "summary": "【驱动之家】Manus续了一命",
-    "source": "驱动之家",
+    "id": "d5f633c",
+    "cat": "domestic",
+    "important": false,
+    "title": "把个人小我融入国家大我",
+    "summary": "【百度热搜】把个人小我融入国家大我",
+    "source": "百度热搜",
     "date": "2026-10-02"
   },
   {
-    "id": "t7d6935",
-    "cat": "tech",
+    "id": "dae344b",
+    "cat": "domestic",
     "important": false,
-    "title": "200元的废手机改成迷你主机！跑《我的世界》超400帧",
-    "summary": "【驱动之家】200元的废手机改成迷你主机！跑《我的世界》超400帧",
+    "title": "河南高速服务区迎来“超级充电宝”",
+    "summary": "【百度热搜】河南高速服务区迎来“超级充电宝”",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "dd92e5e",
+    "cat": "domestic",
+    "important": false,
+    "title": "国庆假期深度游迎爆发式增长",
+    "summary": "【百度热搜】国庆假期深度游迎爆发式增长",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "i161034",
+    "cat": "international",
+    "important": true,
+    "title": "张继科杯",
+    "summary": "【百度热搜】张继科杯",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "i648e35",
+    "cat": "international",
+    "important": false,
+    "title": "李在明：若乌拒不道歉 将采取措施",
+    "summary": "【百度热搜】李在明：若乌拒不道歉 将采取措施",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "i8494ca",
+    "cat": "international",
+    "important": false,
+    "title": "中国女足0比1不敌韩国 无缘铜牌",
+    "summary": "【百度热搜】中国女足0比1不敌韩国 无缘铜牌",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "ie6c1fb",
+    "cat": "international",
+    "important": false,
+    "title": "美国退伍女兵原定截右腿醒来左腿没了",
+    "summary": "【百度热搜】美国退伍女兵原定截右腿醒来左腿没了",
+    "source": "百度热搜",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "t31f94a",
+    "cat": "tech",
+    "important": true,
+    "title": "苹果芯片老兵再创业：颠覆传统CPU设计流程！",
+    "summary": "【驱动之家】苹果芯片老兵再创业：颠覆传统CPU设计流程！",
     "source": "驱动之家",
     "date": "2026-10-02"
   },
@@ -126,30 +117,39 @@
     "date": "2026-10-02"
   },
   {
-    "id": "f5c1dae",
+    "id": "te0e475",
+    "cat": "tech",
+    "important": false,
+    "title": "从拒绝到加码：马斯克如何将SpaceX的AI算力变成每月数十亿美元的“云生意”",
+    "summary": "【华尔街见闻】从拒绝到加码：马斯克如何将SpaceX的AI算力变成每月数十亿美元的“云生意”",
+    "source": "华尔街见闻",
+    "date": "2026-10-02"
+  },
+  {
+    "id": "f1a1f37",
     "cat": "finance",
     "important": true,
-    "title": "事关商品住房预售、现房销售 多地新规出台",
-    "summary": "【人民网】事关商品住房预售、现房销售 多地新规出台",
-    "source": "人民网",
+    "title": "2026海外销量冲千万 中国车企“出海”创新高",
+    "summary": "【亚洲电视新闻】2026海外销量冲千万 中国车企“出海”创新高",
+    "source": "亚洲电视新闻",
     "date": "2026-10-02"
   },
   {
-    "id": "f01b14d",
+    "id": "f6c0b5f",
     "cat": "finance",
     "important": false,
-    "title": "恒指开盘跌2.09%，恒生科技指数跌1.81%-36氪",
-    "summary": "【36kr.com】恒指开盘跌2.09%，恒生科技指数跌1.81%-36氪",
-    "source": "36kr.com",
+    "title": "广州商品住房销售新政细则落地",
+    "summary": "【同花顺】广州商品住房销售新政细则落地",
+    "source": "同花顺",
     "date": "2026-10-02"
   },
   {
-    "id": "f3d38c3",
+    "id": "fedd78f",
     "cat": "finance",
     "important": false,
-    "title": "24年一见！全球市场突遭“利率风暴”：美债收益率创24年新高、油价冲破100美元，华尔街警报拉响",
-    "summary": "【黄金网】24年一见！全球市场突遭“利率风暴”：美债收益率创24年新高、油价冲破100美元，华尔街警报拉响",
-    "source": "黄金网",
+    "title": "港股午评：恒生指数跌2.64% 恒生科技指数跌2.45%",
+    "summary": "【东方财富】港股午评：恒生指数跌2.64% 恒生科技指数跌2.45%",
+    "source": "东方财富",
     "date": "2026-10-02"
   }
 ]
