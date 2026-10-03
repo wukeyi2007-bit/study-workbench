@@ -1,19 +1,19 @@
 [
   {
-    "id": "d064500",
-    "cat": "domestic",
-    "important": true,
-    "title": "国庆很难找到中国人没去过的国家",
-    "summary": "【百度热搜】国庆很难找到中国人没去过的国家",
-    "source": "百度热搜",
-    "date": "2026-10-03"
-  },
-  {
     "id": "d1e9942",
     "cat": "domestic",
     "important": true,
     "title": "“人民就是江山”",
     "summary": "【百度热搜】“人民就是江山”",
+    "source": "百度热搜",
+    "date": "2026-10-03"
+  },
+  {
+    "id": "d375ede",
+    "cat": "domestic",
+    "important": true,
+    "title": "中国男足时隔28年再夺亚运铜牌",
+    "summary": "【百度热搜】中国男足时隔28年再夺亚运铜牌",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
@@ -36,65 +36,65 @@
     "date": "2026-10-03"
   },
   {
-    "id": "d88a1dd",
+    "id": "d8c01e4",
     "cat": "domestic",
     "important": false,
-    "title": "一座商场挤停了一个地铁站",
-    "summary": "【百度热搜】一座商场挤停了一个地铁站",
+    "title": "景区冤种三件套 年轻人只薅不买了",
+    "summary": "【百度热搜】景区冤种三件套 年轻人只薅不买了",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "d9bb933",
+    "id": "da9439d",
     "cat": "domestic",
     "important": false,
-    "title": "陪看：中国男足铜牌赛点球大战",
-    "summary": "【百度热搜】陪看：中国男足铜牌赛点球大战",
+    "title": "游客晕倒 雪饼猴急得摘头套疏散人群",
+    "summary": "【百度热搜】游客晕倒 雪饼猴急得摘头套疏散人群",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "i44a785",
+    "id": "i2a17f9",
     "cat": "international",
     "important": true,
-    "title": "这些信号是肺部发出的预警",
-    "summary": "【百度热搜】这些信号是肺部发出的预警",
+    "title": "郑钦文发球还是太权威了",
+    "summary": "【百度热搜】郑钦文发球还是太权威了",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "i515869",
+    "id": "i2f72d2",
     "cat": "international",
     "important": false,
-    "title": "现在的酒店为什么都不查房了",
-    "summary": "【百度热搜】现在的酒店为什么都不查房了",
+    "title": "李昊 点球专家",
+    "summary": "【百度热搜】李昊 点球专家",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "ia6d528",
+    "id": "ic52b2d",
     "cat": "international",
     "important": false,
-    "title": "国足0比5输巴勒斯坦是能力问题吗",
-    "summary": "【百度热搜】国足0比5输巴勒斯坦是能力问题吗",
+    "title": "国庆档票房破5亿",
+    "summary": "【百度热搜】国庆档票房破5亿",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "ic746b1",
+    "id": "icc8d5a",
     "cat": "international",
     "important": false,
-    "title": "中国创亚运会境外参赛金牌最好成绩",
-    "summary": "【百度热搜】中国创亚运会境外参赛金牌最好成绩",
+    "title": "安东尼奥大概率留任国奥主帅",
+    "summary": "【百度热搜】安东尼奥大概率留任国奥主帅",
     "source": "百度热搜",
     "date": "2026-10-03"
   },
   {
-    "id": "t3123cc",
+    "id": "t1b78ae",
     "cat": "tech",
     "important": true,
-    "title": "绕开先进EUV光刻机！央视赞华为Mate 90争气机 这底气是381款芯片给的",
-    "summary": "【驱动之家】绕开先进EUV光刻机！央视赞华为Mate 90争气机 这底气是381款芯片给的",
+    "title": "A卡继续战未来 AMD发布ASD插件：游戏加载大提速、还能减少卡顿",
+    "summary": "【驱动之家】A卡继续战未来 AMD发布ASD插件：游戏加载大提速、还能减少卡顿",
     "source": "驱动之家",
     "date": "2026-10-03"
   },
@@ -103,8 +103,8 @@
     "cat": "tech",
     "important": false,
     "title": "隆重推出 Dot",
-    "summary": "【OpenAI】隆重推出 Dot",
-    "source": "OpenAI",
+    "summary": "【openai.com】隆重推出 Dot",
+    "source": "openai.com",
     "date": "2026-10-03"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-10-03"
   },
   {
-    "id": "f130637",
+    "id": "f597971",
     "cat": "finance",
     "important": true,
-    "title": "【环球财经】七国集团将释放1亿桶战略石油储备 初期集中释放柴油",
-    "summary": "【东方财富】【环球财经】七国集团将释放1亿桶战略石油储备 初期集中释放柴油",
-    "source": "东方财富",
+    "title": "首套房贷贴息正式落地：六大行启动“免申即享”，楼市修复仍看成交兑现",
+    "summary": "【同花顺财经】首套房贷贴息正式落地：六大行启动“免申即享”，楼市修复仍看成交兑现",
+    "source": "同花顺财经",
     "date": "2026-10-03"
   },
   {
-    "id": "f59872b",
+    "id": "f85c65a",
     "cat": "finance",
     "important": false,
-    "title": "非农“爆冷”挫伤加息预期，美股三大股指齐涨，英伟达股价盘中创新高",
-    "summary": "【thepaper.cn】非农“爆冷”挫伤加息预期，美股三大股指齐涨，英伟达股价盘中创新高",
-    "source": "thepaper.cn",
+    "title": "余承东张兴海联合打造的问界范本，正在“第二次进化”",
+    "summary": "【eeo.com.cn】余承东张兴海联合打造的问界范本，正在“第二次进化”",
+    "source": "eeo.com.cn",
     "date": "2026-10-03"
   },
   {
-    "id": "fa9b65e",
+    "id": "fe4a578",
     "cat": "finance",
     "important": false,
-    "title": "机构高呼9月非农“杀死”10月加息预期！“新美联储通讯社”：就业报告未改联储立场，9月CPI更重要",
-    "summary": "【华尔街见闻】机构高呼9月非农“杀死”10月加息预期！“新美联储通讯社”：就业报告未改联储立场，9月CPI更重要",
-    "source": "华尔街见闻",
+    "title": "G7将释放战略石油储备 降低燃油价格",
+    "summary": "【中国评论】G7将释放战略石油储备 降低燃油价格",
+    "source": "中国评论",
     "date": "2026-10-03"
   }
 ]
