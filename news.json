@@ -9,11 +9,29 @@
     "date": "2026-10-04"
   },
   {
-    "id": "d74d9a0",
+    "id": "d49fd0c",
     "cat": "domestic",
     "important": true,
-    "title": "男子发520红包因女友没回1314元报警",
-    "summary": "【百度热搜】男子发520红包因女友没回1314元报警",
+    "title": "“按粒卖”的小土豆丰收了",
+    "summary": "【百度热搜】“按粒卖”的小土豆丰收了",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "d4f9efa",
+    "cat": "domestic",
+    "important": false,
+    "title": "3天抓12万条 毛毛虫为啥这么多",
+    "summary": "【百度热搜】3天抓12万条 毛毛虫为啥这么多",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "d66c117",
+    "cat": "domestic",
+    "important": false,
+    "title": "高铁座椅成HPV感染重灾区？医生辟谣",
+    "summary": "【百度热搜】高铁座椅成HPV感染重灾区？医生辟谣",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
@@ -27,72 +45,63 @@
     "date": "2026-10-04"
   },
   {
-    "id": "d90cc44",
+    "id": "d81c65d",
     "cat": "domestic",
     "important": false,
-    "title": "首次三连跌？国庆档的观众去哪了",
-    "summary": "【百度热搜】首次三连跌？国庆档的观众去哪了",
+    "title": "张展硕7金无缘亚运会MVP",
+    "summary": "【百度热搜】张展硕7金无缘亚运会MVP",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "db98ae4",
-    "cat": "domestic",
-    "important": false,
-    "title": "解放军报评论员：推进祖国统一大业",
-    "summary": "【百度热搜】解放军报评论员：推进祖国统一大业",
-    "source": "百度热搜",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "dec34ec",
-    "cat": "domestic",
-    "important": false,
-    "title": "男足亚运摘铜登上《新闻联播》",
-    "summary": "【百度热搜】男足亚运摘铜登上《新闻联播》",
+    "id": "i2bcb7c",
+    "cat": "international",
+    "important": true,
+    "title": "中网再爆大冷门",
+    "summary": "【百度热搜】中网再爆大冷门",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
     "id": "i3cb0d3",
     "cat": "international",
-    "important": true,
+    "important": false,
     "title": "男子高速开智驾睡着 拍摄者发声",
     "summary": "【百度热搜】男子高速开智驾睡着 拍摄者发声",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "ib43476",
+    "id": "i7c1f81",
     "cat": "international",
     "important": false,
-    "title": "服务区闪充变慢充 车企们纷纷回应",
-    "summary": "【百度热搜】服务区闪充变慢充 车企们纷纷回应",
+    "title": "游客打卡政府食堂吃了500斤饭400斤鹅",
+    "summary": "【百度热搜】游客打卡政府食堂吃了500斤饭400斤鹅",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "if68a83",
+    "id": "iacd7df",
     "cat": "international",
     "important": false,
-    "title": "学“网红”姿势出片 女子摔下坡",
-    "summary": "【百度热搜】学“网红”姿势出片 女子摔下坡",
+    "title": "村民用近500斤辣椒拼出国旗",
+    "summary": "【百度热搜】村民用近500斤辣椒拼出国旗",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "ifade1d",
-    "cat": "international",
-    "important": false,
-    "title": "“一国两制”台湾方案在岛内引热议",
-    "summary": "【百度热搜】“一国两制”台湾方案在岛内引热议",
-    "source": "百度热搜",
+    "id": "t18eca3",
+    "cat": "tech",
+    "important": true,
+    "title": "文件披露中国国企与英伟达Blackwell芯片的相关交易",
+    "summary": "【RFI】文件披露中国国企与英伟达Blackwell芯片的相关交易",
+    "source": "RFI",
     "date": "2026-10-04"
   },
   {
     "id": "t36e9d8",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "科技新“邪教”？“美企向宗教界游说‘AI有灵魂’”",
     "summary": "【观察者网】科技新“邪教”？“美企向宗教界游说‘AI有灵魂’”",
     "source": "观察者网",
@@ -108,39 +117,30 @@
     "date": "2026-10-04"
   },
   {
-    "id": "tcdf32a",
+    "id": "t7bee85",
     "cat": "tech",
     "important": false,
-    "title": "中国真的在窃取美国公司的人工智能技术吗？",
-    "summary": "【纽约时报中文网】中国真的在窃取美国公司的人工智能技术吗？",
-    "source": "纽约时报中文网",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "td55a5f",
-    "cat": "tech",
-    "important": false,
-    "title": "特朗普将任命国家情报总监 兼掌人工智能事务",
-    "summary": "【RFI】特朗普将任命国家情报总监 兼掌人工智能事务",
-    "source": "RFI",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "f6a6cee",
-    "cat": "finance",
-    "important": true,
-    "title": "星巴克新疆开店遭美议员促关闭 北京指责美方“抹黑中国”",
-    "summary": "【RFI】星巴克新疆开店遭美议员促关闭 北京指责美方“抹黑中国”",
-    "source": "RFI",
+    "title": "马斯克与长期女友断崖式分手，女友称毫无预兆，二人育有4个孩子",
+    "summary": "【风闻】马斯克与长期女友断崖式分手，女友称毫无预兆，二人育有4个孩子",
+    "source": "风闻",
     "date": "2026-10-04"
   },
   {
     "id": "fa7c240",
     "cat": "finance",
-    "important": false,
+    "important": true,
     "title": "美国9月新增非农就业岗位大幅减少",
     "summary": "【中华网】美国9月新增非农就业岗位大幅减少",
     "source": "中华网",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "fe9cc94",
+    "cat": "finance",
+    "important": false,
+    "title": "工行长春分行推动房贷贴息新政直达购房群众",
+    "summary": "【新华网】工行长春分行推动房贷贴息新政直达购房群众",
+    "source": "新华网",
     "date": "2026-10-04"
   },
   {
