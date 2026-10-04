@@ -9,44 +9,80 @@
     "date": "2026-10-04"
   },
   {
-    "id": "d595309",
-    "cat": "domestic",
-    "important": true,
-    "title": "多名小孩用充电枪荡秋千 客服回应",
-    "summary": "【百度热搜】多名小孩用充电枪荡秋千 客服回应",
-    "source": "百度热搜",
-    "date": "2026-10-04"
-  },
-  {
     "id": "d5cf442",
     "cat": "domestic",
-    "important": false,
+    "important": true,
     "title": "中国健儿追梦之路永不停歇",
     "summary": "【百度热搜】中国健儿追梦之路永不停歇",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "d81c65d",
+    "id": "d814162",
     "cat": "domestic",
     "important": false,
-    "title": "张展硕7金无缘亚运会MVP",
-    "summary": "【百度热搜】张展硕7金无缘亚运会MVP",
+    "title": "没人住的老房子 为什么老的快",
+    "summary": "【百度热搜】没人住的老房子 为什么老的快",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "dab4d5b",
+    "id": "da11a90",
     "cat": "domestic",
     "important": false,
-    "title": "国安部提醒小心基因被窃",
-    "summary": "【百度热搜】国安部提醒小心基因被窃",
+    "title": "U23国足回国 大批球迷欢呼接机",
+    "summary": "【百度热搜】U23国足回国 大批球迷欢呼接机",
     "source": "百度热搜",
     "date": "2026-10-04"
   },
   {
-    "id": "de6d2a1",
+    "id": "db82da9",
     "cat": "domestic",
+    "important": false,
+    "title": "酒店现巨型榻榻米房型 一张床半间房",
+    "summary": "【百度热搜】酒店现巨型榻榻米房型 一张床半间房",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "dc15468",
+    "cat": "domestic",
+    "important": false,
+    "title": "村民用近500斤辣椒拼出国旗",
+    "summary": "【百度热搜】村民用近500斤辣椒拼出国旗",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "i2ba83a",
+    "cat": "international",
+    "important": true,
+    "title": "撞死中国夫妇的澳洲司机仅17岁",
+    "summary": "【百度热搜】撞死中国夫妇的澳洲司机仅17岁",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "i37579f",
+    "cat": "international",
+    "important": false,
+    "title": "国庆档票房破6亿 你最想看哪一部",
+    "summary": "【百度热搜】国庆档票房破6亿 你最想看哪一部",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "i74e1ea",
+    "cat": "international",
+    "important": false,
+    "title": "韦世豪回应国足0比5输球",
+    "summary": "【百度热搜】韦世豪回应国足0比5输球",
+    "source": "百度热搜",
+    "date": "2026-10-04"
+  },
+  {
+    "id": "ifb02be",
+    "cat": "international",
     "important": false,
     "title": "停止做这4件事 血管就能老得慢一点",
     "summary": "【百度热搜】停止做这4件事 血管就能老得慢一点",
@@ -54,57 +90,30 @@
     "date": "2026-10-04"
   },
   {
-    "id": "i3da7c2",
-    "cat": "international",
+    "id": "t0a6651",
+    "cat": "tech",
     "important": true,
-    "title": "《变形计》最暖售后疑翻车",
-    "summary": "【百度热搜】《变形计》最暖售后疑翻车",
-    "source": "百度热搜",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "i45137d",
-    "cat": "international",
-    "important": false,
-    "title": "余承东：没想到工作备注比正文还抢镜",
-    "summary": "【百度热搜】余承东：没想到工作备注比正文还抢镜",
-    "source": "百度热搜",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "ic4c97c",
-    "cat": "international",
-    "important": false,
-    "title": "这趟绿皮车1年亏400多万元为何还开",
-    "summary": "【百度热搜】这趟绿皮车1年亏400多万元为何还开",
-    "source": "百度热搜",
-    "date": "2026-10-04"
-  },
-  {
-    "id": "ida05df",
-    "cat": "international",
-    "important": false,
-    "title": "油锅起火妈妈淡定灭火还顺手教娃",
-    "summary": "【百度热搜】油锅起火妈妈淡定灭火还顺手教娃",
-    "source": "百度热搜",
+    "title": "“中国一周生产的，比美国一年还多”",
+    "summary": "【观察者网】“中国一周生产的，比美国一年还多”",
+    "source": "观察者网",
     "date": "2026-10-04"
   },
   {
     "id": "t11833e",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "隆重推出 Dot",
     "summary": "【OpenAI】隆重推出 Dot",
     "source": "OpenAI",
     "date": "2026-10-04"
   },
   {
-    "id": "t18eca3",
+    "id": "t1cd5f3",
     "cat": "tech",
     "important": false,
-    "title": "文件披露中国国企与英伟达Blackwell芯片的相关交易",
-    "summary": "【RFI】文件披露中国国企与英伟达Blackwell芯片的相关交易",
-    "source": "RFI",
+    "title": "还在等固态电池的朋友，可以洗洗睡了。。。",
+    "summary": "【风闻】还在等固态电池的朋友，可以洗洗睡了。。。",
+    "source": "风闻",
     "date": "2026-10-04"
   },
   {
@@ -117,15 +126,6 @@
     "date": "2026-10-04"
   },
   {
-    "id": "t7bee85",
-    "cat": "tech",
-    "important": false,
-    "title": "马斯克与长期女友断崖式分手，女友称毫无预兆，二人育有4个孩子",
-    "summary": "【风闻】马斯克与长期女友断崖式分手，女友称毫无预兆，二人育有4个孩子",
-    "source": "风闻",
-    "date": "2026-10-04"
-  },
-  {
     "id": "fa7c240",
     "cat": "finance",
     "important": true,
@@ -135,12 +135,12 @@
     "date": "2026-10-04"
   },
   {
-    "id": "fe5e854",
+    "id": "fdfbbd5",
     "cat": "finance",
     "important": false,
-    "title": "150万元门槛如何重塑楼市需求：房贷贴息将先影响哪些城市和房源",
-    "summary": "【同花顺】150万元门槛如何重塑楼市需求：房贷贴息将先影响哪些城市和房源",
-    "source": "同花顺",
+    "title": "美方指责星巴克在新疆开设门店，中方驳斥",
+    "summary": "【jingjiribao.cn】美方指责星巴克在新疆开设门店，中方驳斥",
+    "source": "jingjiribao.cn",
     "date": "2026-10-04"
   },
   {
@@ -148,8 +148,8 @@
     "cat": "finance",
     "important": false,
     "title": "国际能源署：已释放约3.25亿桶战略石油储备",
-    "summary": "【jingjiribao.cn】国际能源署：已释放约3.25亿桶战略石油储备",
-    "source": "jingjiribao.cn",
+    "summary": "【新京报】国际能源署：已释放约3.25亿桶战略石油储备",
+    "source": "新京报",
     "date": "2026-10-04"
   }
 ]
