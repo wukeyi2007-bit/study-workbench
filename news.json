@@ -1,14 +1,5 @@
 [
   {
-    "id": "d14501f",
-    "cat": "domestic",
-    "important": true,
-    "title": "宝藏小城为何“藏”不住了",
-    "summary": "【百度热搜】宝藏小城为何“藏”不住了",
-    "source": "百度热搜",
-    "date": "2026-10-07"
-  },
-  {
     "id": "d26cdec",
     "cat": "domestic",
     "important": true,
@@ -18,81 +9,99 @@
     "date": "2026-10-07"
   },
   {
-    "id": "d27292d",
+    "id": "d4103d7",
     "cat": "domestic",
-    "important": false,
-    "title": "死刑失败的美国女囚已恢复意识能说话",
-    "summary": "【百度热搜】死刑失败的美国女囚已恢复意识能说话",
+    "important": true,
+    "title": "在泰失联的上海音乐教师已安全回国",
+    "summary": "【百度热搜】在泰失联的上海音乐教师已安全回国",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "d69d9fa",
+    "id": "d6cb28f",
     "cat": "domestic",
     "important": false,
-    "title": "高铁坐过站怎么办？可以免费坐回去",
-    "summary": "【百度热搜】高铁坐过站怎么办？可以免费坐回去",
+    "title": "总书记反复提及一位红军师长",
+    "summary": "【百度热搜】总书记反复提及一位红军师长",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "d7ad689",
+    "id": "d79b9d4",
     "cat": "domestic",
     "important": false,
-    "title": "向新图强 创新潮涌神州大地",
-    "summary": "【百度热搜】向新图强 创新潮涌神州大地",
+    "title": "吴奇隆 不赚钱也是这个立场",
+    "summary": "【百度热搜】吴奇隆 不赚钱也是这个立场",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "dd95ff4",
+    "id": "d816db9",
     "cat": "domestic",
     "important": false,
-    "title": "电诈人员换董事长头像骗财务转1700万",
-    "summary": "【百度热搜】电诈人员换董事长头像骗财务转1700万",
+    "title": "大国工程重器进度条刷新",
+    "summary": "【百度热搜】大国工程重器进度条刷新",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "i3ed6d3",
+    "id": "db3ac79",
+    "cat": "domestic",
+    "important": false,
+    "title": "王星4天被卖3次",
+    "summary": "【百度热搜】王星4天被卖3次",
+    "source": "百度热搜",
+    "date": "2026-10-07"
+  },
+  {
+    "id": "i2470b8",
     "cat": "international",
     "important": true,
-    "title": "粤产剧《兰香如故》热度口碑双爆",
-    "summary": "【百度热搜】粤产剧《兰香如故》热度口碑双爆",
+    "title": "男子竟在高速车道停车换驾驶员",
+    "summary": "【百度热搜】男子竟在高速车道停车换驾驶员",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "i4561a7",
+    "id": "i2795e9",
     "cat": "international",
     "important": false,
-    "title": "养父怕养女受委屈终身未婚",
-    "summary": "【百度热搜】养父怕养女受委屈终身未婚",
+    "title": "节后综合征",
+    "summary": "【百度热搜】节后综合征",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "i921798",
+    "id": "i7bd284",
     "cat": "international",
     "important": false,
-    "title": "每天睡8小时可能多了",
-    "summary": "【百度热搜】每天睡8小时可能多了",
+    "title": "酒店拼床累坏保洁",
+    "summary": "【百度热搜】酒店拼床累坏保洁",
     "source": "百度热搜",
     "date": "2026-10-07"
   },
   {
-    "id": "ib0698c",
+    "id": "ib3063a",
     "cat": "international",
     "important": false,
-    "title": "参加国庆招待会 他犹豫要不要打包",
-    "summary": "【百度热搜】参加国庆招待会 他犹豫要不要打包",
+    "title": "返工第一天 寒露",
+    "summary": "【百度热搜】返工第一天 寒露",
     "source": "百度热搜",
+    "date": "2026-10-07"
+  },
+  {
+    "id": "t347c91",
+    "cat": "tech",
+    "important": true,
+    "title": "专家：中国对美握有更多筹码 74项关键科技中领先66项",
+    "summary": "【联合早报】专家：中国对美握有更多筹码 74项关键科技中领先66项",
+    "source": "联合早报",
     "date": "2026-10-07"
   },
   {
     "id": "t85d2a2",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "中美AI军事化背景下，美国国防部正式停用 Anthropic 的 AI 工具",
     "summary": "【BBC】中美AI军事化背景下，美国国防部正式停用 Anthropic 的 AI 工具",
     "source": "BBC",
@@ -108,15 +117,6 @@
     "date": "2026-10-07"
   },
   {
-    "id": "tafb1c3",
-    "cat": "tech",
-    "important": false,
-    "title": "人工智慧模型：专家警告可能损害年轻人的身体形象",
-    "summary": "【BBC】人工智慧模型：专家警告可能损害年轻人的身体形象",
-    "source": "BBC",
-    "date": "2026-10-07"
-  },
-  {
     "id": "tee66c1",
     "cat": "tech",
     "important": false,
@@ -126,30 +126,30 @@
     "date": "2026-10-07"
   },
   {
-    "id": "f885b6a",
+    "id": "fab8366",
     "cat": "finance",
     "important": true,
-    "title": "港股午间收盘 恒生指数跌0.53% 恒生科技指数跌0.91%",
-    "summary": "【东方财富】港股午间收盘 恒生指数跌0.53% 恒生科技指数跌0.91%",
+    "title": "截至9月末外汇储备规模超3.4万亿美元 黄金储备连续23个月增加",
+    "summary": "【人民网】截至9月末外汇储备规模超3.4万亿美元 黄金储备连续23个月增加",
+    "source": "人民网",
+    "date": "2026-10-07"
+  },
+  {
+    "id": "f02ae15",
+    "cat": "finance",
+    "important": false,
+    "title": "美股收盘：三大股指齐涨纳指、标普500指数创新高；存储芯片股重挫希捷科技跌超9% SK海力士跌超6%；科技股多数收涨亚马逊涨近2%",
+    "summary": "【东方财富】美股收盘：三大股指齐涨纳指、标普500指数创新高；存储芯片股重挫希捷科技跌超9% SK海力士跌超6%；科技股多数收涨亚马逊涨近2%",
     "source": "东方财富",
     "date": "2026-10-07"
   },
   {
-    "id": "f890d45",
+    "id": "fc43264",
     "cat": "finance",
     "important": false,
-    "title": "美股三大指数集体收涨，标普500指数、纳指创新高",
-    "summary": "【ThePaper.cn】美股三大指数集体收涨，标普500指数、纳指创新高",
-    "source": "ThePaper.cn",
-    "date": "2026-10-07"
-  },
-  {
-    "id": "fbea4a0",
-    "cat": "finance",
-    "important": false,
-    "title": "外汇局：截至9月末，我国外汇储备规模为34003亿美元",
-    "summary": "【央广财经】外汇局：截至9月末，我国外汇储备规模为34003亿美元",
-    "source": "央广财经",
+    "title": "港股开盘走低，恒指跌0.45%，恒生科技指数跌0.33%",
+    "summary": "【紫荆网】港股开盘走低，恒指跌0.45%，恒生科技指数跌0.33%",
+    "source": "紫荆网",
     "date": "2026-10-07"
   }
 ]
