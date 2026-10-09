@@ -9,29 +9,38 @@
     "date": "2026-10-09"
   },
   {
-    "id": "d22d3b2",
+    "id": "d0f80d2",
     "cat": "domestic",
     "important": true,
-    "title": "大英博物馆两件康熙时期青花瓷遭损坏",
-    "summary": "【百度热搜】大英博物馆两件康熙时期青花瓷遭损坏",
+    "title": "假期暴走第一批受害者已进医院",
+    "summary": "【百度热搜】假期暴走第一批受害者已进医院",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
   {
-    "id": "d318769",
+    "id": "d362ec3",
     "cat": "domestic",
     "important": false,
-    "title": "中国旅美球员庞清方遭美国ICE拘留",
-    "summary": "【百度热搜】中国旅美球员庞清方遭美国ICE拘留",
+    "title": "这种“长斑”的鸡蛋 千万别再吃了",
+    "summary": "【百度热搜】这种“长斑”的鸡蛋 千万别再吃了",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
   {
-    "id": "dd10916",
+    "id": "db0882f",
     "cat": "domestic",
     "important": false,
-    "title": "世界第134“削”翻世界第4",
-    "summary": "【百度热搜】世界第134“削”翻世界第4",
+    "title": "假期床车旅行爆火：三口6天仅花1600",
+    "summary": "【百度热搜】假期床车旅行爆火：三口6天仅花1600",
+    "source": "百度热搜",
+    "date": "2026-10-09"
+  },
+  {
+    "id": "dd64152",
+    "cat": "domestic",
+    "important": false,
+    "title": "24元救命药飙涨到1200元",
+    "summary": "【百度热搜】24元救命药飙涨到1200元",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
@@ -45,111 +54,102 @@
     "date": "2026-10-09"
   },
   {
-    "id": "df1d94f",
-    "cat": "domestic",
-    "important": false,
-    "title": "国际油价深夜大涨",
-    "summary": "【百度热搜】国际油价深夜大涨",
-    "source": "百度热搜",
-    "date": "2026-10-09"
-  },
-  {
-    "id": "i045458",
+    "id": "i507dc5",
     "cat": "international",
     "important": true,
-    "title": "姚明笑称不想误人子弟",
-    "summary": "【百度热搜】姚明笑称不想误人子弟",
+    "title": "三大指数全部翻红",
+    "summary": "【百度热搜】三大指数全部翻红",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
   {
-    "id": "i179ba9",
+    "id": "i6bdd05",
     "cat": "international",
     "important": false,
-    "title": "微信折叠发图的最佳用法",
-    "summary": "【百度热搜】微信折叠发图的最佳用法",
+    "title": "“中国人能飞” 全世界都知道了",
+    "summary": "【百度热搜】“中国人能飞” 全世界都知道了",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
   {
-    "id": "i315394",
+    "id": "i6dabbd",
     "cat": "international",
     "important": false,
-    "title": "创业板指跌幅扩大至3%",
-    "summary": "【百度热搜】创业板指跌幅扩大至3%",
+    "title": "新郎母亲回应儿子婚礼当天离世",
+    "summary": "【百度热搜】新郎母亲回应儿子婚礼当天离世",
     "source": "百度热搜",
     "date": "2026-10-09"
   },
   {
-    "id": "i8c14ce",
+    "id": "ifeef30",
     "cat": "international",
     "important": false,
-    "title": "中国人把海外打车也带火了",
-    "summary": "【百度热搜】中国人把海外打车也带火了",
+    "title": "张智霖回应儿子休学传闻",
+    "summary": "【百度热搜】张智霖回应儿子休学传闻",
     "source": "百度热搜",
-    "date": "2026-10-09"
-  },
-  {
-    "id": "t4feade",
-    "cat": "tech",
-    "important": true,
-    "title": "沈泽玮：AI冲击就业，中国大学生“反向深造”？",
-    "summary": "【联合早报】沈泽玮：AI冲击就业，中国大学生“反向深造”？",
-    "source": "联合早报",
     "date": "2026-10-09"
   },
   {
     "id": "t79a3f9",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "日本汽车软件落后海外5年",
     "summary": "【日经中文网】日本汽车软件落后海外5年",
     "source": "日经中文网",
     "date": "2026-10-09"
   },
   {
-    "id": "t8fcbc8",
+    "id": "t908291",
     "cat": "tech",
     "important": false,
-    "title": "CPU温度直降13°C！AI模拟证明：底部进风才是机箱风道最优解",
-    "summary": "【驱动之家】CPU温度直降13°C！AI模拟证明：底部进风才是机箱风道最优解",
-    "source": "驱动之家",
+    "title": "早报｜苹果定档10月13日发布新品/三星手机业务或减产30%/保时捷计划削减9000个岗位",
+    "summary": "【爱范儿】早报｜苹果定档10月13日发布新品/三星手机业务或减产30%/保时捷计划削减9000个岗位",
+    "source": "爱范儿",
     "date": "2026-10-09"
   },
   {
-    "id": "td02aa3",
+    "id": "tdb0fca",
     "cat": "tech",
     "important": false,
-    "title": "神操作！RTX 4090跑AI白嫖2.5GB显存：显示器改插核显接口",
-    "summary": "【驱动之家】神操作！RTX 4090跑AI白嫖2.5GB显存：显示器改插核显接口",
-    "source": "驱动之家",
+    "title": "【图】搭车载AI BOX 2027款深蓝L06及深蓝L06追风版将于10月9日上市",
+    "summary": "【汽车之家】【图】搭车载AI BOX 2027款深蓝L06及深蓝L06追风版将于10月9日上市",
+    "source": "汽车之家",
     "date": "2026-10-09"
   },
   {
-    "id": "f4cdc1e",
+    "id": "te9abf2",
+    "cat": "tech",
+    "important": false,
+    "title": "中国希望从国外招募人工智能科学家，这项努力并未奏效",
+    "summary": "【纽约时报中文网】中国希望从国外招募人工智能科学家，这项努力并未奏效",
+    "source": "纽约时报中文网",
+    "date": "2026-10-09"
+  },
+  {
+    "id": "f0c35e4",
     "cat": "finance",
     "important": true,
-    "title": "身陷尊界汽车刹车踏板事件，江淮汽车总市值两天蒸发近118亿元",
-    "summary": "【新京报】身陷尊界汽车刹车踏板事件，江淮汽车总市值两天蒸发近118亿元",
-    "source": "新京报",
-    "date": "2026-10-09"
-  },
-  {
-    "id": "f90decd",
-    "cat": "finance",
-    "important": false,
-    "title": "国际油价深夜大涨，加密货币约19万人被爆仓",
-    "summary": "【21财经】国际油价深夜大涨，加密货币约19万人被爆仓",
-    "source": "21财经",
-    "date": "2026-10-09"
-  },
-  {
-    "id": "fcd6b70",
-    "cat": "finance",
-    "important": false,
-    "title": "创业板指跌破3000点关口 70个交易日累计跌幅超31%",
-    "summary": "【央广财经】创业板指跌破3000点关口 70个交易日累计跌幅超31%",
+    "title": "10月9日A股午间收盘：创业板指下挫2.61%失守3000点 锂电池概念逆市上行",
+    "summary": "【央广财经】10月9日A股午间收盘：创业板指下挫2.61%失守3000点 锂电池概念逆市上行",
     "source": "央广财经",
+    "date": "2026-10-09"
+  },
+  {
+    "id": "f27fdce",
+    "cat": "finance",
+    "important": false,
+    "title": "江淮汽车连续2日跌停 尊界V800测试中刹车踏板支架断裂",
+    "summary": "【观点网】江淮汽车连续2日跌停 尊界V800测试中刹车踏板支架断裂",
+    "source": "观点网",
+    "date": "2026-10-09"
+  },
+  {
+    "id": "ffbcbf9",
+    "cat": "finance",
+    "important": false,
+    "title": "锂电池概念盘中走高 天赐材料、金圆股份拉升封板",
+    "summary": "【东方财富】锂电池概念盘中走高 天赐材料、金圆股份拉升封板",
+    "source": "东方财富",
     "date": "2026-10-09"
   }
 ]
