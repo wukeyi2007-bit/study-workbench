@@ -1,110 +1,119 @@
 [
   {
-    "id": "d2042e9",
+    "id": "d414f29",
     "cat": "domestic",
     "important": true,
-    "title": "台湾民众在台北街头高喊我们要统一",
-    "summary": "【百度热搜】台湾民众在台北街头高喊我们要统一",
+    "title": "收废品 成了大生意",
+    "summary": "【百度热搜】收废品 成了大生意",
     "source": "百度热搜",
     "date": "2026-10-11"
   },
   {
-    "id": "d4e891d",
+    "id": "d565e6b",
     "cat": "domestic",
     "important": true,
+    "title": "中国新能源产业做对了什么",
+    "summary": "【百度热搜】中国新能源产业做对了什么",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "d841e65",
+    "cat": "domestic",
+    "important": false,
+    "title": "人民日报评刹车踏板风波",
+    "summary": "【百度热搜】人民日报评刹车踏板风波",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "d95dda1",
+    "cat": "domestic",
+    "important": false,
+    "title": "总书记同卫生健康工作者的故事",
+    "summary": "【百度热搜】总书记同卫生健康工作者的故事",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "d97e04a",
+    "cat": "domestic",
+    "important": false,
+    "title": "西西弗书店是怎么赚钱的",
+    "summary": "【百度热搜】西西弗书店是怎么赚钱的",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "db6e6f8",
+    "cat": "domestic",
+    "important": false,
+    "title": "2岁孩子上路开车 家长还发朋友圈炫耀",
+    "summary": "【百度热搜】2岁孩子上路开车 家长还发朋友圈炫耀",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "i295cdf",
+    "cat": "international",
+    "important": true,
+    "title": "走路膝盖突然软一下 可能是这些原因",
+    "summary": "【百度热搜】走路膝盖突然软一下 可能是这些原因",
+    "source": "百度热搜",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "i67108d",
+    "cat": "international",
+    "important": false,
     "title": "沙特利雅得机场遭袭 致12死309伤",
     "summary": "【百度热搜】沙特利雅得机场遭袭 致12死309伤",
     "source": "百度热搜",
     "date": "2026-10-11"
   },
   {
-    "id": "d6748a2",
-    "cat": "domestic",
-    "important": false,
-    "title": "男子国庆被排7天班 1天都没去遭开除",
-    "summary": "【百度热搜】男子国庆被排7天班 1天都没去遭开除",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "d9e65d5",
-    "cat": "domestic",
-    "important": false,
-    "title": "中国旅客：在机场听到巨响多人被吓哭",
-    "summary": "【百度热搜】中国旅客：在机场听到巨响多人被吓哭",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "db508a2",
-    "cat": "domestic",
-    "important": false,
-    "title": "未来五年推进就业有哪些新变化",
-    "summary": "【百度热搜】未来五年推进就业有哪些新变化",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "db9f98d",
-    "cat": "domestic",
-    "important": false,
-    "title": "以创新赢未来",
-    "summary": "【百度热搜】以创新赢未来",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "i3d11fe",
-    "cat": "international",
-    "important": true,
-    "title": "香港近年多位名人骨灰被盗",
-    "summary": "【百度热搜】香港近年多位名人骨灰被盗",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "i66c896",
+    "id": "i8c4e73",
     "cat": "international",
     "important": false,
-    "title": "快把家里的盐换了 可以帮助控血压",
-    "summary": "【百度热搜】快把家里的盐换了 可以帮助控血压",
+    "title": "中网决赛日中国金花双冲冠",
+    "summary": "【百度热搜】中网决赛日中国金花双冲冠",
     "source": "百度热搜",
     "date": "2026-10-11"
   },
   {
-    "id": "ia3a761",
+    "id": "iac8a99",
     "cat": "international",
     "important": false,
-    "title": "沙特首都机场遭袭：碎片满地",
-    "summary": "【百度热搜】沙特首都机场遭袭：碎片满地",
+    "title": "周启豪2比4松岛辉空无缘争冠",
+    "summary": "【百度热搜】周启豪2比4松岛辉空无缘争冠",
     "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "id26821",
-    "cat": "international",
-    "important": false,
-    "title": "女子陪孩子看病顺带查出自己患癌",
-    "summary": "【百度热搜】女子陪孩子看病顺带查出自己患癌",
-    "source": "百度热搜",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "t5bb72e",
-    "cat": "tech",
-    "important": true,
-    "title": "法新社：中国《意见》推动人工智能与实体经济深度融合",
-    "summary": "【RFI】法新社：中国《意见》推动人工智能与实体经济深度融合",
-    "source": "RFI",
     "date": "2026-10-11"
   },
   {
     "id": "t8ddb05",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "物理AI的虚虚实实",
     "summary": "【日经中文网】物理AI的虚虚实实",
     "source": "日经中文网",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "t8ffcc9",
+    "cat": "tech",
+    "important": false,
+    "title": "网友自称懂车帝前总编辑 爆料测试踩断宝马X7油门踏板等言论 官方紧急辟谣",
+    "summary": "【驱动之家】网友自称懂车帝前总编辑 爆料测试踩断宝马X7油门踏板等言论 官方紧急辟谣",
+    "source": "驱动之家",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "ta2546d",
+    "cat": "tech",
+    "important": false,
+    "title": "又出事了！美国大模型Claude自主向警方提交虚假凶杀案线索",
+    "summary": "【凤凰网】又出事了！美国大模型Claude自主向警方提交虚假凶杀案线索",
+    "source": "凤凰网",
     "date": "2026-10-11"
   },
   {
@@ -117,39 +126,30 @@
     "date": "2026-10-11"
   },
   {
-    "id": "tba3568",
-    "cat": "tech",
-    "important": false,
-    "title": "AI无处不在：中国面临过度依赖人工智能的挑战",
-    "summary": "【纽约时报中文网】AI无处不在：中国面临过度依赖人工智能的挑战",
-    "source": "纽约时报中文网",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "fe808ce",
+    "id": "f2d813a",
     "cat": "finance",
     "important": true,
-    "title": "为购房家庭减负 房贷贴息政策加速落地见效",
-    "summary": "【人民网】为购房家庭减负 房贷贴息政策加速落地见效",
-    "source": "人民网",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "f3f3e34",
-    "cat": "finance",
-    "important": false,
-    "title": "硬科技早报|长鑫新技术突破；华为云销售组织大调整；美国起诉TP-Link",
-    "summary": "【观察者网】硬科技早报|长鑫新技术突破；华为云销售组织大调整；美国起诉TP-Link",
-    "source": "观察者网",
-    "date": "2026-10-11"
-  },
-  {
-    "id": "fe67873",
-    "cat": "finance",
-    "important": false,
-    "title": "懂车帝测试尊界刹车踏板支架断裂引热议 微博CEO：暂停交付、查车厂台架实验记录比较合理",
-    "summary": "【驱动之家】懂车帝测试尊界刹车踏板支架断裂引热议 微博CEO：暂停交付、查车厂台架实验记录比较合理",
+    "title": "全隐藏门把手被禁、折叠屏不许上车！中汽协发文力挺四部门新规",
+    "summary": "【驱动之家】全隐藏门把手被禁、折叠屏不许上车！中汽协发文力挺四部门新规",
     "source": "驱动之家",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "fc310eb",
+    "cat": "finance",
+    "important": false,
+    "title": "A股一周牛股出炉：力王股份涨超61%，领湃科技20cm两连板",
+    "summary": "【21财经】A股一周牛股出炉：力王股份涨超61%，领湃科技20cm两连板",
+    "source": "21财经",
+    "date": "2026-10-11"
+  },
+  {
+    "id": "fff22d2",
+    "cat": "finance",
+    "important": false,
+    "title": "从“手工作坊”到流水线：解锁浪潮人工智能工厂量产密码｜山东人工智能垂域大模型系列报道",
+    "summary": "【搜狐】从“手工作坊”到流水线：解锁浪潮人工智能工厂量产密码｜山东人工智能垂域大模型系列报道",
+    "source": "搜狐",
     "date": "2026-10-11"
   }
 ]
