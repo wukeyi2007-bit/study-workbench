@@ -1,34 +1,70 @@
 [
   {
-    "id": "d6fe1de",
+    "id": "d003e62",
     "cat": "domestic",
     "important": true,
-    "title": "深耕“土特产” 挑稳“金扁担”",
-    "summary": "【百度热搜】深耕“土特产” 挑稳“金扁担”",
+    "title": "中国刻蚀机之父：AI可能是个泡沫",
+    "summary": "【百度热搜】中国刻蚀机之父：AI可能是个泡沫",
     "source": "百度热搜",
     "date": "2026-10-13"
   },
   {
-    "id": "db6d3d2",
+    "id": "d302f0b",
     "cat": "domestic",
     "important": true,
-    "title": "女孩刚出生妈妈去世 舅妈抚养22年",
-    "summary": "【百度热搜】女孩刚出生妈妈去世 舅妈抚养22年",
+    "title": "居民投诉月亮太亮影响睡觉白岩松回应",
+    "summary": "【百度热搜】居民投诉月亮太亮影响睡觉白岩松回应",
     "source": "百度热搜",
     "date": "2026-10-13"
   },
   {
-    "id": "dbaacb6",
+    "id": "d304ca4",
     "cat": "domestic",
     "important": false,
-    "title": "文旅市场消费活力十足",
-    "summary": "【百度热搜】文旅市场消费活力十足",
+    "title": "卫生院现丁义珍式窗口 老人半跪挂号",
+    "summary": "【百度热搜】卫生院现丁义珍式窗口 老人半跪挂号",
     "source": "百度热搜",
     "date": "2026-10-13"
   },
   {
-    "id": "dbe0195",
+    "id": "d5303e5",
     "cat": "domestic",
+    "important": false,
+    "title": "去中国工厂“打卡”",
+    "summary": "【百度热搜】去中国工厂“打卡”",
+    "source": "百度热搜",
+    "date": "2026-10-13"
+  },
+  {
+    "id": "d595521",
+    "cat": "domestic",
+    "important": false,
+    "title": "习近平出席全国卫生与健康大会",
+    "summary": "【百度热搜】习近平出席全国卫生与健康大会",
+    "source": "百度热搜",
+    "date": "2026-10-13"
+  },
+  {
+    "id": "d843efe",
+    "cat": "domestic",
+    "important": false,
+    "title": "男生高考522分被调剂马术专业学钉蹄",
+    "summary": "【百度热搜】男生高考522分被调剂马术专业学钉蹄",
+    "source": "百度热搜",
+    "date": "2026-10-13"
+  },
+  {
+    "id": "i5974d3",
+    "cat": "international",
+    "important": true,
+    "title": "网红晚安安从35楼坠落生还 右腿截肢",
+    "summary": "【百度热搜】网红晚安安从35楼坠落生还 右腿截肢",
+    "source": "百度热搜",
+    "date": "2026-10-13"
+  },
+  {
+    "id": "i99a4ba",
+    "cat": "international",
     "important": false,
     "title": "“各位都什么原因没买一艘呢”",
     "summary": "【百度热搜】“各位都什么原因没买一艘呢”",
@@ -36,56 +72,20 @@
     "date": "2026-10-13"
   },
   {
-    "id": "dce93b6",
-    "cat": "domestic",
-    "important": false,
-    "title": "孩子越来越笨 AI正在惩罚下一代",
-    "summary": "【百度热搜】孩子越来越笨 AI正在惩罚下一代",
-    "source": "百度热搜",
-    "date": "2026-10-13"
-  },
-  {
-    "id": "de86514",
-    "cat": "domestic",
-    "important": false,
-    "title": "日本翻盖手机终于过气了",
-    "summary": "【百度热搜】日本翻盖手机终于过气了",
-    "source": "百度热搜",
-    "date": "2026-10-13"
-  },
-  {
-    "id": "i36a038",
-    "cat": "international",
-    "important": true,
-    "title": "歌手阿宝回应面部疑似烧伤",
-    "summary": "【百度热搜】歌手阿宝回应面部疑似烧伤",
-    "source": "百度热搜",
-    "date": "2026-10-13"
-  },
-  {
-    "id": "i708263",
+    "id": "ia3ce56",
     "cat": "international",
     "important": false,
-    "title": "比冬天先来的是姑姑的爱",
-    "summary": "【百度热搜】比冬天先来的是姑姑的爱",
+    "title": "男子在悬空寺做引体向上 警方已立案",
+    "summary": "【百度热搜】男子在悬空寺做引体向上 警方已立案",
     "source": "百度热搜",
     "date": "2026-10-13"
   },
   {
-    "id": "i8ad014",
+    "id": "if24293",
     "cat": "international",
     "important": false,
-    "title": "第二经济大省“开抢”年轻人",
-    "summary": "【百度热搜】第二经济大省“开抢”年轻人",
-    "source": "百度热搜",
-    "date": "2026-10-13"
-  },
-  {
-    "id": "ibf2ca9",
-    "cat": "international",
-    "important": false,
-    "title": "海底捞向董事长张勇提供1亿元借款",
-    "summary": "【百度热搜】海底捞向董事长张勇提供1亿元借款",
+    "title": "男群演疑似猥亵女演员 剧组回应",
+    "summary": "【百度热搜】男群演疑似猥亵女演员 剧组回应",
     "source": "百度热搜",
     "date": "2026-10-13"
   },
@@ -99,12 +99,12 @@
     "date": "2026-10-13"
   },
   {
-    "id": "t633a40",
+    "id": "t7929f8",
     "cat": "tech",
     "important": false,
-    "title": "早报｜对话库克：Apple Watch要做「个人守护者」/华为折叠屏出货量突破2000万台/DeepSeek拟入局具身智能",
-    "summary": "【爱范儿】早报｜对话库克：Apple Watch要做「个人守护者」/华为折叠屏出货量突破2000万台/DeepSeek拟入局具身智能",
-    "source": "爱范儿",
+    "title": "中国官方“数据找人”鼓励参保 分析指现行制度与灵活就业现实不匹配",
+    "summary": "【联合早报】中国官方“数据找人”鼓励参保 分析指现行制度与灵活就业现实不匹配",
+    "source": "联合早报",
     "date": "2026-10-13"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-10-13"
   },
   {
-    "id": "fc59d67",
+    "id": "f099e62",
     "cat": "finance",
     "important": true,
-    "title": "尊界公布 V800 制动踏板第三方检测结果：符合行业标准，加严检验至 3000N 也无裂纹损坏",
-    "summary": "【IT之家】尊界公布 V800 制动踏板第三方检测结果：符合行业标准，加严检验至 3000N 也无裂纹损坏",
-    "source": "IT之家",
+    "title": "恒生科技指数下跌1.54%，CXO概念走弱｜港股午评",
+    "summary": "【东方财富】恒生科技指数下跌1.54%，CXO概念走弱｜港股午评",
+    "source": "东方财富",
     "date": "2026-10-13"
   },
   {
-    "id": "f3e919c",
+    "id": "f45acef",
     "cat": "finance",
     "important": false,
-    "title": "晶片股遭抛售 南韩KOSPI指数早盘暴跌逾6%",
-    "summary": "【RFI】晶片股遭抛售 南韩KOSPI指数早盘暴跌逾6%",
-    "source": "RFI",
+    "title": "中国汽研回应尊界V800检测：报告仅对送检样车负责",
+    "summary": "【观察者网】中国汽研回应尊界V800检测：报告仅对送检样车负责",
+    "source": "观察者网",
     "date": "2026-10-13"
   },
   {
-    "id": "fb7b483",
+    "id": "fc62430",
     "cat": "finance",
     "important": false,
-    "title": "9月中国物流业景气指数51.5% 连续5个月处扩张区间",
-    "summary": "【观点网】9月中国物流业景气指数51.5% 连续5个月处扩张区间",
-    "source": "观点网",
+    "title": "韩国股市“熔断”！存储板块遭重挫",
+    "summary": "【中华网】韩国股市“熔断”！存储板块遭重挫",
+    "source": "中华网",
     "date": "2026-10-13"
   }
 ]
