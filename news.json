@@ -1,91 +1,91 @@
 [
   {
-    "id": "d10840a",
+    "id": "d2849f3",
     "cat": "domestic",
     "important": true,
-    "title": "全年粮食有望再获丰收",
-    "summary": "【百度热搜】全年粮食有望再获丰收",
+    "title": "张雪求助：谁能把食堂米饭做好吃",
+    "summary": "【百度热搜】张雪求助：谁能把食堂米饭做好吃",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "d3e5a88",
+    "id": "d5177bb",
     "cat": "domestic",
     "important": true,
-    "title": "星巴克 消费入座",
-    "summary": "【百度热搜】星巴克 消费入座",
+    "title": "把黄旗海保护好",
+    "summary": "【百度热搜】把黄旗海保护好",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "da29082",
+    "id": "d674b7b",
     "cat": "domestic",
     "important": false,
-    "title": "“六张网”布局里的中国之治",
-    "summary": "【百度热搜】“六张网”布局里的中国之治",
+    "title": "留学生披旭日旗细节：被同学当场控制",
+    "summary": "【百度热搜】留学生披旭日旗细节：被同学当场控制",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "ddeb795",
+    "id": "d8baaae",
     "cat": "domestic",
     "important": false,
-    "title": "身披旭日旗中国留学生或被开除遣返",
-    "summary": "【百度热搜】身披旭日旗中国留学生或被开除遣返",
+    "title": "读懂中国经济的韧性和活力",
+    "summary": "【百度热搜】读懂中国经济的韧性和活力",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "de62da4",
+    "id": "d8dc022",
     "cat": "domestic",
     "important": false,
-    "title": "中纪委连打三“虎”",
-    "summary": "【百度热搜】中纪委连打三“虎”",
+    "title": "这些话鲁迅真说过",
+    "summary": "【百度热搜】这些话鲁迅真说过",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "dec95d6",
+    "id": "db4a850",
     "cat": "domestic",
     "important": false,
-    "title": "法国三条血管齐崩",
-    "summary": "【百度热搜】法国三条血管齐崩",
+    "title": "岳云鹏演出 听不清",
+    "summary": "【百度热搜】岳云鹏演出 听不清",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "i0b6e58",
+    "id": "i390e0d",
     "cat": "international",
     "important": true,
-    "title": "披旭日旗中国留学生鞠躬道歉",
-    "summary": "【百度热搜】披旭日旗中国留学生鞠躬道歉",
+    "title": "浪姐 离婚玄学",
+    "summary": "【百度热搜】浪姐 离婚玄学",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "i65ab16",
+    "id": "ib95cb3",
     "cat": "international",
     "important": false,
-    "title": "部分研究生不用撰写学位论文",
-    "summary": "【百度热搜】部分研究生不用撰写学位论文",
+    "title": "拍下这张照片不久 他血染征途",
+    "summary": "【百度热搜】拍下这张照片不久 他血染征途",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "ibe2705",
+    "id": "id2c088",
     "cat": "international",
     "important": false,
-    "title": "把房子降到150万 好卖多了",
-    "summary": "【百度热搜】把房子降到150万 好卖多了",
+    "title": "新郎坐轮椅结婚被父亲抱进婚车",
+    "summary": "【百度热搜】新郎坐轮椅结婚被父亲抱进婚车",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
   {
-    "id": "icf9530",
+    "id": "if27880",
     "cat": "international",
     "important": false,
-    "title": "张伟丽再晒妆后视频",
-    "summary": "【百度热搜】张伟丽再晒妆后视频",
+    "title": "180斤大码超模回归维密大秀",
+    "summary": "【百度热搜】180斤大码超模回归维密大秀",
     "source": "百度热搜",
     "date": "2026-10-19"
   },
@@ -96,6 +96,15 @@
     "title": "囤50台iPhone Duo从赚10万到亏2.5万 黄牛的赌局与风险",
     "summary": "【中华网】囤50台iPhone Duo从赚10万到亏2.5万 黄牛的赌局与风险",
     "source": "中华网",
+    "date": "2026-10-19"
+  },
+  {
+    "id": "t1f73eb",
+    "cat": "tech",
+    "important": false,
+    "title": "MiniMax M3.1 Flash：重新定义Agent 的性能与成本- MiniMax Research",
+    "summary": "【https://www.minimax.cn/】MiniMax M3.1 Flash：重新定义Agent 的性能与成本- MiniMax Research",
+    "source": "https://www.minimax.cn/",
     "date": "2026-10-19"
   },
   {
@@ -117,39 +126,30 @@
     "date": "2026-10-19"
   },
   {
-    "id": "tddb98d",
-    "cat": "tech",
-    "important": false,
-    "title": "微信上线绿泡泡切入短剧联合发行，与红果短剧争用户时长和内容供给",
-    "summary": "【虎嗅网】微信上线绿泡泡切入短剧联合发行，与红果短剧争用户时长和内容供给",
-    "source": "虎嗅网",
-    "date": "2026-10-19"
-  },
-  {
-    "id": "f1582df",
+    "id": "f02578d",
     "cat": "finance",
     "important": true,
-    "title": "创维音响及K影机亮相广交会 一站式K歌影音方案闪耀全球舞台",
-    "summary": "【IT之家】创维音响及K影机亮相广交会 一站式K歌影音方案闪耀全球舞台",
-    "source": "IT之家",
+    "title": "吴清最新发言八大要点：谈中国资产、市场稳定和AI浪潮",
+    "summary": "【ThePaper.cn】吴清最新发言八大要点：谈中国资产、市场稳定和AI浪潮",
+    "source": "ThePaper.cn",
     "date": "2026-10-19"
   },
   {
-    "id": "f02eb6a",
+    "id": "fa3d826",
     "cat": "finance",
     "important": false,
-    "title": "数说中国丨前三季度我国GDP同比增长4.6%",
-    "summary": "【新华网】数说中国丨前三季度我国GDP同比增长4.6%",
+    "title": "三季度中国经济增速回升，服务业多领域就业总量增加",
+    "summary": "【东方财富】三季度中国经济增速回升，服务业多领域就业总量增加",
+    "source": "东方财富",
+    "date": "2026-10-19"
+  },
+  {
+    "id": "fac1bb2",
+    "cat": "finance",
+    "important": false,
+    "title": "第140届广交会第一期线下展：18.9万名境外采购商到会",
+    "summary": "【新华网】第140届广交会第一期线下展：18.9万名境外采购商到会",
     "source": "新华网",
-    "date": "2026-10-19"
-  },
-  {
-    "id": "fa13539",
-    "cat": "finance",
-    "important": false,
-    "title": "风云激荡十五载，金融街论坛年会跃迁为“金融改革发展风向标” 一条街见证中国金融的开放底气",
-    "summary": "【央视网】风云激荡十五载，金融街论坛年会跃迁为“金融改革发展风向标” 一条街见证中国金融的开放底气",
-    "source": "央视网",
     "date": "2026-10-19"
   }
 ]
