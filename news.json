@@ -1,5 +1,14 @@
 [
   {
+    "id": "d0373e8",
+    "cat": "domestic",
+    "important": true,
+    "title": "日本前首相福田康夫去世",
+    "summary": "【百度热搜】日本前首相福田康夫去世",
+    "source": "百度热搜",
+    "date": "2026-10-26"
+  },
+  {
     "id": "d14d9bf",
     "cat": "domestic",
     "important": true,
@@ -9,11 +18,11 @@
     "date": "2026-10-26"
   },
   {
-    "id": "d15f559",
+    "id": "d1d3efc",
     "cat": "domestic",
-    "important": true,
-    "title": "多地幼儿园改为养老院",
-    "summary": "【百度热搜】多地幼儿园改为养老院",
+    "important": false,
+    "title": "中国石油股价创18年新高",
+    "summary": "【百度热搜】中国石油股价创18年新高",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
@@ -27,56 +36,38 @@
     "date": "2026-10-26"
   },
   {
-    "id": "d336c11",
+    "id": "d34e948",
     "cat": "domestic",
     "important": false,
-    "title": "安踏卖不动了",
-    "summary": "【百度热搜】安踏卖不动了",
+    "title": "AI生成视频已能逃过人脸识别系统",
+    "summary": "【百度热搜】AI生成视频已能逃过人脸识别系统",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "d75417a",
+    "id": "d7847c9",
     "cat": "domestic",
     "important": false,
-    "title": "Kimi致歉",
-    "summary": "【百度热搜】Kimi致歉",
+    "title": "缉毒警察朋友圈永远仅自己可见",
+    "summary": "【百度热搜】缉毒警察朋友圈永远仅自己可见",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "d7a240a",
-    "cat": "domestic",
-    "important": false,
-    "title": "“娱乐至死”的医疗真人秀该叫停了",
-    "summary": "【百度热搜】“娱乐至死”的医疗真人秀该叫停了",
-    "source": "百度热搜",
-    "date": "2026-10-26"
-  },
-  {
-    "id": "i15dc77",
+    "id": "i39c608",
     "cat": "international",
     "important": true,
-    "title": "才知道汽水瓶底5个凸起是干这个的",
-    "summary": "【百度热搜】才知道汽水瓶底5个凸起是干这个的",
+    "title": "县委书记被张雪扔下水 激起三朵水花",
+    "summary": "【百度热搜】县委书记被张雪扔下水 激起三朵水花",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "i8b87ef",
+    "id": "i924833",
     "cat": "international",
     "important": false,
-    "title": "比熬夜更可怕的坏习惯",
-    "summary": "【百度热搜】比熬夜更可怕的坏习惯",
-    "source": "百度热搜",
-    "date": "2026-10-26"
-  },
-  {
-    "id": "ic59826",
-    "cat": "international",
-    "important": false,
-    "title": "美国客户一口气在广州买200套房",
-    "summary": "【百度热搜】美国客户一口气在广州买200套房",
+    "title": "00后辞去月薪三万工作转行当护工",
+    "summary": "【百度热搜】00后辞去月薪三万工作转行当护工",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
@@ -90,6 +81,15 @@
     "date": "2026-10-26"
   },
   {
+    "id": "ie8abf7",
+    "cat": "international",
+    "important": false,
+    "title": "胖郎中将离开万岁山：就是来练把脉的",
+    "summary": "【百度热搜】胖郎中将离开万岁山：就是来练把脉的",
+    "source": "百度热搜",
+    "date": "2026-10-26"
+  },
+  {
     "id": "t33c4b6",
     "cat": "tech",
     "important": true,
@@ -99,12 +99,12 @@
     "date": "2026-10-26"
   },
   {
-    "id": "ta91e49",
+    "id": "ta0aa9d",
     "cat": "tech",
     "important": false,
-    "title": "AI竞赛谁领先？半数商会选中国",
-    "summary": "【DW.com】AI竞赛谁领先？半数商会选中国",
-    "source": "DW.com",
+    "title": "探访加密货币大佬赵长鹏：亿万富翁天堂里的前罪犯",
+    "summary": "【纽约时报中文网】探访加密货币大佬赵长鹏：亿万富翁天堂里的前罪犯",
+    "source": "纽约时报中文网",
     "date": "2026-10-26"
   },
   {
@@ -117,39 +117,39 @@
     "date": "2026-10-26"
   },
   {
-    "id": "tf62d0a",
+    "id": "tc5dfcd",
     "cat": "tech",
     "important": false,
-    "title": "AI识别PHP重大漏洞，多国政府和企业网站临时关停",
-    "summary": "【纽约时报中文网】AI识别PHP重大漏洞，多国政府和企业网站临时关停",
+    "title": "人类已经引发了第二次宇宙大爆炸",
+    "summary": "【纽约时报中文网】人类已经引发了第二次宇宙大爆炸",
     "source": "纽约时报中文网",
-    "date": "2026-10-26"
-  },
-  {
-    "id": "f243fcd",
-    "cat": "finance",
-    "important": true,
-    "title": "黄力晨：油价上涨加强通胀预期叠加流动性挤兑打压金价_名家点金",
-    "summary": "【黄金网】黄力晨：油价上涨加强通胀预期叠加流动性挤兑打压金价_名家点金",
-    "source": "黄金网",
     "date": "2026-10-26"
   },
   {
     "id": "f40b81f",
     "cat": "finance",
-    "important": false,
+    "important": true,
     "title": "市盈率仅为3倍！韩国券商：“存储双雄”股价遭低估程度堪比金融危机时期",
     "summary": "【财联社】市盈率仅为3倍！韩国券商：“存储双雄”股价遭低估程度堪比金融危机时期",
     "source": "财联社",
     "date": "2026-10-26"
   },
   {
-    "id": "f7bf156",
+    "id": "f8690ec",
     "cat": "finance",
     "important": false,
-    "title": "10月26日A股三大指数集体低开 创业板指低开1.43%",
-    "summary": "【央广财经】10月26日A股三大指数集体低开 创业板指低开1.43%",
-    "source": "央广财经",
+    "title": "一财主播说 | “人形机器人第一股”重回聚光灯下 宇树股价重回700元 单月暴涨56%",
+    "summary": "【第一财经】一财主播说 | “人形机器人第一股”重回聚光灯下 宇树股价重回700元 单月暴涨56%",
+    "source": "第一财经",
+    "date": "2026-10-26"
+  },
+  {
+    "id": "fb4c4ef",
+    "cat": "finance",
+    "important": false,
+    "title": "机器人、数据要素、消费、房地产板块走强，算力硬件股走弱 | A股早盘",
+    "summary": "【21财经】机器人、数据要素、消费、房地产板块走强，算力硬件股走弱 | A股早盘",
+    "source": "21财经",
     "date": "2026-10-26"
   }
 ]
