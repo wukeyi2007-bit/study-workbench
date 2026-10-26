@@ -1,82 +1,73 @@
 [
   {
-    "id": "d2d2089",
+    "id": "d14d9bf",
     "cat": "domestic",
     "important": true,
-    "title": "武契奇承认败选",
-    "summary": "【百度热搜】武契奇承认败选",
+    "title": "中国发展机遇持续与世界共享",
+    "summary": "【百度热搜】中国发展机遇持续与世界共享",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "d4c306e",
+    "id": "d15f559",
     "cat": "domestic",
     "important": true,
-    "title": "女子赴泰见网友被绑架 跳车逃生",
-    "summary": "【百度热搜】女子赴泰见网友被绑架 跳车逃生",
+    "title": "多地幼儿园改为养老院",
+    "summary": "【百度热搜】多地幼儿园改为养老院",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "dca14ea",
+    "id": "d230184",
     "cat": "domestic",
     "important": false,
-    "title": "国家水网到底有多硬核",
-    "summary": "【百度热搜】国家水网到底有多硬核",
+    "title": "二十届五中全会在北京开始举行",
+    "summary": "【百度热搜】二十届五中全会在北京开始举行",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "dd3dd7e",
+    "id": "d336c11",
     "cat": "domestic",
     "important": false,
-    "title": "长征的路在不断延伸",
-    "summary": "【百度热搜】长征的路在不断延伸",
+    "title": "安踏卖不动了",
+    "summary": "【百度热搜】安踏卖不动了",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "dd57591",
+    "id": "d75417a",
     "cat": "domestic",
     "important": false,
-    "title": "浙江宣传：AI短剧真的“降智”吗",
-    "summary": "【百度热搜】浙江宣传：AI短剧真的“降智”吗",
+    "title": "Kimi致歉",
+    "summary": "【百度热搜】Kimi致歉",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "dfe836c",
+    "id": "d7a240a",
     "cat": "domestic",
     "important": false,
-    "title": "3000万豪宅跌至1000万 出入口在隧道",
-    "summary": "【百度热搜】3000万豪宅跌至1000万 出入口在隧道",
+    "title": "“娱乐至死”的医疗真人秀该叫停了",
+    "summary": "【百度热搜】“娱乐至死”的医疗真人秀该叫停了",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "i13b044",
+    "id": "i15dc77",
     "cat": "international",
     "important": true,
-    "title": "IG战胜HLE",
-    "summary": "【百度热搜】IG战胜HLE",
+    "title": "才知道汽水瓶底5个凸起是干这个的",
+    "summary": "【百度热搜】才知道汽水瓶底5个凸起是干这个的",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
   {
-    "id": "i7e3695",
+    "id": "i8b87ef",
     "cat": "international",
     "important": false,
-    "title": "巴西总统卢拉赢得连任",
-    "summary": "【百度热搜】巴西总统卢拉赢得连任",
-    "source": "百度热搜",
-    "date": "2026-10-26"
-  },
-  {
-    "id": "ib69bcf",
-    "cat": "international",
-    "important": false,
-    "title": "TES战胜G2",
-    "summary": "【百度热搜】TES战胜G2",
+    "title": "比熬夜更可怕的坏习惯",
+    "summary": "【百度热搜】比熬夜更可怕的坏习惯",
     "source": "百度热搜",
     "date": "2026-10-26"
   },
@@ -90,12 +81,21 @@
     "date": "2026-10-26"
   },
   {
-    "id": "t5db935",
+    "id": "ideeb84",
+    "cat": "international",
+    "important": false,
+    "title": "年轻人正成为红色旅游主力军",
+    "summary": "【百度热搜】年轻人正成为红色旅游主力军",
+    "source": "百度热搜",
+    "date": "2026-10-26"
+  },
+  {
+    "id": "t33c4b6",
     "cat": "tech",
     "important": true,
-    "title": "开发者成功为小米 8 手机刷入苹果 iOS 16.5 系统，将机型伪装为 iPhone X",
-    "summary": "【IT之家】开发者成功为小米 8 手机刷入苹果 iOS 16.5 系统，将机型伪装为 iPhone X",
-    "source": "IT之家",
+    "title": "8点1氪丨金价连日大跌，深圳水贝被挤爆；开售仅两天，苹果iPhone Duo破发；德明利：前三季度净利润87.46亿元同比增长32399.91%",
+    "summary": "【36Kr】8点1氪丨金价连日大跌，深圳水贝被挤爆；开售仅两天，苹果iPhone Duo破发；德明利：前三季度净利润87.46亿元同比增长32399.91%",
+    "source": "36Kr",
     "date": "2026-10-26"
   },
   {
@@ -108,12 +108,12 @@
     "date": "2026-10-26"
   },
   {
-    "id": "tac375f",
+    "id": "tb9a615",
     "cat": "tech",
     "important": false,
-    "title": "第一批不写代码的程序员，已出现",
-    "summary": "【风闻】第一批不写代码的程序员，已出现",
-    "source": "风闻",
+    "title": "Kimi致歉，公布补偿方案",
+    "summary": "【财联社】Kimi致歉，公布补偿方案",
+    "source": "财联社",
     "date": "2026-10-26"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-10-26"
   },
   {
-    "id": "f51d409",
+    "id": "f243fcd",
     "cat": "finance",
     "important": true,
-    "title": "韩国股市，利空突袭",
-    "summary": "【同花顺财经】韩国股市，利空突袭",
-    "source": "同花顺财经",
+    "title": "黄力晨：油价上涨加强通胀预期叠加流动性挤兑打压金价_名家点金",
+    "summary": "【黄金网】黄力晨：油价上涨加强通胀预期叠加流动性挤兑打压金价_名家点金",
+    "source": "黄金网",
     "date": "2026-10-26"
   },
   {
-    "id": "f6b47de",
+    "id": "f40b81f",
     "cat": "finance",
     "important": false,
-    "title": "德明利Q3净利润27.29亿元，同比增长约29倍",
-    "summary": "【东方财富】德明利Q3净利润27.29亿元，同比增长约29倍",
-    "source": "东方财富",
+    "title": "市盈率仅为3倍！韩国券商：“存储双雄”股价遭低估程度堪比金融危机时期",
+    "summary": "【财联社】市盈率仅为3倍！韩国券商：“存储双雄”股价遭低估程度堪比金融危机时期",
+    "source": "财联社",
     "date": "2026-10-26"
   },
   {
-    "id": "fd60cae",
+    "id": "f7bf156",
     "cat": "finance",
     "important": false,
-    "title": "现货黄金跌破每盎司4000美元本周国际金价累计下跌超3%_公司新闻",
-    "summary": "【证券之星】现货黄金跌破每盎司4000美元本周国际金价累计下跌超3%_公司新闻",
-    "source": "证券之星",
+    "title": "10月26日A股三大指数集体低开 创业板指低开1.43%",
+    "summary": "【央广财经】10月26日A股三大指数集体低开 创业板指低开1.43%",
+    "source": "央广财经",
     "date": "2026-10-26"
   }
 ]
