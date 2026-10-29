@@ -1,37 +1,28 @@
 [
   {
-    "id": "d34a63e",
+    "id": "d3e972b",
     "cat": "domestic",
     "important": true,
-    "title": "全面从严治党为世界提供重要借鉴",
-    "summary": "【百度热搜】全面从严治党为世界提供重要借鉴",
+    "title": "GDP十强城市出炉 又一轮大洗牌要来了",
+    "summary": "【百度热搜】GDP十强城市出炉 又一轮大洗牌要来了",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "d448306",
+    "id": "d7207da",
     "cat": "domestic",
     "important": true,
-    "title": "“高盐刺客”就在你的餐桌上",
-    "summary": "【百度热搜】“高盐刺客”就在你的餐桌上",
+    "title": "持之以恒推进全面从严治党",
+    "summary": "【百度热搜】持之以恒推进全面从严治党",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "d4d486f",
+    "id": "d85defc",
     "cat": "domestic",
     "important": false,
-    "title": "关键密码",
-    "summary": "【百度热搜】关键密码",
-    "source": "百度热搜",
-    "date": "2026-10-29"
-  },
-  {
-    "id": "d7e0e16",
-    "cat": "domestic",
-    "important": false,
-    "title": "西媒就姆巴佩闯下大祸算了笔账",
-    "summary": "【百度热搜】西媒就姆巴佩闯下大祸算了笔账",
+    "title": "坚持党的领导 加强党的建设",
+    "summary": "【百度热搜】坚持党的领导 加强党的建设",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
@@ -45,57 +36,66 @@
     "date": "2026-10-29"
   },
   {
-    "id": "de928ff",
+    "id": "ddd40b4",
     "cat": "domestic",
     "important": false,
-    "title": "特大暴雪暴雨！新一轮冷空气将来袭",
-    "summary": "【百度热搜】特大暴雪暴雨！新一轮冷空气将来袭",
+    "title": "女生崩溃大哭 陌生人不约而同守护",
+    "summary": "【百度热搜】女生崩溃大哭 陌生人不约而同守护",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "i36b0e2",
+    "id": "dfd0106",
+    "cat": "domestic",
+    "important": false,
+    "title": "姆巴佩的“天价”账单才刚刚开始",
+    "summary": "【百度热搜】姆巴佩的“天价”账单才刚刚开始",
+    "source": "百度热搜",
+    "date": "2026-10-29"
+  },
+  {
+    "id": "i4d1b82",
     "cat": "international",
     "important": true,
-    "title": "创业板指跌逾3% 全市场超4400股下跌",
-    "summary": "【百度热搜】创业板指跌逾3% 全市场超4400股下跌",
+    "title": "女子花5万买金镯未佩戴已亏1.3万",
+    "summary": "【百度热搜】女子花5万买金镯未佩戴已亏1.3万",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "i4ff513",
+    "id": "i87ceb2",
     "cat": "international",
     "important": false,
-    "title": "中国“智造家”加速出海",
-    "summary": "【百度热搜】中国“智造家”加速出海",
+    "title": "西班牙全国哀悼三天",
+    "summary": "【百度热搜】西班牙全国哀悼三天",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "i9ea558",
+    "id": "iac3f45",
     "cat": "international",
     "important": false,
-    "title": "亲戚资助出国玩 低保资格会被取消吗",
-    "summary": "【百度热搜】亲戚资助出国玩 低保资格会被取消吗",
+    "title": "探寻“中国之治”的成功密码",
+    "summary": "【百度热搜】探寻“中国之治”的成功密码",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "ic2f99f",
+    "id": "ie94763",
     "cat": "international",
     "important": false,
-    "title": "香氛 年轻人的“情绪搭子”",
-    "summary": "【百度热搜】香氛 年轻人的“情绪搭子”",
+    "title": "男子崩溃反锁房门妈妈冲进去一把抱住",
+    "summary": "【百度热搜】男子崩溃反锁房门妈妈冲进去一把抱住",
     "source": "百度热搜",
     "date": "2026-10-29"
   },
   {
-    "id": "t02e778",
+    "id": "td54a8c",
     "cat": "tech",
     "important": true,
-    "title": "Anthropic上市关乎什么？几乎所有一切",
-    "summary": "【纽约时报中文网】Anthropic上市关乎什么？几乎所有一切",
-    "source": "纽约时报中文网",
+    "title": "B站评论区出现大量DeepSeek拟人化AI账号，引发AI内容泛滥与治理讨论",
+    "summary": "【虎嗅】B站评论区出现大量DeepSeek拟人化AI账号，引发AI内容泛滥与治理讨论",
+    "source": "虎嗅",
     "date": "2026-10-29"
   },
   {
@@ -108,6 +108,15 @@
     "date": "2026-10-29"
   },
   {
+    "id": "t17a28e",
+    "cat": "tech",
+    "important": false,
+    "title": "全新MacBook Pro发布！苹果CEO特努斯/高管回应为何加入触屏",
+    "summary": "【驱动之家】全新MacBook Pro发布！苹果CEO特努斯/高管回应为何加入触屏",
+    "source": "驱动之家",
+    "date": "2026-10-29"
+  },
+  {
     "id": "t77c47c",
     "cat": "tech",
     "important": false,
@@ -117,39 +126,30 @@
     "date": "2026-10-29"
   },
   {
-    "id": "t7c0490",
-    "cat": "tech",
-    "important": false,
-    "title": "早报｜触屏MacBook Pro发布，发光logo回归/Gemini 4 Carbon发布，超越Opus 5.5/马斯克招寿司厨师，每天需能站立10小时",
-    "summary": "【爱范儿】早报｜触屏MacBook Pro发布，发光logo回归/Gemini 4 Carbon发布，超越Opus 5.5/马斯克招寿司厨师，每天需能站立10小时",
-    "source": "爱范儿",
-    "date": "2026-10-29"
-  },
-  {
-    "id": "f74e8e0",
+    "id": "f4e372b",
     "cat": "finance",
     "important": true,
-    "title": "美联储10月按兵不动：沃什拒绝前瞻指引 宣布调整FOMC会议安排",
-    "summary": "【中国金融信息网】美联储10月按兵不动：沃什拒绝前瞻指引 宣布调整FOMC会议安排",
-    "source": "中国金融信息网",
+    "title": "多地以旧换新上新：智能门锁、助听器等纳入补贴范围，最高补贴2000元",
+    "summary": "【ThePaper.cn】多地以旧换新上新：智能门锁、助听器等纳入补贴范围，最高补贴2000元",
+    "source": "ThePaper.cn",
     "date": "2026-10-29"
   },
   {
-    "id": "fcc01ce",
+    "id": "f9b412d",
     "cat": "finance",
     "important": false,
-    "title": "崔东树：1至9月汽车行业销售利润率为3.3%",
-    "summary": "【央广网】崔东树：1至9月汽车行业销售利润率为3.3%",
-    "source": "央广网",
+    "title": "沃什：明年起削减议息会议次数，不预判12月决策，AI投资同样受利率影响（附全文）",
+    "summary": "【华尔街见闻】沃什：明年起削减议息会议次数，不预判12月决策，AI投资同样受利率影响（附全文）",
+    "source": "华尔街见闻",
     "date": "2026-10-29"
   },
   {
-    "id": "fe31830",
+    "id": "fc939c6",
     "cat": "finance",
     "important": false,
-    "title": "美股存储芯片、软件股爆发，SK海力士狂涨超13%，甲骨文涨超10%，热门中概股普跌，美联储宣布维持利率不变",
-    "summary": "【21财经】美股存储芯片、软件股爆发，SK海力士狂涨超13%，甲骨文涨超10%，热门中概股普跌，美联储宣布维持利率不变",
-    "source": "21财经",
+    "title": "【中国网评】前三季度物价温和修复，中国经济通缩论可以休矣_观点中国",
+    "summary": "【中国网】【中国网评】前三季度物价温和修复，中国经济通缩论可以休矣_观点中国",
+    "source": "中国网",
     "date": "2026-10-29"
   }
 ]
