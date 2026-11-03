@@ -1,37 +1,28 @@
 [
   {
-    "id": "d43df81",
+    "id": "d2dabe3",
     "cat": "domestic",
     "important": true,
-    "title": "加200元油开了2公里发现没加上",
-    "summary": "【百度热搜】加200元油开了2公里发现没加上",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "d46b675",
-    "cat": "domestic",
-    "important": true,
-    "title": "刘延东遗体在京火化",
-    "summary": "【百度热搜】刘延东遗体在京火化",
+    "title": "南京多所高中推迟上学时间",
+    "summary": "【百度热搜】南京多所高中推迟上学时间",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
     "id": "d6ca05c",
     "cat": "domestic",
-    "important": false,
+    "important": true,
     "title": "10月新能源汽车销量榜：特斯拉跌至第8",
     "summary": "【百度热搜】10月新能源汽车销量榜：特斯拉跌至第8",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "d906b98",
+    "id": "d89246b",
     "cat": "domestic",
     "important": false,
-    "title": "党的二十届五中全会《决定》诞生记",
-    "summary": "【百度热搜】党的二十届五中全会《决定》诞生记",
+    "title": "钟薛高“复活”售卖 价格跌至个位数",
+    "summary": "【百度热搜】钟薛高“复活”售卖 价格跌至个位数",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
@@ -45,47 +36,56 @@
     "date": "2026-11-03"
   },
   {
-    "id": "db4edd5",
+    "id": "dad6719",
     "cat": "domestic",
     "important": false,
-    "title": "长鑫科技、寒武纪发声",
-    "summary": "【百度热搜】长鑫科技、寒武纪发声",
+    "title": "全面从严治党的根本性任务",
+    "summary": "【百度热搜】全面从严治党的根本性任务",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "i238acd",
-    "cat": "international",
-    "important": true,
-    "title": "摔了一跤不流血 竟引来致命血栓",
-    "summary": "【百度热搜】摔了一跤不流血 竟引来致命血栓",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "i7f8552",
-    "cat": "international",
-    "important": false,
-    "title": "李晨、关晓彤有新身份",
-    "summary": "【百度热搜】李晨、关晓彤有新身份",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "icb5284",
-    "cat": "international",
-    "important": false,
-    "title": "老人横穿快速路致多车追尾不担责",
-    "summary": "【百度热搜】老人横穿快速路致多车追尾不担责",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "ifc316c",
-    "cat": "international",
+    "id": "dd58cf6",
+    "cat": "domestic",
     "important": false,
     "title": "女子每天玩手机10小时患手机痴呆症",
     "summary": "【百度热搜】女子每天玩手机10小时患手机痴呆症",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "i331df7",
+    "cat": "international",
+    "important": true,
+    "title": "美股开盘：苹果股价大跌近4%",
+    "summary": "【百度热搜】美股开盘：苹果股价大跌近4%",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "i4152e3",
+    "cat": "international",
+    "important": false,
+    "title": "王毅同菲律宾外长拉扎罗通电话",
+    "summary": "【百度热搜】王毅同菲律宾外长拉扎罗通电话",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "i521281",
+    "cat": "international",
+    "important": false,
+    "title": "英伟达涨3% 总市值重回5万亿美元",
+    "summary": "【百度热搜】英伟达涨3% 总市值重回5万亿美元",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "i9b33a7",
+    "cat": "international",
+    "important": false,
+    "title": "德米格尔死亡事件肇事门将被立案",
+    "summary": "【百度热搜】德米格尔死亡事件肇事门将被立案",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
@@ -126,30 +126,30 @@
     "date": "2026-11-03"
   },
   {
-    "id": "f2a65a0",
+    "id": "f34df3a",
     "cat": "finance",
     "important": true,
-    "title": "国泰海通中标央行第三批互换便利操作100亿元",
-    "summary": "【凤凰网】国泰海通中标央行第三批互换便利操作100亿元",
-    "source": "凤凰网",
+    "title": "多家券商中标第三次互换便利 数百亿资金将用来增持股票和股票ETF",
+    "summary": "【财联社电报】多家券商中标第三次互换便利 数百亿资金将用来增持股票和股票ETF",
+    "source": "财联社电报",
     "date": "2026-11-03"
   },
   {
-    "id": "f9efb8b",
+    "id": "f393e5e",
     "cat": "finance",
     "important": false,
-    "title": "蚂蚁自研AI数据平台OceanBase获获世界互联网大会杰出贡献奖",
-    "summary": "【东方财富】蚂蚁自研AI数据平台OceanBase获获世界互联网大会杰出贡献奖",
+    "title": "海量财经丨阿里巴巴蔡崇信乌镇谈AI发展：只有开源开放 才能普惠普及",
+    "summary": "【东方财富】海量财经丨阿里巴巴蔡崇信乌镇谈AI发展：只有开源开放 才能普惠普及",
     "source": "东方财富",
     "date": "2026-11-03"
   },
   {
-    "id": "fc805d9",
+    "id": "f4a509c",
     "cat": "finance",
     "important": false,
-    "title": "港股午评：恒生指数涨0.52% 恒生科技指数涨0.96%",
-    "summary": "【财联社电报】港股午评：恒生指数涨0.52% 恒生科技指数涨0.96%",
-    "source": "财联社电报",
+    "title": "证监会副主席李超：全力维护资本市场平稳运行，加快推动实施新一轮资本市场改革开放",
+    "summary": "【华尔街见闻】证监会副主席李超：全力维护资本市场平稳运行，加快推动实施新一轮资本市场改革开放",
+    "source": "华尔街见闻",
     "date": "2026-11-03"
   }
 ]
