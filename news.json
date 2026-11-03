@@ -1,52 +1,70 @@
 [
   {
-    "id": "d332ebf",
+    "id": "d1b4022",
     "cat": "domestic",
     "important": true,
-    "title": "美坠机事故9名遇难者身份曝光",
-    "summary": "【百度热搜】美坠机事故9名遇难者身份曝光",
+    "title": "中国不申办2036年奥运会",
+    "summary": "【百度热搜】中国不申办2036年奥运会",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "d46b675",
+    "cat": "domestic",
+    "important": true,
+    "title": "刘延东遗体在京火化",
+    "summary": "【百度热搜】刘延东遗体在京火化",
+    "source": "百度热搜",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "d4efa66",
+    "cat": "domestic",
+    "important": false,
+    "title": "打开共享头盔那一刻 记者差点吐了",
+    "summary": "【百度热搜】打开共享头盔那一刻 记者差点吐了",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
     "id": "d55438b",
     "cat": "domestic",
-    "important": true,
+    "important": false,
     "title": "9组数字 速览第九届进博会",
     "summary": "【百度热搜】9组数字 速览第九届进博会",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "d92ce38",
+    "id": "d71c8c6",
     "cat": "domestic",
     "important": false,
-    "title": "让母亲河永续惠泽子孙后代",
-    "summary": "【百度热搜】让母亲河永续惠泽子孙后代",
+    "title": "受贿6750万余元 刘绍勇获刑十四年",
+    "summary": "【百度热搜】受贿6750万余元 刘绍勇获刑十四年",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "da3d183",
+    "id": "d906b98",
     "cat": "domestic",
     "important": false,
-    "title": "低保户女生赴港看演唱会：低保已取消",
-    "summary": "【百度热搜】低保户女生赴港看演唱会：低保已取消",
+    "title": "党的二十届五中全会《决定》诞生记",
+    "summary": "【百度热搜】党的二十届五中全会《决定》诞生记",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "da80ffb",
-    "cat": "domestic",
-    "important": false,
-    "title": "最强厄尔尼诺要来了",
-    "summary": "【百度热搜】最强厄尔尼诺要来了",
+    "id": "i0d5b22",
+    "cat": "international",
+    "important": true,
+    "title": "美国坠机事故遇难者身份已确认",
+    "summary": "【百度热搜】美国坠机事故遇难者身份已确认",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "ddea42c",
-    "cat": "domestic",
+    "id": "i2b3eec",
+    "cat": "international",
     "important": false,
     "title": "警方通报九寨沟游客打架：拍照起冲突",
     "summary": "【百度热搜】警方通报九寨沟游客打架：拍照起冲突",
@@ -54,48 +72,30 @@
     "date": "2026-11-03"
   },
   {
-    "id": "i1a4227",
-    "cat": "international",
-    "important": true,
-    "title": "沈阳保洁大叔：年轻时相亲被嫌弃丑",
-    "summary": "【百度热搜】沈阳保洁大叔：年轻时相亲被嫌弃丑",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "i38018c",
+    "id": "ib4a785",
     "cat": "international",
     "important": false,
-    "title": "许飞什么都敢回",
-    "summary": "【百度热搜】许飞什么都敢回",
+    "title": "DeepSeek网页及API服务出现部分中断",
+    "summary": "【百度热搜】DeepSeek网页及API服务出现部分中断",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "icb68d6",
+    "id": "ic12d86",
     "cat": "international",
     "important": false,
-    "title": "补办身份证得先刷身份证",
-    "summary": "【百度热搜】补办身份证得先刷身份证",
+    "title": "男子用超400万个账号薅羊毛获刑三年",
+    "summary": "【百度热搜】男子用超400万个账号薅羊毛获刑三年",
     "source": "百度热搜",
     "date": "2026-11-03"
   },
   {
-    "id": "if1ee4f",
-    "cat": "international",
-    "important": false,
-    "title": "《嫁金钗》大结局",
-    "summary": "【百度热搜】《嫁金钗》大结局",
-    "source": "百度热搜",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "t04f379",
+    "id": "t2dc179",
     "cat": "tech",
     "important": true,
-    "title": "新云端：人工智能泡沫将爆破？一群小公司正加剧担忧",
-    "summary": "【BBC】新云端：人工智能泡沫将爆破？一群小公司正加剧担忧",
-    "source": "BBC",
+    "title": "全球人工智能热潮中的“黑马”：马来西亚",
+    "summary": "【纽约时报中文网】全球人工智能热潮中的“黑马”：马来西亚",
+    "source": "纽约时报中文网",
     "date": "2026-11-03"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-11-03"
   },
   {
-    "id": "f238336",
+    "id": "f4dd63e",
     "cat": "finance",
     "important": true,
-    "title": "2026年世界互联网大会乌镇峰会今天开幕",
-    "summary": "【央视网】2026年世界互联网大会乌镇峰会今天开幕",
-    "source": "央视网",
+    "title": "李强出席2026年世界互联网大会乌镇峰会开幕式并发表主旨演讲",
+    "summary": "【新华网】李强出席2026年世界互联网大会乌镇峰会开幕式并发表主旨演讲",
+    "source": "新华网",
     "date": "2026-11-03"
   },
   {
-    "id": "fc805d9",
+    "id": "f89cb10",
     "cat": "finance",
     "important": false,
-    "title": "港股午评：恒生指数涨0.52% 恒生科技指数涨0.96%",
-    "summary": "【东方财富】港股午评：恒生指数涨0.52% 恒生科技指数涨0.96%",
+    "title": "央行近5年首次上调外汇存款准备金率，人民币升值节奏或有变",
+    "summary": "【新京报】央行近5年首次上调外汇存款准备金率，人民币升值节奏或有变",
+    "source": "新京报",
+    "date": "2026-11-03"
+  },
+  {
+    "id": "fe4a43b",
+    "cat": "finance",
+    "important": false,
+    "title": "平安证券推动互换便利业务落地，加大权益类资产配置力度",
+    "summary": "【东方财富】平安证券推动互换便利业务落地，加大权益类资产配置力度",
     "source": "东方财富",
-    "date": "2026-11-03"
-  },
-  {
-    "id": "fcfa86f",
-    "cat": "finance",
-    "important": false,
-    "title": "央行开展1000亿元证券、基金、保险公司互换便利操作，中标费率10BP",
-    "summary": "【ThePaper.cn】央行开展1000亿元证券、基金、保险公司互换便利操作，中标费率10BP",
-    "source": "ThePaper.cn",
     "date": "2026-11-03"
   }
 ]
