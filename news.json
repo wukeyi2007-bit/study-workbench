@@ -1,5 +1,14 @@
 [
   {
+    "id": "d12225c",
+    "cat": "domestic",
+    "important": true,
+    "title": "不断开创黄河保护治理工作新局面",
+    "summary": "【百度热搜】不断开创黄河保护治理工作新局面",
+    "source": "百度热搜",
+    "date": "2026-11-04"
+  },
+  {
     "id": "d1da094",
     "cat": "domestic",
     "important": true,
@@ -9,56 +18,47 @@
     "date": "2026-11-04"
   },
   {
-    "id": "d4ce1dc",
-    "cat": "domestic",
-    "important": true,
-    "title": "“做强做优做大实体经济”",
-    "summary": "【百度热搜】“做强做优做大实体经济”",
-    "source": "百度热搜",
-    "date": "2026-11-04"
-  },
-  {
-    "id": "d53f3ee",
+    "id": "d3caa29",
     "cat": "domestic",
     "important": false,
-    "title": "A股大反攻原因找到了",
-    "summary": "【百度热搜】A股大反攻原因找到了",
+    "title": "央视曝光新型兼职骗局",
+    "summary": "【百度热搜】央视曝光新型兼职骗局",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "d648277",
+    "id": "d9ebea0",
     "cat": "domestic",
     "important": false,
-    "title": "上海飞泰国曼谷一客机因风挡破裂返航",
-    "summary": "【百度热搜】上海飞泰国曼谷一客机因风挡破裂返航",
+    "title": "“社恐”到这种程度 可能是生病了",
+    "summary": "【百度热搜】“社恐”到这种程度 可能是生病了",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "dbd028a",
+    "id": "ddf212b",
     "cat": "domestic",
     "important": false,
-    "title": "开心果大涨价",
-    "summary": "【百度热搜】开心果大涨价",
+    "title": "“如果这钱能提出来 我警察不当了”",
+    "summary": "【百度热搜】“如果这钱能提出来 我警察不当了”",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "dcfa7fa",
+    "id": "dffa6fb",
     "cat": "domestic",
     "important": false,
-    "title": "女子点一杯饮品入座 店家称需点两杯",
-    "summary": "【百度热搜】女子点一杯饮品入座 店家称需点两杯",
+    "title": "红果超越豆包",
+    "summary": "【百度热搜】红果超越豆包",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "i051b1e",
+    "id": "i11b800",
     "cat": "international",
     "important": true,
-    "title": "英特尔正面硬刚台积电",
-    "summary": "【百度热搜】英特尔正面硬刚台积电",
+    "title": "杨议演出时骂观众 当地文旅仍在核查",
+    "summary": "【百度热搜】杨议演出时骂观众 当地文旅仍在核查",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
@@ -72,39 +72,39 @@
     "date": "2026-11-04"
   },
   {
-    "id": "i2c3bb7",
+    "id": "ia2724c",
     "cat": "international",
     "important": false,
-    "title": "卫龙老板的35岁表弟接过出海难题",
-    "summary": "【百度热搜】卫龙老板的35岁表弟接过出海难题",
+    "title": "特斯拉、SpaceX股价大跌",
+    "summary": "【百度热搜】特斯拉、SpaceX股价大跌",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "i387b7c",
+    "id": "ibe7cca",
     "cat": "international",
     "important": false,
-    "title": "男子诈骗被抓后因无法考公崩溃",
-    "summary": "【百度热搜】男子诈骗被抓后因无法考公崩溃",
+    "title": "中概股集体走强 百度大涨超4%",
+    "summary": "【百度热搜】中概股集体走强 百度大涨超4%",
     "source": "百度热搜",
+    "date": "2026-11-04"
+  },
+  {
+    "id": "t1f42c1",
+    "cat": "tech",
+    "important": true,
+    "title": "英伟达中国客户据报订购600万颗晶片 未来四个月料仅交付1%",
+    "summary": "【联合早报】英伟达中国客户据报订购600万颗晶片 未来四个月料仅交付1%",
+    "source": "联合早报",
     "date": "2026-11-04"
   },
   {
     "id": "t41f66c",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "人工智能时代，美中关系将迎来重大变革",
     "summary": "【纽约时报中文网】人工智能时代，美中关系将迎来重大变革",
     "source": "纽约时报中文网",
-    "date": "2026-11-04"
-  },
-  {
-    "id": "t4680fc",
-    "cat": "tech",
-    "important": false,
-    "title": "中国加强AI就业替代风险预警 学者：减缓取代和创造间“时间差”冲击",
-    "summary": "【联合早报】中国加强AI就业替代风险预警 学者：减缓取代和创造间“时间差”冲击",
-    "source": "联合早报",
     "date": "2026-11-04"
   },
   {
@@ -135,21 +135,21 @@
     "date": "2026-11-04"
   },
   {
-    "id": "f66b873",
-    "cat": "finance",
-    "important": false,
-    "title": "水滴公司沈鹏出席世界互联网大会乌镇峰会 共话AI普惠保障新方向",
-    "summary": "【东方财富】水滴公司沈鹏出席世界互联网大会乌镇峰会 共话AI普惠保障新方向",
-    "source": "东方财富",
-    "date": "2026-11-04"
-  },
-  {
     "id": "f6bf8b1",
     "cat": "finance",
     "important": false,
     "title": "央行将开展3000亿元买断式逆回购操作",
-    "summary": "【新华网客户端】央行将开展3000亿元买断式逆回购操作",
-    "source": "新华网客户端",
+    "summary": "【人民网财经】央行将开展3000亿元买断式逆回购操作",
+    "source": "人民网财经",
+    "date": "2026-11-04"
+  },
+  {
+    "id": "fd02200",
+    "cat": "finance",
+    "important": false,
+    "title": "以开源之钥 启互联新篇——世界互联网大会乌镇峰会凝聚全球数字治理共识",
+    "summary": "【新华网】以开源之钥 启互联新篇——世界互联网大会乌镇峰会凝聚全球数字治理共识",
+    "source": "新华网",
     "date": "2026-11-04"
   }
 ]
