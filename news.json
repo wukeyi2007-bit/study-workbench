@@ -1,91 +1,91 @@
 [
   {
-    "id": "d2d993d",
+    "id": "d1da094",
     "cat": "domestic",
     "important": true,
-    "title": "中国外交又干了件大事",
-    "summary": "【百度热搜】中国外交又干了件大事",
-    "source": "百度热搜",
-    "date": "2026-11-04"
-  },
-  {
-    "id": "d2ed5df",
-    "cat": "domestic",
-    "important": true,
-    "title": "“China Haul”为何火遍海外",
-    "summary": "【百度热搜】“China Haul”为何火遍海外",
+    "title": "中国智能经济新形态加速崛起",
+    "summary": "【百度热搜】中国智能经济新形态加速崛起",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
     "id": "d4ce1dc",
     "cat": "domestic",
-    "important": false,
+    "important": true,
     "title": "“做强做优做大实体经济”",
     "summary": "【百度热搜】“做强做优做大实体经济”",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "d55527b",
+    "id": "d53f3ee",
     "cat": "domestic",
     "important": false,
-    "title": "A股收盘：科创50指数大涨近10%",
-    "summary": "【百度热搜】A股收盘：科创50指数大涨近10%",
+    "title": "A股大反攻原因找到了",
+    "summary": "【百度热搜】A股大反攻原因找到了",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "db893ff",
+    "id": "d648277",
     "cat": "domestic",
     "important": false,
-    "title": "“未婚妻、病床都是假的 转账是真的”",
-    "summary": "【百度热搜】“未婚妻、病床都是假的 转账是真的”",
+    "title": "上海飞泰国曼谷一客机因风挡破裂返航",
+    "summary": "【百度热搜】上海飞泰国曼谷一客机因风挡破裂返航",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "dd975e7",
+    "id": "dbd028a",
     "cat": "domestic",
     "important": false,
-    "title": "老伯遗失绑有1500万购房款的手机",
-    "summary": "【百度热搜】老伯遗失绑有1500万购房款的手机",
+    "title": "开心果大涨价",
+    "summary": "【百度热搜】开心果大涨价",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "i381726",
+    "id": "dcfa7fa",
+    "cat": "domestic",
+    "important": false,
+    "title": "女子点一杯饮品入座 店家称需点两杯",
+    "summary": "【百度热搜】女子点一杯饮品入座 店家称需点两杯",
+    "source": "百度热搜",
+    "date": "2026-11-04"
+  },
+  {
+    "id": "i051b1e",
     "cat": "international",
     "important": true,
-    "title": "失散20年双胞胎姐妹刷短视频相认",
-    "summary": "【百度热搜】失散20年双胞胎姐妹刷短视频相认",
+    "title": "英特尔正面硬刚台积电",
+    "summary": "【百度热搜】英特尔正面硬刚台积电",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "i519c54",
+    "id": "i131cdf",
     "cat": "international",
     "important": false,
-    "title": "侯明昊回应演唱会没扶摔倒摄像师",
-    "summary": "【百度热搜】侯明昊回应演唱会没扶摔倒摄像师",
+    "title": "51岁阿姨参加健美比赛 体脂率12%",
+    "summary": "【百度热搜】51岁阿姨参加健美比赛 体脂率12%",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "i9272c8",
+    "id": "i2c3bb7",
     "cat": "international",
     "important": false,
-    "title": "截图≠铁证！微信电子证据怎么留存",
-    "summary": "【百度热搜】截图≠铁证！微信电子证据怎么留存",
+    "title": "卫龙老板的35岁表弟接过出海难题",
+    "summary": "【百度热搜】卫龙老板的35岁表弟接过出海难题",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
   {
-    "id": "idf307d",
+    "id": "i387b7c",
     "cat": "international",
     "important": false,
-    "title": "A股大反弹“群里又恢复了欢声笑语”",
-    "summary": "【百度热搜】A股大反弹“群里又恢复了欢声笑语”",
+    "title": "男子诈骗被抓后因无法考公崩溃",
+    "summary": "【百度热搜】男子诈骗被抓后因无法考公崩溃",
     "source": "百度热搜",
     "date": "2026-11-04"
   },
@@ -96,6 +96,15 @@
     "title": "人工智能时代，美中关系将迎来重大变革",
     "summary": "【纽约时报中文网】人工智能时代，美中关系将迎来重大变革",
     "source": "纽约时报中文网",
+    "date": "2026-11-04"
+  },
+  {
+    "id": "t4680fc",
+    "cat": "tech",
+    "important": false,
+    "title": "中国加强AI就业替代风险预警 学者：减缓取代和创造间“时间差”冲击",
+    "summary": "【联合早报】中国加强AI就业替代风险预警 学者：减缓取代和创造间“时间差”冲击",
+    "source": "联合早报",
     "date": "2026-11-04"
   },
   {
@@ -117,15 +126,6 @@
     "date": "2026-11-04"
   },
   {
-    "id": "td73c95",
-    "cat": "tech",
-    "important": false,
-    "title": "币安黑客案：金与正否认朝鲜策划63亿美元黑客攻击",
-    "summary": "【BBC】币安黑客案：金与正否认朝鲜策划63亿美元黑客攻击",
-    "source": "BBC",
-    "date": "2026-11-04"
-  },
-  {
     "id": "f3f346e",
     "cat": "finance",
     "important": true,
@@ -144,12 +144,12 @@
     "date": "2026-11-04"
   },
   {
-    "id": "feb53e0",
+    "id": "f6bf8b1",
     "cat": "finance",
     "important": false,
-    "title": "央行：11月5日将开展3000亿元买断式逆回购操作",
-    "summary": "【东方财富】央行：11月5日将开展3000亿元买断式逆回购操作",
-    "source": "东方财富",
+    "title": "央行将开展3000亿元买断式逆回购操作",
+    "summary": "【新华网客户端】央行将开展3000亿元买断式逆回购操作",
+    "source": "新华网客户端",
     "date": "2026-11-04"
   }
 ]
