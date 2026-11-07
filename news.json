@@ -1,64 +1,73 @@
 [
   {
-    "id": "d14e9ea",
+    "id": "d13afb9",
     "cat": "domestic",
     "important": true,
-    "title": "芒果涨疯了",
-    "summary": "【百度热搜】芒果涨疯了",
+    "title": "8省份有大到暴雪 局地特大暴雪",
+    "summary": "【百度热搜】8省份有大到暴雪 局地特大暴雪",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "d3552a1",
+    "id": "d1ba113",
     "cat": "domestic",
     "important": true,
-    "title": "哈工大硕士出摊卖气球走红",
-    "summary": "【百度热搜】哈工大硕士出摊卖气球走红",
+    "title": "老歌正在霸榜年轻人的歌单",
+    "summary": "【百度热搜】老歌正在霸榜年轻人的歌单",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "d3ad104",
+    "id": "d395999",
     "cat": "domestic",
     "important": false,
-    "title": "华北北部降雪多到“发黑”",
-    "summary": "【百度热搜】华北北部降雪多到“发黑”",
+    "title": "总书记投下庄严一票",
+    "summary": "【百度热搜】总书记投下庄严一票",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "d5c4627",
+    "id": "d7085da",
     "cat": "domestic",
     "important": false,
-    "title": "从两场展会看开放的中国",
-    "summary": "【百度热搜】从两场展会看开放的中国",
+    "title": "进博会物流生态专区上新",
+    "summary": "【百度热搜】进博会物流生态专区上新",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "d9eff8e",
+    "id": "dfb2173",
     "cat": "domestic",
     "important": false,
-    "title": "当进博会遇上APEC“中国年”",
-    "summary": "【百度热搜】当进博会遇上APEC“中国年”",
+    "title": "多地官宣调整中小学上学时间",
+    "summary": "【百度热搜】多地官宣调整中小学上学时间",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "dbb4c05",
+    "id": "dfb8569",
     "cat": "domestic",
     "important": false,
-    "title": "“AI陈建斌”越来越逼真 陈建斌回应",
-    "summary": "【百度热搜】“AI陈建斌”越来越逼真 陈建斌回应",
+    "title": "北京一火锅店立冬排队超1000桌",
+    "summary": "【百度热搜】北京一火锅店立冬排队超1000桌",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
   {
-    "id": "i02fad1",
+    "id": "i18d00c",
     "cat": "international",
     "important": true,
-    "title": "妹妹出嫁前一夜哥哥连夜铺平道路",
-    "summary": "【百度热搜】妹妹出嫁前一夜哥哥连夜铺平道路",
+    "title": "原来赵丽颖早起上班也会有班味",
+    "summary": "【百度热搜】原来赵丽颖早起上班也会有班味",
+    "source": "百度热搜",
+    "date": "2026-11-07"
+  },
+  {
+    "id": "i565460",
+    "cat": "international",
+    "important": false,
+    "title": "闫妮 干正事的时候一点都不微醺",
+    "summary": "【百度热搜】闫妮 干正事的时候一点都不微醺",
     "source": "百度热搜",
     "date": "2026-11-07"
   },
@@ -72,36 +81,18 @@
     "date": "2026-11-07"
   },
   {
-    "id": "ia0b0aa",
+    "id": "id5b12d",
     "cat": "international",
     "important": false,
-    "title": "男子被小奶狗抓伤确诊狂犬病",
-    "summary": "【百度热搜】男子被小奶狗抓伤确诊狂犬病",
+    "title": "医生口中的“清淡饮食”到底指什么",
+    "summary": "【百度热搜】医生口中的“清淡饮食”到底指什么",
     "source": "百度热搜",
-    "date": "2026-11-07"
-  },
-  {
-    "id": "ic50004",
-    "cat": "international",
-    "important": false,
-    "title": "抢烤鸡的那批人开始在山姆抢始祖鸟",
-    "summary": "【百度热搜】抢烤鸡的那批人开始在山姆抢始祖鸟",
-    "source": "百度热搜",
-    "date": "2026-11-07"
-  },
-  {
-    "id": "t134358",
-    "cat": "tech",
-    "important": true,
-    "title": "中国“不买”英伟达芯片，美国人急什么",
-    "summary": "【新浪新闻_手机新浪网】中国“不买”英伟达芯片，美国人急什么",
-    "source": "新浪新闻_手机新浪网",
     "date": "2026-11-07"
   },
   {
     "id": "t13b730",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "众议院领导人要求黄仁勋出席简报会，说明与中国高管往来",
     "summary": "【纽约时报中文网】众议院领导人要求黄仁勋出席简报会，说明与中国高管往来",
     "source": "纽约时报中文网",
@@ -117,6 +108,15 @@
     "date": "2026-11-07"
   },
   {
+    "id": "t429e4e",
+    "cat": "tech",
+    "important": false,
+    "title": "美国AI数据中心或将面临清算",
+    "summary": "【观察者网】美国AI数据中心或将面临清算",
+    "source": "观察者网",
+    "date": "2026-11-07"
+  },
+  {
     "id": "t8efad0",
     "cat": "tech",
     "important": false,
@@ -126,30 +126,30 @@
     "date": "2026-11-07"
   },
   {
-    "id": "f127c4d",
+    "id": "f0766f7",
     "cat": "finance",
     "important": true,
-    "title": "商业航天、科考码头、自贸港封关成果集中亮相进博会",
-    "summary": "【中国新闻网】商业航天、科考码头、自贸港封关成果集中亮相进博会",
-    "source": "中国新闻网",
+    "title": "第九届进博会丨进博手记：中东大厨“寻味”进博",
+    "summary": "【新华网客户端】第九届进博会丨进博手记：中东大厨“寻味”进博",
+    "source": "新华网客户端",
     "date": "2026-11-07"
   },
   {
-    "id": "f333b4a",
+    "id": "f453389",
     "cat": "finance",
     "important": false,
-    "title": "从技术创新到临床能力 强生医疗科技进博共话专业教育",
-    "summary": "【新华网】从技术创新到临床能力 强生医疗科技进博共话专业教育",
+    "title": "《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
+    "summary": "【新华网】《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
     "source": "新华网",
     "date": "2026-11-07"
   },
   {
-    "id": "f7508c1",
+    "id": "feb71b8",
     "cat": "finance",
     "important": false,
-    "title": "股票回购增持再贷款筑牢市场稳定基石",
-    "summary": "【http://www.jingjiribao.cn/】股票回购增持再贷款筑牢市场稳定基石",
-    "source": "http://www.jingjiribao.cn/",
+    "title": "进博看点丨葛兰素史克多款呼吸领域“黑科技”亮相",
+    "summary": "【新京报】进博看点丨葛兰素史克多款呼吸领域“黑科技”亮相",
+    "source": "新京报",
     "date": "2026-11-07"
   }
 ]
