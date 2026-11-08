@@ -1,91 +1,91 @@
 [
   {
-    "id": "d1335d2",
-    "cat": "domestic",
-    "important": true,
-    "title": "开心果的价格让人不开心了",
-    "summary": "【百度热搜】开心果的价格让人不开心了",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "d1509e1",
-    "cat": "domestic",
-    "important": true,
-    "title": "山姆卖加拿大鹅 有同款便宜5000元",
-    "summary": "【百度热搜】山姆卖加拿大鹅 有同款便宜5000元",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
     "id": "d25c553",
     "cat": "domestic",
-    "important": false,
+    "important": true,
     "title": "月薪过万 社保缴费基数却是4000元",
     "summary": "【百度热搜】月薪过万 社保缴费基数却是4000元",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "d8ed9da",
+    "id": "d25f6f2",
     "cat": "domestic",
-    "important": false,
-    "title": "手机里的隐私可能正在被“直播”",
-    "summary": "【百度热搜】手机里的隐私可能正在被“直播”",
+    "important": true,
+    "title": "“信赖” 二字 重千钧",
+    "summary": "【百度热搜】“信赖” 二字 重千钧",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "d972fba",
+    "id": "d82fa9c",
     "cat": "domestic",
     "important": false,
-    "title": "总书记投下庄严一票",
-    "summary": "【百度热搜】总书记投下庄严一票",
+    "title": "大麦哥涨粉超700万 一条视频报价12万",
+    "summary": "【百度热搜】大麦哥涨粉超700万 一条视频报价12万",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "dd83541",
+    "id": "d8d9d49",
     "cat": "domestic",
     "important": false,
-    "title": "消费“新故事”背后有一共同底色",
-    "summary": "【百度热搜】消费“新故事”背后有一共同底色",
+    "title": "新老朋友集中亮相进博会",
+    "summary": "【百度热搜】新老朋友集中亮相进博会",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i1d54d8",
+    "id": "da35b14",
+    "cat": "domestic",
+    "important": false,
+    "title": "吴磊求拥抱被拒 大姐：不知道是明星",
+    "summary": "【百度热搜】吴磊求拥抱被拒 大姐：不知道是明星",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "df9785e",
+    "cat": "domestic",
+    "important": false,
+    "title": "多地延迟到校取消早读 家长发声",
+    "summary": "【百度热搜】多地延迟到校取消早读 家长发声",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "i432bc3",
     "cat": "international",
     "important": true,
-    "title": "中国顶级豪车亮相 镶137颗宝石",
-    "summary": "【百度热搜】中国顶级豪车亮相 镶137颗宝石",
+    "title": "张颂文余文乐顶级飙戏",
+    "summary": "【百度热搜】张颂文余文乐顶级飙戏",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i562502",
+    "id": "i945530",
     "cat": "international",
     "important": false,
-    "title": "“战争之王”内塔尼亚胡被抛弃了",
-    "summary": "【百度热搜】“战争之王”内塔尼亚胡被抛弃了",
+    "title": "40岁男子用36分钟聊爱情爆火",
+    "summary": "【百度热搜】40岁男子用36分钟聊爱情爆火",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "ia805bb",
+    "id": "ic1e33b",
     "cat": "international",
     "important": false,
-    "title": "12分10篮板！杨瀚森NBA生涯首次两双",
-    "summary": "【百度热搜】12分10篮板！杨瀚森NBA生涯首次两双",
+    "title": "山东泰山半场2比1成都蓉城",
+    "summary": "【百度热搜】山东泰山半场2比1成都蓉城",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "iec7642",
+    "id": "ie8580e",
     "cat": "international",
     "important": false,
-    "title": "王一博2天获2次亚军",
-    "summary": "【百度热搜】王一博2天获2次亚军",
+    "title": "多部队举行集体婚礼",
+    "summary": "【百度热搜】多部队举行集体婚礼",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
@@ -99,12 +99,12 @@
     "date": "2026-11-08"
   },
   {
-    "id": "t2f0fc8",
+    "id": "t169e4d",
     "cat": "tech",
     "important": false,
-    "title": "反AI浪潮让黄仁勋祸不单行？股票暴跌 被国会传唤",
-    "summary": "【DW.com】反AI浪潮让黄仁勋祸不单行？股票暴跌 被国会传唤",
-    "source": "DW.com",
+    "title": "张艺谋：AI短视频倒给钱，谁还进电影院？压力很大，不知道怎么办",
+    "summary": "【观察者网】张艺谋：AI短视频倒给钱，谁还进电影院？压力很大，不知道怎么办",
+    "source": "观察者网",
     "date": "2026-11-08"
   },
   {
@@ -135,21 +135,21 @@
     "date": "2026-11-08"
   },
   {
+    "id": "f4fb199",
+    "cat": "finance",
+    "important": false,
+    "title": "进博观察｜这一次，跨国制药巨头把中国研发摆上自己展台",
+    "summary": "【观察者网】进博观察｜这一次，跨国制药巨头把中国研发摆上自己展台",
+    "source": "观察者网",
+    "date": "2026-11-08"
+  },
+  {
     "id": "fba9982",
     "cat": "finance",
     "important": false,
     "title": "安徽省交易团参加第九届进博会",
     "summary": "【央广网】安徽省交易团参加第九届进博会",
     "source": "央广网",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "fedce23",
-    "cat": "finance",
-    "important": false,
-    "title": "财经聚焦·第九届进博会丨从“进博好物”看消费新趋势",
-    "summary": "【搜狐网】财经聚焦·第九届进博会丨从“进博好物”看消费新趋势",
-    "source": "搜狐网",
     "date": "2026-11-08"
   }
 ]
