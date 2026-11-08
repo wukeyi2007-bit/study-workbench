@@ -1,37 +1,46 @@
 [
   {
-    "id": "d0a4c8c",
+    "id": "d1335d2",
     "cat": "domestic",
     "important": true,
-    "title": "落马干部被留置当天仍在收礼",
-    "summary": "【百度热搜】落马干部被留置当天仍在收礼",
+    "title": "开心果的价格让人不开心了",
+    "summary": "【百度热搜】开心果的价格让人不开心了",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "d1509e1",
+    "cat": "domestic",
+    "important": true,
+    "title": "山姆卖加拿大鹅 有同款便宜5000元",
+    "summary": "【百度热搜】山姆卖加拿大鹅 有同款便宜5000元",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "d25c553",
+    "cat": "domestic",
+    "important": false,
+    "title": "月薪过万 社保缴费基数却是4000元",
+    "summary": "【百度热搜】月薪过万 社保缴费基数却是4000元",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "d8ed9da",
+    "cat": "domestic",
+    "important": false,
+    "title": "手机里的隐私可能正在被“直播”",
+    "summary": "【百度热搜】手机里的隐私可能正在被“直播”",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
     "id": "d972fba",
     "cat": "domestic",
-    "important": true,
+    "important": false,
     "title": "总书记投下庄严一票",
     "summary": "【百度热搜】总书记投下庄严一票",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "da4e308",
-    "cat": "domestic",
-    "important": false,
-    "title": "以色列总统没有选择内塔尼亚胡",
-    "summary": "【百度热搜】以色列总统没有选择内塔尼亚胡",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "da62d14",
-    "cat": "domestic",
-    "important": false,
-    "title": "河北秦皇岛暴雪 积雪达23厘米",
-    "summary": "【百度热搜】河北秦皇岛暴雪 积雪达23厘米",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
@@ -45,47 +54,38 @@
     "date": "2026-11-08"
   },
   {
-    "id": "de7a439",
-    "cat": "domestic",
-    "important": false,
-    "title": "暴雨暴雪大降温来了",
-    "summary": "【百度热搜】暴雨暴雪大降温来了",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "i040b80",
+    "id": "i1d54d8",
     "cat": "international",
     "important": true,
-    "title": "JiaQi失误",
-    "summary": "【百度热搜】JiaQi失误",
+    "title": "中国顶级豪车亮相 镶137颗宝石",
+    "summary": "【百度热搜】中国顶级豪车亮相 镶137颗宝石",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i0ab4de",
+    "id": "i562502",
     "cat": "international",
     "important": false,
-    "title": "赵心童吴宜泽包揽斯诺克排名前二",
-    "summary": "【百度热搜】赵心童吴宜泽包揽斯诺克排名前二",
+    "title": "“战争之王”内塔尼亚胡被抛弃了",
+    "summary": "【百度热搜】“战争之王”内塔尼亚胡被抛弃了",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i22b854",
+    "id": "ia805bb",
     "cat": "international",
     "important": false,
-    "title": "被问到AI对电影影响 张艺谋难掩担忧",
-    "summary": "【百度热搜】被问到AI对电影影响 张艺谋难掩担忧",
+    "title": "12分10篮板！杨瀚森NBA生涯首次两双",
+    "summary": "【百度热搜】12分10篮板！杨瀚森NBA生涯首次两双",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i4a5361",
+    "id": "iec7642",
     "cat": "international",
     "important": false,
-    "title": "iG0比3不敌GEN 无缘S16决赛",
-    "summary": "【百度热搜】iG0比3不敌GEN 无缘S16决赛",
+    "title": "王一博2天获2次亚军",
+    "summary": "【百度热搜】王一博2天获2次亚军",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
@@ -99,21 +99,12 @@
     "date": "2026-11-08"
   },
   {
-    "id": "t47c55c",
+    "id": "t2f0fc8",
     "cat": "tech",
     "important": false,
-    "title": "iPhone 20外观冲上热搜第一：首次配备四微曲屏 静音键谢幕",
-    "summary": "【驱动之家】iPhone 20外观冲上热搜第一：首次配备四微曲屏 静音键谢幕",
-    "source": "驱动之家",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "t8269b5",
-    "cat": "tech",
-    "important": false,
-    "title": "马斯克：中国太棒了，我爱中国",
-    "summary": "【新浪新闻_手机新浪网】马斯克：中国太棒了，我爱中国",
-    "source": "新浪新闻_手机新浪网",
+    "title": "反AI浪潮让黄仁勋祸不单行？股票暴跌 被国会传唤",
+    "summary": "【DW.com】反AI浪潮让黄仁勋祸不单行？股票暴跌 被国会传唤",
+    "source": "DW.com",
     "date": "2026-11-08"
   },
   {
@@ -126,30 +117,39 @@
     "date": "2026-11-08"
   },
   {
+    "id": "ta47b8c",
+    "cat": "tech",
+    "important": false,
+    "title": "华强北显卡价格一天两变！RTX 5080从近2万元跌至1.6万元",
+    "summary": "【驱动之家】华强北显卡价格一天两变！RTX 5080从近2万元跌至1.6万元",
+    "source": "驱动之家",
+    "date": "2026-11-08"
+  },
+  {
     "id": "f24f460",
     "cat": "finance",
     "important": true,
     "title": "《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
-    "summary": "【新华网】《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
-    "source": "新华网",
+    "summary": "【求是】《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
+    "source": "求是",
     "date": "2026-11-08"
   },
   {
-    "id": "f715c93",
+    "id": "fba9982",
     "cat": "finance",
     "important": false,
-    "title": "直击进博会：外资与中国市场深度合作，多家企业“续约”第十届",
-    "summary": "【新京报】直击进博会：外资与中国市场深度合作，多家企业“续约”第十届",
-    "source": "新京报",
+    "title": "安徽省交易团参加第九届进博会",
+    "summary": "【央广网】安徽省交易团参加第九届进博会",
+    "source": "央广网",
     "date": "2026-11-08"
   },
   {
-    "id": "fbb181b",
+    "id": "fedce23",
     "cat": "finance",
     "important": false,
-    "title": "进博观察｜首发首展扎堆！西门子医疗、GE医疗、美敦力同台竞技，全球医疗器械巨头加码中国市场",
-    "summary": "【东方财富】进博观察｜首发首展扎堆！西门子医疗、GE医疗、美敦力同台竞技，全球医疗器械巨头加码中国市场",
-    "source": "东方财富",
+    "title": "财经聚焦·第九届进博会丨从“进博好物”看消费新趋势",
+    "summary": "【搜狐网】财经聚焦·第九届进博会丨从“进博好物”看消费新趋势",
+    "source": "搜狐网",
     "date": "2026-11-08"
   }
 ]
