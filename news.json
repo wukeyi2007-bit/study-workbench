@@ -9,20 +9,11 @@
     "date": "2026-11-08"
   },
   {
-    "id": "d25f6f2",
+    "id": "d3db68c",
     "cat": "domestic",
     "important": true,
-    "title": "“信赖” 二字 重千钧",
-    "summary": "【百度热搜】“信赖” 二字 重千钧",
-    "source": "百度热搜",
-    "date": "2026-11-08"
-  },
-  {
-    "id": "d39d480",
-    "cat": "domestic",
-    "important": false,
-    "title": "什么是冷门绝学",
-    "summary": "【百度热搜】什么是冷门绝学",
+    "title": "油价一周暴跌超16%",
+    "summary": "【百度热搜】油价一周暴跌超16%",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
@@ -36,47 +27,56 @@
     "date": "2026-11-08"
   },
   {
-    "id": "d4e3935",
+    "id": "d79c802",
     "cat": "domestic",
     "important": false,
-    "title": "胖东来回应“洗发水产地造假”",
-    "summary": "【百度热搜】胖东来回应“洗发水产地造假”",
+    "title": "感悟五年规划的中国智慧",
+    "summary": "【百度热搜】感悟五年规划的中国智慧",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "da0399e",
+    "id": "d7e0bf1",
     "cat": "domestic",
     "important": false,
-    "title": "“这是我来成都之后最伤心的一天”",
-    "summary": "【百度热搜】“这是我来成都之后最伤心的一天”",
+    "title": "立冬后建议改一下睡觉时间",
+    "summary": "【百度热搜】立冬后建议改一下睡觉时间",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i56cc12",
+    "id": "db108d1",
+    "cat": "domestic",
+    "important": false,
+    "title": "张艺谋：电影不再是精英艺术",
+    "summary": "【百度热搜】张艺谋：电影不再是精英艺术",
+    "source": "百度热搜",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "i97a786",
     "cat": "international",
     "important": true,
-    "title": "学生延迟到校 为何有家长不买账",
-    "summary": "【百度热搜】学生延迟到校 为何有家长不买账",
+    "title": "蓉城主帅：我非常失望非常绝望",
+    "summary": "【百度热搜】蓉城主帅：我非常失望非常绝望",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i6305d2",
+    "id": "ia274cd",
     "cat": "international",
     "important": false,
-    "title": "曝金鸡奖获奖名单",
-    "summary": "【百度热搜】曝金鸡奖获奖名单",
+    "title": "陈妍希 还是当年那个沈佳宜",
+    "summary": "【百度热搜】陈妍希 还是当年那个沈佳宜",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
   {
-    "id": "i777cf6",
+    "id": "ic2cc2e",
     "cat": "international",
     "important": false,
-    "title": "成都蓉城致歉信：深感技不如人",
-    "summary": "【百度热搜】成都蓉城致歉信：深感技不如人",
+    "title": "72岁赵雅芝原相机状态",
+    "summary": "【百度热搜】72岁赵雅芝原相机状态",
     "source": "百度热搜",
     "date": "2026-11-08"
   },
@@ -99,15 +99,6 @@
     "date": "2026-11-08"
   },
   {
-    "id": "t169e4d",
-    "cat": "tech",
-    "important": false,
-    "title": "张艺谋：AI短视频倒给钱，谁还进电影院？压力很大，不知道怎么办",
-    "summary": "【观察者网】张艺谋：AI短视频倒给钱，谁还进电影院？压力很大，不知道怎么办",
-    "source": "观察者网",
-    "date": "2026-11-08"
-  },
-  {
     "id": "t2f0fc8",
     "cat": "tech",
     "important": false,
@@ -117,12 +108,21 @@
     "date": "2026-11-08"
   },
   {
-    "id": "t828846",
+    "id": "t4f0d68",
     "cat": "tech",
     "important": false,
-    "title": "美国AI数据中心或将面临清算",
-    "summary": "【观察者网】美国AI数据中心或将面临清算",
-    "source": "观察者网",
+    "title": "九年来首次！美股科技股迈入“比大盘便宜”时代",
+    "summary": "【财联社】九年来首次！美股科技股迈入“比大盘便宜”时代",
+    "source": "财联社",
+    "date": "2026-11-08"
+  },
+  {
+    "id": "t8269b5",
+    "cat": "tech",
+    "important": false,
+    "title": "马斯克：中国太棒了，我爱中国",
+    "summary": "【新浪新闻_手机新浪网】马斯克：中国太棒了，我爱中国",
+    "source": "新浪新闻_手机新浪网",
     "date": "2026-11-08"
   },
   {
@@ -135,21 +135,21 @@
     "date": "2026-11-08"
   },
   {
-    "id": "f24f460",
+    "id": "f1d42df",
     "cat": "finance",
     "important": false,
-    "title": "《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
-    "summary": "【求是】《“人工智能+媒体”全球发展年度蓝皮书（2026）》智库报告发布",
-    "source": "求是",
+    "title": "进博会全勤生直观复星深耕中国市场",
+    "summary": "【http://www.jingjiribao.cn/】进博会全勤生直观复星深耕中国市场",
+    "source": "http://www.jingjiribao.cn/",
     "date": "2026-11-08"
   },
   {
-    "id": "f4fb199",
+    "id": "fb34334",
     "cat": "finance",
     "important": false,
-    "title": "进博观察｜这一次，跨国制药巨头把中国研发摆上自己展台",
-    "summary": "【观察者网】进博观察｜这一次，跨国制药巨头把中国研发摆上自己展台",
-    "source": "观察者网",
+    "title": "进博会观察 | 宝洁、欧莱雅将海外畅销品牌带入中国",
+    "summary": "【搜狐网】进博会观察 | 宝洁、欧莱雅将海外畅销品牌带入中国",
+    "source": "搜狐网",
     "date": "2026-11-08"
   }
 ]
