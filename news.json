@@ -1,46 +1,37 @@
 [
   {
-    "id": "d1a20d1",
+    "id": "d0303d4",
     "cat": "domestic",
     "important": true,
-    "title": "“母女点6元豆芽”事件被曝是剧本",
-    "summary": "【百度热搜】“母女点6元豆芽”事件被曝是剧本",
+    "title": "韩红基金会回应张雪改口",
+    "summary": "【百度热搜】韩红基金会回应张雪改口",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "d3c0b64",
+    "id": "d19346c",
     "cat": "domestic",
     "important": true,
-    "title": "油价今晚有望大幅下降",
-    "summary": "【百度热搜】油价今晚有望大幅下降",
+    "title": "腾讯裁员50%？知情人士回应",
+    "summary": "【百度热搜】腾讯裁员50%？知情人士回应",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "d6072d8",
+    "id": "d5708a6",
     "cat": "domestic",
     "important": false,
-    "title": "深圳准备好了！APEC氛围拉满",
-    "summary": "【百度热搜】深圳准备好了！APEC氛围拉满",
+    "title": "今晚调油价 加满一箱油将少花25.5元",
+    "summary": "【百度热搜】今晚调油价 加满一箱油将少花25.5元",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "d9b9cef",
+    "id": "dc734d9",
     "cat": "domestic",
     "important": false,
-    "title": "家长圈热议“小学生只上半天学”",
-    "summary": "【百度热搜】家长圈热议“小学生只上半天学”",
-    "source": "百度热搜",
-    "date": "2026-11-12"
-  },
-  {
-    "id": "dbd7dee",
-    "cat": "domestic",
-    "important": false,
-    "title": "决不能让一个梗毁掉一个孩子",
-    "summary": "【百度热搜】决不能让一个梗毁掉一个孩子",
+    "title": "德芙广告宣扬错误婚恋观 被罚80万",
+    "summary": "【百度热搜】德芙广告宣扬错误婚恋观 被罚80万",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
@@ -54,29 +45,38 @@
     "date": "2026-11-12"
   },
   {
-    "id": "i0c693d",
+    "id": "df4d662",
+    "cat": "domestic",
+    "important": false,
+    "title": "中国人餐桌上的APEC含量有多高",
+    "summary": "【百度热搜】中国人餐桌上的APEC含量有多高",
+    "source": "百度热搜",
+    "date": "2026-11-12"
+  },
+  {
+    "id": "i048743",
     "cat": "international",
     "important": true,
-    "title": "C罗宣布个人首部剧集开机",
-    "summary": "【百度热搜】C罗宣布个人首部剧集开机",
+    "title": "韩国外长赵显将访华",
+    "summary": "【百度热搜】韩国外长赵显将访华",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "i23b20e",
+    "id": "i98828f",
     "cat": "international",
     "important": false,
-    "title": "山姆回应充绒量300克羽绒服断货",
-    "summary": "【百度热搜】山姆回应充绒量300克羽绒服断货",
+    "title": "多位明星遭AI短剧换脸后维权",
+    "summary": "【百度热搜】多位明星遭AI短剧换脸后维权",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "i8dc1e9",
+    "id": "id12881",
     "cat": "international",
     "important": false,
-    "title": "被砍断手指留学生遭朋友卷走数十万",
-    "summary": "【百度热搜】被砍断手指留学生遭朋友卷走数十万",
+    "title": "中美就300亿对等降税保持密切沟通",
+    "summary": "【百度热搜】中美就300亿对等降税保持密切沟通",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
@@ -99,12 +99,21 @@
     "date": "2026-11-12"
   },
   {
-    "id": "tc19251",
+    "id": "t3e2bcc",
     "cat": "tech",
     "important": false,
-    "title": "中国大学被美国列入黑名单 仍购买英伟达h200芯片",
-    "summary": "【RFI】中国大学被美国列入黑名单 仍购买英伟达h200芯片",
-    "source": "RFI",
+    "title": "英伟达董事会召开会议，讨论黄仁勋去留",
+    "summary": "【纽约时报中文网】英伟达董事会召开会议，讨论黄仁勋去留",
+    "source": "纽约时报中文网",
+    "date": "2026-11-12"
+  },
+  {
+    "id": "tcc5635",
+    "cat": "tech",
+    "important": false,
+    "title": "特朗普政府官员就英伟达事件发生冲突",
+    "summary": "【纽约时报中文网】特朗普政府官员就英伟达事件发生冲突",
+    "source": "纽约时报中文网",
     "date": "2026-11-12"
   },
   {
@@ -117,39 +126,30 @@
     "date": "2026-11-12"
   },
   {
-    "id": "te064ec",
-    "cat": "tech",
-    "important": false,
-    "title": "英伟达准备罢免首席执行官黄仁勋",
-    "summary": "【华尔街日报中文网】英伟达准备罢免首席执行官黄仁勋",
-    "source": "华尔街日报中文网",
-    "date": "2026-11-12"
-  },
-  {
-    "id": "f06e5c7",
+    "id": "f304201",
     "cat": "finance",
     "important": true,
-    "title": "英伟达股价盘后跌幅扩大至9%",
-    "summary": "【东方财富】英伟达股价盘后跌幅扩大至9%",
-    "source": "东方财富",
-    "date": "2026-11-12"
-  },
-  {
-    "id": "fb30cdb",
-    "cat": "finance",
-    "important": false,
-    "title": "意向成交额达 84.9 亿美元 第九届进博会浙江 “购物车” 满载而归",
-    "summary": "【杭州网】意向成交额达 84.9 亿美元 第九届进博会浙江 “购物车” 满载而归",
-    "source": "杭州网",
-    "date": "2026-11-12"
-  },
-  {
-    "id": "ff41658",
-    "cat": "finance",
-    "important": false,
-    "title": "黄仁勋再被曝婚外情：知情人称其与英伟达一名女高管有染",
-    "summary": "【纽约时报中文网】黄仁勋再被曝婚外情：知情人称其与英伟达一名女高管有染",
+    "title": "黄仁勋婚外情丑闻将其妻子置于聚光灯下",
+    "summary": "【纽约时报中文网】黄仁勋婚外情丑闻将其妻子置于聚光灯下",
     "source": "纽约时报中文网",
+    "date": "2026-11-12"
+  },
+  {
+    "id": "f4a0abb",
+    "cat": "finance",
+    "important": false,
+    "title": "黄仁勋疑涉另一宗婚外情，Nvidia拟罢免其职务",
+    "summary": "【BBC】黄仁勋疑涉另一宗婚外情，Nvidia拟罢免其职务",
+    "source": "BBC",
+    "date": "2026-11-12"
+  },
+  {
+    "id": "f5be577",
+    "cat": "finance",
+    "important": false,
+    "title": "恒生科技指数跌超2%，恒生指数跌幅逾1%",
+    "summary": "【紫荆网】恒生科技指数跌超2%，恒生指数跌幅逾1%",
+    "source": "紫荆网",
     "date": "2026-11-12"
   }
 ]
