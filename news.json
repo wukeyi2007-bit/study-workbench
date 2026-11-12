@@ -1,28 +1,19 @@
 [
   {
-    "id": "d0303d4",
+    "id": "d0b496b",
     "cat": "domestic",
     "important": true,
-    "title": "韩红基金会回应张雪改口",
-    "summary": "【百度热搜】韩红基金会回应张雪改口",
+    "title": "一字肩羽绒服 冻肩膀自由",
+    "summary": "【百度热搜】一字肩羽绒服 冻肩膀自由",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "d19346c",
+    "id": "d73a981",
     "cat": "domestic",
     "important": true,
-    "title": "腾讯裁员50%？知情人士回应",
-    "summary": "【百度热搜】腾讯裁员50%？知情人士回应",
-    "source": "百度热搜",
-    "date": "2026-11-12"
-  },
-  {
-    "id": "d5708a6",
-    "cat": "domestic",
-    "important": false,
-    "title": "今晚调油价 加满一箱油将少花25.5元",
-    "summary": "【百度热搜】今晚调油价 加满一箱油将少花25.5元",
+    "title": "结婚“随礼”14000元 民警：不同意",
+    "summary": "【百度热搜】结婚“随礼”14000元 民警：不同意",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
@@ -45,6 +36,15 @@
     "date": "2026-11-12"
   },
   {
+    "id": "de63678",
+    "cat": "domestic",
+    "important": false,
+    "title": "“保姆纵火案”林生斌发声明：已报警",
+    "summary": "【百度热搜】“保姆纵火案”林生斌发声明：已报警",
+    "source": "百度热搜",
+    "date": "2026-11-12"
+  },
+  {
     "id": "df4d662",
     "cat": "domestic",
     "important": false,
@@ -54,29 +54,29 @@
     "date": "2026-11-12"
   },
   {
-    "id": "i048743",
+    "id": "i2e2656",
     "cat": "international",
     "important": true,
-    "title": "韩国外长赵显将访华",
-    "summary": "【百度热搜】韩国外长赵显将访华",
+    "title": "腾讯裁员50%？知情人士回应",
+    "summary": "【百度热搜】腾讯裁员50%？知情人士回应",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "i98828f",
+    "id": "i94d1b3",
     "cat": "international",
     "important": false,
-    "title": "多位明星遭AI短剧换脸后维权",
-    "summary": "【百度热搜】多位明星遭AI短剧换脸后维权",
+    "title": "“甲醛白菜”等18起案件被挂牌督办",
+    "summary": "【百度热搜】“甲醛白菜”等18起案件被挂牌督办",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
   {
-    "id": "id12881",
+    "id": "ib48131",
     "cat": "international",
     "important": false,
-    "title": "中美就300亿对等降税保持密切沟通",
-    "summary": "【百度热搜】中美就300亿对等降税保持密切沟通",
+    "title": "木匠38年复刻应县木塔 家里点200盏灯",
+    "summary": "【百度热搜】木匠38年复刻应县木塔 家里点200盏灯",
     "source": "百度热搜",
     "date": "2026-11-12"
   },
@@ -135,21 +135,21 @@
     "date": "2026-11-12"
   },
   {
-    "id": "f4a0abb",
+    "id": "fee9c4d",
     "cat": "finance",
     "important": false,
-    "title": "黄仁勋疑涉另一宗婚外情，Nvidia拟罢免其职务",
-    "summary": "【BBC】黄仁勋疑涉另一宗婚外情，Nvidia拟罢免其职务",
-    "source": "BBC",
+    "title": "创业板冲高回落跌超2%，算力硬件龙头午后下跌，GPU活跃、寒武纪一度重返千元，恒科指跌超1%，阿里大跌5%",
+    "summary": "【华尔街见闻】创业板冲高回落跌超2%，算力硬件龙头午后下跌，GPU活跃、寒武纪一度重返千元，恒科指跌超1%，阿里大跌5%",
+    "source": "华尔街见闻",
     "date": "2026-11-12"
   },
   {
-    "id": "f5be577",
+    "id": "ff2964a",
     "cat": "finance",
     "important": false,
-    "title": "恒生科技指数跌超2%，恒生指数跌幅逾1%",
-    "summary": "【紫荆网】恒生科技指数跌超2%，恒生指数跌幅逾1%",
-    "source": "紫荆网",
+    "title": "英伟达新加坡收入“消失”，加深围绕Megaspeed的疑云",
+    "summary": "【华尔街日报中文网】英伟达新加坡收入“消失”，加深围绕Megaspeed的疑云",
+    "source": "华尔街日报中文网",
     "date": "2026-11-12"
   }
 ]
