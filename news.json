@@ -1,10 +1,10 @@
 [
   {
-    "id": "d0642e2",
+    "id": "d20b6ac",
     "cat": "domestic",
     "important": true,
-    "title": "艾薇儿官宣生女",
-    "summary": "【百度热搜】艾薇儿官宣生女",
+    "title": "原价129万一支的天价药进医保了",
+    "summary": "【百度热搜】原价129万一支的天价药进医保了",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
@@ -18,6 +18,15 @@
     "date": "2026-11-14"
   },
   {
+    "id": "d45d280",
+    "cat": "domestic",
+    "important": false,
+    "title": "山姆羽绒服爆火 业内：几乎就是成本价",
+    "summary": "【百度热搜】山姆羽绒服爆火 业内：几乎就是成本价",
+    "source": "百度热搜",
+    "date": "2026-11-14"
+  },
+  {
     "id": "d574844",
     "cat": "domestic",
     "important": false,
@@ -27,65 +36,56 @@
     "date": "2026-11-14"
   },
   {
-    "id": "d83d03f",
+    "id": "d88b4fe",
     "cat": "domestic",
     "important": false,
-    "title": "特惠车、一口价 逼“疯”网约车司机",
-    "summary": "【百度热搜】特惠车、一口价 逼“疯”网约车司机",
+    "title": "白宫：中美俄领导人计划APEC期间会晤",
+    "summary": "【百度热搜】白宫：中美俄领导人计划APEC期间会晤",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "dbc30ec",
+    "id": "de75e20",
     "cat": "domestic",
     "important": false,
-    "title": "全美航班停飞令已解除",
-    "summary": "【百度热搜】全美航班停飞令已解除",
+    "title": "大暴雪特大暴雪 断崖式降温来了",
+    "summary": "【百度热搜】大暴雪特大暴雪 断崖式降温来了",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "dbe7a29",
-    "cat": "domestic",
-    "important": false,
-    "title": "遇到这4种电话 别接别回别点",
-    "summary": "【百度热搜】遇到这4种电话 别接别回别点",
-    "source": "百度热搜",
-    "date": "2026-11-14"
-  },
-  {
-    "id": "i04fcb4",
+    "id": "i1e1bb3",
     "cat": "international",
     "important": true,
-    "title": "老板假装扫了500余次付款码",
-    "summary": "【百度热搜】老板假装扫了500余次付款码",
+    "title": "顾客尝了口面整碗扔垃圾桶付钱走人",
+    "summary": "【百度热搜】顾客尝了口面整碗扔垃圾桶付钱走人",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "i0907a5",
+    "id": "i79f028",
     "cat": "international",
     "important": false,
-    "title": "深圳一学校“秋假商请函”火了",
-    "summary": "【百度热搜】深圳一学校“秋假商请函”火了",
+    "title": "江映蓉回应为什么不红",
+    "summary": "【百度热搜】江映蓉回应为什么不红",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "i831c12",
+    "id": "i88f02f",
     "cat": "international",
     "important": false,
-    "title": "白小纯上综艺只是为给公司带点流量",
-    "summary": "【百度热搜】白小纯上综艺只是为给公司带点流量",
+    "title": "内娱 零开机时代",
+    "summary": "【百度热搜】内娱 零开机时代",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "ia893f6",
+    "id": "ic1a8fe",
     "cat": "international",
     "important": false,
-    "title": "全美航班停飞 上上次是9·11",
-    "summary": "【百度热搜】全美航班停飞 上上次是9·11",
+    "title": "女子回应读博期间3年生下3个孩子",
+    "summary": "【百度热搜】女子回应读博期间3年生下3个孩子",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
@@ -126,21 +126,21 @@
     "date": "2026-11-14"
   },
   {
-    "id": "f262022",
+    "id": "f9d3386",
     "cat": "finance",
     "important": true,
-    "title": "黄仁勋辞职余波：中国舆论场上的“间谍”迷因、选举猜想与股价“黑天鹅”",
-    "summary": "【BBC】黄仁勋辞职余波：中国舆论场上的“间谍”迷因、选举猜想与股价“黑天鹅”",
-    "source": "BBC",
+    "title": "2026年版国家基本医保药品目录发布 新增107种药品",
+    "summary": "【21财经】2026年版国家基本医保药品目录发布 新增107种药品",
+    "source": "21财经",
     "date": "2026-11-14"
   },
   {
-    "id": "f5a9a7c",
+    "id": "fb70415",
     "cat": "finance",
     "important": false,
-    "title": "黄金或创六月来最大单周跌幅，美联储加息押注升温施压贵金属",
-    "summary": "【华尔街见闻】黄金或创六月来最大单周跌幅，美联储加息押注升温施压贵金属",
-    "source": "华尔街见闻",
+    "title": "黄仁勋何竟只因婚外情被迫辞职英伟达执行长",
+    "summary": "【RFI】黄仁勋何竟只因婚外情被迫辞职英伟达执行长",
+    "source": "RFI",
     "date": "2026-11-14"
   },
   {
