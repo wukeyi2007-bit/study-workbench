@@ -1,64 +1,64 @@
 [
   {
-    "id": "d04f043",
+    "id": "d0da84f",
     "cat": "domestic",
     "important": true,
-    "title": "业内：山姆399元羽绒服是钩子商品",
-    "summary": "【百度热搜】业内：山姆399元羽绒服是钩子商品",
+    "title": "央视曝光后桂林抢修天桥扶梯",
+    "summary": "【百度热搜】央视曝光后桂林抢修天桥扶梯",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "d0c8a20",
+    "id": "d5163e9",
     "cat": "domestic",
     "important": true,
-    "title": "波司登王力宏同款仅售16件",
-    "summary": "【百度热搜】波司登王力宏同款仅售16件",
+    "title": "国足马来西亚爆发大规模冲突",
+    "summary": "【百度热搜】国足马来西亚爆发大规模冲突",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "d23ba82",
+    "id": "d9542a6",
     "cat": "domestic",
     "important": false,
-    "title": "APEC深圳会议各项筹备工作已就绪",
-    "summary": "【百度热搜】APEC深圳会议各项筹备工作已就绪",
+    "title": "习近平主席妙论亚太合作之道",
+    "summary": "【百度热搜】习近平主席妙论亚太合作之道",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "d61dd57",
+    "id": "d9ab2ea",
     "cat": "domestic",
     "important": false,
-    "title": "亚太是我们的共同家园",
-    "summary": "【百度热搜】亚太是我们的共同家园",
+    "title": "一束光 改写中国电力版图",
+    "summary": "【百度热搜】一束光 改写中国电力版图",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "db563f8",
+    "id": "da77609",
     "cat": "domestic",
     "important": false,
-    "title": "女子投诉游泳馆：把我当猪仔一样卖",
-    "summary": "【百度热搜】女子投诉游泳馆：把我当猪仔一样卖",
+    "title": "吴清：A股市情在全球独一无二",
+    "summary": "【百度热搜】吴清：A股市情在全球独一无二",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "dbbd14f",
+    "id": "deb972f",
     "cat": "domestic",
     "important": false,
-    "title": "多地中小学宣布调整作息",
-    "summary": "【百度热搜】多地中小学宣布调整作息",
+    "title": "中纪委罕见通报高官一把手职权腐败",
+    "summary": "【百度热搜】中纪委罕见通报高官一把手职权腐败",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
   {
-    "id": "i273d97",
+    "id": "i0ed8d2",
     "cat": "international",
     "important": true,
-    "title": "国足排名跌至97位",
-    "summary": "【百度热搜】国足排名跌至97位",
+    "title": "S16总决赛",
+    "summary": "【百度热搜】S16总决赛",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
@@ -72,20 +72,20 @@
     "date": "2026-11-14"
   },
   {
+    "id": "ia6e580",
+    "cat": "international",
+    "important": false,
+    "title": "杨希被马来西亚球员恶意报复",
+    "summary": "【百度热搜】杨希被马来西亚球员恶意报复",
+    "source": "百度热搜",
+    "date": "2026-11-14"
+  },
+  {
     "id": "ib314a1",
     "cat": "international",
     "important": false,
     "title": "院长称每年拒绝超10万想做飞秒患者",
     "summary": "【百度热搜】院长称每年拒绝超10万想做飞秒患者",
-    "source": "百度热搜",
-    "date": "2026-11-14"
-  },
-  {
-    "id": "ic7f9b0",
-    "cat": "international",
-    "important": false,
-    "title": "零糖饮料不是真0糖",
-    "summary": "【百度热搜】零糖饮料不是真0糖",
     "source": "百度热搜",
     "date": "2026-11-14"
   },
@@ -108,12 +108,12 @@
     "date": "2026-11-14"
   },
   {
-    "id": "t5e0dcf",
+    "id": "t87f23d",
     "cat": "tech",
     "important": false,
-    "title": "特朗普政府官员就英伟达事件发生冲突",
-    "summary": "【纽约时报中文网】特朗普政府官员就英伟达事件发生冲突",
-    "source": "纽约时报中文网",
+    "title": "“台湾干爹”光环崩塌：黄仁勋事件如何震动台湾产业、政治与社会？",
+    "summary": "【BBC】“台湾干爹”光环崩塌：黄仁勋事件如何震动台湾产业、政治与社会？",
+    "source": "BBC",
     "date": "2026-11-14"
   },
   {
@@ -126,18 +126,9 @@
     "date": "2026-11-14"
   },
   {
-    "id": "f545312",
-    "cat": "finance",
-    "important": true,
-    "title": "吴清：A股市场有2亿多股票投资者、8亿多基金持有人",
-    "summary": "【21财经】吴清：A股市场有2亿多股票投资者、8亿多基金持有人",
-    "source": "21财经",
-    "date": "2026-11-14"
-  },
-  {
     "id": "fb70415",
     "cat": "finance",
-    "important": false,
+    "important": true,
     "title": "黄仁勋何竟只因婚外情被迫辞职英伟达执行长",
     "summary": "【RFI】黄仁勋何竟只因婚外情被迫辞职英伟达执行长",
     "source": "RFI",
@@ -150,6 +141,15 @@
     "title": "诺倍戈第三项适应症纳入新版国家医保目录",
     "summary": "【科学网—新闻】诺倍戈第三项适应症纳入新版国家医保目录",
     "source": "科学网—新闻",
+    "date": "2026-11-14"
+  },
+  {
+    "id": "feb1c49",
+    "cat": "finance",
+    "important": false,
+    "title": "新型储能“十五五”迈向市场化 多元“应用场”撬动万亿投资",
+    "summary": "【经济参考报】新型储能“十五五”迈向市场化 多元“应用场”撬动万亿投资",
+    "source": "经济参考报",
     "date": "2026-11-14"
   }
 ]
