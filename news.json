@@ -1,28 +1,28 @@
 [
   {
-    "id": "d35852b",
+    "id": "d332834",
     "cat": "domestic",
     "important": true,
-    "title": "央视曝光假牛肉案",
-    "summary": "【百度热搜】央视曝光假牛肉案",
+    "title": "一觉醒来以为“误入天宫”",
+    "summary": "【百度热搜】一觉醒来以为“误入天宫”",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
   {
-    "id": "d57779a",
+    "id": "d3e1195",
     "cat": "domestic",
     "important": true,
-    "title": "习近平主席妙论亚太合作之道",
-    "summary": "【百度热搜】习近平主席妙论亚太合作之道",
+    "title": "员工蹲厕所1小时被辞退 公司拍照取证",
+    "summary": "【百度热搜】员工蹲厕所1小时被辞退 公司拍照取证",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
   {
-    "id": "d837ab3",
+    "id": "d5a0025",
     "cat": "domestic",
     "important": false,
-    "title": "95岁美国老人一口青海话",
-    "summary": "【百度热搜】95岁美国老人一口青海话",
+    "title": "亚太共此时",
+    "summary": "【百度热搜】亚太共此时",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
@@ -36,15 +36,6 @@
     "date": "2026-11-15"
   },
   {
-    "id": "dbf36fb",
-    "cat": "domestic",
-    "important": false,
-    "title": "BLG是不是史上最有含金量的冠军",
-    "summary": "【百度热搜】BLG是不是史上最有含金量的冠军",
-    "source": "百度热搜",
-    "date": "2026-11-15"
-  },
-  {
     "id": "dde1cf8",
     "cat": "domestic",
     "important": false,
@@ -54,38 +45,47 @@
     "date": "2026-11-15"
   },
   {
-    "id": "i9b0534",
+    "id": "dfbb6b2",
+    "cat": "domestic",
+    "important": false,
+    "title": "猪肉价格跌到10年新低",
+    "summary": "【百度热搜】猪肉价格跌到10年新低",
+    "source": "百度热搜",
+    "date": "2026-11-15"
+  },
+  {
+    "id": "i0c41e9",
     "cat": "international",
     "important": true,
-    "title": "ON：24年失败的悔恨 终于能得到原谅",
-    "summary": "【百度热搜】ON：24年失败的悔恨 终于能得到原谅",
+    "title": "央行重大调整",
+    "summary": "【百度热搜】央行重大调整",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
   {
-    "id": "ia130ff",
+    "id": "i0ff69b",
     "cat": "international",
     "important": false,
-    "title": "雷鸟这双眼睛到底看了多远",
-    "summary": "【百度热搜】雷鸟这双眼睛到底看了多远",
+    "title": "爱奇艺尖叫之夜阵容",
+    "summary": "【百度热搜】爱奇艺尖叫之夜阵容",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
   {
-    "id": "ic4243c",
+    "id": "i1241d5",
     "cat": "international",
     "important": false,
-    "title": "BLG夺冠刷屏半个娱乐圈",
-    "summary": "【百度热搜】BLG夺冠刷屏半个娱乐圈",
+    "title": "短剧4000元成本做出6000多万热度",
+    "summary": "【百度热搜】短剧4000元成本做出6000多万热度",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
   {
-    "id": "ifb61fd",
+    "id": "ifef34b",
     "cat": "international",
     "important": false,
-    "title": "北京天津等9省区市有浓雾或强浓雾",
-    "summary": "【百度热搜】北京天津等9省区市有浓雾或强浓雾",
+    "title": "火锅才吃一半 面前堆起座“纸巾山”",
+    "summary": "【百度热搜】火锅才吃一半 面前堆起座“纸巾山”",
     "source": "百度热搜",
     "date": "2026-11-15"
   },
@@ -126,30 +126,30 @@
     "date": "2026-11-15"
   },
   {
-    "id": "f678c72",
+    "id": "f324508",
     "cat": "finance",
     "important": true,
+    "title": "AI周报 |英伟达CEO换人；Anthropic启动IPO路演",
+    "summary": "【第一财经】AI周报 |英伟达CEO换人；Anthropic启动IPO路演",
+    "source": "第一财经",
+    "date": "2026-11-15"
+  },
+  {
+    "id": "f678c72",
+    "cat": "finance",
+    "important": false,
     "title": "北京日报社区小板报 | 医保目录新增107种药品",
     "summary": "【京报网】北京日报社区小板报 | 医保目录新增107种药品",
     "source": "京报网",
     "date": "2026-11-15"
   },
   {
-    "id": "fc1e829",
+    "id": "f7958dd",
     "cat": "finance",
     "important": false,
-    "title": "前10月社融增量中 债券和股票融资合计占比过半",
-    "summary": "【东方财富】前10月社融增量中 债券和股票融资合计占比过半",
-    "source": "东方财富",
-    "date": "2026-11-15"
-  },
-  {
-    "id": "fd96443",
-    "cat": "finance",
-    "important": false,
-    "title": "中国官媒：黄仁勋去留不改变中国方向",
-    "summary": "【联合早报】中国官媒：黄仁勋去留不改变中国方向",
-    "source": "联合早报",
+    "title": "北交所开市五周年 总市值约8000亿元",
+    "summary": "【21财经】北交所开市五周年 总市值约8000亿元",
+    "source": "21财经",
     "date": "2026-11-15"
   }
 ]
