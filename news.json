@@ -1,5 +1,14 @@
 [
   {
+    "id": "d1688ba",
+    "cat": "domestic",
+    "important": true,
+    "title": "习近平在广东中山考察",
+    "summary": "【百度热搜】习近平在广东中山考察",
+    "source": "百度热搜",
+    "date": "2026-11-16"
+  },
+  {
     "id": "d2333ff",
     "cat": "domestic",
     "important": true,
@@ -9,83 +18,74 @@
     "date": "2026-11-16"
   },
   {
-    "id": "d4f831d",
+    "id": "d5b4774",
     "cat": "domestic",
+    "important": false,
+    "title": "于东来：胖东来郑州店花了两三个亿",
+    "summary": "【百度热搜】于东来：胖东来郑州店花了两三个亿",
+    "source": "百度热搜",
+    "date": "2026-11-16"
+  },
+  {
+    "id": "dd88f2d",
+    "cat": "domestic",
+    "important": false,
+    "title": "英前首相遭灌酒？扎哈罗娃：自愿喝的",
+    "summary": "【百度热搜】英前首相遭灌酒？扎哈罗娃：自愿喝的",
+    "source": "百度热搜",
+    "date": "2026-11-16"
+  },
+  {
+    "id": "de8a378",
+    "cat": "domestic",
+    "important": false,
+    "title": "APEC离我们的生活有多远",
+    "summary": "【百度热搜】APEC离我们的生活有多远",
+    "source": "百度热搜",
+    "date": "2026-11-16"
+  },
+  {
+    "id": "df7c10b",
+    "cat": "domestic",
+    "important": false,
+    "title": "墨西哥总统抵达深圳后做了一个动作",
+    "summary": "【百度热搜】墨西哥总统抵达深圳后做了一个动作",
+    "source": "百度热搜",
+    "date": "2026-11-16"
+  },
+  {
+    "id": "i45f9fa",
+    "cat": "international",
     "important": true,
-    "title": "中国女保镖贴身保护墨西哥总统",
-    "summary": "【百度热搜】中国女保镖贴身保护墨西哥总统",
+    "title": "庄子《逍遥游》诚不欺我",
+    "summary": "【百度热搜】庄子《逍遥游》诚不欺我",
     "source": "百度热搜",
     "date": "2026-11-16"
   },
   {
-    "id": "d730c3d",
-    "cat": "domestic",
+    "id": "ie9427f",
+    "cat": "international",
     "important": false,
-    "title": "习近平将同普京特朗普在深圳会晤",
-    "summary": "【百度热搜】习近平将同普京特朗普在深圳会晤",
+    "title": "结婚27年才发现妻子身份是假的",
+    "summary": "【百度热搜】结婚27年才发现妻子身份是假的",
     "source": "百度热搜",
     "date": "2026-11-16"
   },
   {
-    "id": "d9c42f1",
-    "cat": "domestic",
+    "id": "ifb53b8",
+    "cat": "international",
     "important": false,
-    "title": "北京旅游拍出人生照片情侣原地领证",
-    "summary": "【百度热搜】北京旅游拍出人生照片情侣原地领证",
+    "title": "华晨宇演唱会拉动4亿消费",
+    "summary": "【百度热搜】华晨宇演唱会拉动4亿消费",
     "source": "百度热搜",
     "date": "2026-11-16"
   },
   {
-    "id": "db5661d",
-    "cat": "domestic",
-    "important": false,
-    "title": "外国友人眼中的APEC“中国年”",
-    "summary": "【百度热搜】外国友人眼中的APEC“中国年”",
-    "source": "百度热搜",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "df49876",
-    "cat": "domestic",
+    "id": "ifb90f2",
+    "cat": "international",
     "important": false,
     "title": "中俄美元首即将会晤 释放强烈信号",
     "summary": "【百度热搜】中俄美元首即将会晤 释放强烈信号",
-    "source": "百度热搜",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "i2d05ab",
-    "cat": "international",
-    "important": true,
-    "title": "大麦公告CEO樊路远离职",
-    "summary": "【百度热搜】大麦公告CEO樊路远离职",
-    "source": "百度热搜",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "ifdc060",
-    "cat": "international",
-    "important": false,
-    "title": "23岁日本女演员中田乃爱去世",
-    "summary": "【百度热搜】23岁日本女演员中田乃爱去世",
-    "source": "百度热搜",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "ife1441",
-    "cat": "international",
-    "important": false,
-    "title": "为什么手指永远无法相互触碰",
-    "summary": "【百度热搜】为什么手指永远无法相互触碰",
-    "source": "百度热搜",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "ifeff18",
-    "cat": "international",
-    "important": false,
-    "title": "四十岁正是心脏健康分水岭",
-    "summary": "【百度热搜】四十岁正是心脏健康分水岭",
     "source": "百度热搜",
     "date": "2026-11-16"
   },
@@ -96,15 +96,6 @@
     "title": "黄仁勋的婚外情秘密是如何泄露到公众视野的",
     "summary": "【纽约时报中文网】黄仁勋的婚外情秘密是如何泄露到公众视野的",
     "source": "纽约时报中文网",
-    "date": "2026-11-16"
-  },
-  {
-    "id": "t508e9b",
-    "cat": "tech",
-    "important": false,
-    "title": "黄仁勋与盟友讨论重返英伟达CEO职位",
-    "summary": "【RFI】黄仁勋与盟友讨论重返英伟达CEO职位",
-    "source": "RFI",
     "date": "2026-11-16"
   },
   {
@@ -126,12 +117,21 @@
     "date": "2026-11-16"
   },
   {
-    "id": "f3939eb",
+    "id": "tfd747a",
+    "cat": "tech",
+    "important": false,
+    "title": "黄仁勋因何跌落神坛？傲慢与自负",
+    "summary": "【纽约时报中文网】黄仁勋因何跌落神坛？傲慢与自负",
+    "source": "纽约时报中文网",
+    "date": "2026-11-16"
+  },
+  {
+    "id": "f29fbd6",
     "cat": "finance",
     "important": true,
-    "title": "机构：企业中长期融资边际好转，居民信贷延续偏弱",
-    "summary": "【Sohu】机构：企业中长期融资边际好转，居民信贷延续偏弱",
-    "source": "Sohu",
+    "title": "黄仁勋如何开辟“暗道”让中国继续参与AI竞赛",
+    "summary": "【华尔街日报中文网】黄仁勋如何开辟“暗道”让中国继续参与AI竞赛",
+    "source": "华尔街日报中文网",
     "date": "2026-11-16"
   },
   {
@@ -144,12 +144,12 @@
     "date": "2026-11-16"
   },
   {
-    "id": "fc03fc0",
+    "id": "fadebd4",
     "cat": "finance",
     "important": false,
-    "title": "黄仁勋等高层同意出席美国国会听证会 日期尚未敲定",
-    "summary": "【8world】黄仁勋等高层同意出席美国国会听证会 日期尚未敲定",
-    "source": "8world",
+    "title": "恒瑞、复星、华东、康缘、信达…36家药企集体发公告",
+    "summary": "【ByDrug】恒瑞、复星、华东、康缘、信达…36家药企集体发公告",
+    "source": "ByDrug",
     "date": "2026-11-16"
   }
 ]
