@@ -1132,7 +1132,7 @@ function recordTest(correct, wrong) {
 let _navigatingFromHistory = false; // 防止 history.pushState 与 popstate 循环
 
 // 已移除的模块：彻底不可进入（防止从历史记录、旧书签等入口打开）
-const REMOVED_MODULES = ["words", "errors", "exercise", "finance", "news"];
+const REMOVED_MODULES = ["words", "errors", "finance", "news"];
 
 function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
   if (REMOVED_MODULES.includes(page)) {
@@ -1179,7 +1179,8 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     home: "首页",
     words: "单词",
     notes: "知识点",
-    exercise: "锻炼",
+    exercise: "跑步",
+    training: "健身",
     life: "生活记录",
     news: "热点新闻",
     reading: "阅读笔记",
@@ -1210,6 +1211,7 @@ function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
     case "words": renderWords(); break;
     case "notes": renderNotes(); break;
     case "exercise": renderExercise(); break;
+    case "training": renderTraining(); break;
     case "life": renderLifeJournal(); break;
     // // case "news": renderNews(); break; // 新闻模块已移除 // 新闻模块已移除
     case "reading": renderReading(); break;
@@ -1346,6 +1348,8 @@ function pageForOverview(name) {
 // 首页「全部功能」入口：只放仍在用的模块
 function renderAllModules() {
   const mods = [
+    { key: "exercise", icon: "🏃", name: "跑步" },
+    { key: "training", icon: "💪", name: "健身" },
     { key: "stats", icon: "📊", name: "统计" },
     { key: "reading", icon: "📒", name: "阅读笔记" },
     { key: "diet", icon: "🍱", name: "饮食" },
@@ -5731,6 +5735,252 @@ window.viewLifePhoto = function (id) {
 };
 
 
+// ==========================================
+// 健身模块（力量训练记录：部位 / 动作 / 组数×次数×重量）
+// ==========================================
+
+const TRAINING_PARTS = ["胸", "背", "腿", "肩", "手臂", "核心", "有氧"];
+
+const TRAINING_EXERCISES = {
+  "胸": ["卧推", "上斜卧推", "哑铃飞鸟", "俯卧撑", "绳索夹胸"],
+  "背": ["引体向上", "高位下拉", "划船", "硬拉", "面拉"],
+  "腿": ["深蹲", "腿举", "箭步蹲", "腿弯举", "提踵"],
+  "肩": ["肩推", "侧平举", "前平举", "反向飞鸟"],
+  "手臂": ["弯举", "三头下压", "锤式弯举", "窄距卧推"],
+  "核心": ["卷腹", "平板支撑", "悬垂举腿", "俄罗斯转体"],
+  "有氧": ["跑步", "椭圆机", "单车", "跳绳", "划船机"]
+};
+
+function ensureTraining() {
+  if (!state.training) state.training = { logs: [] };
+  if (!Array.isArray(state.training.logs)) state.training.logs = [];
+}
+
+function trainingVolume(log) {
+  return (log.exercises || []).reduce(function (s, e) {
+    return s + (Number(e.sets) || 0) * (Number(e.reps) || 0) * (Number(e.weight) || 0);
+  }, 0);
+}
+
+function renderTraining() {
+  ensureTraining();
+  const logs = state.training.logs.slice().sort(function (a, b) {
+    return String(b.date || "").localeCompare(String(a.date || ""));
+  });
+  const weekLogs = logs.filter(function (l) {
+    const ago = -Utils.daysUntil(l.date);
+    return ago >= 0 && ago < 7;
+  });
+  const weekCount = weekLogs.length;
+  const weekVolume = weekLogs.reduce(function (s, l) { return s + trainingVolume(l); }, 0);
+
+  const partCount = {};
+  weekLogs.forEach(function (l) { partCount[l.part] = (partCount[l.part] || 0) + 1; });
+  const partHtml = Object.keys(partCount).map(function (p) {
+    return '<span class="training-tag">' + escapeHtml(p) + " × " + partCount[p] + "</span>";
+  }).join("") || '<span style="color:var(--text-light);font-size:13px;">本周还没练</span>';
+
+  const listHtml = logs.length ? logs.map(function (l) {
+    const exs = (l.exercises || []).map(function (e) {
+      const w = Number(e.weight) || 0;
+      return '<span class="training-ex">' + escapeHtml(e.name || "") +
+        (e.sets ? " " + e.sets + "组" : "") +
+        (e.reps ? "×" + e.reps : "") +
+        (w ? " @ " + w + "kg" : "") + "</span>";
+    }).join("");
+    return '<div class="training-log">' +
+      '<div class="training-log-head">' +
+        '<span class="training-log-date">' + escapeHtml(l.date || "") + "</span>" +
+        '<span class="training-log-part">' + escapeHtml(l.part || "训练") + "</span>" +
+        '<span class="training-log-vol">' + Math.round(trainingVolume(l)) + " kg</span>" +
+        '<button class="btn btn-xs btn-ghost" onclick="deleteTraining(' + l.id + ')">删除</button>' +
+      "</div>" +
+      '<div class="training-ex-list">' + (exs || '<span style="color:var(--text-light);">（无动作）</span>') + "</div>" +
+      (l.note ? '<div class="training-note">' + escapeHtml(l.note) + "</div>" : "") +
+    "</div>";
+  }).join("") : '<div class="card" style="padding:24px;text-align:center;color:var(--text-secondary);">还没有训练记录，点右上角「＋ 记录训练」开始吧。</div>';
+
+  document.getElementById("page-training").innerHTML =
+    '<div class="toolbar">' +
+      '<div class="toolbar-left"><h2 style="font-size:20px;">💪 健身</h2></div>' +
+      '<div class="toolbar-right">' +
+        '<button class="btn btn-sm btn-primary" onclick="openTrainingEditor()">＋ 记录训练</button>' +
+      "</div>" +
+    "</div>" +
+    '<div class="grid grid-3" style="margin-bottom:14px;">' +
+      '<div class="card stat-card"><div class="stat-icon">📅</div><div class="stat-value">' + weekCount + '</div><div class="stat-label">本周训练</div></div>' +
+      '<div class="card stat-card"><div class="stat-icon">🏋️</div><div class="stat-value">' + Math.round(weekVolume) + '</div><div class="stat-label">本周容量(kg)</div></div>' +
+      '<div class="card stat-card"><div class="stat-icon">🎯</div><div class="stat-value">' + Object.keys(partCount).length + '</div><div class="stat-label">练到部位</div></div>' +
+    "</div>" +
+    '<div class="card" style="margin-bottom:14px;">' +
+      '<div class="card-title">🎯 本周部位</div>' +
+      '<div class="training-tags">' + partHtml + "</div>" +
+    "</div>" +
+    '<div class="card" style="margin-bottom:14px;">' +
+      '<div class="card-title">⏱ 组间休息</div>' +
+      '<div class="rest-timer">' +
+        '<div class="rest-timer-display" id="restTimerDisplay">--</div>' +
+        '<div class="rest-timer-btns">' +
+          '<button class="btn btn-sm btn-secondary" onclick="startRestTimer(60)">60s</button>' +
+          '<button class="btn btn-sm btn-secondary" onclick="startRestTimer(90)">90s</button>' +
+          '<button class="btn btn-sm btn-secondary" onclick="startRestTimer(120)">120s</button>' +
+          '<button class="btn btn-sm btn-ghost" onclick="stopRestTimer()">停止</button>' +
+        "</div>" +
+      "</div>" +
+    "</div>" +
+    '<div class="card-title" style="margin:0 0 10px 4px;">📅 训练历史</div>' +
+    listHtml;
+}
+
+function trainingRowHtml(e) {
+  return '<div class="training-row">' +
+    '<input class="modal-input training-row-name" list="trainingExList" placeholder="动作名，如 深蹲" value="' + escapeHtml(e.name || "") + '">' +
+    '<input class="modal-input training-row-sets" type="number" min="0" placeholder="组" value="' + (e.sets || "") + '">' +
+    '<input class="modal-input training-row-reps" type="number" min="0" placeholder="次" value="' + (e.reps || "") + '">' +
+    '<input class="modal-input training-row-weight" type="number" min="0" step="0.5" placeholder="kg" value="' + (e.weight || "") + '">' +
+    '<button type="button" class="btn btn-xs btn-ghost" onclick="removeTrainingRow(this)">✕</button>' +
+  "</div>";
+}
+
+function openTrainingEditor(id) {
+  ensureTraining();
+  const isEdit = !!id;
+  const item = isEdit ? state.training.logs.find(function (x) { return x.id === id; }) : null;
+  window.__trainingPart = item ? (item.part || "胸") : "胸";
+  const exercises = (item && item.exercises && item.exercises.length)
+    ? item.exercises
+    : [{ name: "", sets: 4, reps: 10, weight: "" }];
+
+  const allEx = [];
+  Object.keys(TRAINING_EXERCISES).forEach(function (k) {
+    TRAINING_EXERCISES[k].forEach(function (n) { if (allEx.indexOf(n) < 0) allEx.push(n); });
+  });
+  const datalist = '<datalist id="trainingExList">' + allEx.map(function (n) {
+    return '<option value="' + escapeHtml(n) + '"></option>';
+  }).join("") + "</datalist>";
+
+  const body =
+    '<label class="modal-label">训练部位</label>' +
+    '<div class="training-part-chips" id="trainingPartChips">' +
+      TRAINING_PARTS.map(function (p) {
+        return '<button type="button" class="training-part-chip' + (p === window.__trainingPart ? " active" : "") +
+          '" data-part="' + p + '" onclick="pickTrainingPart(this)">' + p + "</button>";
+      }).join("") +
+    "</div>" +
+    '<label class="modal-label" style="margin-top:12px;">动作（组 × 次 × 重量）</label>' +
+    '<div id="trainingRows">' + exercises.map(trainingRowHtml).join("") + "</div>" +
+    datalist +
+    '<button type="button" class="btn btn-sm btn-secondary" style="margin-top:8px;" onclick="addTrainingRow()">＋ 加一个动作</button>' +
+    '<label class="modal-label" style="margin-top:12px;">备注（可选）</label>' +
+    '<input class="modal-input" id="trainingNote" placeholder="今天状态怎么样？" value="' + escapeHtml(item ? (item.note || "") : "") + '">';
+
+  const actions = '<button class="btn btn-secondary" onclick="closeModal()">取消</button>' +
+    '<button class="btn btn-primary" onclick="saveTraining(' + (isEdit ? id : "null") + ')">' + (isEdit ? "保存修改" : "保存") + "</button>";
+
+  openModal(isEdit ? "✏️ 编辑训练" : "＋ 记录训练", body, actions, "training-modal");
+}
+
+function pickTrainingPart(btn) {
+  document.querySelectorAll("#trainingPartChips .training-part-chip").forEach(function (b) {
+    b.classList.remove("active");
+  });
+  btn.classList.add("active");
+  window.__trainingPart = btn.getAttribute("data-part");
+}
+
+function addTrainingRow() {
+  const wrap = document.getElementById("trainingRows");
+  if (!wrap) return;
+  const div = document.createElement("div");
+  div.className = "training-row";
+  div.innerHTML = '<input class="modal-input training-row-name" list="trainingExList" placeholder="动作名" value="">' +
+    '<input class="modal-input training-row-sets" type="number" min="0" placeholder="组" value="4">' +
+    '<input class="modal-input training-row-reps" type="number" min="0" placeholder="次" value="10">' +
+    '<input class="modal-input training-row-weight" type="number" min="0" step="0.5" placeholder="kg" value="">' +
+    '<button type="button" class="btn btn-xs btn-ghost" onclick="removeTrainingRow(this)">✕</button>';
+  wrap.appendChild(div);
+}
+
+function removeTrainingRow(btn) {
+  const row = btn.closest(".training-row");
+  if (row) row.remove();
+}
+
+function saveTraining(id) {
+  ensureTraining();
+  const part = window.__trainingPart || "胸";
+  const rows = Array.prototype.slice.call(document.querySelectorAll("#trainingRows .training-row"));
+  const exercises = rows.map(function (row) {
+    const g = function (cls) {
+      const el = row.querySelector("." + cls);
+      return el ? el.value : "";
+    };
+    return {
+      name: String(g("training-row-name")).trim(),
+      sets: Number(g("training-row-sets")) || 0,
+      reps: Number(g("training-row-reps")) || 0,
+      weight: Number(g("training-row-weight")) || 0
+    };
+  }).filter(function (e) { return e.name; });
+
+  if (!exercises.length) { Utils.toast("至少填一个动作名", "warning"); return; }
+
+  const noteEl = document.getElementById("trainingNote");
+  const note = noteEl ? noteEl.value : "";
+
+  if (id) {
+    const item = state.training.logs.find(function (x) { return x.id === id; });
+    if (item) { item.part = part; item.exercises = exercises; item.note = note; }
+  } else {
+    state.training.logs.push({
+      id: Date.now(),
+      date: Utils.today(),
+      part: part,
+      exercises: exercises,
+      note: note
+    });
+  }
+  Store.save();
+  closeModal();
+  Utils.toast(id ? "已更新" : "训练已记录 💪", "success");
+  renderTraining();
+}
+
+function deleteTraining(id) {
+  if (!confirm("确定删除这条训练记录吗？")) return;
+  ensureTraining();
+  state.training.logs = state.training.logs.filter(function (x) { return x.id !== id; });
+  Store.save();
+  renderTraining();
+}
+
+function startRestTimer(seconds) {
+  stopRestTimer();
+  let left = Number(seconds) || 60;
+  const el = document.getElementById("restTimerDisplay");
+  const paint = function () {
+    if (el) el.textContent = left > 0 ? left + "s" : "⏰ 结束";
+  };
+  paint();
+  window.__restTimer = setInterval(function () {
+    left -= 1;
+    paint();
+    if (left <= 0) {
+      clearInterval(window.__restTimer);
+      window.__restTimer = null;
+      Utils.toast("休息结束，继续下一组！", "success");
+    }
+  }, 1000);
+}
+
+function stopRestTimer() {
+  if (window.__restTimer) { clearInterval(window.__restTimer); window.__restTimer = null; }
+  const el = document.getElementById("restTimerDisplay");
+  if (el) el.textContent = "--";
+}
+
+
+
 function renderExercise() {
   // 状态字段补齐（兼容旧存档）
   if (!state.exercise) {
@@ -7587,6 +7837,8 @@ const SIDEBAR_MODULES = [
   { key: "home", label: "🏠 首页", group: "学习" },
   { key: "notes", label: "📓 知识点", group: "学习" },
   { key: "stats", label: "📊 统计", group: "学习" },
+  { key: "exercise", label: "🏃 跑步", group: "生活" },
+  { key: "training", label: "💪 健身", group: "生活" },
   { key: "reading", label: "📒 阅读笔记", group: "生活" },
   { key: "diet", label: "🍱 饮食", group: "生活" },
   { key: "weight", label: "⚖️ 体重", group: "生活" },
