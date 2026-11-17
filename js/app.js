@@ -1336,6 +1336,34 @@ function pageForOverview(name) {
   return "home";
 }
 
+// 首页「全部功能」入口：导航里精简掉的模块都从这里进
+function renderAllModules() {
+  const mods = [
+    { key: "words", icon: "📖", name: "单词" },
+    { key: "errors", icon: "❌", name: "错题本" },
+    { key: "exercise", icon: "💪", name: "锻炼" },
+    { key: "finance", icon: "💰", name: "理财学习" },
+    { key: "stats", icon: "📊", name: "统计" },
+    { key: "reading", icon: "📒", name: "阅读笔记" },
+    { key: "diet", icon: "🍱", name: "饮食" },
+    { key: "weight", icon: "⚖️", name: "体重" },
+    { key: "life", icon: "📝", name: "生活记录" },
+  ];
+  return `
+    <div class="card" style="margin-bottom:20px;">
+      <div class="card-title">🧭 全部功能</div>
+      <div class="all-modules-grid">
+        ${mods.map(m => `
+          <button class="all-module-btn" onclick="navigate('${m.key}')">
+            <span class="all-module-icon">${m.icon}</span>
+            <span class="all-module-name">${m.name}</span>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function renderDashboard() {
   checkStreak();
   const today = Utils.today();
@@ -1395,6 +1423,8 @@ function renderDashboard() {
         <div class="stat-label">待复习错题</div>
       </div>
     </div>
+
+    ${renderAllModules()}
 
     <div class="card" style="margin-bottom:20px;">
       <div class="card-title">💪 本周锻炼</div>
