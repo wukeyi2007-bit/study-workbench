@@ -5753,13 +5753,14 @@ window.viewLifePhoto = function (id) {
 // 健身模块（力量训练记录：部位 / 动作 / 组数×次数×重量）
 // ==========================================
 
-const TRAINING_PARTS = ["胸", "背", "腿", "肩", "手臂", "核心", "有氧"];
+const TRAINING_PARTS = ["背", "肩", "臀", "胸", "腿", "手臂", "核心", "有氧"];
 
 const TRAINING_EXERCISES = {
+  "背": ["引体向上", "高位下拉", "划船", "硬拉", "面拉", "单臂划船"],
+  "肩": ["肩推", "侧平举", "前平举", "反向飞鸟", "推举"],
+  "臀": ["臀推", "臀桥", "罗马尼亚硬拉", "保加利亚分腿蹲", "髋外展", "后踢腿", "相扑深蹲", "单腿硬拉"],
   "胸": ["卧推", "上斜卧推", "哑铃飞鸟", "俯卧撑", "绳索夹胸"],
-  "背": ["引体向上", "高位下拉", "划船", "硬拉", "面拉"],
   "腿": ["深蹲", "腿举", "箭步蹲", "腿弯举", "提踵"],
-  "肩": ["肩推", "侧平举", "前平举", "反向飞鸟"],
   "手臂": ["弯举", "三头下压", "锤式弯举", "窄距卧推"],
   "核心": ["卷腹", "平板支撑", "悬垂举腿", "俄罗斯转体"],
   "有氧": ["跑步", "椭圆机", "单车", "跳绳", "划船机"]
@@ -5860,7 +5861,7 @@ function openTrainingEditor(id) {
   ensureTraining();
   const isEdit = !!id;
   const item = isEdit ? state.training.logs.find(function (x) { return x.id === id; }) : null;
-  window.__trainingPart = item ? (item.part || "胸") : "胸";
+  window.__trainingPart = item ? (item.part || "背") : "背";
   const exercises = (item && item.exercises && item.exercises.length)
     ? item.exercises
     : [{ name: "", sets: 4, reps: 10, weight: "" }];
@@ -5922,7 +5923,7 @@ function removeTrainingRow(btn) {
 
 function saveTraining(id) {
   ensureTraining();
-  const part = window.__trainingPart || "胸";
+  const part = window.__trainingPart || "背";
   const rows = Array.prototype.slice.call(document.querySelectorAll("#trainingRows .training-row"));
   const exercises = rows.map(function (row) {
     const g = function (cls) {
