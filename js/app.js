@@ -1392,44 +1392,15 @@ function renderDashboard() {
 
     <div class="dashboard-hero">
       <h1>${avatarHtml} ${username}，准备好了吗？</h1>
-      <p>距离四级考试还有 ${daysLeft} 天 · 今天背多少都算数</p>
+      <p>距离四级考试还有 ${daysLeft} 天 · 每天进步一点都算数</p>
       <div class="countdown">
         <div class="countdown-item"><div class="num">${daysLeft}</div><div class="label">天</div></div>
         <div class="countdown-item"><div class="num">${Math.floor(daysLeft / 7)}</div><div class="label">周</div></div>
         <div class="countdown-item"><div class="num">${state.progress.streak}</div><div class="label">连续打卡</div></div>
-        <div class="countdown-item"><div class="num">${exStats.runKm}</div><div class="label">本周跑步km</div></div>
-      </div>
-    </div>
-
-    <div class="grid grid-4" style="margin-bottom: 14px;">
-      <div class="card stat-card" onclick="navigate('words');setTimeout(()=>startWordSession(),120)">
-        <div class="stat-icon">📖</div>
-        <div class="stat-value">${todayWords}</div>
-        <div class="stat-label">${goal > 0 ? `今日背词(目标${goal})` : '今日背词'}</div>
-      </div>
-      <div class="card stat-card" onclick="navigate('words');setTimeout(()=>startReviewSession(),120)">
-        <div class="stat-icon">🔄</div>
-        <div class="stat-value">${dueReview}</div>
-        <div class="stat-label">待复习</div>
-      </div>
-      <div class="card stat-card" onclick="navigate('exercise')">
-        <div class="stat-icon">🏃</div>
-        <div class="stat-value">${exStats.runKm}/${exStats.runGoalKm}km</div>
-        <div class="stat-label">本周跑步</div>
-      </div>
-      <div class="card stat-card" onclick="navigate('errors')">
-        <div class="stat-icon">❌</div>
-        <div class="stat-value">${totalErrors}</div>
-        <div class="stat-label">待复习错题</div>
       </div>
     </div>
 
     ${renderAllModules()}
-
-    <div class="card" style="margin-bottom:20px;">
-      <div class="card-title">💪 本周锻炼</div>
-      ${renderExerciseMini()}
-    </div>
 
     <div class="card">
       <div class="card-title">💾 数据备份与恢复</div>
