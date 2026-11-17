@@ -1131,7 +1131,14 @@ function recordTest(correct, wrong) {
 // ===== 页面路由 =====
 let _navigatingFromHistory = false; // 防止 history.pushState 与 popstate 循环
 
+// 已移除的模块：彻底不可进入（防止从历史记录、旧书签等入口打开）
+const REMOVED_MODULES = ["words", "errors", "exercise", "finance", "news"];
+
 function navigate(page, { pushHistory = true, replaceHistory = false } = {}) {
+  if (REMOVED_MODULES.includes(page)) {
+    Utils.toast("该功能已移除", "warning");
+    page = "home";
+  }
   // 离开当前板块前，记住它的滚动位置（此时 currentPage 仍是旧页名）
   if (typeof window !== 'undefined') {
     const _main = document.querySelector('.main');
@@ -1336,13 +1343,9 @@ function pageForOverview(name) {
   return "home";
 }
 
-// 首页「全部功能」入口：导航里精简掉的模块都从这里进
+// 首页「全部功能」入口：只放仍在用的模块
 function renderAllModules() {
   const mods = [
-    { key: "words", icon: "📖", name: "单词" },
-    { key: "errors", icon: "❌", name: "错题本" },
-    { key: "exercise", icon: "💪", name: "锻炼" },
-    { key: "finance", icon: "💰", name: "理财学习" },
     { key: "stats", icon: "📊", name: "统计" },
     { key: "reading", icon: "📒", name: "阅读笔记" },
     { key: "diet", icon: "🍱", name: "饮食" },
