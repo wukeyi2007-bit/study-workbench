@@ -1250,7 +1250,9 @@ function renderTodayOverview() {
   const wordPct = VOCABULARY.length ? Math.min(100, Math.round(((masteredWords + learningWords) / VOCABULARY.length) * 100)) : 0;
 
   const exStats = getWeekExerciseStats();
-  const runPct = Math.min(100, Math.round((exStats.runKm / exStats.runGoalKm) * 100));
+  const runPct = exStats.runGoalKm > 0
+    ? Math.min(100, Math.round((exStats.runKm / exStats.runGoalKm) * 100))
+    : 0;
 
   // 视频跟练按「今天」打卡的模块数计算，不是本周累计
   const todayVideoLogs = (state.exercise?.log || []).filter(e => e.date === today && e.type === 'video');
@@ -1299,9 +1301,20 @@ function renderTodayOverview() {
     ? Math.min(100, Math.round((todayWords / dailyWordGoal) * 100))
     : wordPct;
 
+  // 健身：本周训练次数（以每周 3 练为参考进度）
+  ensureTraining();
+  const trainingWeekLogs = ((state.training && state.training.logs) || []).filter(function (l) {
+    const ago = -Utils.daysUntil(l.date);
+    return ago >= 0 && ago < 7;
+  });
+  const trainingWeekCount = trainingWeekLogs.length;
+  const trainingPct = Math.min(100, Math.round((trainingWeekCount / 3) * 100));
+
   const items = [
     { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
+    { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
+    { icon: "💪", name: "健身", pct: trainingPct, desc: `本周 ${trainingWeekCount} 次` },
   ];
 
   const r = 26;
@@ -1341,6 +1354,7 @@ function pageForOverview(name) {
   if (name === "知识点") return "notes";
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
+  if (name === "健身") return "training";
   if (name === "理财学习") return "finance";
   return "home";
 }
