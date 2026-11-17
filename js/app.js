@@ -26,7 +26,8 @@ const Store = {
     out.settings = Object.assign({}, base.settings, stored.settings || {});
     // 兼容旧版：旧存档没有头像/状态，补默认值
     if (!out.settings.avatar) out.settings.avatar = "👋";
-    if (!out.settings.status) out.settings.status = "四级备考中";
+    // 兼容旧版：没有状态，或仍是旧的「四级备考中」，统一换成新的默认签名
+    if (!out.settings.status || out.settings.status === "四级备考中") out.settings.status = "今天也要加油";
     out.progress = Object.assign({}, base.progress, stored.progress || {});
     out.news = Object.assign({}, base.news, stored.news || {});
     out.reading = Object.assign({}, base.reading, stored.reading || {});
@@ -76,7 +77,7 @@ const Store = {
 
   default() {
     return {
-      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "四级备考中", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, audioSource: "auto", ttsMode: "natural", cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
+      settings: { username: "柯仪", avatar: "👋", avatarImage: "", bgImage: "", quoteBgImage: "", status: "今天也要加油", dailyGoal: CONFIG.dailyGoal, xfAppId: "", xfApiKey: "", xfApiSecret: "", speakVoiceURI: "", speakRate: 0.9, audioSource: "auto", ttsMode: "natural", cloudSync: { enabled: false, token: "", syncId: "", gistId: "", lastSync: 0 } },
       progress: {
         currentSet: 1,
         wordsLearned: 0,
@@ -279,7 +280,7 @@ const MOOD_QUOTES = {
     color: "#f59e0b",
     quotes: [
       "好心情是最好的学习催化剂，今天也要闪闪发光呀！✨",
-      "笑容是最好的开场白，四级之路因你而明亮。",
+      "笑容是最好的开场白，今天也会闪闪发光。",
       "保持热爱，奔赴山海；今天的你，比昨天更靠近目标。",
       "快乐学习，效率翻倍，继续冲！",
       "阳光正好，你也正好，开始今天的进步吧。",
@@ -287,20 +288,20 @@ const MOOD_QUOTES = {
       "带着笑容背单词，记忆都会更深刻。",
       "今天状态满分，适合攻克那些难啃的语法点。",
       "好心情会传染，先对自己笑一个。😊",
-      "四级这条路，笑着走比苦着脸走快得多。",
+      "路再长，笑着走也比苦着脸快得多。",
       "你笑起来的样子，就是今天最好的开场。",
       "快乐是最强的内驱力，趁热打铁再冲一把。",
       "心情一好，看单词都顺眼了，赶紧背起来。",
       "今天也要元气满满地打败每一个生词。",
       "开心的时候学习，感觉时间过得特别快。",
       "把这份好心情，变成今天满满的学习动力。",
-      "笑一笑，四级没那么可怕。",
+      "笑一笑，没什么大不了的。",
       "快乐的人运气不会差，努力的人分数不会低。",
       "今天心情这么好，不学点东西都可惜了。",
       "开心就是最好的状态，学习事半功倍。",
       "嘴角上扬，单词入脑，今天稳了。",
       "你的好心情，就是今天最大的优势。",
-      "开开心心背单词，轻轻松松过四级。",
+      "开开心心过好每一天。",
       "心情好，记东西都快，别浪费这个状态。",
       "今天也要像阳光一样，照亮自己的路。",
       "开心地学，比苦着脸学，效果好十倍。",
@@ -404,7 +405,7 @@ const MOOD_QUOTES = {
       "焦虑没用，行动才有用。现在就开始。",
       "把担心写下来，一件一件解决。",
       "你怕的不是考试，是没准备好的自己。去准备。",
-      "深呼吸，四级没有你想的那么难。",
+      "深呼吸，没你想的那么难。",
       "先做五分钟，焦虑会自己退。",
       "别人也慌，只是没让你看见。",
       "把今天的任务做完，焦虑就少一半。",
@@ -441,7 +442,7 @@ const MOOD_QUOTES = {
       "迷茫的时候，学习是不会错的选择。",
       "不知道往哪走，就先提升自己。",
       "方向是走出来的，不是想出来的。",
-      "先把四级过了，选项会变多。",
+      "把眼前的事做好，路会越走越宽。",
       "迷茫不可怕，原地不动才可怕。",
       "你现在的积累，会照亮以后的路。",
       "看不清就多读书，书里有很多答案。",
@@ -1412,11 +1413,8 @@ function renderDashboard() {
     ${renderTodayOverview()}
 
     <div class="dashboard-hero">
-      <h1>${avatarHtml} ${username}，准备好了吗？</h1>
-      <p>距离四级考试还有 ${daysLeft} 天 · 每天进步一点都算数</p>
+      <h1>${avatarHtml} ${username}，今天也要加油呀</h1>
       <div class="countdown">
-        <div class="countdown-item"><div class="num">${daysLeft}</div><div class="label">天</div></div>
-        <div class="countdown-item"><div class="num">${Math.floor(daysLeft / 7)}</div><div class="label">周</div></div>
         <div class="countdown-item"><div class="num">${state.progress.streak}</div><div class="label">连续打卡</div></div>
       </div>
     </div>
@@ -6830,7 +6828,7 @@ function renderSidebarProfile() {
   const s = state.settings || {};
   const name = s.username || "柯仪";
   const avatar = s.avatar || "👋";
-  const status = s.status || "四级备考中";
+  const status = s.status || "今天也要加油";
   const nameEl = document.getElementById("sidebarName");
   const avatarEl = document.getElementById("sidebarAvatar");
   const metaEl = document.getElementById("sidebarMeta");
@@ -6941,7 +6939,7 @@ function updateManifestTheme(primary) {
     const manifest = {
       name: 'KeYi',
       short_name: 'KeYi',
-      description: '英语四级 + 锻炼 + 理财 一站式学习工作台',
+      description: '小柯仪的一站式生活学习工作台',
       lang: 'zh-CN',
       start_url: './index.html',
       scope: './',
