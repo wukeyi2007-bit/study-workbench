@@ -1291,12 +1291,8 @@ function renderTodayOverview() {
     : wordPct;
 
   const items = [
-    { icon: "📖", name: "单词学习", pct: dailyWordPct, desc: `今日背词 ${todayWords}${dailyWordGoal > 0 ? '/' + dailyWordGoal : ''} · 待复习 ${dueReviewWords}` },
     { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
-    { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
-    { icon: "💪", name: "视频跟练", pct: videoPct, desc: videoGoal > 0 ? `${videoDone}/${videoGoal} 类` : "暂无内容" },
-    { icon: "💰", name: "理财学习", pct: financePct, desc: `${financeDone}/${financeTotal} 知识点` },
   ];
 
   const r = 26;
@@ -7585,16 +7581,11 @@ function answerNoteReview(remembered) {
 // 侧边栏模块清单（key 对应 data-page，label 用于设置页展示）
 const SIDEBAR_MODULES = [
   { key: "home", label: "🏠 首页", group: "学习" },
-  { key: "words", label: "📖 单词", group: "学习" },
   { key: "notes", label: "📓 知识点", group: "学习" },
-  { key: "errors", label: "❌ 错题本", group: "学习" },
   { key: "stats", label: "📊 统计", group: "学习" },
-  { key: "exercise", label: "💪 锻炼", group: "生活" },
   { key: "reading", label: "📒 阅读笔记", group: "生活" },
   { key: "diet", label: "🍱 饮食", group: "生活" },
   { key: "weight", label: "⚖️ 体重", group: "生活" },
-  { key: "news", label: "📰 热点新闻", group: "资讯" },
-  { key: "finance", label: "💰 理财学习", group: "资讯" },
 ];
 
 function getDefaultSidebarVisible() {
