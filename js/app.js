@@ -1412,13 +1412,6 @@ function renderDashboard() {
     ${renderMoodBanner()}
     ${renderTodayOverview()}
 
-    <div class="dashboard-hero">
-      <h1>${avatarHtml} ${username}，今天也要加油呀</h1>
-      <div class="countdown">
-        <div class="countdown-item"><div class="num">${state.progress.streak}</div><div class="label">连续打卡</div></div>
-      </div>
-    </div>
-
     ${renderAllModules()}
 
     <div class="card">
