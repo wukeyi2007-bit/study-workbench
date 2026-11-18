@@ -1,155 +1,155 @@
 [
   {
-    "id": "d000a69",
+    "id": "d43cb70",
+    "cat": "domestic",
+    "important": true,
+    "title": "习近平彭丽媛欢迎与会嘉宾并集体合影",
+    "summary": "【百度热搜】习近平彭丽媛欢迎与会嘉宾并集体合影",
+    "source": "百度热搜",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "d5f8a37",
     "cat": "domestic",
     "important": true,
     "title": "APEC工商领导人峰会什么话题最热",
     "summary": "【百度热搜】APEC工商领导人峰会什么话题最热",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "d1484ef",
+    "id": "d6db6b0",
     "cat": "domestic",
-    "important": true,
-    "title": "习近平在欢迎晚宴上的祝酒辞",
-    "summary": "【百度热搜】习近平在欢迎晚宴上的祝酒辞",
+    "important": false,
+    "title": "中国军人在空军一号轰鸣声前岿然不动",
+    "summary": "【百度热搜】中国军人在空军一号轰鸣声前岿然不动",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "d47858b",
+    "id": "d8403e7",
+    "cat": "domestic",
+    "important": false,
+    "title": "普京和特朗普互动握手",
+    "summary": "【百度热搜】普京和特朗普互动握手",
+    "source": "百度热搜",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "d85e39f",
+    "cat": "domestic",
+    "important": false,
+    "title": "中俄美元首同框",
+    "summary": "【百度热搜】中俄美元首同框",
+    "source": "百度热搜",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "dd1e9b1",
     "cat": "domestic",
     "important": false,
     "title": "在大湾区看如何促进亚太共同繁荣",
     "summary": "【百度热搜】在大湾区看如何促进亚太共同繁荣",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "d53c203",
-    "cat": "domestic",
-    "important": false,
-    "title": "习近平迎接特朗普",
-    "summary": "【百度热搜】习近平迎接特朗普",
-    "source": "百度热搜",
-    "date": "2026-11-18"
-  },
-  {
-    "id": "da5f4f0",
-    "cat": "domestic",
-    "important": false,
-    "title": "习近平彭丽媛欢迎与会嘉宾并集体合影",
-    "summary": "【百度热搜】习近平彭丽媛欢迎与会嘉宾并集体合影",
-    "source": "百度热搜",
-    "date": "2026-11-18"
-  },
-  {
-    "id": "db4eb58",
-    "cat": "domestic",
-    "important": false,
-    "title": "特朗普：感谢习近平主席亲赴机场迎接",
-    "summary": "【百度热搜】特朗普：感谢习近平主席亲赴机场迎接",
-    "source": "百度热搜",
-    "date": "2026-11-18"
-  },
-  {
-    "id": "i23d806",
+    "id": "i68eb74",
     "cat": "international",
     "important": true,
-    "title": "深圳学生被智利总统夫人投喂车厘子",
-    "summary": "【百度热搜】深圳学生被智利总统夫人投喂车厘子",
+    "title": "俄美专机在中国机场同框",
+    "summary": "【百度热搜】俄美专机在中国机场同框",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "i3bd168",
+    "id": "i7a3069",
     "cat": "international",
     "important": false,
-    "title": "为何都说“APEC需要中国”",
-    "summary": "【百度热搜】为何都说“APEC需要中国”",
+    "title": "现场见证深圳APEC的首张“全家福”",
+    "summary": "【百度热搜】现场见证深圳APEC的首张“全家福”",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "i9d1469",
+    "id": "ie93c0c",
     "cat": "international",
     "important": false,
     "title": "历史时刻：普京特朗普同日抵达深圳",
     "summary": "【百度热搜】历史时刻：普京特朗普同日抵达深圳",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "ieb750c",
+    "id": "ifa1426",
     "cat": "international",
     "important": false,
-    "title": "母亲找回33年前失踪被拐儿子",
-    "summary": "【百度热搜】母亲找回33年前失踪被拐儿子",
+    "title": "为何都说“APEC需要中国”",
+    "summary": "【百度热搜】为何都说“APEC需要中国”",
     "source": "百度热搜",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "t1f4862",
+    "id": "t1b782e",
     "cat": "tech",
     "important": true,
+    "title": "英伟达已停止向中国提供AI数据中心晶片",
+    "summary": "【联合早报】英伟达已停止向中国提供AI数据中心晶片",
+    "source": "联合早报",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "t6cba34",
+    "cat": "tech",
+    "important": false,
     "title": "黄仁勋的婚外情秘密是如何泄露到公众视野的",
     "summary": "【纽约时报中文网】黄仁勋的婚外情秘密是如何泄露到公众视野的",
     "source": "纽约时报中文网",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "t6be28f",
-    "cat": "tech",
-    "important": false,
-    "title": "特朗普访华前，美国推进新规封堵芯片出口漏洞",
-    "summary": "【纽约时报中文网】特朗普访华前，美国推进新规封堵芯片出口漏洞",
-    "source": "纽约时报中文网",
-    "date": "2026-11-18"
-  },
-  {
-    "id": "t917c04",
+    "id": "t837af3",
     "cat": "tech",
     "important": false,
     "title": "黄仁勋女儿留任引发担忧：脾气暴躁，曾导致多名高管离职",
     "summary": "【纽约时报中文网】黄仁勋女儿留任引发担忧：脾气暴躁，曾导致多名高管离职",
     "source": "纽约时报中文网",
-    "date": "2026-11-18"
+    "date": "2026-11-19"
   },
   {
-    "id": "t944922",
+    "id": "t8fa0d3",
     "cat": "tech",
     "important": false,
-    "title": "英伟达已停止向中国提供AI数据中心晶片",
-    "summary": "【联合早报】英伟达已停止向中国提供AI数据中心晶片",
-    "source": "联合早报",
-    "date": "2026-11-18"
+    "title": "特朗普访华前，美国推进新规封堵芯片出口漏洞",
+    "summary": "【纽约时报中文网】特朗普访华前，美国推进新规封堵芯片出口漏洞",
+    "source": "纽约时报中文网",
+    "date": "2026-11-19"
   },
   {
-    "id": "f77fe24",
+    "id": "fbf7ab3",
     "cat": "finance",
     "important": true,
-    "title": "中国警告可能对美国最新AI芯片限制令采取反制措施",
-    "summary": "【华尔街日报中文网】中国警告可能对美国最新AI芯片限制令采取反制措施",
-    "source": "华尔街日报中文网",
-    "date": "2026-11-18"
+    "title": "华尔街为 Anthropic“史上最大 IPO”造势，散户争抢热情或超 SpaceX",
+    "summary": "【IT之家】华尔街为 Anthropic“史上最大 IPO”造势，散户争抢热情或超 SpaceX",
+    "source": "IT之家",
+    "date": "2026-11-19"
   },
   {
-    "id": "fa6b030",
+    "id": "f8fc50e",
     "cat": "finance",
     "important": false,
-    "title": "“要开百年老店”，亚太经贸往来更顺畅！一笔扫码支付省掉繁琐、带来生意",
-    "summary": "【央视网】“要开百年老店”，亚太经贸往来更顺畅！一笔扫码支付省掉繁琐、带来生意",
-    "source": "央视网",
-    "date": "2026-11-18"
+    "title": "金价大跌近2%失守3800美元关口 英伟达财报提振AI板块 | 今夜看点",
+    "summary": "【财联社】金价大跌近2%失守3800美元关口 英伟达财报提振AI板块 | 今夜看点",
+    "source": "财联社",
+    "date": "2026-11-19"
   },
   {
-    "id": "fcb6399",
+    "id": "ff56bc7",
     "cat": "finance",
     "important": false,
-    "title": "英伟达丑闻加深特朗普政府内部裂痕",
-    "summary": "【纽约时报中文网】英伟达丑闻加深特朗普政府内部裂痕",
-    "source": "纽约时报中文网",
-    "date": "2026-11-18"
+    "title": "哈维·琼斯：成就黄仁勋，赶走黄仁勋",
+    "summary": "【华尔街见闻】哈维·琼斯：成就黄仁勋，赶走黄仁勋",
+    "source": "华尔街见闻",
+    "date": "2026-11-19"
   }
 ]
