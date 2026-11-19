@@ -1,19 +1,19 @@
 [
   {
-    "id": "d2144d7",
-    "cat": "domestic",
-    "important": true,
-    "title": "APEC领导人互相整理围巾",
-    "summary": "【百度热搜】APEC领导人互相整理围巾",
-    "source": "百度热搜",
-    "date": "2026-11-19"
-  },
-  {
     "id": "d2cbe17",
     "cat": "domestic",
     "important": true,
     "title": "引领时代风气之先 锚定亚太合作方向",
     "summary": "【百度热搜】引领时代风气之先 锚定亚太合作方向",
+    "source": "百度热搜",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "d509a77",
+    "cat": "domestic",
+    "important": true,
+    "title": "中俄美元首会晤",
+    "summary": "【百度热搜】中俄美元首会晤",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
@@ -27,83 +27,74 @@
     "date": "2026-11-19"
   },
   {
-    "id": "d94b583",
+    "id": "d91a2ae",
     "cat": "domestic",
     "important": false,
-    "title": "习近平将主持中俄美元首会晤",
-    "summary": "【百度热搜】习近平将主持中俄美元首会晤",
+    "title": "中俄美元首会晤高清大图",
+    "summary": "【百度热搜】中俄美元首会晤高清大图",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "daf1ece",
+    "id": "d91e4a0",
     "cat": "domestic",
     "important": false,
-    "title": "习近平会见美国总统特朗普",
-    "summary": "【百度热搜】习近平会见美国总统特朗普",
+    "title": "中俄美最高领导人有史以来首次聚首",
+    "summary": "【百度热搜】中俄美最高领导人有史以来首次聚首",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "ddb628a",
+    "id": "d996675",
     "cat": "domestic",
     "important": false,
-    "title": "深圳市民在街头偶遇各国政要",
-    "summary": "【百度热搜】深圳市民在街头偶遇各国政要",
+    "title": "特朗普：美国不支持“台独”",
+    "summary": "【百度热搜】特朗普：美国不支持“台独”",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "i67385a",
+    "id": "i857785",
     "cat": "international",
     "important": true,
-    "title": "中方回应高市早苗礼宾安排",
-    "summary": "【百度热搜】中方回应高市早苗礼宾安排",
+    "title": "特朗普：请中国继续保持强大",
+    "summary": "【百度热搜】特朗普：请中国继续保持强大",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "i954c71",
+    "id": "icbd01c",
     "cat": "international",
     "important": false,
-    "title": "特朗普称赞习主席：您是了不起的领袖",
-    "summary": "【百度热搜】特朗普称赞习主席：您是了不起的领袖",
+    "title": "特朗普看到普京立马鼓掌致意",
+    "summary": "【百度热搜】特朗普看到普京立马鼓掌致意",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "ibc8a83",
+    "id": "ie5d5f7",
     "cat": "international",
     "important": false,
-    "title": "从一枚车厘子读懂亚太合作的甜头",
-    "summary": "【百度热搜】从一枚车厘子读懂亚太合作的甜头",
+    "title": "特朗普见普京时开玩笑问“他是谁”",
+    "summary": "【百度热搜】特朗普见普京时开玩笑问“他是谁”",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "id8bfca",
+    "id": "ifbc206",
     "cat": "international",
     "important": false,
-    "title": "普京乘电梯时主动礼让文莱苏丹",
-    "summary": "【百度热搜】普京乘电梯时主动礼让文莱苏丹",
+    "title": "共促亚太繁荣：中国的建议与邀约",
+    "summary": "【百度热搜】共促亚太繁荣：中国的建议与邀约",
     "source": "百度热搜",
     "date": "2026-11-19"
   },
   {
-    "id": "t1bdf94",
+    "id": "t4c9628",
     "cat": "tech",
     "important": true,
-    "title": "间谍指控、安全担忧：中美围绕人工智能的紧张局势加剧",
-    "summary": "【纽约时报中文网】间谍指控、安全担忧：中美围绕人工智能的紧张局势加剧",
-    "source": "纽约时报中文网",
-    "date": "2026-11-19"
-  },
-  {
-    "id": "t1c5d95",
-    "cat": "tech",
-    "important": false,
-    "title": "英伟达丑闻加深特朗普政府内部裂痕",
-    "summary": "【纽约时报中文网】英伟达丑闻加深特朗普政府内部裂痕",
+    "title": "中国军方对英伟达芯片触手可及？阿里巴巴扮演重要角色",
+    "summary": "【纽约时报中文网】中国军方对英伟达芯片触手可及？阿里巴巴扮演重要角色",
     "source": "纽约时报中文网",
     "date": "2026-11-19"
   },
@@ -126,30 +117,39 @@
     "date": "2026-11-19"
   },
   {
-    "id": "f1c88e8",
-    "cat": "finance",
-    "important": true,
-    "title": "提前加薪并增加股权激励！英伟达召开员工大会，明确不找黄仁勋“复制品”",
-    "summary": "【东方财富网】提前加薪并增加股权激励！英伟达召开员工大会，明确不找黄仁勋“复制品”",
-    "source": "东方财富网",
+    "id": "ted2e90",
+    "cat": "tech",
+    "important": false,
+    "title": "特朗普：与习近平谈了一整晚AI 仅简短提及黄仁勋",
+    "summary": "【联合早报】特朗普：与习近平谈了一整晚AI 仅简短提及黄仁勋",
+    "source": "联合早报",
     "date": "2026-11-19"
   },
   {
     "id": "f5073f2",
     "cat": "finance",
-    "important": false,
+    "important": true,
     "title": "国际金价跌破3800美元",
     "summary": "【新华网】国际金价跌破3800美元",
     "source": "新华网",
     "date": "2026-11-19"
   },
   {
-    "id": "fe98c02",
+    "id": "f81832f",
     "cat": "finance",
     "important": false,
-    "title": "新一轮国资国企改革全面实施 国资委要求防止“救助型”并购",
-    "summary": "【新华网】新一轮国资国企改革全面实施 国资委要求防止“救助型”并购",
-    "source": "新华网",
+    "title": "马斯克“深圳连线”：详谈星舰、模型、算力、芯片、机器人、脑机，大赞黄仁勋“科技界乔丹”",
+    "summary": "【华尔街见闻】马斯克“深圳连线”：详谈星舰、模型、算力、芯片、机器人、脑机，大赞黄仁勋“科技界乔丹”",
+    "source": "华尔街见闻",
+    "date": "2026-11-19"
+  },
+  {
+    "id": "fa6674a",
+    "cat": "finance",
+    "important": false,
+    "title": "港股午评：恒生指数跌1.89% 恒生科技指数跌2%",
+    "summary": "【东方财富网】港股午评：恒生指数跌1.89% 恒生科技指数跌2%",
+    "source": "东方财富网",
     "date": "2026-11-19"
   }
 ]
