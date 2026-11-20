@@ -1,37 +1,46 @@
 [
   {
-    "id": "d34da83",
+    "id": "d1efb7c",
     "cat": "domestic",
     "important": true,
-    "title": "12306迎来重大更新",
-    "summary": "【百度热搜】12306迎来重大更新",
+    "title": "余承东：L3自动驾驶开车可以睡觉",
+    "summary": "【百度热搜】余承东：L3自动驾驶开车可以睡觉",
+    "source": "百度热搜",
+    "date": "2026-11-20"
+  },
+  {
+    "id": "d385030",
+    "cat": "domestic",
+    "important": true,
+    "title": "习近平会见新加坡总理黄循财",
+    "summary": "【百度热搜】习近平会见新加坡总理黄循财",
+    "source": "百度热搜",
+    "date": "2026-11-20"
+  },
+  {
+    "id": "d3fc5d5",
+    "cat": "domestic",
+    "important": false,
+    "title": "印尼总统：台湾是中国的一个省",
+    "summary": "【百度热搜】印尼总统：台湾是中国的一个省",
     "source": "百度热搜",
     "date": "2026-11-20"
   },
   {
     "id": "d449919",
     "cat": "domestic",
-    "important": true,
+    "important": false,
     "title": "外交部回应日方最新表态",
     "summary": "【百度热搜】外交部回应日方最新表态",
     "source": "百度热搜",
     "date": "2026-11-20"
   },
   {
-    "id": "d4641db",
+    "id": "d499b7a",
     "cat": "domestic",
     "important": false,
-    "title": "为何会无意识长时间看手机",
-    "summary": "【百度热搜】为何会无意识长时间看手机",
-    "source": "百度热搜",
-    "date": "2026-11-20"
-  },
-  {
-    "id": "d5f326b",
-    "cat": "domestic",
-    "important": false,
-    "title": "大国外交的“深圳时刻”",
-    "summary": "【百度热搜】大国外交的“深圳时刻”",
+    "title": "房子没人住该不该交供暖费",
+    "summary": "【百度热搜】房子没人住该不该交供暖费",
     "source": "百度热搜",
     "date": "2026-11-20"
   },
@@ -45,8 +54,17 @@
     "date": "2026-11-20"
   },
   {
-    "id": "d99fa7a",
-    "cat": "domestic",
+    "id": "i246174",
+    "cat": "international",
+    "important": true,
+    "title": "APEC红蓝围巾是怎么分的",
+    "summary": "【百度热搜】APEC红蓝围巾是怎么分的",
+    "source": "百度热搜",
+    "date": "2026-11-20"
+  },
+  {
+    "id": "i57d0c7",
+    "cat": "international",
     "important": false,
     "title": "特朗普在深圳27小时超出计划",
     "summary": "【百度热搜】特朗普在深圳27小时超出计划",
@@ -54,29 +72,11 @@
     "date": "2026-11-20"
   },
   {
-    "id": "i2db910",
-    "cat": "international",
-    "important": true,
-    "title": "亮相APEC晚宴的荔枝冰酒已全线售罄",
-    "summary": "【百度热搜】亮相APEC晚宴的荔枝冰酒已全线售罄",
-    "source": "百度热搜",
-    "date": "2026-11-20"
-  },
-  {
-    "id": "ia7bdf8",
+    "id": "ib26b63",
     "cat": "international",
     "important": false,
-    "title": "厦门大学收到捐款1亿元",
-    "summary": "【百度热搜】厦门大学收到捐款1亿元",
-    "source": "百度热搜",
-    "date": "2026-11-20"
-  },
-  {
-    "id": "icc4d23",
-    "cat": "international",
-    "important": false,
-    "title": "上证50指数探底回升收红",
-    "summary": "【百度热搜】上证50指数探底回升收红",
+    "title": "12306迎来重大更新",
+    "summary": "【百度热搜】12306迎来重大更新",
     "source": "百度热搜",
     "date": "2026-11-20"
   },
@@ -99,12 +99,12 @@
     "date": "2026-11-20"
   },
   {
-    "id": "td2349a",
+    "id": "t7d51fa",
     "cat": "tech",
     "important": false,
-    "title": "“腾讯到了生死存亡”，马化腾亮牌",
-    "summary": "【凤凰网】“腾讯到了生死存亡”，马化腾亮牌",
-    "source": "凤凰网",
+    "title": "Anthropic创纪录IPO，中国投资者再被排除在外",
+    "summary": "【纽约时报中文网】Anthropic创纪录IPO，中国投资者再被排除在外",
+    "source": "纽约时报中文网",
     "date": "2026-11-20"
   },
   {
@@ -126,21 +126,12 @@
     "date": "2026-11-20"
   },
   {
-    "id": "f2b4bdb",
+    "id": "f48a03e",
     "cat": "finance",
     "important": true,
-    "title": "“双十一”购物车扩容向新 “词元+终端”创新消费体验",
-    "summary": "【中国经济网】“双十一”购物车扩容向新 “词元+终端”创新消费体验",
-    "source": "中国经济网",
-    "date": "2026-11-20"
-  },
-  {
-    "id": "f58ccbf",
-    "cat": "finance",
-    "important": false,
-    "title": "现货黄金直线跳水，跌破3530美元",
-    "summary": "【新京报】现货黄金直线跳水，跌破3530美元",
-    "source": "新京报",
+    "title": "商务部：消费市场规模稳步扩大 服务零售额增速较快",
+    "summary": "【凤凰网】商务部：消费市场规模稳步扩大 服务零售额增速较快",
+    "source": "凤凰网",
     "date": "2026-11-20"
   },
   {
@@ -150,6 +141,15 @@
     "title": "华润三九旗下天士力入选“领航级智能工厂”培育名单",
     "summary": "【新华网】华润三九旗下天士力入选“领航级智能工厂”培育名单",
     "source": "新华网",
+    "date": "2026-11-20"
+  },
+  {
+    "id": "fd1f324",
+    "cat": "finance",
+    "important": false,
+    "title": "港股收盘 | 科技指数创逾两年新低 网易业绩不及预期重挫近18%",
+    "summary": "【财联社】港股收盘 | 科技指数创逾两年新低 网易业绩不及预期重挫近18%",
+    "source": "财联社",
     "date": "2026-11-20"
   }
 ]
