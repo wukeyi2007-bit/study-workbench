@@ -5744,11 +5744,12 @@ window.viewLifePhoto = function (id) {
 // 健身模块（力量训练记录：部位 / 动作 / 组数×次数×重量）
 // ==========================================
 
-const TRAINING_PARTS = ["背", "肩", "臀", "胸", "腿", "手臂", "核心", "有氧"];
+const TRAINING_PARTS = ["背", "肩", "臀腿", "臀", "胸", "腿", "手臂", "核心", "有氧"];
 
 const TRAINING_EXERCISES = {
   "背": ["引体向上", "高位下拉", "划船", "硬拉", "面拉", "单臂划船"],
   "肩": ["肩推", "侧平举", "前平举", "反向飞鸟", "推举"],
+  "臀腿": ["臀推", "臀桥", "罗马尼亚硬拉", "保加利亚分腿蹲", "髋外展", "后踢腿", "深蹲", "腿举", "箭步蹲", "腿弯举"],
   "臀": ["臀推", "臀桥", "罗马尼亚硬拉", "保加利亚分腿蹲", "髋外展", "后踢腿", "相扑深蹲", "单腿硬拉"],
   "胸": ["卧推", "上斜卧推", "哑铃飞鸟", "俯卧撑", "绳索夹胸"],
   "腿": ["深蹲", "腿举", "箭步蹲", "腿弯举", "提踵"],
@@ -5757,9 +5758,26 @@ const TRAINING_EXERCISES = {
   "有氧": ["跑步", "椭圆机", "单车", "跳绳", "划船机"]
 };
 
+// 默认训练计划：周一背 / 周三肩 / 周五臀腿
+const DEFAULT_TRAINING_PLAN = { 1: "背", 3: "肩", 5: "臀腿" };
+const WEEKDAY_NAMES = { 1: "周一", 2: "周二", 3: "周三", 4: "周四", 5: "周五", 6: "周六", 7: "周日" };
+
 function ensureTraining() {
   if (!state.training) state.training = { logs: [] };
   if (!Array.isArray(state.training.logs)) state.training.logs = [];
+  if (!state.training.plan) state.training.plan = Object.assign({}, DEFAULT_TRAINING_PLAN);
+}
+
+// 今天星期几（1=周一 … 7=周日）
+function getWeekdayIndex() {
+  const dow = new Date().getDay();
+  return dow === 0 ? 7 : dow;
+}
+
+// 今天该练什么（没有安排则返回空字符串）
+function getTodayTrainingPart() {
+  ensureTraining();
+  return state.training.plan[getWeekdayIndex()] || "";
 }
 
 function trainingVolume(log) {
@@ -5806,6 +5824,19 @@ function renderTraining() {
     "</div>";
   }).join("") : '<div class="card" style="padding:24px;text-align:center;color:var(--text-secondary);">还没有训练记录，点右上角「＋ 记录训练」开始吧。</div>';
 
+  // 今天该练什么（按周一背 / 周三肩 / 周五臀腿的计划）
+  const todayPart = getTodayTrainingPart();
+  const todayWeekday = WEEKDAY_NAMES[getWeekdayIndex()] || "";
+  const todayCard =
+    '<div class="card training-today">' +
+      '<div class="training-today-left">' +
+        '<div class="training-today-day">今天 · ' + todayWeekday + '</div>' +
+        '<div class="training-today-part">' +
+          (todayPart ? '该练 <b>' + escapeHtml(todayPart) + '</b>' : '今天休息，好好恢复 ☕') +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
   document.getElementById("page-training").innerHTML =
     '<div class="toolbar">' +
       '<div class="toolbar-left"><h2 style="font-size:20px;">💪 健身</h2></div>' +
@@ -5813,6 +5844,7 @@ function renderTraining() {
         '<button class="btn btn-sm btn-primary" onclick="openTrainingEditor()">＋ 记录训练</button>' +
       "</div>" +
     "</div>" +
+    todayCard +
     '<div class="grid grid-3" style="margin-bottom:14px;">' +
       '<div class="card stat-card"><div class="stat-icon">📅</div><div class="stat-value">' + weekCount + '</div><div class="stat-label">本周训练</div></div>' +
       '<div class="card stat-card"><div class="stat-icon">🏋️</div><div class="stat-value">' + Math.round(weekVolume) + '</div><div class="stat-label">本周容量(kg)</div></div>' +
@@ -5852,7 +5884,7 @@ function openTrainingEditor(id) {
   ensureTraining();
   const isEdit = !!id;
   const item = isEdit ? state.training.logs.find(function (x) { return x.id === id; }) : null;
-  window.__trainingPart = item ? (item.part || "背") : "背";
+  window.__trainingPart = item ? (item.part || "背") : (getTodayTrainingPart() || "背");
   const exercises = (item && item.exercises && item.exercises.length)
     ? item.exercises
     : [{ name: "", sets: 4, reps: 10, weight: "" }];
