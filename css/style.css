@@ -1975,6 +1975,8 @@ body.has-bg-image .main {
 .training-day-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; padding: 0 2px 8px; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
 .training-day-date { font-size: 14px; font-weight: 600; }
 .training-day-meta { font-size: 12px; color: var(--text-secondary); }
+.training-log-clickable { cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+.training-log-clickable:hover { border-color: var(--primary); }
 @media (max-width: 520px) {
   .training-row { grid-template-columns: 1fr 46px 46px 56px 26px; gap: 4px; }
 }

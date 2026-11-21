@@ -5816,11 +5816,12 @@ function renderTraining() {
           (e.reps ? "×" + e.reps : "") +
           (w ? " @ " + w + "kg" : "") + "</span>";
       }).join("");
-      return '<div class="training-log">' +
+      return '<div class="training-log training-log-clickable" onclick="openTrainingEditor(' + l.id + ')">' +
         '<div class="training-log-head">' +
           '<span class="training-log-part">' + escapeHtml(l.part || "训练") + "</span>" +
           '<span class="training-log-vol">' + Math.round(trainingVolume(l)) + " kg</span>" +
-          '<button class="btn btn-xs btn-ghost" onclick="deleteTraining(' + l.id + ')">删除</button>' +
+          '<button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();openTrainingEditor(' + l.id + ')">编辑</button>' +
+          '<button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();deleteTraining(' + l.id + ')">删除</button>' +
         "</div>" +
         '<div class="training-ex-list">' + (exs || '<span style="color:var(--text-light);">（无动作）</span>') + "</div>" +
         (l.note ? '<div class="training-note">' + escapeHtml(l.note) + "</div>" : "") +
