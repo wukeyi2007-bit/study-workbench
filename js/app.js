@@ -5804,6 +5804,7 @@ function renderTraining() {
     byDate[d].push(l);
   });
   const dateKeys = Object.keys(byDate).sort().reverse();
+  const expandedDays = window.__trainingDaysExpanded || {};
   const dayLabel = function (d) {
     const dt = new Date(d + "T00:00:00");
     if (isNaN(dt.getTime())) return d;
@@ -5839,14 +5840,16 @@ function renderTraining() {
       "</div>";
     }).join("");
 
-    return '<div class="training-day">' +
-      '<div class="training-day-head">' +
+    const isOpen = !!expandedDays[d];
+    return '<div class="training-day-card' + (isOpen ? " open" : "") + '">' +
+      '<div class="training-day-head" onclick="toggleTrainingDay(\'' + d + '\')">' +
         '<span class="training-day-date">' + escapeHtml(dayLabel(d)) + "</span>" +
         '<span class="training-day-meta">' + escapeHtml(dayParts.join(" · ") || "训练") +
           " · " + Math.round(dayVolume) + " kg" +
           (dayLogs.length > 1 ? " · " + dayLogs.length + " 条" : "") + "</span>" +
+        '<span class="training-day-toggle">' + (isOpen ? "▲" : "▼") + "</span>" +
       "</div>" +
-      rows +
+      (isOpen ? '<div class="training-day-body">' + rows + "</div>" : "") +
     "</div>";
   }).join("") : '<div class="card" style="padding:24px;text-align:center;color:var(--text-secondary);">还没有训练记录，点右上角「＋ 记录训练」开始吧。</div>';
 
@@ -6010,6 +6013,13 @@ function deleteTraining(id) {
   ensureTraining();
   state.training.logs = state.training.logs.filter(function (x) { return x.id !== id; });
   Store.save();
+  renderTraining();
+}
+
+// 展开/收起某一天的训练记录
+function toggleTrainingDay(d) {
+  window.__trainingDaysExpanded = window.__trainingDaysExpanded || {};
+  window.__trainingDaysExpanded[d] = !window.__trainingDaysExpanded[d];
   renderTraining();
 }
 
