@@ -1312,10 +1312,10 @@ function renderTodayOverview() {
   const trainingPct = Math.min(100, Math.round((trainingWeekCount / 3) * 100));
 
   const items = [
-    { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
-    { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "健身", pct: trainingPct, desc: `本周 ${trainingWeekCount} 次` },
+    { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
+    { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
   ];
 
   const r = 26;
