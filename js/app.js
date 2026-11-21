@@ -5860,7 +5860,7 @@ function renderTraining() {
         '<button class="btn btn-sm btn-primary" onclick="openTrainingEditor()">＋ 记录训练</button>' +
       "</div>" +
     "</div>" +
-    '<div class="grid grid-2" style="margin-bottom:14px;">' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">' +
       '<div class="card stat-card"><div class="stat-icon">📅</div><div class="stat-value">' + weekCount + '</div><div class="stat-label">本周训练</div></div>' +
       '<div class="card stat-card"><div class="stat-icon">🏋️</div><div class="stat-value">' + Math.round(weekVolume) + '</div><div class="stat-label">本周容量(kg)</div></div>' +
     "</div>" +
