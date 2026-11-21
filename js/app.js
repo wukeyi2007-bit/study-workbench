@@ -1311,9 +1311,23 @@ function renderTodayOverview() {
   const trainingWeekDays = new Set(trainingWeekLogs.map(function (l) { return l.date; })).size;
   const trainingPct = Math.min(100, Math.round((trainingWeekDays / 3) * 100));
 
+  // 饮食：今天记了几条（按早/午/晚三餐估算完成度）
+  const todayDiet = ((state.diet && state.diet.log) || {})[today] || [];
+  const dietMealCount = new Set(todayDiet.map(function (d) { return d.meal; })).size;
+  const dietPct = Math.min(100, Math.round((dietMealCount / 3) * 100));
+  const dietDesc = todayDiet.length ? `已记 ${todayDiet.length} 条` : "还没记";
+
+  // 生活记录：今天有没有写
+  ensureLife();
+  const todayLife = (state.life.log || []).filter(function (l) { return l.date === today; });
+  const lifePct = todayLife.length ? 100 : 0;
+  const lifeDesc = todayLife.length ? `${todayLife.length} 条` : "还没记";
+
   const items = [
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
     { icon: "💪", name: "健身", pct: trainingPct, desc: `本周 ${trainingWeekDays} 天` },
+    { icon: "🍱", name: "饮食", pct: dietPct, desc: dietDesc },
+    { icon: "📝", name: "生活记录", pct: lifePct, desc: lifeDesc },
     { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
   ];
@@ -1356,6 +1370,8 @@ function pageForOverview(name) {
   if (name === "阅读笔记") return "reading";
   if (name === "跑步" || name === "视频跟练") return "exercise";
   if (name === "健身") return "training";
+  if (name === "饮食") return "diet";
+  if (name === "生活记录") return "life";
   if (name === "理财学习") return "finance";
   return "home";
 }
