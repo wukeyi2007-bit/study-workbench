@@ -1,14 +1,5 @@
 [
   {
-    "id": "d1329eb",
-    "cat": "domestic",
-    "important": true,
-    "title": "星二代扎堆出道 观众在担心什么",
-    "summary": "【百度热搜】星二代扎堆出道 观众在担心什么",
-    "source": "百度热搜",
-    "date": "2026-11-21"
-  },
-  {
     "id": "d2998c3",
     "cat": "domestic",
     "important": true,
@@ -18,29 +9,38 @@
     "date": "2026-11-21"
   },
   {
-    "id": "d6f1816",
+    "id": "d3f4e71",
     "cat": "domestic",
-    "important": false,
-    "title": "特朗普：看看人家深圳再看看我们",
-    "summary": "【百度热搜】特朗普：看看人家深圳再看看我们",
+    "important": true,
+    "title": "原来特朗普拉开窗帘 是在看深圳的路",
+    "summary": "【百度热搜】原来特朗普拉开窗帘 是在看深圳的路",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
   {
-    "id": "d7cf512",
+    "id": "d8b47cf",
     "cat": "domestic",
     "important": false,
-    "title": "麻阳县委书记：我很少加班和晚上开会",
-    "summary": "【百度热搜】麻阳县委书记：我很少加班和晚上开会",
+    "title": "普京核手提箱成大新闻 俄方发声",
+    "summary": "【百度热搜】普京核手提箱成大新闻 俄方发声",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
   {
-    "id": "d926d1e",
+    "id": "dabe767",
     "cat": "domestic",
     "important": false,
-    "title": "工商银行、建设银行等示警金市风险",
-    "summary": "【百度热搜】工商银行、建设银行等示警金市风险",
+    "title": "顺丰速运被暂停参加全军采购活动",
+    "summary": "【百度热搜】顺丰速运被暂停参加全军采购活动",
+    "source": "百度热搜",
+    "date": "2026-11-21"
+  },
+  {
+    "id": "dbfdc84",
+    "cat": "domestic",
+    "important": false,
+    "title": "FILA开酒店了 住一晚要1300多元",
+    "summary": "【百度热搜】FILA开酒店了 住一晚要1300多元",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
@@ -54,45 +54,54 @@
     "date": "2026-11-21"
   },
   {
-    "id": "i4b5630",
+    "id": "i12c91b",
     "cat": "international",
     "important": true,
-    "title": "一家人遛弯误入剧组还上了央视",
-    "summary": "【百度热搜】一家人遛弯误入剧组还上了央视",
+    "title": "新华社评U17国足世界杯首战0:5收场",
+    "summary": "【百度热搜】新华社评U17国足世界杯首战0:5收场",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
   {
-    "id": "i5f62d5",
+    "id": "i5e019b",
     "cat": "international",
     "important": false,
-    "title": "AI短剧《丑狐》爆火",
-    "summary": "【百度热搜】AI短剧《丑狐》爆火",
+    "title": "特朗普在APEC欢迎晚宴跳标志性舞蹈",
+    "summary": "【百度热搜】特朗普在APEC欢迎晚宴跳标志性舞蹈",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
   {
-    "id": "ic37bb7",
+    "id": "ic1a40c",
     "cat": "international",
     "important": false,
-    "title": "华尔街上演“黑色星期五”",
-    "summary": "【百度热搜】华尔街上演“黑色星期五”",
+    "title": "麻阳县委书记想买820X 老婆不肯赞助",
+    "summary": "【百度热搜】麻阳县委书记想买820X 老婆不肯赞助",
     "source": "百度热搜",
     "date": "2026-11-21"
   },
   {
-    "id": "id10a66",
+    "id": "ie3a2bf",
     "cat": "international",
     "important": false,
-    "title": "深圳人又开始原装出街了",
-    "summary": "【百度热搜】深圳人又开始原装出街了",
+    "title": "冬天洗澡可能是在家最危险的20分钟",
+    "summary": "【百度热搜】冬天洗澡可能是在家最危险的20分钟",
     "source": "百度热搜",
+    "date": "2026-11-21"
+  },
+  {
+    "id": "t897c4b",
+    "cat": "tech",
+    "important": true,
+    "title": "余承东：L3自动驾驶来了以后开车是可以睡觉的，别睡死过去就行",
+    "summary": "【凤凰网】余承东：L3自动驾驶来了以后开车是可以睡觉的，别睡死过去就行",
+    "source": "凤凰网",
     "date": "2026-11-21"
   },
   {
     "id": "t8cfd84",
     "cat": "tech",
-    "important": true,
+    "important": false,
     "title": "Anthropic 破纪录IPO能否阻止AI泡沫破裂？",
     "summary": "【BBC】Anthropic 破纪录IPO能否阻止AI泡沫破裂？",
     "source": "BBC",
@@ -117,15 +126,6 @@
     "date": "2026-11-21"
   },
   {
-    "id": "tf20557",
-    "cat": "tech",
-    "important": false,
-    "title": "“腾讯到了生死存亡”，马化腾亮牌",
-    "summary": "【凤凰网】“腾讯到了生死存亡”，马化腾亮牌",
-    "source": "凤凰网",
-    "date": "2026-11-21"
-  },
-  {
     "id": "f04abd5",
     "cat": "finance",
     "important": true,
@@ -144,12 +144,12 @@
     "date": "2026-11-21"
   },
   {
-    "id": "f649426",
+    "id": "f69d6d3",
     "cat": "finance",
     "important": false,
-    "title": "国际金价，大幅下跌",
-    "summary": "【上观新闻】国际金价，大幅下跌",
-    "source": "上观新闻",
+    "title": "金价暴跌122点：这不是调整 是信仰崩塌",
+    "summary": "【同花顺财经】金价暴跌122点：这不是调整 是信仰崩塌",
+    "source": "同花顺财经",
     "date": "2026-11-21"
   }
 ]
