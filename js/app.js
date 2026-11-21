@@ -1302,18 +1302,18 @@ function renderTodayOverview() {
     ? Math.min(100, Math.round((todayWords / dailyWordGoal) * 100))
     : wordPct;
 
-  // 健身：本周训练次数（以每周 3 练为参考进度）
+  // 健身：按「本周练了几天」算进度，一周三练 → 每练一天 +33%
   ensureTraining();
   const trainingWeekLogs = ((state.training && state.training.logs) || []).filter(function (l) {
     const ago = -Utils.daysUntil(l.date);
     return ago >= 0 && ago < 7;
   });
-  const trainingWeekCount = trainingWeekLogs.length;
-  const trainingPct = Math.min(100, Math.round((trainingWeekCount / 3) * 100));
+  const trainingWeekDays = new Set(trainingWeekLogs.map(function (l) { return l.date; })).size;
+  const trainingPct = Math.min(100, Math.round((trainingWeekDays / 3) * 100));
 
   const items = [
     { icon: "🏃", name: "跑步", pct: runPct, desc: `${exStats.runKm}/${exStats.runGoalKm} km` },
-    { icon: "💪", name: "健身", pct: trainingPct, desc: `本周 ${trainingWeekCount} 次` },
+    { icon: "💪", name: "健身", pct: trainingPct, desc: `本周 ${trainingWeekDays} 天` },
     { icon: "📓", name: "知识点", pct: notesPct, desc: notesDesc },
     { icon: "📒", name: "阅读笔记", pct: readingPct, desc: `${readPagesToday}/${readingGoal} 页` },
   ];
