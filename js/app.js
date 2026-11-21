@@ -5901,6 +5901,8 @@ function openTrainingEditor(id) {
   const item = isEdit ? state.training.logs.find(function (x) { return x.id === id; }) : null;
   // 部位支持多选：不预设，编辑时回填已选的多个部位
   window.__trainingParts = item ? getLogParts(item).slice() : [];
+  // 记录日期：默认今天，也可以改成以前某天来补录
+  window.__trainingDate = item ? (item.date || Utils.today()) : Utils.today();
   const exercises = (item && item.exercises && item.exercises.length)
     ? item.exercises
     : [{ name: "", sets: 4, reps: 10, weight: "" }];
@@ -5914,7 +5916,9 @@ function openTrainingEditor(id) {
   }).join("") + "</datalist>";
 
   const body =
-    '<label class="modal-label">训练部位</label>' +
+    '<label class="modal-label">日期</label>' +
+    '<input class="modal-input" type="date" id="trainingDate" value="' + window.__trainingDate + '">' +
+    '<label class="modal-label" style="margin-top:12px;">训练部位（可多选）</label>' +
     '<div class="training-part-chips" id="trainingPartChips">' +
       TRAINING_PARTS.map(function (p) {
         var on = (window.__trainingParts || []).indexOf(p) >= 0;
@@ -5990,13 +5994,16 @@ function saveTraining(id) {
   const noteEl = document.getElementById("trainingNote");
   const note = noteEl ? noteEl.value : "";
 
+  const dateEl = document.getElementById("trainingDate");
+  const date = (dateEl && dateEl.value) ? dateEl.value : Utils.today();
+
   if (id) {
     const item = state.training.logs.find(function (x) { return x.id === id; });
-    if (item) { item.parts = parts; delete item.part; item.exercises = exercises; item.note = note; }
+    if (item) { item.date = date; item.parts = parts; delete item.part; item.exercises = exercises; item.note = note; }
   } else {
     state.training.logs.push({
       id: Date.now(),
-      date: Utils.today(),
+      date: date,
       parts: parts,
       exercises: exercises,
       note: note
