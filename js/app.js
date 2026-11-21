@@ -5769,6 +5769,13 @@ function trainingVolume(log) {
   }, 0);
 }
 
+// 部位统一成数组：兼容旧数据的 part（字符串）
+function getLogParts(log) {
+  if (Array.isArray(log.parts)) return log.parts;
+  if (log.part) return [log.part];
+  return [];
+}
+
 function renderTraining() {
   ensureTraining();
   const logs = state.training.logs.slice().sort(function (a, b) {
@@ -5782,7 +5789,9 @@ function renderTraining() {
   const weekVolume = weekLogs.reduce(function (s, l) { return s + trainingVolume(l); }, 0);
 
   const partCount = {};
-  weekLogs.forEach(function (l) { partCount[l.part] = (partCount[l.part] || 0) + 1; });
+  weekLogs.forEach(function (l) {
+    getLogParts(l).forEach(function (p) { partCount[p] = (partCount[p] || 0) + 1; });
+  });
   const partHtml = Object.keys(partCount).map(function (p) {
     return '<span class="training-tag">' + escapeHtml(p) + " × " + partCount[p] + "</span>";
   }).join("") || '<span style="color:var(--text-light);font-size:13px;">本周还没练</span>';
@@ -5806,7 +5815,9 @@ function renderTraining() {
     const dayLogs = byDate[d];
     const dayVolume = dayLogs.reduce(function (s, l) { return s + trainingVolume(l); }, 0);
     const dayParts = [];
-    dayLogs.forEach(function (l) { if (l.part && dayParts.indexOf(l.part) < 0) dayParts.push(l.part); });
+    dayLogs.forEach(function (l) {
+      getLogParts(l).forEach(function (p) { if (dayParts.indexOf(p) < 0) dayParts.push(p); });
+    });
 
     const rows = dayLogs.map(function (l) {
       const exs = (l.exercises || []).map(function (e) {
@@ -5818,7 +5829,7 @@ function renderTraining() {
       }).join("");
       return '<div class="training-log training-log-clickable" onclick="openTrainingEditor(' + l.id + ')">' +
         '<div class="training-log-head">' +
-          '<span class="training-log-part">' + escapeHtml(l.part || "训练") + "</span>" +
+          '<span class="training-log-part">' + escapeHtml(getLogParts(l).join(" · ") || "训练") + "</span>" +
           '<span class="training-log-vol">' + Math.round(trainingVolume(l)) + " kg</span>" +
           '<button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();openTrainingEditor(' + l.id + ')">编辑</button>' +
           '<button class="btn btn-xs btn-ghost" onclick="event.stopPropagation();deleteTraining(' + l.id + ')">删除</button>' +
@@ -5885,8 +5896,8 @@ function openTrainingEditor(id) {
   ensureTraining();
   const isEdit = !!id;
   const item = isEdit ? state.training.logs.find(function (x) { return x.id === id; }) : null;
-  // 不预设部位，让用户自己选（编辑已有记录时回填）
-  window.__trainingPart = item ? (item.part || "") : "";
+  // 部位支持多选：不预设，编辑时回填已选的多个部位
+  window.__trainingParts = item ? getLogParts(item).slice() : [];
   const exercises = (item && item.exercises && item.exercises.length)
     ? item.exercises
     : [{ name: "", sets: 4, reps: 10, weight: "" }];
@@ -5903,7 +5914,8 @@ function openTrainingEditor(id) {
     '<label class="modal-label">训练部位</label>' +
     '<div class="training-part-chips" id="trainingPartChips">' +
       TRAINING_PARTS.map(function (p) {
-        return '<button type="button" class="training-part-chip' + (p === window.__trainingPart ? " active" : "") +
+        var on = (window.__trainingParts || []).indexOf(p) >= 0;
+        return '<button type="button" class="training-part-chip' + (on ? " active" : "") +
           '" data-part="' + p + '" onclick="pickTrainingPart(this)">' + p + "</button>";
       }).join("") +
     "</div>" +
@@ -5920,12 +5932,18 @@ function openTrainingEditor(id) {
   openModal(isEdit ? "✏️ 编辑训练" : "＋ 记录训练", body, actions, "training-modal");
 }
 
+// 部位多选：点一次选中，再点一次取消
 function pickTrainingPart(btn) {
-  document.querySelectorAll("#trainingPartChips .training-part-chip").forEach(function (b) {
-    b.classList.remove("active");
-  });
-  btn.classList.add("active");
-  window.__trainingPart = btn.getAttribute("data-part");
+  const p = btn.getAttribute("data-part");
+  window.__trainingParts = window.__trainingParts || [];
+  const i = window.__trainingParts.indexOf(p);
+  if (i >= 0) {
+    window.__trainingParts.splice(i, 1);
+    btn.classList.remove("active");
+  } else {
+    window.__trainingParts.push(p);
+    btn.classList.add("active");
+  }
 }
 
 function addTrainingRow() {
@@ -5948,8 +5966,8 @@ function removeTrainingRow(btn) {
 
 function saveTraining(id) {
   ensureTraining();
-  const part = window.__trainingPart || "";
-  if (!part) { Utils.toast("请先选择训练部位", "warning"); return; }
+  const parts = (window.__trainingParts || []).slice();
+  if (!parts.length) { Utils.toast("请至少选择一个训练部位", "warning"); return; }
   const rows = Array.prototype.slice.call(document.querySelectorAll("#trainingRows .training-row"));
   const exercises = rows.map(function (row) {
     const g = function (cls) {
@@ -5971,12 +5989,12 @@ function saveTraining(id) {
 
   if (id) {
     const item = state.training.logs.find(function (x) { return x.id === id; });
-    if (item) { item.part = part; item.exercises = exercises; item.note = note; }
+    if (item) { item.parts = parts; delete item.part; item.exercises = exercises; item.note = note; }
   } else {
     state.training.logs.push({
       id: Date.now(),
       date: Utils.today(),
-      part: part,
+      parts: parts,
       exercises: exercises,
       note: note
     });
