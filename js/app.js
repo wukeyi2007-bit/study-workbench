@@ -5787,23 +5787,54 @@ function renderTraining() {
     return '<span class="training-tag">' + escapeHtml(p) + " × " + partCount[p] + "</span>";
   }).join("") || '<span style="color:var(--text-light);font-size:13px;">本周还没练</span>';
 
-  const listHtml = logs.length ? logs.map(function (l) {
-    const exs = (l.exercises || []).map(function (e) {
-      const w = Number(e.weight) || 0;
-      return '<span class="training-ex">' + escapeHtml(e.name || "") +
-        (e.sets ? " " + e.sets + "组" : "") +
-        (e.reps ? "×" + e.reps : "") +
-        (w ? " @ " + w + "kg" : "") + "</span>";
+  // 按日期分组：同一天的训练归为一组
+  const byDate = {};
+  logs.forEach(function (l) {
+    const d = l.date || "未知日期";
+    if (!byDate[d]) byDate[d] = [];
+    byDate[d].push(l);
+  });
+  const dateKeys = Object.keys(byDate).sort().reverse();
+  const dayLabel = function (d) {
+    const dt = new Date(d + "T00:00:00");
+    if (isNaN(dt.getTime())) return d;
+    const w = ["周日", "周一", "周二", "周三", "周四", "周五", "周六"][dt.getDay()];
+    return (dt.getMonth() + 1) + "月" + dt.getDate() + "日 " + w;
+  };
+
+  const listHtml = dateKeys.length ? dateKeys.map(function (d) {
+    const dayLogs = byDate[d];
+    const dayVolume = dayLogs.reduce(function (s, l) { return s + trainingVolume(l); }, 0);
+    const dayParts = [];
+    dayLogs.forEach(function (l) { if (l.part && dayParts.indexOf(l.part) < 0) dayParts.push(l.part); });
+
+    const rows = dayLogs.map(function (l) {
+      const exs = (l.exercises || []).map(function (e) {
+        const w = Number(e.weight) || 0;
+        return '<span class="training-ex">' + escapeHtml(e.name || "") +
+          (e.sets ? " " + e.sets + "组" : "") +
+          (e.reps ? "×" + e.reps : "") +
+          (w ? " @ " + w + "kg" : "") + "</span>";
+      }).join("");
+      return '<div class="training-log">' +
+        '<div class="training-log-head">' +
+          '<span class="training-log-part">' + escapeHtml(l.part || "训练") + "</span>" +
+          '<span class="training-log-vol">' + Math.round(trainingVolume(l)) + " kg</span>" +
+          '<button class="btn btn-xs btn-ghost" onclick="deleteTraining(' + l.id + ')">删除</button>' +
+        "</div>" +
+        '<div class="training-ex-list">' + (exs || '<span style="color:var(--text-light);">（无动作）</span>') + "</div>" +
+        (l.note ? '<div class="training-note">' + escapeHtml(l.note) + "</div>" : "") +
+      "</div>";
     }).join("");
-    return '<div class="training-log">' +
-      '<div class="training-log-head">' +
-        '<span class="training-log-date">' + escapeHtml(l.date || "") + "</span>" +
-        '<span class="training-log-part">' + escapeHtml(l.part || "训练") + "</span>" +
-        '<span class="training-log-vol">' + Math.round(trainingVolume(l)) + " kg</span>" +
-        '<button class="btn btn-xs btn-ghost" onclick="deleteTraining(' + l.id + ')">删除</button>' +
+
+    return '<div class="training-day">' +
+      '<div class="training-day-head">' +
+        '<span class="training-day-date">' + escapeHtml(dayLabel(d)) + "</span>" +
+        '<span class="training-day-meta">' + escapeHtml(dayParts.join(" · ") || "训练") +
+          " · " + Math.round(dayVolume) + " kg" +
+          (dayLogs.length > 1 ? " · " + dayLogs.length + " 条" : "") + "</span>" +
       "</div>" +
-      '<div class="training-ex-list">' + (exs || '<span style="color:var(--text-light);">（无动作）</span>') + "</div>" +
-      (l.note ? '<div class="training-note">' + escapeHtml(l.note) + "</div>" : "") +
+      rows +
     "</div>";
   }).join("") : '<div class="card" style="padding:24px;text-align:center;color:var(--text-secondary);">还没有训练记录，点右上角「＋ 记录训练」开始吧。</div>';
 
