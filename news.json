@@ -1,37 +1,37 @@
 [
   {
-    "id": "d5d1160",
+    "id": "d00575a",
     "cat": "domestic",
     "important": true,
-    "title": "方力申破世界纪录",
-    "summary": "【百度热搜】方力申破世界纪录",
+    "title": "“所有金条都卖光了”",
+    "summary": "【百度热搜】“所有金条都卖光了”",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "d88a3f0",
+    "id": "d0ab5c3",
     "cat": "domestic",
     "important": true,
-    "title": "10月份工业经济总体平稳",
-    "summary": "【百度热搜】10月份工业经济总体平稳",
+    "title": "韦东奕再获奖",
+    "summary": "【百度热搜】韦东奕再获奖",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "dc502ed",
+    "id": "d9d9601",
     "cat": "domestic",
     "important": false,
-    "title": "韩国网友感谢中国：太用心了",
-    "summary": "【百度热搜】韩国网友感谢中国：太用心了",
+    "title": "A股利好来了 三箭齐发",
+    "summary": "【百度热搜】A股利好来了 三箭齐发",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "dd3056a",
+    "id": "dc3652f",
     "cat": "domestic",
     "important": false,
-    "title": "主播私闯果园带货糟蹋一千多斤苹果",
-    "summary": "【百度热搜】主播私闯果园带货糟蹋一千多斤苹果",
+    "title": "智能穿戴打开消费新空间",
+    "summary": "【百度热搜】智能穿戴打开消费新空间",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
@@ -45,47 +45,47 @@
     "date": "2026-11-22"
   },
   {
-    "id": "df3a6e4",
+    "id": "de998c0",
     "cat": "domestic",
     "important": false,
-    "title": "胡海泉：咬咬牙挺住",
-    "summary": "【百度热搜】胡海泉：咬咬牙挺住",
+    "title": "大雪暴雪来了！明起大降温",
+    "summary": "【百度热搜】大雪暴雪来了！明起大降温",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "i9a684d",
+    "id": "i2529b4",
     "cat": "international",
     "important": true,
-    "title": "“800度高温的东西你扔上天”",
-    "summary": "【百度热搜】“800度高温的东西你扔上天”",
+    "title": "张雪险掉下车大喊要扣德比斯工资",
+    "summary": "【百度热搜】张雪险掉下车大喊要扣德比斯工资",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "ib05a35",
+    "id": "i8b1a37",
     "cat": "international",
     "important": false,
-    "title": "王子璇6天断崖式老10岁",
-    "summary": "【百度热搜】王子璇6天断崖式老10岁",
+    "title": "这个周末数学界吵翻了",
+    "summary": "【百度热搜】这个周末数学界吵翻了",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "iee0be6",
+    "id": "iaabfbf",
     "cat": "international",
     "important": false,
-    "title": "《再见老板》真的要来了",
-    "summary": "【百度热搜】《再见老板》真的要来了",
+    "title": "余文乐自曝熟人借钱不还",
+    "summary": "【百度热搜】余文乐自曝熟人借钱不还",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
   {
-    "id": "if868d1",
+    "id": "iffe2e4",
     "cat": "international",
     "important": false,
-    "title": "四川一公园吊桥坠落 多人落水",
-    "summary": "【百度热搜】四川一公园吊桥坠落 多人落水",
+    "title": "古人的头发真有那么多吗",
+    "summary": "【百度热搜】古人的头发真有那么多吗",
     "source": "百度热搜",
     "date": "2026-11-22"
   },
@@ -108,12 +108,12 @@
     "date": "2026-11-22"
   },
   {
-    "id": "t98c869",
+    "id": "t4f4430",
     "cat": "tech",
     "important": false,
-    "title": "为进一步防止中国间接获取芯片，特朗普称将对在海外建设数据中心的美国企业实施惩罚措施",
-    "summary": "【RFI】为进一步防止中国间接获取芯片，特朗普称将对在海外建设数据中心的美国企业实施惩罚措施",
-    "source": "RFI",
+    "title": "微软发布新一代Windows系统！存储、安全、AI全面增强",
+    "summary": "【驱动之家】微软发布新一代Windows系统！存储、安全、AI全面增强",
+    "source": "驱动之家",
     "date": "2026-11-22"
   },
   {
@@ -126,30 +126,30 @@
     "date": "2026-11-22"
   },
   {
-    "id": "f8c526e",
+    "id": "f08e89d",
     "cat": "finance",
     "important": true,
-    "title": "韩国高考AI作弊事件发酵，教育部长引咎辞职",
-    "summary": "【ThePaper.cn】韩国高考AI作弊事件发酵，教育部长引咎辞职",
-    "source": "ThePaper.cn",
+    "title": "2026年全球脑机接口企业数量实现较快增长",
+    "summary": "【新华网客户端】2026年全球脑机接口企业数量实现较快增长",
+    "source": "新华网客户端",
     "date": "2026-11-22"
   },
   {
-    "id": "fa63543",
+    "id": "f6e9afb",
     "cat": "finance",
     "important": false,
-    "title": "15项脑机接口产品在北京昌平发布",
-    "summary": "【中国科技网】15项脑机接口产品在北京昌平发布",
-    "source": "中国科技网",
+    "title": "金价银价大幅下跌！多家银行发布风险提示",
+    "summary": "【上观新闻】金价银价大幅下跌！多家银行发布风险提示",
+    "source": "上观新闻",
     "date": "2026-11-22"
   },
   {
-    "id": "fe5bbc5",
+    "id": "ff58377",
     "cat": "finance",
     "important": false,
-    "title": "国际金价为何持续下跌 美联储加息预期成“导火索”",
-    "summary": "【中华网】国际金价为何持续下跌 美联储加息预期成“导火索”",
-    "source": "中华网",
+    "title": "沪深北交易所降低融资保证金比例下限至80%",
+    "summary": "【新华网】沪深北交易所降低融资保证金比例下限至80%",
+    "source": "新华网",
     "date": "2026-11-22"
   }
 ]
