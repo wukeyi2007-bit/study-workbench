@@ -1,10 +1,10 @@
 [
   {
-    "id": "d11ca13",
+    "id": "d170f01",
     "cat": "domestic",
     "important": true,
-    "title": "大回暖来了 暖到发紫",
-    "summary": "【百度热搜】大回暖来了 暖到发紫",
+    "title": "又一家车企宣布停产燃油车",
+    "summary": "【百度热搜】又一家车企宣布停产燃油车",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
@@ -27,6 +27,15 @@
     "date": "2026-11-27"
   },
   {
+    "id": "d81804d",
+    "cat": "domestic",
+    "important": false,
+    "title": "受贿5.87亿！蓝天立被判死缓",
+    "summary": "【百度热搜】受贿5.87亿！蓝天立被判死缓",
+    "source": "百度热搜",
+    "date": "2026-11-27"
+  },
+  {
     "id": "da0b09a",
     "cat": "domestic",
     "important": false,
@@ -36,66 +45,66 @@
     "date": "2026-11-27"
   },
   {
-    "id": "dce22bc",
+    "id": "df19747",
     "cat": "domestic",
     "important": false,
-    "title": "人民日报：别把“豆包”当医生",
-    "summary": "【百度热搜】人民日报：别把“豆包”当医生",
+    "title": "208万！国产豪车捅破价格“天花板”",
+    "summary": "【百度热搜】208万！国产豪车捅破价格“天花板”",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
   {
-    "id": "dff6bed",
-    "cat": "domestic",
-    "important": false,
-    "title": "国常会“稳市” AH股集体飙升",
-    "summary": "【百度热搜】国常会“稳市” AH股集体飙升",
-    "source": "百度热搜",
-    "date": "2026-11-27"
-  },
-  {
-    "id": "i2997da",
+    "id": "i0aef7f",
     "cat": "international",
     "important": true,
-    "title": "“易中天”暴涨",
-    "summary": "【百度热搜】“易中天”暴涨",
+    "title": "史上最强厄尔尼诺峰值期来了",
+    "summary": "【百度热搜】史上最强厄尔尼诺峰值期来了",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
   {
-    "id": "i7e045c",
+    "id": "i410a6d",
     "cat": "international",
     "important": false,
-    "title": "孙千跟助理互动外网爆火",
-    "summary": "【百度热搜】孙千跟助理互动外网爆火",
+    "title": "两天内 立陶宛对台表态连升三级",
+    "summary": "【百度热搜】两天内 立陶宛对台表态连升三级",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
   {
-    "id": "iace905",
+    "id": "i8b6a86",
     "cat": "international",
     "important": false,
-    "title": "马天宇主动加张萌微信",
-    "summary": "【百度热搜】马天宇主动加张萌微信",
+    "title": "年轻人不买省钱又省料的手机了",
+    "summary": "【百度热搜】年轻人不买省钱又省料的手机了",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
   {
-    "id": "ib83705",
+    "id": "i9962f4",
     "cat": "international",
     "important": false,
-    "title": "胡兵：瞿颖的拒绝让人觉得很可爱",
-    "summary": "【百度热搜】胡兵：瞿颖的拒绝让人觉得很可爱",
+    "title": "国常会通稿首提“国家队”",
+    "summary": "【百度热搜】国常会通稿首提“国家队”",
     "source": "百度热搜",
     "date": "2026-11-27"
   },
   {
-    "id": "t5e7b70",
+    "id": "t592366",
     "cat": "tech",
     "important": true,
-    "title": "神舟二十四号成功发射 首位巴基斯坦航天员登中国“天宫”意味什么？",
-    "summary": "【BBC】神舟二十四号成功发射 首位巴基斯坦航天员登中国“天宫”意味什么？",
-    "source": "BBC",
+    "title": "刘亦菲被曝从华为换成苹果！使用iPhone 18 Pro Max引发网友热议",
+    "summary": "【驱动之家】刘亦菲被曝从华为换成苹果！使用iPhone 18 Pro Max引发网友热议",
+    "source": "驱动之家",
+    "date": "2026-11-27"
+  },
+  {
+    "id": "t594c62",
+    "cat": "tech",
+    "important": false,
+    "title": "美国官员向国会工作人员通报英伟达事件相关情报",
+    "summary": "【纽约时报中文网】美国官员向国会工作人员通报英伟达事件相关情报",
+    "source": "纽约时报中文网",
     "date": "2026-11-27"
   },
   {
@@ -117,38 +126,29 @@
     "date": "2026-11-27"
   },
   {
-    "id": "tc86ac9",
-    "cat": "tech",
-    "important": false,
-    "title": "英伟达再曝高层恋情，女方为涉对华芯片走私案公司高管",
-    "summary": "【华尔街日报中文网】英伟达再曝高层恋情，女方为涉对华芯片走私案公司高管",
-    "source": "华尔街日报中文网",
+    "id": "f0aeeab",
+    "cat": "finance",
+    "important": true,
+    "title": "深圳华强北公然卖英伟达B300 报价贵美国7倍 禁令破口藏哪些黑幕?",
+    "summary": "【e南洋】深圳华强北公然卖英伟达B300 报价贵美国7倍 禁令破口藏哪些黑幕?",
+    "source": "e南洋",
     "date": "2026-11-27"
   },
   {
-    "id": "f0f9f62",
+    "id": "f371a7e",
     "cat": "finance",
-    "important": true,
-    "title": "四大商业银行已与上市公司签订股票回购增持贷款合同超6000亿元",
-    "summary": "【华尔街见闻】四大商业银行已与上市公司签订股票回购增持贷款合同超6000亿元",
+    "important": false,
+    "title": "国常会“稳市”！AH股午后暴拉：创业板狂飙11%，20CM涨停潮席卷，恒科指涨6%，科网股集体爆发",
+    "summary": "【华尔街见闻】国常会“稳市”！AH股午后暴拉：创业板狂飙11%，20CM涨停潮席卷，恒科指涨6%，科网股集体爆发",
     "source": "华尔街见闻",
     "date": "2026-11-27"
   },
   {
-    "id": "f476ebd",
+    "id": "fbbae0c",
     "cat": "finance",
     "important": false,
-    "title": "恒生科技指数涨超6%，恒生指数升逾2%",
-    "summary": "【紫荆网】恒生科技指数涨超6%，恒生指数升逾2%",
-    "source": "紫荆网",
-    "date": "2026-11-27"
-  },
-  {
-    "id": "f5d0414",
-    "cat": "finance",
-    "important": false,
-    "title": "创业板指涨11.61% 科创50指数涨15.07% 超400只股涨停",
-    "summary": "【东方财富】创业板指涨11.61% 科创50指数涨15.07% 超400只股涨停",
+    "title": "港股收盘：香港恒生科技指数大涨6%，光通信、PCB、芯片板块领涨",
+    "summary": "【东方财富】港股收盘：香港恒生科技指数大涨6%，光通信、PCB、芯片板块领涨",
     "source": "东方财富",
     "date": "2026-11-27"
   }
