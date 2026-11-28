@@ -1,119 +1,110 @@
 [
   {
-    "id": "d1291e6",
+    "id": "d216f07",
     "cat": "domestic",
     "important": true,
-    "title": "“请所有股民 重视A股今天的大涨”",
-    "summary": "【百度热搜】“请所有股民 重视A股今天的大涨”",
+    "title": "“不是霸总就是重生 是小孩看的吗”",
+    "summary": "【百度热搜】“不是霸总就是重生 是小孩看的吗”",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "d21db6f",
+    "id": "d5d117f",
     "cat": "domestic",
     "important": true,
-    "title": "最强厄尔尼诺来了！需防范极端天气",
-    "summary": "【百度热搜】最强厄尔尼诺来了！需防范极端天气",
+    "title": "河湖安澜 碧水长流",
+    "summary": "【百度热搜】河湖安澜 碧水长流",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "d593d59",
+    "id": "d60e68f",
     "cat": "domestic",
     "important": false,
-    "title": "10万起存的大额存单要来了",
-    "summary": "【百度热搜】10万起存的大额存单要来了",
+    "title": "梁靖崑将赴俄超打球",
+    "summary": "【百度热搜】梁靖崑将赴俄超打球",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "dad088e",
+    "id": "d98f049",
     "cat": "domestic",
     "important": false,
-    "title": "中国老年人口数量前10省份出炉",
-    "summary": "【百度热搜】中国老年人口数量前10省份出炉",
+    "title": "本周中国多领域捷报频传",
+    "summary": "【百度热搜】本周中国多领域捷报频传",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "db071b0",
+    "id": "db728f1",
     "cat": "domestic",
     "important": false,
-    "title": "让二手商品“活”起来",
-    "summary": "【百度热搜】让二手商品“活”起来",
+    "title": "刷来刷去怎么还是这几张脸",
+    "summary": "【百度热搜】刷来刷去怎么还是这几张脸",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "db4d558",
+    "id": "dcc6d9c",
     "cat": "domestic",
     "important": false,
-    "title": "让伊春老林区焕发青春活力",
-    "summary": "【百度热搜】让伊春老林区焕发青春活力",
+    "title": "澳门居民珠海养老 每人每月补助5千元",
+    "summary": "【百度热搜】澳门居民珠海养老 每人每月补助5千元",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i304f9f",
+    "id": "i5d602d",
     "cat": "international",
     "important": true,
-    "title": "“天才少女”傅园慧悄悄上岸了",
-    "summary": "【百度热搜】“天才少女”傅园慧悄悄上岸了",
+    "title": "于东来深圳夜店跳舞",
+    "summary": "【百度热搜】于东来深圳夜店跳舞",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i39f5c6",
+    "id": "i77962d",
     "cat": "international",
     "important": false,
-    "title": "年轻人开始翻爸妈的衣柜",
-    "summary": "【百度热搜】年轻人开始翻爸妈的衣柜",
+    "title": "戚薇 小天才电话手表配高定",
+    "summary": "【百度热搜】戚薇 小天才电话手表配高定",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i436556",
+    "id": "ia89535",
     "cat": "international",
     "important": false,
-    "title": "这部差点没拍成的剧 一出场就是王炸",
-    "summary": "【百度热搜】这部差点没拍成的剧 一出场就是王炸",
+    "title": "快扔掉你家那根“光杆”",
+    "summary": "【百度热搜】快扔掉你家那根“光杆”",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i49b035",
+    "id": "if68154",
     "cat": "international",
     "important": false,
-    "title": "黄景瑜现身广州车展 与杨澜同框",
-    "summary": "【百度热搜】黄景瑜现身广州车展 与杨澜同框",
+    "title": "中国航展陆军超燃视频来袭",
+    "summary": "【百度热搜】中国航展陆军超燃视频来袭",
     "source": "百度热搜",
-    "date": "2026-11-28"
-  },
-  {
-    "id": "t13f163",
-    "cat": "tech",
-    "important": true,
-    "title": "美国官员向国会工作人员通报英伟达事件相关情报",
-    "summary": "【纽约时报中文网】美国官员向国会工作人员通报英伟达事件相关情报",
-    "source": "纽约时报中文网",
     "date": "2026-11-28"
   },
   {
     "id": "t18c368",
     "cat": "tech",
-    "important": false,
+    "important": true,
     "title": "刘亦菲被曝从华为换成苹果！使用iPhone 18 Pro Max引发网友热议",
     "summary": "【驱动之家】刘亦菲被曝从华为换成苹果！使用iPhone 18 Pro Max引发网友热议",
     "source": "驱动之家",
     "date": "2026-11-28"
   },
   {
-    "id": "t739684",
+    "id": "t7d818e",
     "cat": "tech",
     "important": false,
-    "title": "中国人工智能雄心面临一个严峻问题：去哪里找钱",
-    "summary": "【纽约时报中文网】中国人工智能雄心面临一个严峻问题：去哪里找钱",
-    "source": "纽约时报中文网",
+    "title": "美国祭出破局一招，在与中国的AI博弈中占得上风",
+    "summary": "【华尔街日报中文网】美国祭出破局一招，在与中国的AI博弈中占得上风",
+    "source": "华尔街日报中文网",
     "date": "2026-11-28"
   },
   {
@@ -126,6 +117,15 @@
     "date": "2026-11-28"
   },
   {
+    "id": "tcc8302",
+    "cat": "tech",
+    "important": false,
+    "title": "美国推出新规限制海外算力 中国AI公司或受冲击 新模型推出速度预计将放缓",
+    "summary": "【DW.com】美国推出新规限制海外算力 中国AI公司或受冲击 新模型推出速度预计将放缓",
+    "source": "DW.com",
+    "date": "2026-11-28"
+  },
+  {
     "id": "f08bc6e",
     "cat": "finance",
     "important": true,
@@ -135,20 +135,20 @@
     "date": "2026-11-28"
   },
   {
-    "id": "fe9e7c7",
+    "id": "f9ce66d",
     "cat": "finance",
     "important": false,
-    "title": "A股狂飙超400股涨停，国务院常务会议后证监会回应：抓紧研究出台增量政策",
-    "summary": "【上观新闻】A股狂飙超400股涨停，国务院常务会议后证监会回应：抓紧研究出台增量政策",
-    "source": "上观新闻",
+    "title": "美股三大指数全线收涨：存储概念爆发，中概股普遍上扬",
+    "summary": "【ThePaper.cn】美股三大指数全线收涨：存储概念爆发，中概股普遍上扬",
+    "source": "ThePaper.cn",
     "date": "2026-11-28"
   },
   {
-    "id": "ff07fe8",
+    "id": "fb1f2f2",
     "cat": "finance",
     "important": false,
-    "title": "港股上行 恒生科技指数领跑大市",
-    "summary": "【东方财富】港股上行 恒生科技指数领跑大市",
+    "title": "国务院常务会议解读丨国常会新部署释放明确稳市信号",
+    "summary": "【东方财富】国务院常务会议解读丨国常会新部署释放明确稳市信号",
     "source": "东方财富",
     "date": "2026-11-28"
   }
