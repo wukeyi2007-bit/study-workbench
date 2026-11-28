@@ -9,11 +9,20 @@
     "date": "2026-11-28"
   },
   {
-    "id": "d1a4e52",
+    "id": "d2349e0",
     "cat": "domestic",
     "important": true,
-    "title": "小狗掉进臭水沟2人边yue边救",
-    "summary": "【百度热搜】小狗掉进臭水沟2人边yue边救",
+    "title": "泄露身份证后四位有多危险",
+    "summary": "【百度热搜】泄露身份证后四位有多危险",
+    "source": "百度热搜",
+    "date": "2026-11-28"
+  },
+  {
+    "id": "d2550b2",
+    "cat": "domestic",
+    "important": false,
+    "title": "司机捡手机要100元辛苦费 乘客报警",
+    "summary": "【百度热搜】司机捡手机要100元辛苦费 乘客报警",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
@@ -36,56 +45,47 @@
     "date": "2026-11-28"
   },
   {
-    "id": "d6b309c",
+    "id": "d564f3e",
     "cat": "domestic",
     "important": false,
-    "title": "中国癌谱从感染型向生活型转变",
-    "summary": "【百度热搜】中国癌谱从感染型向生活型转变",
+    "title": "未休带薪年假可要求补偿",
+    "summary": "【百度热搜】未休带薪年假可要求补偿",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "db03b17",
-    "cat": "domestic",
-    "important": false,
-    "title": "特朗普又连发深圳APEC照片",
-    "summary": "【百度热搜】特朗普又连发深圳APEC照片",
-    "source": "百度热搜",
-    "date": "2026-11-28"
-  },
-  {
-    "id": "i16fdb7",
+    "id": "ibd695e",
     "cat": "international",
     "important": true,
-    "title": "东契奇与场边球迷冲突",
-    "summary": "【百度热搜】东契奇与场边球迷冲突",
+    "title": "直20家族的关键一跃",
+    "summary": "【百度热搜】直20家族的关键一跃",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i563db3",
+    "id": "ibe75d0",
     "cat": "international",
     "important": false,
-    "title": "太唯美！歼-35A丝滑落地全程",
-    "summary": "【百度热搜】太唯美！歼-35A丝滑落地全程",
+    "title": "订单飙涨80%！义乌又爆单了",
+    "summary": "【百度热搜】订单飙涨80%！义乌又爆单了",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "i7c2d73",
+    "id": "ie24495",
     "cat": "international",
     "important": false,
-    "title": "房主刚签完卖房合同得知房子要拆迁",
-    "summary": "【百度热搜】房主刚签完卖房合同得知房子要拆迁",
+    "title": "国乒混团世界杯抽到上上签",
+    "summary": "【百度热搜】国乒混团世界杯抽到上上签",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
   {
-    "id": "ie5470d",
+    "id": "if8e826",
     "cat": "international",
     "important": false,
-    "title": "乒乓球混团世界杯抽签",
-    "summary": "【百度热搜】乒乓球混团世界杯抽签",
+    "title": "金晨黄轩 抽象到一块了",
+    "summary": "【百度热搜】金晨黄轩 抽象到一块了",
     "source": "百度热搜",
     "date": "2026-11-28"
   },
@@ -108,15 +108,6 @@
     "date": "2026-11-28"
   },
   {
-    "id": "t7d818e",
-    "cat": "tech",
-    "important": false,
-    "title": "美国祭出破局一招，在与中国的AI博弈中占得上风",
-    "summary": "【华尔街日报中文网】美国祭出破局一招，在与中国的AI博弈中占得上风",
-    "source": "华尔街日报中文网",
-    "date": "2026-11-28"
-  },
-  {
     "id": "t84deb5",
     "cat": "tech",
     "important": false,
@@ -126,12 +117,21 @@
     "date": "2026-11-28"
   },
   {
-    "id": "f1b7215",
+    "id": "tbde925",
+    "cat": "tech",
+    "important": false,
+    "title": "2026自然指数：中国科研城市首次包揽全球前三",
+    "summary": "【观察者网】2026自然指数：中国科研城市首次包揽全球前三",
+    "source": "观察者网",
+    "date": "2026-11-28"
+  },
+  {
+    "id": "f0e0b3d",
     "cat": "finance",
     "important": true,
-    "title": "【新华解读】存贷利率与大额存单规则优化 更好兼顾市场活力与存款秩序",
-    "summary": "【东方财富】【新华解读】存贷利率与大额存单规则优化 更好兼顾市场活力与存款秩序",
-    "source": "东方财富",
+    "title": "第二十八届高交会在深举行",
+    "summary": "【科学网—新闻】第二十八届高交会在深举行",
+    "source": "科学网—新闻",
     "date": "2026-11-28"
   },
   {
@@ -144,12 +144,12 @@
     "date": "2026-11-28"
   },
   {
-    "id": "f9ce66d",
+    "id": "feff3d8",
     "cat": "finance",
     "important": false,
-    "title": "美股三大指数全线收涨：存储概念爆发，中概股普遍上扬",
-    "summary": "【ThePaper.cn】美股三大指数全线收涨：存储概念爆发，中概股普遍上扬",
-    "source": "ThePaper.cn",
+    "title": "实探广州车展：10万级车型，也能拥有快充、高阶辅助驾驶",
+    "summary": "【东方财富】实探广州车展：10万级车型，也能拥有快充、高阶辅助驾驶",
+    "source": "东方财富",
     "date": "2026-11-28"
   }
 ]
